@@ -10,27 +10,27 @@ import SwiftUI
 struct TabOptionsView: View {
     var body: some View {
         TabView {
-            Text("Events") // Change this to the struct for the view later
+            EventsView() // Change this to the struct for the view later
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Events")
                 }
-            Text("Facility Hours")
+            FacilityHoursView()
                 .tabItem {
                     Image(systemName: "cart")
                     Text("Hours")
                 }
-            Text("Campus Map")
+            CampusMapView()
                 .tabItem {
                     Image(systemName: "map")
                     Text("Campus Map")
                 }
-            Text("KWVA")
+            RadioView()
                 .tabItem {
                     Image(systemName: "radio")
                     Text("KWVA")
                 }
-            Text("Daily Emerald")
+            NewsView()
                 .tabItem {
                     Image(systemName: "newspaper")
                     Text("Daily Emerald")
@@ -42,5 +42,6 @@ struct TabOptionsView: View {
 struct TabOptionsVIew_Previews: PreviewProvider {
     static var previews: some View {
         TabOptionsView()
+            .previewDevice("iPhone 11")
     }
 }

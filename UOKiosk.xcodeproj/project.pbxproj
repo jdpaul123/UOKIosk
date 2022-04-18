@@ -11,11 +11,13 @@
 		527D2066280A16700007D372 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2065280A16700007D372 /* TabView.swift */; };
 		527D2068280A16710007D372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527D2067280A16710007D372 /* Assets.xcassets */; };
 		527D206B280A16710007D372 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527D206A280A16710007D372 /* Preview Assets.xcassets */; };
-		527D2072280A19560007D372 /* EventsVIew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2071280A19560007D372 /* EventsVIew.swift */; };
+		527D2072280A19560007D372 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2071280A19560007D372 /* EventsView.swift */; };
 		527D2074280A196B0007D372 /* FacilityHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2073280A196B0007D372 /* FacilityHoursView.swift */; };
 		527D2076280A197C0007D372 /* CampusMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2075280A197C0007D372 /* CampusMapView.swift */; };
 		527D2078280A19850007D372 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2077280A19850007D372 /* RadioView.swift */; };
 		527D207A280A19910007D372 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2079280A19910007D372 /* NewsView.swift */; };
+		527D207E280A31730007D372 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207D280A31730007D372 /* EventsViewModel.swift */; };
+		527D2080280A31CB0007D372 /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207F280A31CB0007D372 /* EventsModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,12 +26,14 @@
 		527D2065280A16700007D372 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
 		527D2067280A16710007D372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		527D206A280A16710007D372 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		527D2071280A19560007D372 /* EventsVIew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsVIew.swift; sourceTree = "<group>"; };
+		527D2071280A19560007D372 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		527D2073280A196B0007D372 /* FacilityHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityHoursView.swift; sourceTree = "<group>"; };
 		527D2075280A197C0007D372 /* CampusMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapView.swift; sourceTree = "<group>"; };
 		527D2077280A19850007D372 /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
 		527D2079280A19910007D372 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		527D207C280A1AA80007D372 /* UOKiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UOKiosk.entitlements; sourceTree = "<group>"; };
+		527D207D280A31730007D372 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		527D207F280A31CB0007D372 /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +68,8 @@
 			children = (
 				527D207C280A1AA80007D372 /* UOKiosk.entitlements */,
 				527D2063280A16700007D372 /* UOKioskApp.swift */,
+				527D207D280A31730007D372 /* EventsViewModel.swift */,
+				527D207F280A31CB0007D372 /* EventsModel.swift */,
 				527D207B280A19E90007D372 /* Views */,
 				527D2067280A16710007D372 /* Assets.xcassets */,
 				527D2069280A16710007D372 /* Preview Content */,
@@ -83,7 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				527D2065280A16700007D372 /* TabView.swift */,
-				527D2071280A19560007D372 /* EventsVIew.swift */,
+				527D2071280A19560007D372 /* EventsView.swift */,
 				527D2073280A196B0007D372 /* FacilityHoursView.swift */,
 				527D2075280A197C0007D372 /* CampusMapView.swift */,
 				527D2077280A19850007D372 /* RadioView.swift */,
@@ -163,8 +169,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				527D2074280A196B0007D372 /* FacilityHoursView.swift in Sources */,
+				527D207E280A31730007D372 /* EventsViewModel.swift in Sources */,
 				527D207A280A19910007D372 /* NewsView.swift in Sources */,
-				527D2072280A19560007D372 /* EventsVIew.swift in Sources */,
+				527D2072280A19560007D372 /* EventsView.swift in Sources */,
+				527D2080280A31CB0007D372 /* EventsModel.swift in Sources */,
 				527D2066280A16700007D372 /* TabView.swift in Sources */,
 				527D2064280A16700007D372 /* UOKioskApp.swift in Sources */,
 				527D2076280A197C0007D372 /* CampusMapView.swift in Sources */,
