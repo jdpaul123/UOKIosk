@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct UOKioskApp: App {
+    @State var injector = Injector()
+    
     var body: some Scene {
         WindowGroup {
-            TabOptionsView()
+            NavigationView {
+                TabOptionsView(injector: injector)
+            }
         }
     }
 }

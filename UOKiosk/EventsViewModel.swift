@@ -6,7 +6,3 @@
 //
 
 import Foundation
-
-class apiCall {
-    func getEvents(completion:@escaping ([]))
-}

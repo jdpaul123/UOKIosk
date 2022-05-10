@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct TabOptionsView: View {
+    @StateObject var injector: Injector
+    
     var body: some View {
         TabView {
-            EventsView() // Change this to the struct for the view later
+            
+            EventsView(injector: injector)
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Events")
@@ -41,7 +44,7 @@ struct TabOptionsView: View {
 
 struct TabOptionsVIew_Previews: PreviewProvider {
     static var previews: some View {
-        TabOptionsView()
+        TabOptionsView(injector: Injector())
             .previewDevice("iPhone 11")
     }
 }
