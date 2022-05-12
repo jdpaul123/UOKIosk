@@ -1,5 +1,12 @@
 import SwiftUI
 
+let dateStr = "2022-05-11T00:00:00-07:00"
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
+dateFormatter.date(from: dateStr)
+
+
+
 let testTuple = (true, Date(), 0)
 print(testTuple.0)
 print(testTuple.1)

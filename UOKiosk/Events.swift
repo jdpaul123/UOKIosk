@@ -10,27 +10,34 @@ import Foundation
 struct Event: Identifiable {
     let id: UUID = UUID()
     let title, description: String
-    let startDate: Date
+    let startDate: Date?
     let endDate: Date? // If allDay == true, then this value is null
     let allDay: Bool
-    let filters: [Filter] // TODO make a filter class
-    let geography: [Geography]
+    let filters: [EventFilter] // TODO make a filter class
+    let geography: Geography
     let address: String
     let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
     let localistURL: URL? // Event URL
     let icsURL: URL?
-    let photoURL: URL?
     let venueURL: URL?
     // Create an initializer that takes the dates, formatted as the JSON provides,
     // and turn them in to Swift dates
+    let photoData: Data?
 }
 
-struct Filter {
-    
+struct EventFilter {
+    let id: Int
+    let name: String
 }
 
 struct Geography {
-    
+    let latitude: Double
+    let longitude: Double
+    let street: String
+    let city: String
+    let state: String
+    let country: String
+    let zip: Int
 }
 
 

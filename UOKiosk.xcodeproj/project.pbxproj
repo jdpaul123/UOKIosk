@@ -19,6 +19,7 @@
 		527D207A280A19910007D372 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2079280A19910007D372 /* NewsView.swift */; };
 		527D207E280A31730007D372 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207D280A31730007D372 /* EventsViewModel.swift */; };
 		527D2080280A31CB0007D372 /* EventsJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207F280A31CB0007D372 /* EventsJSONModel.swift */; };
+		52B2F9EB282CC35500941A1E /* UIImageView+PhotoFromURL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B2F9EA282CC35500941A1E /* UIImageView+PhotoFromURL.swift */; };
 		52C59B2E2828B29E007254FD /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2D2828B29E007254FD /* Injector.swift */; };
 		52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2F2828CAC9007254FD /* EventDetailView.swift */; };
 		52C59B33282B81BB007254FD /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B32282B81BB007254FD /* Events.swift */; };
@@ -42,6 +43,7 @@
 		527D207C280A1AA80007D372 /* UOKiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UOKiosk.entitlements; sourceTree = "<group>"; };
 		527D207D280A31730007D372 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		527D207F280A31CB0007D372 /* EventsJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsJSONModel.swift; sourceTree = "<group>"; };
+		52B2F9EA282CC35500941A1E /* UIImageView+PhotoFromURL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+PhotoFromURL.swift"; sourceTree = "<group>"; };
 		52C59B2D2828B29E007254FD /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		52C59B2F2828CAC9007254FD /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52C59B32282B81BB007254FD /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			children = (
 				527D207C280A1AA80007D372 /* UOKiosk.entitlements */,
 				52C59B2D2828B29E007254FD /* Injector.swift */,
+				52B2F9EA282CC35500941A1E /* UIImageView+PhotoFromURL.swift */,
 				527D2063280A16700007D372 /* UOKioskApp.swift */,
 				527D207D280A31730007D372 /* EventsViewModel.swift */,
 				52C59B32282B81BB007254FD /* Events.swift */,
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				527D2074280A196B0007D372 /* FacilityHoursView.swift in Sources */,
+				52B2F9EB282CC35500941A1E /* UIImageView+PhotoFromURL.swift in Sources */,
 				52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */,
 				527D207E280A31730007D372 /* EventsViewModel.swift in Sources */,
 				527D207A280A19910007D372 /* NewsView.swift in Sources */,
