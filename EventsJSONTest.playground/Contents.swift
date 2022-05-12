@@ -1,5 +1,9 @@
 import SwiftUI
 
+let testTuple = (true, Date(), 0)
+print(testTuple.0)
+print(testTuple.1)
+print(testTuple.2)
 
 struct EventsSearchFromAPI: Decodable {
     enum CodingKeys: String, CodingKey {

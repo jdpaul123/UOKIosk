@@ -33,29 +33,35 @@ struct JSONObjectToEventObject {
             let endDate: Date = {
                 // format the end date
             }()
-            let allDay: Bool = {
-                // Check that there are eventInstances
-                if middleLayer.eventJSON.eventInstances == nil {
-                    return false
-                }
-                // Check that there is a first item in the instances and then check if it's allDay value is true
-                if middleLayer.eventJSON.eventInstances!.indices.contains(0) && middleLayer.eventJSON.eventInstances![0].allDay {
-                    return true
-                }
-                return false
-            }()
+            let eventInstanceData = getEventInstanceDateData(eventJSON: eventJSON) // returns a tuple
+            let allDay = eventInstanceData.0
+            let startDate = eventInstanceData.1
+            var endDate = eventInstanceData.2
+               
             
             let eventToAdd = Event(title: <#T##String#>, description: <#T##String#>, startDate: <#T##Date#>, endDate: <#T##Date#>,
                                    allDay: <#T##Bool#>, filters: <#T##[Filter]#>, geography: <#T##[Geography]#>, address: <#T##String#>,
                                    url: <#T##URL?#>, localistURL: <#T##URL?#>, icsURL: <#T##URL?#>, photoURL: <#T##URL?#>, venueURL: <#T##URL?#>)
             events.append(eventToAdd)
         }
-        for event in events {
-            let title = event.title
-            let description = event.descriptionText
-            let start = event.firstDate
-            let end = event.lastDate
+    }
+    
+    static func getEventInstanceDateData(eventJSON: JSONEvent) -> (Bool?, Date?, Date?) {
+        // Check that there are eventInstances
+        if eventJSON.eventInstances == nil {
+            return (false, Date(), Date())
         }
+        // Check that there is a first item in the instances and then check if it's allDay value is true
+        if eventJSON.eventInstances!.indices.contains(0){
+            let startStr: String? = eventJSON.eventInstances![0].eventInstance.start
+            let endStr: String? = eventJSON.eventInstances![0].eventInstance.end
+            
+            // TODO Format the start and end dates if they exist
+            
+            let allDay = eventJSON.eventInstances![0].eventInstance.allDay
+            return (allDay, , )
+        }
+        return (false, Date(), Date())
     }
     
 }

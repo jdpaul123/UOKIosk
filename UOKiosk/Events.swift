@@ -10,7 +10,8 @@ import Foundation
 struct Event: Identifiable {
     let id: UUID = UUID()
     let title, description: String
-    let startDate, endDate: Date
+    let startDate: Date
+    let endDate: Date? // If allDay == true, then this value is null
     let allDay: Bool
     let filters: [Filter] // TODO make a filter class
     let geography: [Geography]
