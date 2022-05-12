@@ -8,13 +8,19 @@
 import SwiftUI
 
 struct EventDetailView: View {
+    let event: Event
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text(event.title)
+            Text(event.address)
+        }
+        
     }
 }
 
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetailView()
+        EventDetailView(event: Event.sampleEventData[0])
     }
 }

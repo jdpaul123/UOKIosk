@@ -13,21 +13,21 @@ struct EventListItemView: View {
         HStack {
             Image("Deschutes")
                 .resizable()
-                .scaledToFill()
-                .frame(width: 150)
-                
+                .scaledToFit()
+                .frame(width: 100)
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             VStack(alignment: .leading){
-                Text(event.title ?? "No title")
-                Text(event.locationName ?? "No location")
+                Text(event.title)
             }
             Spacer()
         }
+        .frame(height: 80)
     }
 }
 
 struct EventListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        EventListItemView(event: Injector.sampleEventData[0])
+        EventListItemView(event: Event.sampleEventData[0])
             .previewLayout(.fixed(width: 400, height: 60))
     }
 }

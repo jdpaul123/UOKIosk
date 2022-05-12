@@ -24,25 +24,37 @@ struct EventsView: View {
     var body: some View {
         List {
             ForEach(injector.events) { event in
-                NavigationLink(destination: EventDetailView()) {
+                NavigationLink(destination: EventDetailView(event: event)) {
                     EventListItemView(event: event)
                 }
             }
         }
+        .task {
+            await getEvents()
+        }
         .refreshable {
-            do {
-                let data = try await APIService.fetch(urlString: "https://calendar.uoregon.edu/api/2/events?page=1")
-                for event in data.events {
-                    print(event.event.locationName ?? "No location name")
-                    injector.events.append(event.event)
-                }
-                print()
-            } catch {
-                injector.events = Injector.sampleEventData
-                print("Data failed to load")
-            }
+            // Clear the list first
+            injector.events = []
+            // Get the updated items
+            await getEvents()
         }
         .navigationTitle("Events")
+    }
+    
+    func getEvents() async {
+        /*
+        do {
+            let data = try await APIService.fetch(urlString: "https://calendar.uoregon.edu/api/2/events?page=1")
+            for event in data.events {
+                print(event.event.locationName ?? "No location name")
+                injector.events.append(event.event)
+            }
+            print()
+        } catch {
+            injector.events = Event.sampleEventData
+            print("Data failed to load")
+        }
+         */
     }
 }
 

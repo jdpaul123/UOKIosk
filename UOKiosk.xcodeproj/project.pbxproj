@@ -18,10 +18,12 @@
 		527D2078280A19850007D372 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2077280A19850007D372 /* RadioView.swift */; };
 		527D207A280A19910007D372 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2079280A19910007D372 /* NewsView.swift */; };
 		527D207E280A31730007D372 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207D280A31730007D372 /* EventsViewModel.swift */; };
-		527D2080280A31CB0007D372 /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207F280A31CB0007D372 /* EventsModel.swift */; };
+		527D2080280A31CB0007D372 /* EventsJSONModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207F280A31CB0007D372 /* EventsJSONModel.swift */; };
 		52C59B2E2828B29E007254FD /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2D2828B29E007254FD /* Injector.swift */; };
 		52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2F2828CAC9007254FD /* EventDetailView.swift */; };
-		52E8186F2828AA28008D6E36 /* GetJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8186E2828AA28008D6E36 /* GetJSON.swift */; };
+		52C59B33282B81BB007254FD /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B32282B81BB007254FD /* Events.swift */; };
+		52C59B35282B829D007254FD /* JSONObjectToUsableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B34282B829D007254FD /* JSONObjectToUsableObject.swift */; };
+		52E8186F2828AA28008D6E36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8186E2828AA28008D6E36 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,10 +41,12 @@
 		527D2079280A19910007D372 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		527D207C280A1AA80007D372 /* UOKiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UOKiosk.entitlements; sourceTree = "<group>"; };
 		527D207D280A31730007D372 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		527D207F280A31CB0007D372 /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
+		527D207F280A31CB0007D372 /* EventsJSONModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsJSONModel.swift; sourceTree = "<group>"; };
 		52C59B2D2828B29E007254FD /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		52C59B2F2828CAC9007254FD /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
-		52E8186E2828AA28008D6E36 /* GetJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetJSON.swift; sourceTree = "<group>"; };
+		52C59B32282B81BB007254FD /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
+		52C59B34282B829D007254FD /* JSONObjectToUsableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONObjectToUsableObject.swift; sourceTree = "<group>"; };
+		52E8186E2828AA28008D6E36 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +84,8 @@
 				52C59B2D2828B29E007254FD /* Injector.swift */,
 				527D2063280A16700007D372 /* UOKioskApp.swift */,
 				527D207D280A31730007D372 /* EventsViewModel.swift */,
-				527D207F280A31CB0007D372 /* EventsModel.swift */,
-				52E8186E2828AA28008D6E36 /* GetJSON.swift */,
+				52C59B32282B81BB007254FD /* Events.swift */,
+				52C59B31282B8195007254FD /* JSON */,
 				527D207B280A19E90007D372 /* Views */,
 				527D2067280A16710007D372 /* Assets.xcassets */,
 				527D2069280A16710007D372 /* Preview Content */,
@@ -110,6 +114,16 @@
 				527D2079280A19910007D372 /* NewsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52C59B31282B8195007254FD /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				527D207F280A31CB0007D372 /* EventsJSONModel.swift */,
+				52E8186E2828AA28008D6E36 /* APIService.swift */,
+				52C59B34282B829D007254FD /* JSONObjectToUsableObject.swift */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,11 +200,13 @@
 				52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */,
 				527D207E280A31730007D372 /* EventsViewModel.swift in Sources */,
 				527D207A280A19910007D372 /* NewsView.swift in Sources */,
+				52C59B33282B81BB007254FD /* Events.swift in Sources */,
 				527D2072280A19560007D372 /* EventsView.swift in Sources */,
 				52148EAA2820981F004C837B /* EventListItemView.swift in Sources */,
-				527D2080280A31CB0007D372 /* EventsModel.swift in Sources */,
+				527D2080280A31CB0007D372 /* EventsJSONModel.swift in Sources */,
 				52C59B2E2828B29E007254FD /* Injector.swift in Sources */,
-				52E8186F2828AA28008D6E36 /* GetJSON.swift in Sources */,
+				52E8186F2828AA28008D6E36 /* APIService.swift in Sources */,
+				52C59B35282B829D007254FD /* JSONObjectToUsableObject.swift in Sources */,
 				527D2066280A16700007D372 /* TabView.swift in Sources */,
 				527D2064280A16700007D372 /* UOKioskApp.swift in Sources */,
 				527D2076280A197C0007D372 /* CampusMapView.swift in Sources */,
