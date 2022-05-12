@@ -38,7 +38,7 @@ struct JSONObjectToEventObject {
             // Call the helper function to try to get the date and time data
             let eventInstanceData = getEventInstanceDateData(eventJSON: middleLayer.eventJSON) // returns a tuple
             let allDay: Bool? = eventInstanceData.0
-            let startDate: Date? = eventInstanceData.1
+            let startDate: Date = eventInstanceData.1
             let endDate: Date? = eventInstanceData.2
             
             // Try to get the address
@@ -101,26 +101,24 @@ struct JSONObjectToEventObject {
     }
     
     // Helper function to get data about the date and time of the event
-    private static func getEventInstanceDateData(eventJSON: JSONEvent) -> (Bool?, Date?, Date?) {
+    private static func getEventInstanceDateData(eventJSON: JSONEvent) -> (Bool?, Date, Date?) {
         // Check that there are eventInstances
         if eventJSON.eventInstances == nil {
             return (false, Date(), Date())
         }
         // Check that there is a first item in the instances and then check if it's allDay value is true
         if eventJSON.eventInstances!.indices.contains(0){
-            let startStr: String? = eventJSON.eventInstances![0].eventInstance.start
+            let startStr: String = eventJSON.eventInstances![0].eventInstance.start
             let endStr: String? = eventJSON.eventInstances![0].eventInstance.end
             
             // Format the start and end dates if they exist
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
-            let start: Date?
+            let start: Date
             let end: Date?
-            if startStr != nil {
-               start = dateFormatter.date(from: startStr!)
-            } else {
-                start = nil
-            }
+            
+            start = dateFormatter.date(from: startStr) ?? Date()
+           
             if endStr != nil {
                 end = dateFormatter.date(from: endStr!)
             } else {

@@ -12,14 +12,28 @@ struct EventDetailView: View {
     
     var body: some View {
         ScrollView {
+             
             VStack {
                 Image.init(uiImage: event.image ?? UIImage())
                     .resizable()
                     .scaledToFit()
+                HStack {
+                    Text("Location")
+                    Spacer()
+                    Text(event.address)
+                }
+                HStack {
+                    Text("Time")
+                    Spacer()
+                    VStack {
+                        Text(event.getDateRange())
+                        Text(event.getTimeRange())
+                    }
+                }
+                
                 Text(event.description)
-                Text(event.address)
-                Spacer()
             }
+                
         }
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {

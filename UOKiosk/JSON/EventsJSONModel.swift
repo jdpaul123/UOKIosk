@@ -106,9 +106,9 @@ struct EventInstance: Decodable {
         case end = "end"
         case allDay = "all_day"
     }
-    let start: String?
+    let start: String
     let end: String?
-    let allDay: Bool?
+    let allDay: Bool
 }
 
 struct Geo: Decodable {

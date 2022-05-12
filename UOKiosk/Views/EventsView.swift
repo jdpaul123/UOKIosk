@@ -48,7 +48,7 @@ struct EventsView: View {
             injector.events = events
             for event in events {
                 print(event.title)
-                print(event.localistURL!)
+                print(event.eventURL!)
             }
             print()
         } catch {
