@@ -5,44 +5,91 @@
 //  Created by Jonathan Paul on 5/8/22.
 //
 
+/*
+ TODO Use disclosure group for store hours times to expand to show hours
+ */
+
 import SwiftUI
 
 struct EventDetailView: View {
+    @Environment(\.openURL) var openURL
+    
     let event: Event
     
     var body: some View {
         ScrollView {
-             
             VStack {
-                Image.init(uiImage: event.image ?? UIImage())
-                    .resizable()
-                    .scaledToFit()
-                HStack {
-                    Text("Location")
-                    Spacer()
-                    Text(event.address)
-                }
-                HStack {
-                    Text("Time")
-                    Spacer()
-                    VStack {
-                        Text(event.getDateRange())
-                        Text(event.getTimeRange())
-                    }
-                }
-                
-                Text(event.description)
-            }
-                
-        }
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
+                Text("\(event.title)")
+                    .font(.title)
                 VStack {
-                    Text(event.title).font(.headline)
+                    Image.init(uiImage: event.image ?? UIImage())
+                        .resizable()
+                        .scaledToFit()
+                    HStack {
+                        Text("Location")
+                            .bold()
+                        Spacer()
+                        Text(event.address)
+                        /*
+                         TODO make event.address the subtext to the location name. Need to get location_name and room_number form the JSON for event.location
+                         TODO check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events
+                         already started
+                         TODO do not load in new data every time the view loads, like going back to the eventsView after viewing a detail view
+                         TODO check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
+                         */
+                    }
+                    .padding()
+                    HStack {
+                        Text("Time")
+                            .bold()
+                        Spacer()
+                        VStack {
+                            Text(event.getDateRange())
+                            Text(event.getTimeRange())
+                        }
+                    }
+                    .padding()
                 }
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                
+                HStack {
+                    Spacer()
+                    Button {
+                        if let icsURL = event.icsURL {
+                            openURL(icsURL)
+                        }
+                    } label: {
+                        VStack {
+                            Image(systemName: "calendar")
+                            Text("Add to Calendar")
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    Button {
+                        
+                    } label: {
+                        VStack {
+                            Image(systemName: "bell")
+                            Text("Set Reminder")
+                        }
+                    }
+                    Spacer()
+                }
+                .padding()
+                .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                Text(event.description)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                Link("\(Image.init(systemName: "link.circle")) View Event Online", destination: event.eventURL!)
+                    .padding()
             }
+            .padding()
         }
+        .navigationTitle("Event Details")
+        .navigationBarTitleDisplayMode(.inline)
         
     }
 }
