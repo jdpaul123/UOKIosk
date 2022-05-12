@@ -17,7 +17,7 @@ struct JSONObjectToEventObject {
         // Loop through all the events and put their data into an Event object
         for middleLayer in eventsJSON.eventMiddleLayer {
             
-            // Get the title and description
+            // Get the title
             let title: String = {
                 if middleLayer.eventJSON.title != nil {
                     return middleLayer.eventJSON.title!
@@ -25,6 +25,8 @@ struct JSONObjectToEventObject {
                     return "No Title For This Event"
                 }
             }()
+            
+            // Get the description
             let description: String = {
                 if middleLayer.eventJSON.descriptionText != nil {
                     return middleLayer.eventJSON.descriptionText!
@@ -48,18 +50,23 @@ struct JSONObjectToEventObject {
             let icsURL = middleLayer.eventJSON.icsURL
             let venueURL = middleLayer.eventJSON.venueURL
             
-            // Try to turn the photo at the url in to data
+            // Try to turn the photo at the url in to data then to a UIImage
             let photoURL = middleLayer.eventJSON.photoURL
-            let photoData: Data?
+            let image: UIImage?
             if let photoURL = photoURL {
                 if let data = try? Data(contentsOf: photoURL) {
-                    photoData = data
+                    if let imageTry = UIImage(data: data) {
+                        image = imageTry
+                    }
+                    else {
+                        image = nil
+                    }
                 }
                 else {
-                    photoData = nil
+                    image = nil
                 }
             } else {
-                photoData = nil
+                image = nil
             }
                         
             // Create Geography
@@ -87,13 +94,14 @@ struct JSONObjectToEventObject {
             
             let eventToAdd = Event(title: title, description: description, startDate: startDate, endDate: endDate, allDay: allDay ?? false,
                                    filters: filters, geography: geography, address: address, url: url, localistURL: localistURL,
-                                   icsURL: icsURL, venueURL: venueURL, photoData: photoData)
+                                   icsURL: icsURL, venueURL: venueURL, image: image)
             events.append(eventToAdd)
         }
         return events
     }
     
-    static func getEventInstanceDateData(eventJSON: JSONEvent) -> (Bool?, Date?, Date?) {
+    // Helper function to get data about the date and time of the event
+    private static func getEventInstanceDateData(eventJSON: JSONEvent) -> (Bool?, Date?, Date?) {
         // Check that there are eventInstances
         if eventJSON.eventInstances == nil {
             return (false, Date(), Date())
@@ -118,7 +126,6 @@ struct JSONObjectToEventObject {
             } else {
                 end = nil
             }
-            
             
             let allDay = eventJSON.eventInstances![0].eventInstance.allDay
             return (allDay, start, end)

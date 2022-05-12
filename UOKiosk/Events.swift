@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct Event: Identifiable {
     let id: UUID = UUID()
@@ -22,7 +23,7 @@ struct Event: Identifiable {
     let venueURL: URL?
     // Create an initializer that takes the dates, formatted as the JSON provides,
     // and turn them in to Swift dates
-    let photoData: Data?
+    let image: UIImage?
 }
 
 struct EventFilter {
