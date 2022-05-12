@@ -42,19 +42,20 @@ struct EventsView: View {
     }
     
     func getEvents() async {
-        /*
         do {
-            let data = try await APIService.fetch(urlString: "https://calendar.uoregon.edu/api/2/events?page=1")
-            for event in data.events {
-                print(event.event.locationName ?? "No location name")
-                injector.events.append(event.event)
+            let data = try await APIService.fetchEventsJSON(urlString: "https://calendar.uoregon.edu/api/2/events?page=1")
+            let events = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: data)
+            injector.events = events
+            for event in events {
+                print(event.title)
+                print(event.localistURL!)
             }
             print()
         } catch {
             injector.events = Event.sampleEventData
             print("Data failed to load")
         }
-         */
+        
     }
 }
 

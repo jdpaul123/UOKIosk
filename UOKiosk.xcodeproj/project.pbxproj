@@ -87,7 +87,7 @@
 				52B2F9EA282CC35500941A1E /* UIImageView+PhotoFromURL.swift */,
 				527D2063280A16700007D372 /* UOKioskApp.swift */,
 				527D207D280A31730007D372 /* EventsViewModel.swift */,
-				52C59B32282B81BB007254FD /* Events.swift */,
+				52B2F9EC282CDA7B00941A1E /* Models */,
 				52C59B31282B8195007254FD /* JSON */,
 				527D207B280A19E90007D372 /* Views */,
 				527D2067280A16710007D372 /* Assets.xcassets */,
@@ -117,6 +117,14 @@
 				527D2079280A19910007D372 /* NewsView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		52B2F9EC282CDA7B00941A1E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52C59B32282B81BB007254FD /* Events.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		52C59B31282B8195007254FD /* JSON */ = {

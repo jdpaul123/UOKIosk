@@ -31,12 +31,11 @@ struct APIService {
 //    }.resume()
 //}
 
+// GENERAL FUNCTION FOR DECODING JSON
 //func getJSON<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {
-//     /*
-//     Generic function that will get JSON Data given a url and a decodable, optional, type that conforms to Decoadble and the JSON
-//     that is being decoded for the completion
-//
-//
+//    /*
+//    Generic function that will get JSON Data given a url and a decodable, optional, type that conforms to Decoadble and the JSON
+//    that is being decoded for the completion
 //
 //     Example call for getting event data:
 //     getJSON(urlString: "https://calendar.uoregon.edu/api/2/events?page=1") { (searchResults: EventsSearch?) in

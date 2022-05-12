@@ -11,7 +11,7 @@ struct EventListItemView: View {
     var event: Event
     var body: some View {
         HStack {
-            Image("Deschutes")
+            Image.init(uiImage: event.image ?? UIImage(imageLiteralResourceName: "Deschutes"))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)
