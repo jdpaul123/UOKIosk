@@ -64,10 +64,12 @@ extension Event {
         return nil
     }()
     
+    static let sampleEventDecription = "The Visual Arts Team is excited to present I Am More Than Who You See, an exhibition by Malik Lovette and Kayla Lockwood, previously exhibited in the Jordan Schnitzer Museum of Art. Find the Visual Arts Team on Instagram @uovisualarts or Facebook @visualartsteam, where you can see exhibition updates, behind the scenes looks, and video artist talks! This show runs March 25 through May 20 in the EMU Aperture Gallery, with a reception in the gallery April 21th at 7 PM. Inspired by Cephas Williams’ 56 Black Men campaign, I Am More Than Who You See is an exhibition centered around a series of workshops held for UO students focusing on identity and misrepresentation through personal aesthetics. This project was led and curated by photographers and UO students, Malik Lovette (MArch, 2024) and Kayla Lockwood (ATCH BFA, 2022). The exhibition documents multiple community conversations with UO students, documenting their experiences surrounding stereotyping. The project team represented each students’ authentic view of their identity with the critical and reflective dispositions that accompany their personal development."
+    
     static let sampleEventData: [Event] =
     [
         // TODO fill in with Events
-        Event(title: "Example1", description: "Example1 description.", startDate: Date(), endDate: Date(), allDay: false,
+        Event(title: "Example1: The Great Event!", description: sampleEventDecription, startDate: Date(), endDate: Date(), allDay: false,
               filters: [sampleFilters[0], sampleFilters[1]], geography: sampleGeography, address: "123 Emerald Street, Eugene, OR",
               url: nil, localistURL: URL(string: "https://calendar.uoregon.edu/event/rgb#.YnygrpPMI-R"), icsURL: nil, venueURL: nil,
               image: sampleImage)

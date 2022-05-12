@@ -316,6 +316,7 @@ Task {
             print("Event starts \(event.startDate). Event ends \(event.endDate).")
             print("Event all day: \(event.allDay)")
             print(event.localistURL)
+            print(event.description)
             print()
         }
     } catch {

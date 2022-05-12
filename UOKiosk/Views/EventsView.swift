@@ -52,6 +52,7 @@ struct EventsView: View {
             }
             print()
         } catch {
+            // In the case of a failure of loading in the data, fill in the sample data as a default
             injector.events = Event.sampleEventData
             print("Data failed to load")
         }

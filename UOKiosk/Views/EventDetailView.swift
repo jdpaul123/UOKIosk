@@ -11,9 +11,23 @@ struct EventDetailView: View {
     let event: Event
     
     var body: some View {
-        VStack {
-            Text(event.title)
-            Text(event.address)
+        ScrollView {
+            VStack {
+                Image.init(uiImage: event.image ?? UIImage())
+                    .resizable()
+                    .scaledToFit()
+                Text(event.description)
+                Text(event.address)
+                Spacer()
+            }
+        }
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .principal) {
+                VStack {
+                    Text(event.title).font(.headline)
+                }
+            }
         }
         
     }
@@ -21,6 +35,8 @@ struct EventDetailView: View {
 
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        EventDetailView(event: Event.sampleEventData[0])
+        NavigationView {
+            EventDetailView(event: Event.sampleEventData[0])
+        }
     }
 }
