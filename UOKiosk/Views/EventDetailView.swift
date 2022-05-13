@@ -16,6 +16,10 @@ struct EventDetailView: View {
     
     let event: Event
     
+    // TODO add colors to injector. Create a UIInjector that contains all the UI values to use throughout the app.
+    let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
+    let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
+    
     var body: some View {
         ScrollView {
             VStack {
@@ -25,6 +29,7 @@ struct EventDetailView: View {
                     Image.init(uiImage: event.image ?? UIImage())
                         .resizable()
                         .scaledToFit()
+                        .padding()
                     HStack {
                         Text("Location")
                             .bold()
@@ -50,7 +55,7 @@ struct EventDetailView: View {
                     }
                     .padding()
                 }
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
                 
                 HStack {
                     Spacer()
@@ -79,10 +84,10 @@ struct EventDetailView: View {
                 }
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
-                .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                
                 Text(event.description)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.white).shadow(radius: 3))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
                 Link("\(Image.init(systemName: "link.circle")) View Event Online", destination: event.eventURL!)
                     .padding()
             }
@@ -90,7 +95,7 @@ struct EventDetailView: View {
         }
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
-        
+        .background(systemBackgroundColor)
     }
 }
 
