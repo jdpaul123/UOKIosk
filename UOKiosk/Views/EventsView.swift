@@ -31,32 +31,41 @@ struct EventsView: View {
         }
         .task {
             await getEvents()
+            
         }
         .refreshable {
             // Clear the list first
             injector.events = []
             // Get the updated items
             await getEvents()
-        }
-        .navigationTitle("Events")
-    }
-    
-    func getEvents() async {
-        do {
-            let data = try await APIService.fetchEventsJSON(urlString: "https://calendar.uoregon.edu/api/2/events?page=1")
-            let events = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: data)
-            injector.events = events
-            for event in events {
-                print(event.title)
-                print(event.eventURL!)
-            }
-            print()
-        } catch {
-            // In the case of a failure of loading in the data, fill in the sample data as a default
-            injector.events = Event.sampleEventData
-            print("Data failed to load")
+            
         }
         
+        .navigationTitle("Events")
+    }
+
+    
+    func getEvents() async {
+        /*
+        var eventles: [Event] = []
+        await APIService.fetchJSON(urlString: injector.eventsAPIURLString) { (eventsFromAPI: EventsSearchFromAPI?, response) in
+            if let eventsFromAPI = eventsFromAPI {
+                eventles = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: eventsFromAPI)
+            } else {
+                print("Data failed to load correctoly from API with response: \(response)")
+                eventles = Event.sampleEventData
+            }
+        }
+        return eventles
+         */
+        
+        guard let data = try? await APIService.fetchEventsJSON(urlString: injector.eventsAPIURLString) else {
+            injector.events = Event.sampleEventData
+            print("Data failed to load")
+            return
+        }
+        let events = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: data)
+        injector.events = events
     }
 }
 

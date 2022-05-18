@@ -23,8 +23,12 @@ struct Event: Identifiable {
     
     let filters: [EventFilter] // TODO make a filter class
     let geography: Geography
+    
     let address: String
-    let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
+    let locationName: String
+    let roomNumber: String
+    
+    //let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
     let eventURL: URL? // Event URL
     let icsURL: URL?
     let venueURL: URL?
@@ -33,8 +37,8 @@ struct Event: Identifiable {
     let image: UIImage?
     
     init(title: String, description: String, startDate: Date, endDate: Date?, allDay: Bool,
-         filters: [EventFilter], geography: Geography, address: String, url: URL?, localistURL: URL?,
-         icsURL: URL?, venueURL: URL?, image: UIImage?) {
+         filters: [EventFilter], geography: Geography, address: String, locationName: String, roomNumber: String,
+         /*url: URL?, */localistURL: URL?, icsURL: URL?, venueURL: URL?, image: UIImage?) {
         self.title = title
         self.description = description
         
@@ -52,10 +56,15 @@ struct Event: Identifiable {
         self.startTime = self.startDate.formatted(date: .omitted, time: .shortened)
         self.endTime = self.endDate?.formatted(date: .omitted, time: .shortened) ?? ""
         
+        self.address = address
+        self.locationName = locationName
+        self.roomNumber = roomNumber
+        
+        
         self.filters = filters
         self.geography = geography
-        self.address = address
-        self.url = url
+
+        //self.url = url
         self.eventURL = localistURL
         self.icsURL = icsURL
         self.venueURL = venueURL
@@ -95,11 +104,15 @@ struct Event: Identifiable {
     }
 }
 
+// MARK: EventFilter
+// is a type that is used within Event objects
 struct EventFilter {
     let id: Int
     let name: String
 }
 
+// MARK: Geography
+// is a type that is used within Event objects
 struct Geography {
     let latitude: Double
     let longitude: Double
@@ -111,6 +124,7 @@ struct Geography {
 }
 
 
+// MARK: Event Extension for sample data
 extension Event {
     static let sampleFilters: [EventFilter] = [
         EventFilter(id: 4, name: "Fun"),
@@ -141,7 +155,8 @@ extension Event {
         // TODO fill in with Events
         Event(title: "Example1: The Great Event!", description: sampleEventDecription, startDate: startDate, endDate: endDate, allDay: false,
               filters: [sampleFilters[0], sampleFilters[1]], geography: sampleGeography, address: "123 Emerald Street, Eugene, OR",
-              url: nil, localistURL: URL(string: "https://calendar.uoregon.edu/event/rgb#.YnygrpPMI-R"), icsURL: nil, venueURL: nil,
+              locationName: "EMU Building", roomNumber: "Women's Center",
+              /*url: nil,*/ localistURL: URL(string: "https://calendar.uoregon.edu/event/rgb#.YnygrpPMI-R"), icsURL: nil, venueURL: nil,
               image: sampleImage)
     ]
 }

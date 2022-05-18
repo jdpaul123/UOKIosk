@@ -1,18 +1,6 @@
 import SwiftUI
 import Foundation
 
-let dateStr = "2022-05-11T00:00:00-07:00"
-let dateFormatter = DateFormatter()
-dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
-dateFormatter.date(from: dateStr)
-
-
-//let testTuple = (true, Date(), 0)
-//print(testTuple.0)
-//print(testTuple.1)
-//print(testTuple.2)
-
-
 struct Event: Identifiable {
     let id: UUID = UUID()
     let title, description: String
@@ -22,7 +10,7 @@ struct Event: Identifiable {
     let filters: [EventFilter] // TODO make a filter class
     let geography: Geography
     let address: String
-    let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
+    //let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
     let localistURL: URL? // Event URL
     let icsURL: URL?
     let venueURL: URL?
@@ -82,7 +70,7 @@ struct JSONObjectToEventObject {
             let address: String = middleLayer.eventJSON.address ?? "No Address"
             
             // Try to get all the url values
-            let url = middleLayer.eventJSON.url
+            //let url = middleLayer.eventJSON.url
             let localistURL = middleLayer.eventJSON.localistURL
             let icsURL = middleLayer.eventJSON.icsURL
             let venueURL = middleLayer.eventJSON.venueURL
@@ -132,7 +120,7 @@ struct JSONObjectToEventObject {
             }
             
             let eventToAdd = Event(title: title, description: description, startDate: startDate, endDate: endDate, allDay: allDay ?? false,
-                                   filters: filters, geography: geography, address: address, url: url, localistURL: localistURL,
+                                   filters: filters, geography: geography, address: address, /* url: url,*/ localistURL: localistURL,
                                    icsURL: icsURL, venueURL: venueURL)
             events.append(eventToAdd)
         }
@@ -204,7 +192,7 @@ struct JSONEvent: Decodable, Identifiable {
         case geo = "geo"
         case photoURL = "photo_url"
         case venueURL = "venue_url"
-        case url = "url"
+        //case url = "url"
         case icsURL = "localist_ics_url"
         case filters = "filters"
         case localistURL = "localist_url"
@@ -218,7 +206,7 @@ struct JSONEvent: Decodable, Identifiable {
     let icsURL: URL?
     let photoURL: URL?
     let venueURL: URL?
-    let url: URL? // url attribute in the JSON, but localist is better
+    //let url: URL? // url attribute in the JSON, but localist is better
     let localistURL: URL? // This is the better URL to use
 
     let free: Bool?

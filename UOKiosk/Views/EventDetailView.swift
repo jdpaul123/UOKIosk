@@ -33,13 +33,18 @@ struct EventDetailView: View {
                     HStack {
                         Text("Location")
                             .bold()
+                            .font(.title3)
                         Spacer()
-                        Text(event.address)
+                        VStack {
+                            Text(event.locationName)
+                                .font(.title3)
+                                .multilineTextAlignment(.center)
+                            Text(event.roomNumber)
+                                .font(.subheadline)
+                        }
                         /*
-                         TODO make event.address the subtext to the location name. Need to get location_name and room_number form the JSON for event.location
                          TODO check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events
                          already started
-                         TODO do not load in new data every time the view loads, like going back to the eventsView after viewing a detail view
                          TODO check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
                          */
                     }
@@ -47,10 +52,14 @@ struct EventDetailView: View {
                     HStack {
                         Text("Time")
                             .bold()
+                            .font(.title3)
                         Spacer()
                         VStack {
                             Text(event.getDateRange())
+                                .font(.title3)
                             Text(event.getTimeRange())
+                                .font(.subheadline)
+
                         }
                     }
                     .padding()

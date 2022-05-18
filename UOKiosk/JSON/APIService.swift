@@ -10,29 +10,48 @@ import Foundation
 struct APIService {
     // Take the resulting EventsSearchFromAPI and turn it in to an array of events,
     // each with the nessasary data and filtering categories
-    static func fetchEventsJSON(urlString: String) async throws -> EventsSearchFromAPI {
+    static func fetchEventsJSON(urlString: String) async throws -> EventsSearchFromAPI? {
         let url = URL(string: urlString)
         let (data, _) = try await URLSession.shared.data(from: url!)
         
+        let result: EventsSearchFromAPI
+        
         let decoder = JSONDecoder()
-        let result = try! decoder.decode(EventsSearchFromAPI.self, from: data)
+        do {
+            result = try decoder.decode(EventsSearchFromAPI.self, from: data)
+        } catch {
+            print("FAILED TO DECODE EVENTS SEARCHFROM API")
+            print(error)
+            return nil
+        }
         return result
     }
 
-// Old method for getting events with a completion that does not throw
-//func getEvents(completion: @escaping (EventsSearch?)->()) {
-//    guard let url = URL(string: "https://calendar.uoregon.edu/api/2/events?page=1") else {return}
-//    URLSession.shared.dataTask(with: url) { data, _, _ in
-//        let search = try! JSONDecoder().decode(EventsSearch.self, from: data!)
-//
-//        DispatchQueue.main.async {
-//            completion(search)
-//        }
-//    }.resume()
-//}
+    static func fetchJSON<T: Decodable>(urlString: String, completion: @escaping (T?, String) -> Void) async {
+        // Try to turn the url string into a Swift URL struct instance
+        guard let url = URL(string: urlString) else {
+            completion(nil, "url string failed to be turned into a URL struct object")
+            return
+        }
+        
+        // Try to get the data from the url. If it fails, report the response
+        guard let (data, _) = try? await URLSession.shared.data(from: url) else {
+            completion(nil, "The URL at \(urlString) failed to be decoded into a data object")
+            return
+        }
 
-// GENERAL FUNCTION FOR DECODING JSON
-//func getJSON<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {
+        let decoder = JSONDecoder()
+        // Try to decode the object to the expected swift type object.
+        guard let result = try? decoder.decode(T.self, from: data) else {
+            completion(nil, "Data failed to be decoded to the specified swift object")
+            return
+        }
+        // In the case of a success, call the completion with the result
+        completion(result, "The data was successfully decoded")
+    }
+//
+//    // GENERAL FUNCTION FOR DECODING JSON
+//    static func getJSON<T: Decodable>(urlString: String, completion: @escaping (T?) -> Void) {
 //    /*
 //    Generic function that will get JSON Data given a url and a decodable, optional, type that conforms to Decoadble and the JSON
 //    that is being decoded for the completion

@@ -32,6 +32,7 @@ struct JSONEvent: Decodable, Identifiable {
         case id = "id"
         case title = "title"
         case locationName = "location_name"
+        case roomNumber = "room_number"
         case streamURL = "stream_url"
         case free = "free"
         case descriptionText = "description_text"
@@ -40,28 +41,29 @@ struct JSONEvent: Decodable, Identifiable {
         case geo = "geo"
         case photoURL = "photo_url"
         case venueURL = "venue_url"
-        case url = "url"
+        //case url = "url"
         case icsURL = "localist_ics_url"
         case filters = "filters"
         case localistURL = "localist_url"
     }
     let id: Int?
     let title: String?
-    let locationName: String? // location_name
 
     let streamURL: String? // stream_url THIS HAD TO BE A STRING
 
     let icsURL: URL?
     let photoURL: URL?
     let venueURL: URL?
-    let url: URL? // url attribute in the JSON, but localist is better
+    //let url: URL? // url attribute in the JSON, but localist is better
     let localistURL: URL? // This is the better URL to use
 
     let free: Bool?
     let descriptionText: String? // description_text
 
     let eventInstances: [EventInstances]? // event_instances
-    let address: String?
+    let address: String
+    let locationName: String
+    let roomNumber: String?
 
     let geo: Geo?
     let filters: JSONEventFilters

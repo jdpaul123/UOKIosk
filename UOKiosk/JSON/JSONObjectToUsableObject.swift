@@ -42,10 +42,12 @@ struct JSONObjectToEventObject {
             let endDate: Date? = eventInstanceData.2
             
             // Try to get the address
-            let address: String = middleLayer.eventJSON.address ?? "No Address"
+            let address: String = middleLayer.eventJSON.address
+            let locationName = middleLayer.eventJSON.locationName
+            let roomNumber: String = middleLayer.eventJSON.roomNumber ?? ""
             
             // Try to get all the url values
-            let url = middleLayer.eventJSON.url
+            //let url = middleLayer.eventJSON.url
             let localistURL = middleLayer.eventJSON.localistURL
             let icsURL = middleLayer.eventJSON.icsURL
             let venueURL = middleLayer.eventJSON.venueURL
@@ -93,7 +95,7 @@ struct JSONObjectToEventObject {
             }
             
             let eventToAdd = Event(title: title, description: description, startDate: startDate, endDate: endDate, allDay: allDay ?? false,
-                                   filters: filters, geography: geography, address: address, url: url, localistURL: localistURL,
+                                   filters: filters, geography: geography, address: address, locationName: locationName, roomNumber: roomNumber, /*url: url,*/ localistURL: localistURL,
                                    icsURL: icsURL, venueURL: venueURL, image: image)
             events.append(eventToAdd)
         }

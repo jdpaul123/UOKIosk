@@ -11,11 +11,17 @@ class Injector: ObservableObject {
     /*
      Location of instantiation for all dependency creation for the program
      */
-    
-    //static let shared: Injector = Injector()
-    
+    // MARK: Published Attributes
     @Published var events: [Event]
     
+    // MARK: API website url strings
+    let eventsAPIURLString = "https://calendar.uoregon.edu/api/2/events?page=1" // 100 events max for the page: &pp=100
+    
+    // MARK: UI Attributes
+    let backgroundColor = Color.init(uiColor: .systemGroupedBackground) // Use this for the color behind content
+    let secondaryBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground) // Use this for content groups in the foreground
+    
+    // MARK: Initializer
     init() {
         self.events = [] // Will later be filled with events when needed
     }
