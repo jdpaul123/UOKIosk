@@ -19,8 +19,8 @@ struct JSONObjectToEventObject {
             
             // Get the title
             let title: String = {
-                if middleLayer.eventJSON.title != nil {
-                    return middleLayer.eventJSON.title!
+                if let title = middleLayer.eventJSON.title {
+                    return title
                 } else {
                     return "No Title For This Event"
                 }

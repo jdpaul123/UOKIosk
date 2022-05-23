@@ -4,20 +4,11 @@
 //
 //  Created by Jonathan Paul on 4/15/22.
 //
-/*
- Top down structure:
- // Search bar
- // Filter button
- // Date
- // List
- // Date
- // List
- */
-
 
 import SwiftUI
 
 struct EventsView: View {
+    
     @ObservedObject var injector: Injector
     @State var eventsLoaded: Bool = false
     
@@ -30,18 +21,17 @@ struct EventsView: View {
             }
         }
         .task {
-            await getEvents()
-            
+            if !eventsLoaded {
+                eventsLoaded = true
+                await getEvents()
+            }
         }
         .refreshable {
             // Clear the list first
             injector.events = []
             // Get the updated items
             await getEvents()
-            
         }
-        
-        .navigationTitle("Events")
     }
 
     
@@ -72,7 +62,7 @@ struct EventsView: View {
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView{
-            EventsView(injector: Injector())
+            EventsView(injector: Injector(isTesting: true))
         }
         .previewDevice("iPhone 12")
         .previewInterfaceOrientation(.portrait)
