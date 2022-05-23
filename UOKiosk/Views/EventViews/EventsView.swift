@@ -24,14 +24,14 @@ struct EventsView: View {
             // Only update events on task if we have not loaded in events yet
             // The user will refresh if they want to see if events need updating
             if injector.events.isEmpty {
-                await fillEvents(reloadEvents: false)
-            } else {
                 await fillEvents(reloadEvents: true)
+            } else {
+                await fillEvents(reloadEvents: false)
             }
             
         }
         .refreshable {
-            await fillEvents(reloadEvents: false)
+            await fillEvents(reloadEvents: true)
         }
     }
 
@@ -41,12 +41,13 @@ struct EventsView: View {
         // Clear the list first
         injector.events = []
         // Get the updated items
-        if !reloadEvents {
+        if reloadEvents {
             guard await getEvents() else {
                 injector.events = savedEvents
                 print("Could not get the new events please retry")
                 return
             }
+            print("Loaded up to date events")
         } else {
             injector.events = savedEvents
         }
