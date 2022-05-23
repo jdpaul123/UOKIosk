@@ -13,11 +13,8 @@ struct UOKioskApp: App {
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                TabOptionsView(injector: injector)
-            }
+            TabOptionsView(injector: injector)
             .navigationViewStyle(StackNavigationViewStyle())
-
         }
     }
 }

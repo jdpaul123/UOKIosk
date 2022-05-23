@@ -10,7 +10,7 @@ import SwiftUI
 struct EventsView: View {
     
     @ObservedObject var injector: Injector
-    @State var eventsLoaded: Bool = false
+    //@State var eventsLoaded: Bool = false
     
     var body: some View {
         List {
@@ -21,21 +21,41 @@ struct EventsView: View {
             }
         }
         .task {
-            if !eventsLoaded {
-                eventsLoaded = true
-                await getEvents()
+            // Only update events on task if we have not loaded in events yet
+            // The user will refresh if they want to see if events need updating
+            if injector.events.isEmpty {
+                await fillEvents(reloadEvents: false)
+            } else {
+                await fillEvents(reloadEvents: true)
             }
+            
         }
         .refreshable {
-            // Clear the list first
-            injector.events = []
-            // Get the updated items
-            await getEvents()
+            await fillEvents(reloadEvents: false)
         }
     }
 
+    func fillEvents(reloadEvents: Bool) async {
+        // Save the events in the case of a failure
+        let savedEvents = injector.events
+        // Clear the list first
+        injector.events = []
+        // Get the updated items
+        if !reloadEvents {
+            guard await getEvents() else {
+                injector.events = savedEvents
+                print("Could not get the new events please retry")
+                return
+            }
+        } else {
+            injector.events = savedEvents
+        }
+    }
     
-    func getEvents() async {
+    func getEvents() async -> Bool {
+        /*
+         Returns true if the Event Getting was a success
+         */
         /*
         var eventles: [Event] = []
         await APIService.fetchJSON(urlString: injector.eventsAPIURLString) { (eventsFromAPI: EventsSearchFromAPI?, response) in
@@ -52,10 +72,11 @@ struct EventsView: View {
         guard let data = try? await APIService.fetchEventsJSON(urlString: injector.eventsAPIURLString) else {
             injector.events = Event.sampleEventData
             print("Data failed to load")
-            return
+            return false
         }
         let events = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: data)
         injector.events = events
+        return true
     }
 }
 
