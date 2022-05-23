@@ -19,7 +19,6 @@ struct TabOptionsView: View {
     @State var selectedTab: Tabs = .events
     
     var body: some View {
-        NavigationView {
             TabView(selection: $selectedTab) {
                 EventsView(injector: injector)
                     .tag(Tabs.events)
@@ -53,9 +52,9 @@ struct TabOptionsView: View {
                     }
             }
             .navigationTitle(selectedTab.rawValue.capitalized)
-        }
     }
 }
+
 
 struct TabOptionsVIew_Previews: PreviewProvider {
     static var previews: some View {
