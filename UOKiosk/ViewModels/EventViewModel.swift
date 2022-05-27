@@ -8,8 +8,18 @@
 import Foundation
 import UIKit
 
-struct Event: Identifiable {
-    let id: UUID = UUID()
+struct EventViewModel: Identifiable {
+    /*
+     The View Model for events the events must be placed in an ORDERED MAP that maps a key which is the day of the events stored in an
+     array of events as the key's value.
+     
+     This class only holds values pertaining to the Event that wilL be used by the view.
+     The view will either access public attributes as strings and display them or calculate strings by need (call by need)
+     when the view calls for them. An example of the call-by-need nature of accessing attributes via getters would be:
+     - A date must be formatted correctly to a string. This string will be calculated when a getter calls for the value
+       so that there is not wasted computation on creating strings that will not be needed by the view right away
+     */
+    let id: Int
     let title, description: String
     
     let allDay: Bool
@@ -28,7 +38,6 @@ struct Event: Identifiable {
     let locationName: String
     let roomNumber: String
     
-    //let url: URL? // URL attribute value from the JSON. The more important URL is localistURL
     let eventURL: URL? // Event URL
     let icsURL: URL?
     let venueURL: URL?
@@ -38,7 +47,7 @@ struct Event: Identifiable {
     
     init(title: String, description: String, startDate: Date, endDate: Date?, allDay: Bool,
          filters: [EventFilter], geography: Geography, address: String, locationName: String, roomNumber: String,
-         /*url: URL?, */localistURL: URL?, icsURL: URL?, venueURL: URL?, image: UIImage?) {
+         localistURL: URL?, icsURL: URL?, venueURL: URL?, image: UIImage?) {
         self.title = title
         self.description = description
         
@@ -60,11 +69,9 @@ struct Event: Identifiable {
         self.locationName = locationName
         self.roomNumber = roomNumber
         
-        
         self.filters = filters
         self.geography = geography
 
-        //self.url = url
         self.eventURL = localistURL
         self.icsURL = icsURL
         self.venueURL = venueURL
@@ -125,7 +132,7 @@ struct Geography {
 
 
 // MARK: Event Extension for sample data
-extension Event {
+extension EventViewModel {
     static let sampleFilters: [EventFilter] = [
         EventFilter(id: 4, name: "Fun"),
         EventFilter(id: 5, name: "Sports"),
@@ -150,13 +157,13 @@ extension Event {
     static let sampleEventDecription = "The Visual Arts Team is excited to present I Am More Than Who You See, an exhibition by Malik Lovette and Kayla Lockwood, previously exhibited in the Jordan Schnitzer Museum of Art. Find the Visual Arts Team on Instagram @uovisualarts or Facebook @visualartsteam, where you can see exhibition updates, behind the scenes looks, and video artist talks! This show runs March 25 through May 20 in the EMU Aperture Gallery, with a reception in the gallery April 21th at 7 PM. Inspired by Cephas Williams’ 56 Black Men campaign, I Am More Than Who You See is an exhibition centered around a series of workshops held for UO students focusing on identity and misrepresentation through personal aesthetics. This project was led and curated by photographers and UO students, Malik Lovette (MArch, 2024) and Kayla Lockwood (ATCH BFA, 2022). The exhibition documents multiple community conversations with UO students, documenting their experiences surrounding stereotyping. The project team represented each students’ authentic view of their identity with the critical and reflective dispositions that accompany their personal development."
     static let startDate = Date(timeIntervalSince1970: 1652373000)
     static let endDate = Date(timeIntervalSince1970: 1652396400)
-    static let sampleEventData: [Event] =
+    static let sampleEventData: [EventViewModel] =
     [
         // TODO fill in with Events
-        Event(title: "Example1: The Great Event!", description: sampleEventDecription, startDate: startDate, endDate: endDate, allDay: false,
+        EventViewModel(title: "Example1: The Great Event!", description: sampleEventDecription, startDate: startDate, endDate: endDate, allDay: false,
               filters: [sampleFilters[0], sampleFilters[1]], geography: sampleGeography, address: "123 Emerald Street, Eugene, OR",
               locationName: "EMU Building", roomNumber: "Women's Center",
-              /*url: nil,*/ localistURL: URL(string: "https://calendar.uoregon.edu/event/rgb#.YnygrpPMI-R"), icsURL: nil, venueURL: nil,
+              localistURL: URL(string: "https://calendar.uoregon.edu/event/rgb#.YnygrpPMI-R"), icsURL: nil, venueURL: nil,
               image: sampleImage)
     ]
 }

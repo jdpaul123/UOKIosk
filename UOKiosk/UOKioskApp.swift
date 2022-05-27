@@ -12,6 +12,9 @@ struct UOKioskApp: App {
     @State var injector = Injector()
     
     var body: some Scene {
+        /*
+         .navigationViewStyle(StackNavigationViewStyle() gets rid of console loged errors from UIKit.
+         */
         WindowGroup {
             TabOptionsView(injector: injector)
             .navigationViewStyle(StackNavigationViewStyle())

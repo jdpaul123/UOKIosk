@@ -8,17 +8,40 @@
 import SwiftUI
 
 struct EventsView: View {
+   
+    
+    init(injector: Injector) {
+        self.injector = injector
+        monthFormatter.dateFormat = "EEEE, MMM, d"
+    }
     
     @ObservedObject var injector: Injector
     //@State var eventsLoaded: Bool = false
     
     var body: some View {
         List {
-            ForEach(injector.events) { event in
-                NavigationLink(destination: EventDetailView(event: event)) {
-                    EventListItemView(event: event)
+            var index = 0
+            var prev = ""
+            while index < injector.events.count {
+                Section(header: Text(monthFormatter.string(from: injector.events[index].startDate))) {
+                    for event in index..<injector.events.count {
+                        NavigationLink(destination: EventDetailView(event: event)) {
+                            EventListItemView(event: event)
+                        }
+                        index += 1
+                    }
                 }
             }
+            /*
+             ForEach(injector.events) { event in
+                Section(header: Text(monthFormatter.string(from: event.startDate))) {
+                    NavigationLink(destination: EventDetailView(event: event)) {
+                        EventListItemView(event: event)
+                    }
+                }
+                .font(.headline)
+             }
+             */
         }
         .task {
             // Only update events on task if we have not loaded in events yet
@@ -37,13 +60,13 @@ struct EventsView: View {
 
     func fillEvents(reloadEvents: Bool) async {
         // Save the events in the case of a failure
-        let savedEvents = injector.events
+        let savedEvents = injector.eventsViewModel
         // Clear the list first
-        injector.events = []
+        injector.eventsViewModel = []
         // Get the updated items
         if reloadEvents {
             guard await getEvents() else {
-                injector.events = savedEvents
+                injector.eventsViewModel = savedEvents
                 print("Could not get the new events please retry")
                 return
             }
@@ -57,21 +80,8 @@ struct EventsView: View {
         /*
          Returns true if the Event Getting was a success
          */
-        /*
-        var eventles: [Event] = []
-        await APIService.fetchJSON(urlString: injector.eventsAPIURLString) { (eventsFromAPI: EventsSearchFromAPI?, response) in
-            if let eventsFromAPI = eventsFromAPI {
-                eventles = JSONObjectToEventObject.JSONObjectToEventObject(eventsJSON: eventsFromAPI)
-            } else {
-                print("Data failed to load correctoly from API with response: \(response)")
-                eventles = Event.sampleEventData
-            }
-        }
-        return eventles
-         */
-        
-        guard let data = try? await APIService.fetchEventsJSON(urlString: injector.eventsAPIURLString) else {
-            injector.events = Event.sampleEventData
+        guard let data: EventsModel = try? await APIService.fetchJSON(urlString: injector.eventsAPIURLString) else {
+            injector.events = EventsModel.sampleEventData
             print("Data failed to load")
             return false
         }

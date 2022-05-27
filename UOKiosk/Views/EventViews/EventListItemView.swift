@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EventListItemView: View {
-    var event: Event
+    var event: EventViewModel
     var body: some View {
         HStack {
             Image.init(uiImage: event.image ?? UIImage(imageLiteralResourceName: "Deschutes"))
@@ -27,7 +27,7 @@ struct EventListItemView: View {
 
 struct EventListItemView_Previews: PreviewProvider {
     static var previews: some View {
-        EventListItemView(event: Event.sampleEventData[0])
+        EventListItemView(event: EventViewModel.sampleEventData[0])
             .previewLayout(.fixed(width: 400, height: 60))
     }
 }
