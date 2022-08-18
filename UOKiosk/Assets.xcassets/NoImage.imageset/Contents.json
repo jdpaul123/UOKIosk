@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Deschutes.jpg",
+      "filename" : "NoImage.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "NoImage-1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "NoImage-2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

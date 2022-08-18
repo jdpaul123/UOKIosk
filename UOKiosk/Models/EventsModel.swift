@@ -2,215 +2,256 @@
 //  EventsModel.swift
 //  UOKiosk
 //
-//  Created by Jonathan Paul on 4/15/22.
+//  Created by Jonathan Paul on 5/30/22.
 //
-/*
- This file acts as the structure for decoding the data from https://calendar.uoregon.edu/api/2/events? into
- Swift. This data should then be put in to structs that will then be used to display the data from the API call.
- 
- A good default API URL is below:
-     https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100
-     This request gets the next 100 future events that are not recurring. I think, based on the filter that the user gives,
-     that should determine the url to request data from by appending the filter to the url request
- */
+
 import Foundation
+import CoreLocation
 
-
-struct EventsModel: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case eventModelMiddleLayer = "events"
+final class EventsModel {
+    var events: [EventModel]
+    
+    init() {
+        events = []
     }
-    let eventModelMiddleLayer: [EventModelMiddleLayer]
+    
+    init(eventsData: EventsDto?) {
+        guard let eventsData = eventsData else {
+            self.events = []
+            print("The EventsModel did not recieve any data. It only revieved a nil value for the data.")
+            return
+        }
+        self.events = []
+        for middle in eventsData.eventMiddleLayerDto {
+            self.events.append(EventModel(eventData: middle.eventDto))
+        }
+    }
+    
+    public func setData(eventsData: EventsDto) {
+        for middle in eventsData.eventMiddleLayerDto {
+            self.events.append(EventModel(eventData: middle.eventDto))
+        }
+    }
 }
 
-
-struct EventModelMiddleLayer: Decodable {
-    /*
-     This struct is needed due to the structure of the JSON from the localist API
-     */
-    enum CodingKeys: String, CodingKey {
-        case eventModel = "event"
-    }
-    let eventModel: EventModel
-}
-
-
-struct EventModel: Decodable, Identifiable {
-    /*
-     I included almost all of the attributes that the Localist API provides
-     
-     I left out some attributes:
-     - keywords and tags because they seem to be unused
-     - custom fields because they seem to be unused
-     - city_id, neighborhood_id, and campud_id because it seems they are always null values
-     
-     I also have a list of attributes that I call no-use attributes because I am not using them.
-     They are below a comment marking them in coding keys and the list of attributes.
-     
-     Other Notes:
-     - Featured value seemed to always be false
-     */
-    enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case locationName = "location_name"
-        case roomNumber = "room_number"
-        case streamURL = "stream_url"
-        case free = "free"
-        case descriptionText = "description_text"
-        case eventInstances = "event_instances"
-        case address = "address"
-        case geo = "geo"
-        case photoUrl = "photo_url"
-        case venueUrl = "venue_url"
-        case url = "url"
-        case icsUrl = "localist_ics_url"
-        case filters = "filters"
-        case localistUrl = "localist_url"
-        
-        // No-use attributes
-        case createdAt = "created_at"
-        case facebookId = "facebook_id"
-        case firstDate = "first_date"
-        case lastDate = "last_date"
-        case hashtag = "hashtag"
-        case urlName = "url_name"
-        case userId = "user_id"
-        case directions = "directions"
-        case allowsReviews = "allows_reviews"
-        case allowsAttendance = "allows_attendance"
-        case status = "status"
-        case experience = "experience"
-        case streamInfo = "stream_info"
-        case streamEmbedCode = "stream_embed_code"
-        case createdBy = "created_by"
-        case updatedBy = "updated_by"
-        case kind = "kind"
-        case schoolId = "school_id"
-        case recurring = "recurring"
-        case privateEvent = "private_event"
-        case verified = "verified"
-        case rejected = "rejected"
-        case sponsored = "sponsored"
-        case venueId = "venue_id"
-        case ticketUrl = "ticket_url"
-        case ticketCost = "ticket_cost"
-        case photoId = "photo_id"
-        case detailViews = "detail_views"
-        case featured = "featured"
-    }
+final class EventModel {
     let id: Int
-    let title: String?
-
-    let streamURL: String? // stream_url THIS HAD TO BE A STRING
-
-    let url: String? // url attribute in the JSON, but localist is better, also has to be a STRING type to work
-    let localistUrl: URL? // This is the better URL to use
-    let icsUrl: URL?
-    let photoUrl: URL?
-    let venueUrl: URL?
-
-    let free: Bool?
-    let descriptionText: String? // description_text
-
-    let eventInstances: [EventInstances]? // event_instances
-    let address: String
-    let locationName: String
+    let title: String
+    let description: String
+    
+    // location and roomNumber used for displaying the location in the event detail view
+    let locationName: String?
     let roomNumber: String?
-
-    let geo: Geo?
-    let filters: JSONEventFilters
+    let address: String? // Address is NOT used for naming the locations in the event detail view
     
-    // No-use attributes
-    let createdAt: String?
-    let facebookId: String?
-    let firstDate: String?
-    let lastDate: String?
-    let hashtag: String?
-    let urlName: String?
-    let userId: Int?
-    let directions: String?
-    let allowsReviews: Bool?
-    let allowsAttendance: Bool?
-    let status: String?
-    let experience: String?
-    let streamInfo: String?
-    let streamEmbedCode: String?
-    let createdBy: Int?
-    let updatedBy: Int?
-    let kind: String?
-    let schoolId: Int?
-    let recurring: Bool?
-    let privateEvent: Bool?
-    let verified: Bool?
-    let rejected: Bool?
-    let sponsored: Bool?
-    let venueId: Int?
-    let ticketUrl: String?
+    let status: String // Live or canceled: Default = live
+    let experience: String // inperson, hybrid, or virtual: Default = "assumed inperson"
+    
+    // All url values
+    let eventUrl: URL? // Use for linking to the events website
+    let streamUrl: URL?
+    let ticketUrl: URL?
+    let venueUrl: URL?
+    let calendarUrl: URL?
+    
+    // Data for the photo loaded from the api
+    let photoData: Data?
+    
     let ticketCost: String?
-    let photoId: Int?
-    let detailViews: Int?
-    let featured: Bool?
-}
-
-
-struct JSONEventFilters: Decodable {
     
-    enum CodingKeys: String, CodingKey {
-        case departments = "departments"
-        case eventTargetAudience = "event_target_audience"
-        case eventTypes = "event_types"
-    }
-    let departments: [JSONEventFilter]?
-    let eventTargetAudience: [JSONEventFilter]?
-    let eventTypes: [JSONEventFilter]?
-}
-
-
-struct JSONEventFilter: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case id = "id"
-    }
-    let name: String?
-    let id: Int?
-}
-
-
-struct EventInstances: Decodable {
-    enum CodingKeys: String, CodingKey {
-         case eventInstance = "event_instance"
-     }
-     let eventInstance: EventInstance
-     
- }
-
-struct EventInstance: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case start = "start"
-        case end = "end"
-        case allDay = "all_day"
-    }
-    let start: String
-    let end: String?
+    // Data on the time
+    let start: Date
+    let end: Date?
     let allDay: Bool
+    
+    // location is set from the lat lon of the event, if the web api provides it
+    let eventCoreLocationData: CLLocation?
+    let eventLocation: EventLocationModel?
+    
+    var filters: [EventFilterModel]
+    
+    init(eventData: EventDto) {
+        func getUrl(urlString: String?) -> URL? {
+            guard let urlString = urlString else {
+                return nil
+            }
+            return URL(string: urlString)
+        }
+        
+        func getPhotoData(urlString: String?) -> Data? {
+            guard let urlString = urlString else {
+                return nil
+            }
+            guard let photoURL = URL(string: urlString) else {
+                return nil
+            }
+            guard let data = try? Data(contentsOf: photoURL) else {
+                return nil
+            }
+            return data
+        }
+        func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
+            let startStr: String = dateData.start
+            let endStr: String? = dateData.end
+            
+            // Format the start and end dates if they exist
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
+            let start: Date
+            let end: Date?
+            
+            start = {
+                guard let date = dateFormatter.date(from: startStr) else {
+                    fatalError("Start date could not be determined form the provided date string")
+                }
+                return date
+            }()
+           
+            if endStr != nil {
+                end = dateFormatter.date(from: endStr!)
+            } else {
+                end = nil
+            }
+            
+            let allDay = dateData.allDay
+            return (allDay, start, end)
+        }
+        
+        self.id = eventData.id
+        self.title = eventData.title
+        self.description = eventData.descriptionText
+        
+        self.locationName = eventData.locationName
+        self.roomNumber = eventData.roomNumber
+        self.address = eventData.address
+        
+        self.status = eventData.status ?? "live"
+        self.experience = eventData.experience ?? "assumed inperson"
+
+        self.eventUrl = getUrl(urlString: eventData.localistUrl)
+        self.streamUrl = getUrl(urlString: eventData.streamUrl)
+        self.ticketUrl = getUrl(urlString: eventData.ticketUrl)
+        self.venueUrl = getUrl(urlString: eventData.venueUrl)
+        self.calendarUrl = getUrl(urlString: eventData.icsUrl)
+
+        self.photoData = getPhotoData(urlString: eventData.photoUrl)
+
+        self.ticketCost = eventData.ticketCost
+        
+        guard let eventInstances = eventData.eventInstances else {
+            fatalError("There are no event instances to access")
+        }
+        let dateData = eventInstances[0].eventInstance
+        let dateValues = getEventInstanceDateData(dateData: dateData)
+        self.allDay = dateValues.0
+        self.start  = dateValues.1
+        self.end = dateValues.2
+
+        self.eventCoreLocationData = { () -> CLLocation? in
+            guard let geo = eventData.geo else {
+                return nil
+            }
+            guard let latStr = geo.latitude else {
+                return nil
+            }
+            guard let lonStr = geo.longitude else {
+                return nil
+            }
+            guard let lat = Double(latStr) else {
+                return nil
+            }
+            guard let lon = Double(lonStr) else {
+                return nil
+            }
+
+            return CLLocation(latitude: lat, longitude: lon)
+        }()
+        
+        if eventData.geo == nil || eventData.geo!.latitude == nil || eventData.geo!.longitude == nil ||
+            eventData.geo!.city == nil || eventData.geo!.country == nil || eventData.geo!.state == nil ||
+            eventData.geo!.street == nil || eventData.geo!.zip == nil ||
+            Double(eventData.geo!.latitude!) == nil || Double(eventData.geo!.longitude!) == nil ||
+            Int(eventData.geo!.zip!) == nil
+        {
+            self.eventLocation = nil
+        }
+        else {
+            self.eventLocation = EventLocationModel(latitude: Double(eventData.geo!.latitude!)! , longitude: Double(eventData.geo!.longitude!)!,
+                                                    street: eventData.geo!.street!, city: eventData.geo!.city!,
+                                                    country: eventData.geo!.country!, zip: Int(eventData.geo!.zip!)!)
+        }
+
+        self.filters = []
+        if let eventFilters = eventData.filters.eventTypes {
+            for eventFilter in eventFilters {
+                filters.append(EventFilterModel(id: eventFilter.id, name: eventFilter.name))
+            }
+        }
+    }
+    
+    // MARK: INIT for testing
+    init(id: Int, title: String, description: String, locationName: String?, roomNumber: String?,
+         address: String?, status: String, experience: String, eventUrl: URL?, streamUrl: URL?,
+         ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoData: Data?, ticketCost: String?,
+         start: Date, end: Date?, allDay: Bool, eventCoreLocationData: CLLocation?,
+         eventLocation: EventLocationModel?, filters: [EventFilterModel]) {
+        self.id = id
+        self.title = title
+        self.description = description
+        self.locationName = locationName
+        self.roomNumber = roomNumber
+        self.address = address
+        self.status = status
+        self.experience = experience
+        self.eventUrl = eventUrl
+        self.streamUrl = streamUrl
+        self.ticketUrl = ticketUrl
+        self.venueUrl = venueUrl
+        self.calendarUrl = calendarUrl
+        self.photoData = photoData
+        self.ticketCost = ticketCost
+        self.start = start
+        self.end = end
+        self.allDay = allDay
+        self.eventCoreLocationData = eventCoreLocationData
+        self.eventLocation = eventLocation
+        self.filters = filters
+    }
 }
 
-struct Geo: Decodable {
-     enum CodingKeys: String, CodingKey {
-         case latitude = "latitude"
-         case longitude = "longitude"
-         case street = "street"
-         case city = "city"
-         case state = "state"
-         case country = "country"
-         case zip = "zip"
-     }
-     let latitude: String?
-     let longitude: String?
-     let street: String?
-     let city: String?
-     let state: String?
-     let country: String?
-     let zip: String?
+final class EventLocationModel {
+    let latitude: Double
+    let longitude: Double
+    let street: String
+    let city: String
+    let country: String
+    let zip: Int
+    
+    init(latitude: Double, longitude: Double, street: String, city: String, country: String, zip: Int) {
+        self.latitude = latitude
+        self.longitude = longitude
+        self.street = street
+        self.city = city
+        self.country = country
+        self.zip = zip
+    }
+    
+    init (geoData: GeoDto) {
+        self.latitude = Double(geoData.latitude!)!
+        self.longitude = Double(geoData.longitude!)!
+        self.street = geoData.street!
+        self.city = geoData.city!
+        self.country = geoData.country!
+        self.zip = Int(geoData.zip!)!
+    }
+}
+
+final class EventFilterModel {
+    let id: Int
+    let name: String
+    
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
 }

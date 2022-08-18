@@ -7,50 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		52148EAA2820981F004C837B /* EventListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52148EA92820981F004C837B /* EventListItemView.swift */; };
-		527D2064280A16700007D372 /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2063280A16700007D372 /* UOKioskApp.swift */; };
-		527D2066280A16700007D372 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2065280A16700007D372 /* TabView.swift */; };
-		527D2068280A16710007D372 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527D2067280A16710007D372 /* Assets.xcassets */; };
-		527D206B280A16710007D372 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 527D206A280A16710007D372 /* Preview Assets.xcassets */; };
-		527D2072280A19560007D372 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2071280A19560007D372 /* EventsView.swift */; };
-		527D2074280A196B0007D372 /* FacilityHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2073280A196B0007D372 /* FacilityHoursView.swift */; };
-		527D2076280A197C0007D372 /* CampusMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2075280A197C0007D372 /* CampusMapView.swift */; };
-		527D2078280A19850007D372 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2077280A19850007D372 /* RadioView.swift */; };
-		527D207A280A19910007D372 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D2079280A19910007D372 /* NewsView.swift */; };
-		527D2080280A31CB0007D372 /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527D207F280A31CB0007D372 /* EventsModel.swift */; };
-		5298603028401130009C1E3B /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5298602F28401130009C1E3B /* EventsViewModel.swift */; };
-		52C59B2E2828B29E007254FD /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2D2828B29E007254FD /* Injector.swift */; };
-		52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B2F2828CAC9007254FD /* EventDetailView.swift */; };
-		52C59B33282B81BB007254FD /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B32282B81BB007254FD /* EventViewModel.swift */; };
-		52C59B35282B829D007254FD /* ModelToViewModelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C59B34282B829D007254FD /* ModelToViewModelService.swift */; };
-		52E8186F2828AA28008D6E36 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E8186E2828AA28008D6E36 /* APIService.swift */; };
+		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
+		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
+		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
+		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
+		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
+		529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861B9284553BA009C1E3B /* UOKioskApp.swift */; };
+		529861BE284553BC009C1E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529861BD284553BC009C1E3B /* Assets.xcassets */; };
+		529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529861C0284553BC009C1E3B /* Preview Assets.xcassets */; };
+		529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861CA284553BC009C1E3B /* UOKioskTests.swift */; };
+		529861D5284553BC009C1E3B /* UOKioskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861D4284553BC009C1E3B /* UOKioskUITests.swift */; };
+		529861D7284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861D6284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift */; };
+		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
+		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
+		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
+		529861F028457D97009C1E3B /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EF28457D97009C1E3B /* EventsModel.swift */; };
+		5299D4F028493B84001FEDB5 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4EF28493B84001FEDB5 /* EventsViewModel.swift */; };
+		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		529861C7284553BC009C1E3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 529861AE284553BA009C1E3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 529861B5284553BA009C1E3B;
+			remoteInfo = UOKiosk;
+		};
+		529861D1284553BC009C1E3B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 529861AE284553BA009C1E3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 529861B5284553BA009C1E3B;
+			remoteInfo = UOKiosk;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		52148EA628191EED004C837B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		52148EA92820981F004C837B /* EventListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItemView.swift; sourceTree = "<group>"; };
-		527D2060280A16700007D372 /* UOKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		527D2063280A16700007D372 /* UOKioskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskApp.swift; sourceTree = "<group>"; };
-		527D2065280A16700007D372 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
-		527D2067280A16710007D372 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		527D206A280A16710007D372 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		527D2071280A19560007D372 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
-		527D2073280A196B0007D372 /* FacilityHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityHoursView.swift; sourceTree = "<group>"; };
-		527D2075280A197C0007D372 /* CampusMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapView.swift; sourceTree = "<group>"; };
-		527D2077280A19850007D372 /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
-		527D2079280A19910007D372 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
-		527D207C280A1AA80007D372 /* UOKiosk.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UOKiosk.entitlements; sourceTree = "<group>"; };
-		527D207F280A31CB0007D372 /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
-		5298602F28401130009C1E3B /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		52C59B2D2828B29E007254FD /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
-		52C59B2F2828CAC9007254FD /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
-		52C59B32282B81BB007254FD /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
-		52C59B34282B829D007254FD /* ModelToViewModelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelToViewModelService.swift; sourceTree = "<group>"; };
-		52E8186E2828AA28008D6E36 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
+		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
+		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
+		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
+		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
+		529861B6284553BA009C1E3B /* UOKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		529861B9284553BA009C1E3B /* UOKioskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskApp.swift; sourceTree = "<group>"; };
+		529861BD284553BC009C1E3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		529861C0284553BC009C1E3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		529861C6284553BC009C1E3B /* UOKioskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UOKioskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		529861CA284553BC009C1E3B /* UOKioskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskTests.swift; sourceTree = "<group>"; };
+		529861D0284553BC009C1E3B /* UOKioskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UOKioskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		529861D4284553BC009C1E3B /* UOKioskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskUITests.swift; sourceTree = "<group>"; };
+		529861D6284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		529861E92845587C009C1E3B /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
+		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
+		529861EF28457D97009C1E3B /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
+		5299D4EF28493B84001FEDB5 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
+		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		527D205D280A16700007D372 /* Frameworks */ = {
+		529861B3284553BA009C1E3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861C3284553BC009C1E3B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861CD284553BC009C1E3B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,106 +91,138 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		527D2057280A16700007D372 = {
+		5274DC98289DFE560069D5A5 /* DeoendencyInjection */ = {
 			isa = PBXGroup;
 			children = (
-				52148EA628191EED004C837B /* README.md */,
-				527D2062280A16700007D372 /* UOKiosk */,
-				527D2061280A16700007D372 /* Products */,
+				528A2A1C2849C9A30035F416 /* Injector.swift */,
+				528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */,
+			);
+			path = DeoendencyInjection;
+			sourceTree = "<group>";
+		};
+		529861AD284553BA009C1E3B = {
+			isa = PBXGroup;
+			children = (
+				529861B8284553BA009C1E3B /* UOKiosk */,
+				529861C9284553BC009C1E3B /* UOKioskTests */,
+				529861D3284553BC009C1E3B /* UOKioskUITests */,
+				529861B7284553BA009C1E3B /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		527D2061280A16700007D372 /* Products */ = {
+		529861B7284553BA009C1E3B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				527D2060280A16700007D372 /* UOKiosk.app */,
+				529861B6284553BA009C1E3B /* UOKiosk.app */,
+				529861C6284553BC009C1E3B /* UOKioskTests.xctest */,
+				529861D0284553BC009C1E3B /* UOKioskUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		527D2062280A16700007D372 /* UOKiosk */ = {
+		529861B8284553BA009C1E3B /* UOKiosk */ = {
 			isa = PBXGroup;
 			children = (
-				527D207C280A1AA80007D372 /* UOKiosk.entitlements */,
-				527D2067280A16710007D372 /* Assets.xcassets */,
-				527D2063280A16700007D372 /* UOKioskApp.swift */,
-				52C59B2D2828B29E007254FD /* Injector.swift */,
-				5298600E283C19C2009C1E3B /* ViewModels */,
-				52B2F9EC282CDA7B00941A1E /* Models */,
-				52C59B31282B8195007254FD /* Services */,
-				527D207B280A19E90007D372 /* Views */,
-				527D2069280A16710007D372 /* Preview Content */,
+				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
+				5274DC98289DFE560069D5A5 /* DeoendencyInjection */,
+				529861E4284553E3009C1E3B /* Services */,
+				529861E3284553DB009C1E3B /* Repository */,
+				529861E7284554C7009C1E3B /* Models */,
+				529861E8284554CB009C1E3B /* ViewModels */,
+				529861E6284554C1009C1E3B /* Views */,
+				529861BD284553BC009C1E3B /* Assets.xcassets */,
+				529861BF284553BC009C1E3B /* Preview Content */,
 			);
 			path = UOKiosk;
 			sourceTree = "<group>";
 		};
-		527D2069280A16710007D372 /* Preview Content */ = {
+		529861BF284553BC009C1E3B /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				527D206A280A16710007D372 /* Preview Assets.xcassets */,
+				529861C0284553BC009C1E3B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		527D207B280A19E90007D372 /* Views */ = {
+		529861C9284553BC009C1E3B /* UOKioskTests */ = {
 			isa = PBXGroup;
 			children = (
-				527D2065280A16700007D372 /* TabView.swift */,
-				5298600F283C1A8B009C1E3B /* EventViews */,
-				527D2073280A196B0007D372 /* FacilityHoursView.swift */,
-				527D2075280A197C0007D372 /* CampusMapView.swift */,
-				527D2077280A19850007D372 /* RadioView.swift */,
-				527D2079280A19910007D372 /* NewsView.swift */,
+				529861CA284553BC009C1E3B /* UOKioskTests.swift */,
+			);
+			path = UOKioskTests;
+			sourceTree = "<group>";
+		};
+		529861D3284553BC009C1E3B /* UOKioskUITests */ = {
+			isa = PBXGroup;
+			children = (
+				529861D4284553BC009C1E3B /* UOKioskUITests.swift */,
+				529861D6284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift */,
+			);
+			path = UOKioskUITests;
+			sourceTree = "<group>";
+		};
+		529861E3284553DB009C1E3B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				528A2A182849C83F0035F416 /* EventsRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		529861E4284553E3009C1E3B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				529861EB284558CD009C1E3B /* ApiService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		529861E5284553EC009C1E3B /* DataTransferObjects */ = {
+			isa = PBXGroup;
+			children = (
+				529861ED28455A9C009C1E3B /* EventsDto.swift */,
+			);
+			path = DataTransferObjects;
+			sourceTree = "<group>";
+		};
+		529861E6284554C1009C1E3B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				529861E92845587C009C1E3B /* TabMenuView.swift */,
+				5299D4F128493B8B001FEDB5 /* EventsView.swift */,
+				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		5298600E283C19C2009C1E3B /* ViewModels */ = {
+		529861E7284554C7009C1E3B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52C59B32282B81BB007254FD /* EventViewModel.swift */,
-				5298602F28401130009C1E3B /* EventsViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		5298600F283C1A8B009C1E3B /* EventViews */ = {
-			isa = PBXGroup;
-			children = (
-				527D2071280A19560007D372 /* EventsView.swift */,
-				52148EA92820981F004C837B /* EventListItemView.swift */,
-				52C59B2F2828CAC9007254FD /* EventDetailView.swift */,
-			);
-			path = EventViews;
-			sourceTree = "<group>";
-		};
-		52B2F9EC282CDA7B00941A1E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				527D207F280A31CB0007D372 /* EventsModel.swift */,
+				529861E5284553EC009C1E3B /* DataTransferObjects */,
+				529861EF28457D97009C1E3B /* EventsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		52C59B31282B8195007254FD /* Services */ = {
+		529861E8284554CB009C1E3B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				52E8186E2828AA28008D6E36 /* APIService.swift */,
-				52C59B34282B829D007254FD /* ModelToViewModelService.swift */,
+				5299D4EF28493B84001FEDB5 /* EventsViewModel.swift */,
+				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
 			);
-			path = Services;
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		527D205F280A16700007D372 /* UOKiosk */ = {
+		529861B5284553BA009C1E3B /* UOKiosk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 527D206E280A16710007D372 /* Build configuration list for PBXNativeTarget "UOKiosk" */;
+			buildConfigurationList = 529861DA284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKiosk" */;
 			buildPhases = (
-				527D205C280A16700007D372 /* Sources */,
-				527D205D280A16700007D372 /* Frameworks */,
-				527D205E280A16700007D372 /* Resources */,
+				529861B2284553BA009C1E3B /* Sources */,
+				529861B3284553BA009C1E3B /* Frameworks */,
+				529861B4284553BA009C1E3B /* Resources */,
 			);
 			buildRules = (
 			);
@@ -167,25 +230,69 @@
 			);
 			name = UOKiosk;
 			productName = UOKiosk;
-			productReference = 527D2060280A16700007D372 /* UOKiosk.app */;
+			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
 			productType = "com.apple.product-type.application";
+		};
+		529861C5284553BC009C1E3B /* UOKioskTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 529861DD284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKioskTests" */;
+			buildPhases = (
+				529861C2284553BC009C1E3B /* Sources */,
+				529861C3284553BC009C1E3B /* Frameworks */,
+				529861C4284553BC009C1E3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				529861C8284553BC009C1E3B /* PBXTargetDependency */,
+			);
+			name = UOKioskTests;
+			productName = UOKioskTests;
+			productReference = 529861C6284553BC009C1E3B /* UOKioskTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		529861CF284553BC009C1E3B /* UOKioskUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 529861E0284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKioskUITests" */;
+			buildPhases = (
+				529861CC284553BC009C1E3B /* Sources */,
+				529861CD284553BC009C1E3B /* Frameworks */,
+				529861CE284553BC009C1E3B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				529861D2284553BC009C1E3B /* PBXTargetDependency */,
+			);
+			name = UOKioskUITests;
+			productName = UOKioskUITests;
+			productReference = 529861D0284553BC009C1E3B /* UOKioskUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		527D2058280A16700007D372 /* Project object */ = {
+		529861AE284553BA009C1E3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
-					527D205F280A16700007D372 = {
+					529861B5284553BA009C1E3B = {
 						CreatedOnToolsVersion = 13.3.1;
+					};
+					529861C5284553BC009C1E3B = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 529861B5284553BA009C1E3B;
+					};
+					529861CF284553BC009C1E3B = {
+						CreatedOnToolsVersion = 13.3.1;
+						TestTargetID = 529861B5284553BA009C1E3B;
 					};
 				};
 			};
-			buildConfigurationList = 527D205B280A16700007D372 /* Build configuration list for PBXProject "UOKiosk" */;
+			buildConfigurationList = 529861B1284553BA009C1E3B /* Build configuration list for PBXProject "UOKiosk" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -193,55 +300,98 @@
 				en,
 				Base,
 			);
-			mainGroup = 527D2057280A16700007D372;
-			productRefGroup = 527D2061280A16700007D372 /* Products */;
+			mainGroup = 529861AD284553BA009C1E3B;
+			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				527D205F280A16700007D372 /* UOKiosk */,
+				529861B5284553BA009C1E3B /* UOKiosk */,
+				529861C5284553BC009C1E3B /* UOKioskTests */,
+				529861CF284553BC009C1E3B /* UOKioskUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		527D205E280A16700007D372 /* Resources */ = {
+		529861B4284553BA009C1E3B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				527D206B280A16710007D372 /* Preview Assets.xcassets in Resources */,
-				527D2068280A16710007D372 /* Assets.xcassets in Resources */,
+				529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */,
+				529861BE284553BC009C1E3B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861C4284553BC009C1E3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861CE284553BC009C1E3B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		527D205C280A16700007D372 /* Sources */ = {
+		529861B2284553BA009C1E3B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5298603028401130009C1E3B /* EventsViewModel.swift in Sources */,
-				527D2074280A196B0007D372 /* FacilityHoursView.swift in Sources */,
-				52C59B302828CAC9007254FD /* EventDetailView.swift in Sources */,
-				527D207A280A19910007D372 /* NewsView.swift in Sources */,
-				52C59B33282B81BB007254FD /* EventViewModel.swift in Sources */,
-				527D2072280A19560007D372 /* EventsView.swift in Sources */,
-				52148EAA2820981F004C837B /* EventListItemView.swift in Sources */,
-				527D2080280A31CB0007D372 /* EventsModel.swift in Sources */,
-				52C59B2E2828B29E007254FD /* Injector.swift in Sources */,
-				52E8186F2828AA28008D6E36 /* APIService.swift in Sources */,
-				52C59B35282B829D007254FD /* ModelToViewModelService.swift in Sources */,
-				527D2066280A16700007D372 /* TabView.swift in Sources */,
-				527D2064280A16700007D372 /* UOKioskApp.swift in Sources */,
-				527D2076280A197C0007D372 /* CampusMapView.swift in Sources */,
-				527D2078280A19850007D372 /* RadioView.swift in Sources */,
+				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
+				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
+				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
+				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
+				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
+				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
+				5299D4F028493B84001FEDB5 /* EventsViewModel.swift in Sources */,
+				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
+				529861F028457D97009C1E3B /* EventsModel.swift in Sources */,
+				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
+				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
+				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861C2284553BC009C1E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		529861CC284553BC009C1E3B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				529861D7284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift in Sources */,
+				529861D5284553BC009C1E3B /* UOKioskUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		529861C8284553BC009C1E3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 529861B5284553BA009C1E3B /* UOKiosk */;
+			targetProxy = 529861C7284553BC009C1E3B /* PBXContainerItemProxy */;
+		};
+		529861D2284553BC009C1E3B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 529861B5284553BA009C1E3B /* UOKiosk */;
+			targetProxy = 529861D1284553BC009C1E3B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
-		527D206C280A16710007D372 /* Debug */ = {
+		529861D8284553BC009C1E3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -301,7 +451,7 @@
 			};
 			name = Debug;
 		};
-		527D206D280A16710007D372 /* Release */ = {
+		529861D9284553BC009C1E3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -355,12 +505,11 @@
 			};
 			name = Release;
 		};
-		527D206F280A16710007D372 /* Debug */ = {
+		529861DB284553BC009C1E3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = UOKiosk/UOKiosk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UOKiosk/Preview Content\"";
@@ -370,7 +519,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -380,19 +528,17 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKiosk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		527D2070280A16710007D372 /* Release */ = {
+		529861DC284553BC009C1E3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = UOKiosk/UOKiosk.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"UOKiosk/Preview Content\"";
@@ -402,7 +548,6 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -412,35 +557,128 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKiosk;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
+		529861DE284553BC009C1E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKioskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UOKiosk.app/UOKiosk";
+			};
+			name = Debug;
+		};
+		529861DF284553BC009C1E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKioskTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UOKiosk.app/UOKiosk";
+			};
+			name = Release;
+		};
+		529861E1284553BC009C1E3B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKioskUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UOKiosk;
+			};
+			name = Debug;
+		};
+		529861E2284553BC009C1E3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.JDPaul.UOKioskUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = UOKiosk;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		527D205B280A16700007D372 /* Build configuration list for PBXProject "UOKiosk" */ = {
+		529861B1284553BA009C1E3B /* Build configuration list for PBXProject "UOKiosk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				527D206C280A16710007D372 /* Debug */,
-				527D206D280A16710007D372 /* Release */,
+				529861D8284553BC009C1E3B /* Debug */,
+				529861D9284553BC009C1E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		527D206E280A16710007D372 /* Build configuration list for PBXNativeTarget "UOKiosk" */ = {
+		529861DA284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKiosk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				527D206F280A16710007D372 /* Debug */,
-				527D2070280A16710007D372 /* Release */,
+				529861DB284553BC009C1E3B /* Debug */,
+				529861DC284553BC009C1E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		529861DD284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKioskTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				529861DE284553BC009C1E3B /* Debug */,
+				529861DF284553BC009C1E3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		529861E0284553BC009C1E3B /* Build configuration list for PBXNativeTarget "UOKioskUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				529861E1284553BC009C1E3B /* Debug */,
+				529861E2284553BC009C1E3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 527D2058280A16700007D372 /* Project object */;
+	rootObject = 529861AE284553BA009C1E3B /* Project object */;
 }
