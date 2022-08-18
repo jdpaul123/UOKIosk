@@ -12,8 +12,8 @@ struct EventsView: View {
     let injector: Injector
     @StateObject var viewModel: EventsViewModel
     @State private var didLoad = false
-    @State var dateIndex = -1
-    @State var date = Date.init(timeIntervalSince1970: .zero) // Start date at 1970
+//    @State var dateIndex = -1
+//    @State var date = Date.init(timeIntervalSince1970: .zero) // Start date at 1970
     
     // MARK: INITIALIZERS
     init(injector: Injector) {
@@ -26,7 +26,11 @@ struct EventsView: View {
             ForEach(viewModel.eventsInADay) { eventsInADay in
                 Section {
                     ForEach(eventsInADay.events) { event in
-                        Text(event.title)
+                        NavigationLink {
+                            EventDetailView(event.eventModel, injector: self.injector)
+                        } label: {
+                            EventListItemView(event: event)
+                        }
                     }
                 } header: {
                     Text("\(eventsInADay.dateString)")

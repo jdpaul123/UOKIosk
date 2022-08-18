@@ -14,10 +14,14 @@ final class ViewModelFactory: ObservableObject {
         self.eventsRepository = eventsRepository
     }
    
-    func makeEmptyEventsViewModel() -> EventsViewModel {
-        EventsViewModel()
+    func makeEventDetailViewModel(eventModel: EventModel) -> EventDetailViewModel {
+        EventDetailViewModel(event: eventModel)
     }
     
+    func makeEmptyEventsViewModel() -> EventsViewModel {
+        EventsViewModel()
+    } 
+   
     func fillEventsViewModel(eventsViewModel: EventsViewModel) {
         eventsRepository.fetchEvents { (eventsModel: EventsModel?) in
             guard let eventsModel = eventsModel else {
