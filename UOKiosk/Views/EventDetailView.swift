@@ -11,7 +11,7 @@ struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
     
-    // TODO add colors to injector. Create a UIInjector that contains all the UI values to use throughout the app.
+    // TODO: add colors to injector. Create a UIInjector that contains all the UI values to use throughout the app.
     let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
     let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
     
@@ -42,11 +42,10 @@ struct EventDetailView: View {
                             Text(viewModel.roomNumber)
                                 .font(.subheadline)
                         }
-                        /*
-                         TODO check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events
-                         already started
-                         TODO check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
-                         */
+/*
+TODO: check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events already started
+TODO: check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
+*/
                     }
                     .padding()
                     HStack {
@@ -108,8 +107,8 @@ struct EventDetailView: View {
     }
 }
 
-//struct EventDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventDetailView()
-//    }
-//}
+struct EventDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        EventDetailView(EventsModelExampleData().eventsModel.events[0], injector: Injector(eventsRepository: MockEventsService()))
+    }
+}

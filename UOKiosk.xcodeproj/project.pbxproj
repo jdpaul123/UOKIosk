@@ -10,6 +10,10 @@
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
 		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
 		52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB328AED99D007F4812 /* EventListItemView.swift */; };
+		52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB528AF5EE7007F4812 /* Documentation.docc */; };
+		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
+		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
+		52153BBE28AF6584007F4812 /* EventsModelExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -48,6 +52,10 @@
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		52153BB328AED99D007F4812 /* EventListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItemView.swift; sourceTree = "<group>"; };
+		52153BB528AF5EE7007F4812 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
+		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
+		52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModelExampleData.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -93,6 +101,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52153BB728AF639F007F4812 /* MockRepository */ = {
+			isa = PBXGroup;
+			children = (
+				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
+			);
+			path = MockRepository;
+			sourceTree = "<group>";
+		};
+		52153BBF28AF6743007F4812 /* ModelExampleData */ = {
+			isa = PBXGroup;
+			children = (
+				52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */,
+			);
+			path = ModelExampleData;
+			sourceTree = "<group>";
+		};
 		5274DC98289DFE560069D5A5 /* DeoendencyInjection */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +149,7 @@
 		529861B8284553BA009C1E3B /* UOKiosk */ = {
 			isa = PBXGroup;
 			children = (
+				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				5274DC98289DFE560069D5A5 /* DeoendencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
@@ -166,7 +191,9 @@
 		529861E3284553DB009C1E3B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
+				52153BB728AF639F007F4812 /* MockRepository */,
 				528A2A182849C83F0035F416 /* EventsRepository.swift */,
+				52153BBA28AF63E2007F4812 /* EventsService.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -201,6 +228,7 @@
 		529861E7284554C7009C1E3B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				52153BBF28AF6743007F4812 /* ModelExampleData */,
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
 				529861EF28457D97009C1E3B /* EventsModel.swift */,
 			);
@@ -350,15 +378,19 @@
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
+				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
 				5299D4F028493B84001FEDB5 /* EventsViewModel.swift in Sources */,
 				52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */,
+				52153BBE28AF6584007F4812 /* EventsModelExampleData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
+				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
 				529861F028457D97009C1E3B /* EventsModel.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
+				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
