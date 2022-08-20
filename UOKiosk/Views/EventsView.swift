@@ -16,7 +16,7 @@ struct EventsView: View {
     // MARK: INITIALIZERS
     init(injector: Injector) {
         self.injector = injector
-        _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEmptyEventsViewModel())
+        _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
     
     var body: some View {
@@ -39,15 +39,16 @@ struct EventsView: View {
         .onAppear {
             if !didLoad {
                 didLoad = true
-                injector.viewModelFactory.fillEventsViewModel(eventsViewModel: viewModel)
+                viewModel.fetchEvents()
             }
         }
     }
 }
 
+#if DEBUG
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
         EventsView(injector: Injector(eventsRepository: MockEventsService()))
     }
 }
-
+#endif

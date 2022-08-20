@@ -117,13 +117,13 @@
 			path = ModelExampleData;
 			sourceTree = "<group>";
 		};
-		5274DC98289DFE560069D5A5 /* DeoendencyInjection */ = {
+		5274DC98289DFE560069D5A5 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
 				528A2A1C2849C9A30035F416 /* Injector.swift */,
 				528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */,
 			);
-			path = DeoendencyInjection;
+			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
 		529861AD284553BA009C1E3B = {
@@ -151,7 +151,7 @@
 			children = (
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
-				5274DC98289DFE560069D5A5 /* DeoendencyInjection */,
+				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				529861E3284553DB009C1E3B /* Repository */,
 				529861E7284554C7009C1E3B /* Models */,

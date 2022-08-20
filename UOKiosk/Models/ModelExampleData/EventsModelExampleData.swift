@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+#if DEBUG
 class EventsModelExampleData {
     let eventsModel: EventsModel
     
@@ -83,3 +83,4 @@ class EventsModelExampleData {
         eventsModel.events = [event1, event2]
     }
 }
+#endif

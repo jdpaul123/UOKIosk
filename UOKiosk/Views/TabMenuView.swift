@@ -24,6 +24,7 @@ struct TabMenuView: View {
         case news = "The Daily Emerald"
     }
     
+    // TODO: Make view factory as an environment variable so that I don't have to pass around the injector
     let injector: Injector
     @State var selectedTab: Tabs = .events
     

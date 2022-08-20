@@ -54,10 +54,12 @@ final class EventsViewModelDay: Identifiable {
      extent the Array<EventsViewModelEvent> type to be indentifiable. Creating this class gets around
      that problem.
      */
+    // MARK: Properties
     let id: String = UUID().uuidString
     @Published var dateString: String
     @Published var events: [EventsViewModelEvent]
     
+    // MARK: Initialization
     init(dateString: String, events: [EventsViewModelEvent] = []) {
         self.dateString = dateString
         self.events = events
@@ -66,10 +68,15 @@ final class EventsViewModelDay: Identifiable {
 
 final class EventsViewModel: ObservableObject, Identifiable {
     /*
-     
+     Contains all of the data for the Events View to display
      */
+    
+    // MARK: Properties
     let id: String = UUID().uuidString
     @Published var eventsInADay: [EventsViewModelDay]
+    private let eventsRepository: EventsRepository
+    
+    // MARK: Methods
     func fillData(eventsModel: EventsModel) {
         // Formulate each events date to the day, month, year the event is on into a string
         // Create a grouping of events for each day
@@ -88,12 +95,28 @@ final class EventsViewModel: ObservableObject, Identifiable {
         }
     }
     
+    // MARK: Initialization
+    init(eventsRepository: EventsRepository) {
+        self.eventsRepository = eventsRepository
+        self.eventsInADay = []
+    }
+    
+    /*
     init() {
         self.eventsInADay = []
     }
-}
-
-extension EventsViewModelEvent {
-    // MARK: Init for testing
+     */
     
+    // MARK: Data Filling Functions
+    func fetchEvents() {
+        eventsRepository.fetchEvents { (eventsModel: EventsModel?) in
+            guard let eventsModel = eventsModel else {
+                fatalError("Could not get events model")
+            }
+            // The view model contains data shown on the view so update it on the main thread
+            DispatchQueue.main.async {
+                self.fillData(eventsModel: eventsModel)
+            }
+        }
+    }
 }

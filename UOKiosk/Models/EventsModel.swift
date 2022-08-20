@@ -181,6 +181,7 @@ final class EventModel {
                                                     country: eventData.geo!.country!, zip: Int(eventData.geo!.zip!)!)
         }
 
+        // TODO: Seperate filters into their 3 types
         self.filters = []
         if let eventFilters = eventData.filters.eventTypes {
             for eventFilter in eventFilters {

@@ -107,8 +107,10 @@ TODO: check if the event has a zoom link, if so replace the location with an opt
     }
 }
 
+#if DEBUG
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
         EventDetailView(EventsModelExampleData().eventsModel.events[0], injector: Injector(eventsRepository: MockEventsService()))
     }
 }
+#endif

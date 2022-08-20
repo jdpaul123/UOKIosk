@@ -4,6 +4,13 @@ Outlining how the data on events is loaded into the system and chached.
 
 ## Overview
 
+### Notes with charles
+Store last fetch time stamp in user defaults (this is an example of "last state")
+When view will appear is triggered, if the time stamp is different by 1 day call the update data method
+When you get the new data:
+1. Look to see if you have an opject with the same ID as what you fetched and don't replace it if they are the same
+
+### my initial plan
 On initial boot up of the application:
 1. the events are uploaded to the application via a url session call to the web API for the events data.
 2. The data is decoded to a data transfer object (DTO).
