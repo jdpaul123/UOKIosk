@@ -1,0 +1,36 @@
+//
+//  EventLocation+CoreDataClass.swift
+//  UOKiosk
+//
+//  Created by Jonathan Paul on 8/21/22.
+//
+//
+
+import Foundation
+import CoreData
+
+
+public class EventLocation: NSManagedObject {
+    convenience init(latitude: Double, longitude: Double, street: String, city: String, country: String, zip: Int, context: NSManagedObjectContext) {
+        self.init(context: context)
+        
+        self.latitude = latitude
+        self.longitude = longitude
+        self.street = street
+        self.city = city
+        self.country = country
+        self.zip = Int64(exactly: zip)!
+    }
+
+    convenience init(geoData: GeoDto, context: NSManagedObjectContext) {
+        // TODO: SHOULD THERE BE THIS MUCH FORCE UNWRAPPING HERE?
+        self.init(context: context)
+        
+        self.latitude = Double(geoData.latitude!)!
+        self.longitude = Double(geoData.longitude!)!
+        self.street = geoData.street!
+        self.city = geoData.city!
+        self.country = geoData.country
+        self.zip = Int64(geoData.zip!)!
+    }
+}
