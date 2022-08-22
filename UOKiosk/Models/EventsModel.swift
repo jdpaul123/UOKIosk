@@ -37,7 +37,7 @@ final class EventsModel {
 final class EventModel {
     let id: Int
     let title: String
-    let description: String
+    let description: String // This attribute is called eventDescription for core data
     
     // location and roomNumber used for displaying the location in the event detail view
     let locationName: String?
@@ -65,7 +65,8 @@ final class EventModel {
     let allDay: Bool
     
     // location is set from the lat lon of the event, if the web api provides it
-    let eventCoreLocationData: CLLocation?
+    let eventCoreLocationData: CLLocation? // This attribute is beoing omitted from the Core Data model,
+    // but it can be re-created using the latitude and longitude values
     let eventLocation: EventLocationModel?
     
     var filters: [EventFilterModel]

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Event" representedClassName=".Event" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="allDay" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="calendarUrl" optional="YES" attributeType="URI"/>
+        <attribute name="end" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="eventDescription" optional="YES" attributeType="String"/>
+        <attribute name="eventUrl" optional="YES" attributeType="URI"/>
+        <attribute name="experience" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="locationName" optional="YES" attributeType="String"/>
+        <attribute name="photoData" optional="YES" attributeType="Binary"/>
+        <attribute name="roomNumber" optional="YES" attributeType="String"/>
+        <attribute name="start" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="status" optional="YES" attributeType="String"/>
+        <attribute name="streamUrl" optional="YES" attributeType="URI"/>
+        <attribute name="ticketCost" optional="YES" attributeType="String"/>
+        <attribute name="ticketUrl" optional="YES" attributeType="URI"/>
+        <attribute name="title" optional="YES" attributeType="String"/>
+        <attribute name="venueUrl" optional="YES" attributeType="URI"/>
+        <relationship name="eventGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Events" inverseName="events" inverseEntity="Events"/>
+        <relationship name="eventLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventLocation" inverseName="events" inverseEntity="EventLocation"/>
+        <relationship name="filters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventFilter" inverseName="events" inverseEntity="EventFilter"/>
+    </entity>
+    <entity name="EventFilter" representedClassName=".EventFilter" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="filters" inverseEntity="Event"/>
+    </entity>
+    <entity name="EventLocation" representedClassName=".EventLocation" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="street" optional="YES" attributeType="String"/>
+        <attribute name="zip" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventLocation" inverseEntity="Event"/>
+    </entity>
+    <entity name="Events" representedClassName=".Events" syncable="YES">
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventGroup" inverseEntity="Event"/>
+    </entity>
+    <elements>
+        <element name="Events" positionX="-63" positionY="-9" width="128" height="14"/>
+        <element name="EventLocation" positionX="-54" positionY="0" width="128" height="14"/>
+        <element name="Event" positionX="-36" positionY="18" width="128" height="14"/>
+        <element name="EventFilter" positionX="-18" positionY="36" width="128" height="14"/>
+    </elements>
+</model>
