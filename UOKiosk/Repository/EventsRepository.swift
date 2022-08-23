@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreData
 
 protocol EventsRepository {
     /*
@@ -18,4 +19,6 @@ protocol EventsRepository {
      */
     
     func fetchEvents(completion: @escaping (EventsModel?) -> Void)
+    
+    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
 }

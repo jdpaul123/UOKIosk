@@ -6,7 +6,9 @@
 //
 
 import Foundation
-final class EventsViewModel: ObservableObject, Identifiable {
+import CoreData
+
+final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetchedResultsControllerDelegate {
     /*
      Contains all of the data for the Events View to display
      */
@@ -21,6 +23,7 @@ final class EventsViewModel: ObservableObject, Identifiable {
         }
     }
     private let eventsRepository: EventsRepository
+    private var resultsController: NSFetchedResultsController<Event>? = nil
     
     
     // MARK: Methods
@@ -40,13 +43,17 @@ final class EventsViewModel: ObservableObject, Identifiable {
     }
     
     // MARK: Initialization
-    init(eventsRepository: EventsRepository) {
+    init(eventsRepository: EventsRepository) { // TODO: Why not use override like in the example here?
         self.eventsRepository = eventsRepository
         self.eventsInADay = []
+        
         // Check if the lastDataUpdateDate is not the same day as today
         // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
         // date, so it will trigger the data loading method
         self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? String ?? ""
+        super.init()
+        self.resultsController = eventsRepository.eventResultsController(with: self)
+        
         #if DEBUG
         print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif

@@ -7,8 +7,10 @@
 
 import Foundation
 
+/*
 final class MockEventsService: EventsRepository {
     func fetchEvents(completion: @escaping (EventsModel?) -> Void) {
         completion(EventsModelExampleData().eventsModel)
     }
 }
+*/

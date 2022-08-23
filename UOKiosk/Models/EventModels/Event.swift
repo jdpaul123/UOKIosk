@@ -33,6 +33,7 @@ public class Event: NSManagedObject {
             }
             return data
         }
+        
         func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
             let startStr: String = dateData.start
             let endStr: String? = dateData.end
