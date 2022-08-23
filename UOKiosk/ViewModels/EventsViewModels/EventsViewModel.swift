@@ -27,13 +27,10 @@ final class EventsViewModel: ObservableObject, Identifiable {
     func fillData(eventsModel: EventsModel) {
         // Formulate each events date to the day, month, year the event is on into a string
         // Create a grouping of events for each day
-        let dayMonthFormatter = DateFormatter()
-        dayMonthFormatter.dateFormat = "EEEE, MMM d" // Example: Sunday, Jun 5
-        
         // Fill the dates and events arrays with data
         var compareDateString: String = ""
         for event in eventsModel.events {
-            let currDateString: String = dayMonthFormatter.string(from: event.start)
+            let currDateString: String = event.start.formatted(date: .abbreviated, time: .omitted)
             if compareDateString != currDateString {
                 eventsInADay.append(EventsViewModelDay(dateString: currDateString))
                 compareDateString = currDateString
