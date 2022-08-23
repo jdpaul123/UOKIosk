@@ -74,7 +74,14 @@ final class EventsViewModel: ObservableObject, Identifiable {
     // MARK: Properties
     let id: String = UUID().uuidString
     @Published var eventsInADay: [EventsViewModelDay]
+    @Published var lastDataUpdateDate: String {
+        didSet {
+            // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
+            UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
+        }
+    }
     private let eventsRepository: EventsRepository
+    
     
     // MARK: Methods
     func fillData(eventsModel: EventsModel) {
@@ -99,16 +106,34 @@ final class EventsViewModel: ObservableObject, Identifiable {
     init(eventsRepository: EventsRepository) {
         self.eventsRepository = eventsRepository
         self.eventsInADay = []
+        // Check if the lastDataUpdateDate is not the same day as today
+        // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
+        // date, so it will trigger the data loading method
+        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? String ?? ""
+        #if DEBUG
+        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+        #endif
     }
-    
-    /*
-    init() {
-        self.eventsInADay = []
-    }
-     */
     
     // MARK: Data Filling Functions
-    func fetchEvents() {
+    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) {
+        /*
+         This function calls to get new events data.
+         
+         The function should not get events if the app opens, but the last time data was retrieved
+         was the day as the apps current opening hense on load should call with shouldCheckLastUpdateDate
+         containing the value true
+         
+         If the user is trying to pull to refresh then shouldCheckLastUpdateDate should not matter
+         and the app should try to get the most up to date data.
+         */
+        let todaysDate = Date().formatted(date: .complete, time: .omitted)
+        
+        if shouldCheckLastUpdateDate && self.lastDataUpdateDate == todaysDate {
+            return
+        }
+        self.lastDataUpdateDate = todaysDate
+        
         eventsRepository.fetchEvents { (eventsModel: EventsModel?) in
             guard let eventsModel = eventsModel else {
                 fatalError("Could not get events model")

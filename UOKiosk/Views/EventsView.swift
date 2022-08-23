@@ -39,8 +39,12 @@ struct EventsView: View {
         .onAppear {
             if !didLoad {
                 didLoad = true
-                viewModel.fetchEvents()
+                viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
             }
+        }
+        .refreshable {
+            // TODO: BUG when fetchingEvents the old ones do not clear out. Make sure that this bug goes away with Core Data
+            viewModel.fetchEvents()
         }
     }
 }
