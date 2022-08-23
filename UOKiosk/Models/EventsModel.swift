@@ -187,8 +187,30 @@ final class EventModel {
         if let eventFilters = eventData.filters.eventTypes {
             for eventFilter in eventFilters {
                 filters.append(EventFilterModel(id: eventFilter.id, name: eventFilter.name))
+                #if DEBUG
+                print(eventFilter.name)
+                #endif
             }
         }
+        #if DEBUG
+        print()
+        
+        if let depFilters = eventData.filters.departments {
+            for filter in depFilters {
+                print(filter.name)
+            }
+        }
+        print()
+        
+        if let targetAudienceFilters = eventData.filters.eventTargetAudience {
+            for filter in targetAudienceFilters {
+                print(filter.name)
+            }
+        }
+        print()
+        print()
+        print()
+        #endif
     }
     
     // MARK: INIT for testing
