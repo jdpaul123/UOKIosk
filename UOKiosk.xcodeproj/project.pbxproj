@@ -8,11 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */; };
-		52131E4628B31E85006C3094 /* Events.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E3E28B31E85006C3094 /* Events.swift */; };
 		52131E4828B31E85006C3094 /* EventLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4028B31E85006C3094 /* EventLocation.swift */; };
 		52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4228B31E85006C3094 /* EventFilter.swift */; };
 		52131E4C28B31E85006C3094 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4428B31E85006C3094 /* Event.swift */; };
-		52131E5828B34AC0006C3094 /* Events+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5028B34AC0006C3094 /* Events+CoreDataProperties.swift */; };
 		52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */; };
 		52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */; };
 		52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */; };
@@ -62,11 +60,9 @@
 
 /* Begin PBXFileReference section */
 		52131E3C28B30762006C3094 /* EventsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventsModel.xcdatamodel; sourceTree = "<group>"; };
-		52131E3E28B31E85006C3094 /* Events.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Events.swift; sourceTree = "<group>"; };
 		52131E4028B31E85006C3094 /* EventLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocation.swift; sourceTree = "<group>"; };
 		52131E4228B31E85006C3094 /* EventFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilter.swift; sourceTree = "<group>"; };
 		52131E4428B31E85006C3094 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		52131E5028B34AC0006C3094 /* Events+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Events+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EventFilter+CoreDataProperties.swift"; path = "../../../EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -128,8 +124,6 @@
 		52131E4E28B31E91006C3094 /* EventModels */ = {
 			isa = PBXGroup;
 			children = (
-				52131E3E28B31E85006C3094 /* Events.swift */,
-				52131E5028B34AC0006C3094 /* Events+CoreDataProperties.swift */,
 				52131E4428B31E85006C3094 /* Event.swift */,
 				52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */,
 				52131E4228B31E85006C3094 /* EventFilter.swift */,
@@ -427,7 +421,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
-				52131E4628B31E85006C3094 /* Events.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				52131E6528B54E96006C3094 /* EventsViewModel+Day.swift in Sources */,
@@ -443,7 +436,6 @@
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52153BBE28AF6584007F4812 /* EventsModelExampleData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
-				52131E5828B34AC0006C3094 /* Events+CoreDataProperties.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
 				529861F028457D97009C1E3B /* EventsModel.swift in Sources */,

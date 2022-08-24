@@ -26,21 +26,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     private var resultsController: NSFetchedResultsController<Event>? = nil
     
     
-    // MARK: Methods
-    func fillData(eventsModel: EventsModel) {
-        // Formulate each events date to the day, month, year the event is on into a string
-        // Create a grouping of events for each day
-        // Fill the dates and events arrays with data
-        var compareDateString: String = ""
-        for event in eventsModel.events {
-            let currDateString: String = event.start.formatted(date: .abbreviated, time: .omitted)
-            if compareDateString != currDateString {
-                eventsInADay.append(EventsViewModelDay(dateString: currDateString))
-                compareDateString = currDateString
-            }
-            eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
-        }
-    }
+
     
     // MARK: Initialization
     init(eventsRepository: EventsRepository) { // TODO: Why not use override like in the example here?
@@ -73,11 +59,15 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
          */
         let todaysDate = Date().formatted(date: .complete, time: .omitted)
         
+        // shouldCheckLastUpdateDate should be true if the viewDidLoad function on the view is triggered
+        // This if checks if data was updated today and if the program should care and if so then do not
+        // update the data and just return
         if shouldCheckLastUpdateDate && self.lastDataUpdateDate == todaysDate {
             return
         }
         self.lastDataUpdateDate = todaysDate
         
+        // TODO: eventsRepository.fetchEvents { (events: [Event]) in ... this should be the function to call
         eventsRepository.fetchEvents { (eventsModel: EventsModel?) in
             guard let eventsModel = eventsModel else {
                 fatalError("Could not get events model")
@@ -86,6 +76,22 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             DispatchQueue.main.async {
                 self.fillData(eventsModel: eventsModel)
             }
+        }
+    }
+    
+    // Takes the model and uses that data to fill in the values for this view controller.
+    func fillData(eventsModel: EventsModel) {
+        // Formulate each events date to the day, month, year the event is on into a string
+        // Create a grouping of events for each day
+        // Fill the dates and events arrays with data
+        var compareDateString: String = ""
+        for event in eventsModel.events {
+            let currDateString: String = event.start.formatted(date: .abbreviated, time: .omitted)
+            if compareDateString != currDateString {
+                eventsInADay.append(EventsViewModelDay(dateString: currDateString))
+                compareDateString = currDateString
+            }
+            eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
         }
     }
 }

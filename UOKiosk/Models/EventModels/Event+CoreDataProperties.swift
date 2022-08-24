@@ -36,7 +36,6 @@ extension Event {
     @NSManaged public var allDay: Bool
     @NSManaged public var eventLocation: EventLocation?
     @NSManaged public var departmentFilters: NSSet?
-    @NSManaged public var eventGroup: Events?
     @NSManaged public var targetAudienceFilters: NSSet?
     @NSManaged public var eventTypeFilters: NSSet?
 

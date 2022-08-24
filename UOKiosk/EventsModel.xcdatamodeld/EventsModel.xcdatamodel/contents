@@ -20,7 +20,6 @@
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="venueUrl" optional="YES" attributeType="URI"/>
         <relationship name="departmentFilters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventFilter" inverseName="departmentEvents" inverseEntity="EventFilter"/>
-        <relationship name="eventGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Events" inverseName="events" inverseEntity="Events"/>
         <relationship name="eventLocation" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="EventLocation" inverseName="event" inverseEntity="EventLocation"/>
         <relationship name="eventTypeFilters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventFilter" inverseName="eventTypeEvents" inverseEntity="EventFilter"/>
         <relationship name="targetAudienceFilters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="EventFilter" inverseName="targetAudienceEvents" inverseEntity="EventFilter"/>
@@ -41,13 +40,9 @@
         <attribute name="zip" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventLocation" inverseEntity="Event"/>
     </entity>
-    <entity name="Events" representedClassName=".Events" syncable="YES">
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Event" inverseName="eventGroup" inverseEntity="Event"/>
-    </entity>
     <elements>
-        <element name="Events" positionX="-205.12890625" positionY="222.81640625" width="128" height="14"/>
         <element name="EventLocation" positionX="-226.57421875" positionY="508.671875" width="128" height="148"/>
-        <element name="Event" positionX="-451.54296875" positionY="133.8984375" width="128" height="374"/>
+        <element name="Event" positionX="-451.54296875" positionY="133.8984375" width="128" height="373"/>
         <element name="EventFilter" positionX="-745.55078125" positionY="107.0859375" width="128" height="104"/>
     </elements>
 </model>
