@@ -40,7 +40,7 @@ final class EventsService: EventsRepository {
     /// Parameters:
     ///     eventResultsController: The eventResultsController that should be updated to show the new events
     /// This function expects that the eventResultsController has already been created through a call to the fetchSavedEvents method on the EventsService class
-    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) {
+    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>, completion: @escaping ([Event]?) -> Void) {
         /*
          TODO: Must change a lot here in fetchEvents. Basically, this function should decide how we will fetch, either just going to get data from
          core data or getting data from core data, then deleting events that started before today, and then calling the api to only download new data
@@ -49,6 +49,7 @@ final class EventsService: EventsRepository {
         ApiService.shared.loadApiData(urlString: urlString, completion: { [self] (dto: EventsDto?) in
             guard let dto = dto else {
                 print("failed to decode the apiService's data from the API")
+                completion(nil)
                 return
             }
             
@@ -57,6 +58,7 @@ final class EventsService: EventsRepository {
                 for middleLayer in dto.eventMiddleLayerDto {
                     self.addEvent(eventDto: middleLayer.eventDto)
                 }
+                completion(eventResultsController.fetchedObjects)
                 return
             }
             
@@ -67,6 +69,8 @@ final class EventsService: EventsRepository {
                     self.addEvent(eventDto: middleLayer.eventDto)
                 }
             }
+            
+            completion(eventResultsController.fetchedObjects)
             // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
         })
     }

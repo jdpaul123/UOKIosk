@@ -10,7 +10,7 @@ import UIKit
 
 final class EventsViewModelEvent: ObservableObject, Identifiable, Hashable {
     // MARK: Properties
-    let eventModel: EventModel
+    let eventModel: Event
 
     let id: String = UUID().uuidString
     @Published var image: UIImage
@@ -31,15 +31,15 @@ final class EventsViewModelEvent: ObservableObject, Identifiable, Hashable {
     }
     
     // MARK: Initializers
-    init(event: EventModel) {
+    init(event: Event) {
         self.eventModel = event
         
-        self.title = event.title
+        self.title = event.title ?? "No Title"
         // Try to get the image and if there is none use the image that shows the event has no image
         self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
-        self.dateString = dateFormatter.string(from: event.start)
-        self.date = event.start
+        self.dateString = dateFormatter.string(from: event.start!)
+        self.date = event.start!
     }
 }

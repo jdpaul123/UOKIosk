@@ -22,14 +22,14 @@ class EventDetailViewModel: ObservableObject {
     let calendarData: EventCalendarViewModel
     let reminderData: EventReminderViewModel
 
-    init(event: EventModel) {
-        self.title = event.title
+    init(event: Event) {
+        self.title = event.title ?? "No Title"
         self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
         self.location = event.locationName ?? ""
         self.roomNumber = event.roomNumber ?? ""
         
         self.dateRange = {
-            let startDateString = event.start.formatted(date: .complete, time: .omitted)
+            let startDateString = event.start!.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
             if startDateString == endDateString {
@@ -39,7 +39,7 @@ class EventDetailViewModel: ObservableObject {
         }()
         
         self.timeRange = {
-            let startTimeString = event.start.formatted(date: .omitted, time: .shortened)
+            let startTimeString = event.start!.formatted(date: .omitted, time: .shortened)
             let endTimeString = event.end?.formatted(date: .omitted, time: .shortened) ?? ""
             
             if event.allDay {

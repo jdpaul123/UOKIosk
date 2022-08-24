@@ -16,6 +16,7 @@ struct EventsView: View {
     // MARK: INITIALIZERS
     init(injector: Injector) {
         self.injector = injector
+        // Set the var StateObject<EventsViewModel>
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
     

@@ -15,7 +15,7 @@ struct EventDetailView: View {
     let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
     let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
     
-    init(_ event: EventModel, injector: Injector) {
+    init(_ event: Event, injector: Injector) {
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
         self.injector = injector
     }

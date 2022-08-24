@@ -17,7 +17,7 @@ final class ViewModelFactory: ObservableObject {
     }
    
     // MARK: View Model Functions
-    func makeEventDetailViewModel(eventModel: EventModel) -> EventDetailViewModel {
+    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }
     

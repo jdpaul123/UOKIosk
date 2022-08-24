@@ -21,4 +21,8 @@ protocol EventsRepository {
     func fetchEvents(completion: @escaping (EventsModel?) -> Void)
     
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
+    
+    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
+        
+    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>, completion: @escaping ([Event]?) -> Void)
 }

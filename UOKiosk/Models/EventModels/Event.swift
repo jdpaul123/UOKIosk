@@ -71,7 +71,9 @@ public class Event: NSManagedObject {
         
         self.status = eventData.status ?? "live"
         self.experience = eventData.experience ?? "assumed inperson"
-
+        
+        print(self.title ?? "Default title")
+        
         self.eventUrl = getUrl(urlString: eventData.localistUrl)
         self.streamUrl = getUrl(urlString: eventData.streamUrl)
         self.ticketUrl = getUrl(urlString: eventData.ticketUrl)
@@ -154,14 +156,17 @@ public class Event: NSManagedObject {
         self.end = end
         self.allDay = allDay
         self.eventLocation = eventLocation
+        // Create the department filters array
         self.departmentFilters = []
         for filter in departmentFilters {
             self.departmentFilters?.adding(filter)
         }
+        // Create the audience filters array
         self.targetAudienceFilters = []
         for filter in targetAudienceFilters {
             self.targetAudienceFilters?.adding(filter)
         }
+        // Create the event type filters array
         self.eventTypeFilters = []
         for filter in eventTypeFilters {
             self.eventTypeFilters?.adding(filter)

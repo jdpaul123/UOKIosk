@@ -138,8 +138,8 @@
 			isa = PBXGroup;
 			children = (
 				52131E6028B54E58006C3094 /* EventsViewModel.swift */,
-				52131E6228B54E6D006C3094 /* EventsViewModel+Event.swift */,
 				52131E6428B54E96006C3094 /* EventsViewModel+Day.swift */,
+				52131E6228B54E6D006C3094 /* EventsViewModel+Event.swift */,
 			);
 			path = EventsViewModels;
 			sourceTree = "<group>";
