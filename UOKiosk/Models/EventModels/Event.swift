@@ -139,7 +139,7 @@ public class Event: NSManagedObject {
         
         self.id = Int64(exactly: id)!
         self.title = title
-        self.eventDescription = description
+        self.eventDescription = eventDescription
         self.locationName = locationName
         self.roomNumber = roomNumber
         self.address = address

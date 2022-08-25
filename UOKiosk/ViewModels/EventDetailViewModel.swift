@@ -16,7 +16,7 @@ class EventDetailViewModel: ObservableObject {
     let roomNumber: String
     let dateRange: String // Ex. Thursday, August 18, 2022 or Thursday, August 18, 2022 - Thursday, September 25, 2022
     let timeRange: String // Ex. All Day or 8:00 AM - 5:30 PM
-    let description: String
+    let eventDescription: String
     let website: URL?
     
     let calendarData: EventCalendarViewModel
@@ -52,7 +52,7 @@ class EventDetailViewModel: ObservableObject {
             return "\(startTimeString) - \(endTimeString)"
         }()
         
-        self.description = event.description
+        self.eventDescription = event.eventDescription ?? "No event description provided."
         self.website = event.eventUrl
         
         self.calendarData = EventCalendarViewModel()

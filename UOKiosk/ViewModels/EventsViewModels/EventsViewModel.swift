@@ -15,7 +15,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     
     // MARK: Properties
     let id: String = UUID().uuidString
-    /*@Published*/ var allEvents: [Event] {
+    var allEvents: [Event] {
         resultsController?.fetchedObjects ?? []
     }
     @Published var eventsInADay: [EventsViewModelDay]
@@ -76,25 +76,11 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             return
         }
         eventsRepository.fetchNewEvents(eventResultsController: resultsController) { events in
-            guard let events = events else {
+            guard events != nil else {
                 print("No Events were returned from the events repository fetchNewEvents method")
                 return
             }
-        } // TODO: This should take a closure and
-        // the closure should take the fetched objects and call fillData method
-        
-        /*
-        // TODO: eventsRepository.fetchEvents { (events: [Event]) in ... this should be the function to call
-        eventsRepository.fetchEvents { (eventsModel: EventsModel?) in
-            guard let eventsModel = eventsModel else {
-                fatalError("Could not get events model")
-            }
-            // The view model contains data shown on the view so update it on the main thread
-            DispatchQueue.main.async {
-                self.fillData(eventsModel: eventsModel)
-            }
         }
-        */
     }
     // Takes the model and uses that data to fill in the values for this view controller.
     func fillData() {
@@ -115,20 +101,4 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
         }
     }
-    
-//    // Takes the model and uses that data to fill in the values for this view controller.
-//    func fillData(eventsModel: EventsModel) {
-//        // Formulate each events date to the day, month, year the event is on into a string
-//        // Create a grouping of events for each day
-//        // Fill the dates and events arrays with data
-//        var compareDateString: String = ""
-//        for event in eventsModel.events {
-//            let currDateString: String = event.start.formatted(date: .abbreviated, time: .omitted)
-//            if compareDateString != currDateString {
-//                eventsInADay.append(EventsViewModelDay(dateString: currDateString))
-//                compareDateString = currDateString
-//            }
-//            eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
-//        }
-//    }
 }

@@ -91,7 +91,7 @@ TODO: check if the event has a zoom link, if so replace the location with an opt
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
                 
-                Text(viewModel.description)
+                Text(viewModel.eventDescription)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
                 if let website = viewModel.website {
