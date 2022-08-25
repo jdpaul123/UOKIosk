@@ -98,6 +98,9 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     }
     // Takes the model and uses that data to fill in the values for this view controller.
     func fillData() {
+        // First, clear out existing data
+        eventsInADay = []
+        
         // Formulate each events date to the day, month, year the event is on into a string
         // Create a grouping of events for each day
         // Fill the dates and events arrays with data

@@ -64,8 +64,13 @@ final class EventsService: EventsRepository {
             
             // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
             for middleLayer in dto.eventMiddleLayerDto {
-                let event = Event(eventData: middleLayer.eventDto, context: self.persistentContainer.viewContext)
-                if !fetchedObjects.contains(event) {
+                var shouldSave = true
+                for object in fetchedObjects {
+                    if object.id == middleLayer.eventDto.id {
+                        shouldSave = false
+                    }
+                }
+                if shouldSave {
                     self.addEvent(eventDto: middleLayer.eventDto)
                 }
             }
@@ -101,6 +106,7 @@ final class EventsService: EventsRepository {
     
     private func saveViewContext() {
         do {
+            // TODO: Often get the "Thread 2: EXC_BAD_ACCESS (code=1, address=0xfffffffffffffff8)" error here on first run of the application
             try persistentContainer.viewContext.save()
         } catch {
             print("Failed to save viewContext, rolling back")
