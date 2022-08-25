@@ -15,6 +15,9 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     
     // MARK: Properties
     let id: String = UUID().uuidString
+    /*@Published*/ var allEvents: [Event] {
+        resultsController?.fetchedObjects ?? []
+    }
     @Published var eventsInADay: [EventsViewModelDay]
     @Published var lastDataUpdateDate: String {
         didSet {
@@ -25,7 +28,10 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     private let eventsRepository: EventsRepository
     private var resultsController: NSFetchedResultsController<Event>? = nil
     
-    
+    // MARK: NSFetchedResultsController
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        objectWillChange.send()
+    }
 
     
     // MARK: Initialization
@@ -74,9 +80,6 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                 print("No Events were returned from the events repository fetchNewEvents method")
                 return
             }
-            
-            
-            
         } // TODO: This should take a closure and
         // the closure should take the fetched objects and call fillData method
         
@@ -94,12 +97,12 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         */
     }
     // Takes the model and uses that data to fill in the values for this view controller.
-    func fillData(eventsModel: [Event]) {
+    func fillData() {
         // Formulate each events date to the day, month, year the event is on into a string
         // Create a grouping of events for each day
         // Fill the dates and events arrays with data
         var compareDateString: String = ""
-        for event in eventsModel {
+        for event in allEvents {
             let currDateString: String = event.start!.formatted(date: .abbreviated, time: .omitted)
             // If the last date we save is not the same as the current date, then start a new day
             if compareDateString != currDateString {
