@@ -13,6 +13,7 @@ class EventDetailViewModel: ObservableObject {
     let title: String
     let image: UIImage
     let location: String
+    let hasLocation: Bool
     let roomNumber: String
     let dateRange: String // Ex. Thursday, August 18, 2022 or Thursday, August 18, 2022 - Thursday, September 25, 2022
     let timeRange: String // Ex. All Day or 8:00 AM - 5:30 PM
@@ -26,6 +27,7 @@ class EventDetailViewModel: ObservableObject {
         self.title = event.title ?? "No Title"
         self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
         self.location = event.locationName ?? ""
+        self.hasLocation = event.locationName == "" ? false : true
         self.roomNumber = event.roomNumber ?? ""
         
         self.dateRange = {

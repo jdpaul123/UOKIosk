@@ -30,24 +30,27 @@ struct EventDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .padding()
-                    HStack {
-                        Text("Location")
-                            .bold()
-                            .font(.title3)
-                        Spacer()
-                        VStack {
-                            Text(viewModel.location)
+                    if viewModel.hasLocation {
+                        HStack {
+                            Text("Location")
+                                .bold()
                                 .font(.title3)
-                                .multilineTextAlignment(.center)
-                            Text(viewModel.roomNumber)
-                                .font(.subheadline)
+                            Spacer()
+                            VStack {
+                                Text(viewModel.location)
+                                    .font(.title3)
+                                    .multilineTextAlignment(.center)
+                                Text(viewModel.roomNumber)
+                                    .font(.subheadline)
+                            }
+                            /*
+                            TODO: check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events already started
+                            TODO: check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
+                            */
                         }
-/*
-TODO: check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events already started
-TODO: check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
-*/
+                        .padding()
                     }
-                    .padding()
+                  
                     HStack {
                         Text("Time")
                             .bold()
