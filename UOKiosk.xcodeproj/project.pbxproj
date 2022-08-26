@@ -17,6 +17,7 @@
 		52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6028B54E58006C3094 /* EventsViewModel.swift */; };
 		52131E6328B54E6D006C3094 /* EventsViewModel+Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6228B54E6D006C3094 /* EventsViewModel+Event.swift */; };
 		52131E6528B54E96006C3094 /* EventsViewModel+Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6428B54E96006C3094 /* EventsViewModel+Day.swift */; };
+		52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */; };
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
 		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
 		52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB328AED99D007F4812 /* EventListItemView.swift */; };
@@ -69,6 +70,7 @@
 		52131E6028B54E58006C3094 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		52131E6228B54E6D006C3094 /* EventsViewModel+Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsViewModel+Event.swift"; sourceTree = "<group>"; };
 		52131E6428B54E96006C3094 /* EventsViewModel+Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventsViewModel+Day.swift"; sourceTree = "<group>"; };
+		52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ApplicationDefaults.swift"; sourceTree = "<group>"; };
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		52153BB328AED99D007F4812 /* EventListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItemView.swift; sourceTree = "<group>"; };
@@ -144,6 +146,14 @@
 			path = EventsViewModels;
 			sourceTree = "<group>";
 		};
+		52131E6828B96C91006C3094 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		52153BB728AF639F007F4812 /* MockRepository */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +204,7 @@
 			children = (
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
+				52131E6828B96C91006C3094 /* Extensions */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				529861E3284553DB009C1E3B /* Repository */,
@@ -420,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,

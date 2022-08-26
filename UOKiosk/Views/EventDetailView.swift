@@ -11,10 +11,6 @@ struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
     
-    // TODO: add colors to the Color class as an extension.
-    let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
-    let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
-    
     init(_ event: Event, injector: Injector) {
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
         self.injector = injector
@@ -43,10 +39,6 @@ struct EventDetailView: View {
                                 Text(viewModel.roomNumber)
                                     .font(.subheadline)
                             }
-                            /*
-                            TODO: check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events already started
-                            TODO: check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
-                            */
                         }
                         .padding()
                     }
@@ -66,7 +58,7 @@ struct EventDetailView: View {
                     }
                     .padding()
                 }
-                .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
                 
                 HStack {
                     Spacer()
@@ -96,7 +88,7 @@ struct EventDetailView: View {
                 
                 Text(viewModel.eventDescription)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
                 if let website = viewModel.website {
                     Link("\(Image.init(systemName: "link.circle")) View Event Online", destination: website)
                         .padding()
@@ -106,7 +98,7 @@ struct EventDetailView: View {
         }
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
-        .background(systemBackgroundColor)
+        .background(Color.UOKioskBackgroundColor)
     }
 }
 
