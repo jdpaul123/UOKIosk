@@ -32,9 +32,10 @@ class EventDetailViewModel: ObservableObject {
             let startDateString = event.start!.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
-            if startDateString == endDateString {
+            if startDateString == endDateString || endDateString == "" {
                 return startDateString
             }
+            
             return "\(startDateString) - \(endDateString)"
         }()
         
@@ -45,7 +46,7 @@ class EventDetailViewModel: ObservableObject {
             if event.allDay {
                 return "All Day"
             }
-            else if startTimeString == endTimeString {
+            else if startTimeString == endTimeString || endTimeString == "" {
                 return startTimeString
             }
             
