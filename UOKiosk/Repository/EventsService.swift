@@ -80,18 +80,6 @@ final class EventsService: EventsRepository {
         })
     }
     
-    func fetchEvents(completion: @escaping (EventsModel?) -> Void) {
-        ApiService.shared.loadApiData(urlString: urlString, completion: { (dto: EventsDto?) in
-            var eventsModel: EventsModel? = nil
-            guard let dto = dto else {
-                print("failed to decode the apiService's html GET from the API")
-                return
-            }
-            eventsModel = EventsModel(eventsData: dto)
-            completion(eventsModel)
-        })
-    }
-    
     func addEvent(eventDto: EventDto) {
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
         

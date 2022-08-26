@@ -18,8 +18,6 @@ protocol EventsRepository {
      - It will be used to make a mock repository for testing on local data not relying on a network connection
      */
     
-    func fetchEvents(completion: @escaping (EventsModel?) -> Void)
-    
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
     
     func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?

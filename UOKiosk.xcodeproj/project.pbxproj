@@ -37,8 +37,6 @@
 		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
-		529861F028457D97009C1E3B /* EventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EF28457D97009C1E3B /* EventsModel.swift */; };
-		5299D4F028493B84001FEDB5 /* EventsViewModelOriginal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4EF28493B84001FEDB5 /* EventsViewModelOriginal.swift */; };
 		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,8 +91,6 @@
 		529861E92845587C009C1E3B /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
-		529861EF28457D97009C1E3B /* EventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModel.swift; sourceTree = "<group>"; };
-		5299D4EF28493B84001FEDB5 /* EventsViewModelOriginal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelOriginal.swift; sourceTree = "<group>"; };
 		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,12 +142,12 @@
 			path = EventsViewModels;
 			sourceTree = "<group>";
 		};
-		52131E6828B96C91006C3094 /* Extensions */ = {
+		52131E6828B96C91006C3094 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */,
 			);
-			path = Extensions;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		52153BB728AF639F007F4812 /* MockRepository */ = {
@@ -204,7 +200,7 @@
 			children = (
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
-				52131E6828B96C91006C3094 /* Extensions */,
+				52131E6828B96C91006C3094 /* Extension */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				529861E3284553DB009C1E3B /* Repository */,
@@ -285,7 +281,6 @@
 			children = (
 				52153BBF28AF6743007F4812 /* ModelExampleData */,
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
-				529861EF28457D97009C1E3B /* EventsModel.swift */,
 				52131E4E28B31E91006C3094 /* EventModels */,
 			);
 			path = Models;
@@ -294,7 +289,6 @@
 		529861E8284554CB009C1E3B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				5299D4EF28493B84001FEDB5 /* EventsViewModelOriginal.swift */,
 				52131E5F28B54E33006C3094 /* EventsViewModels */,
 				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
 			);
@@ -442,7 +436,6 @@
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
-				5299D4F028493B84001FEDB5 /* EventsViewModelOriginal.swift in Sources */,
 				52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */,
 				52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
@@ -450,7 +443,6 @@
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
-				529861F028457D97009C1E3B /* EventsModel.swift in Sources */,
 				52131E6328B54E6D006C3094 /* EventsViewModel+Event.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
