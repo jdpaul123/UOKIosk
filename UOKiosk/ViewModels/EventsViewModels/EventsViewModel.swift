@@ -72,6 +72,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         // This if checks if data was updated today and if the program should care and if so then do not
         // update the data and just return
         if shouldCheckLastUpdateDate && self.lastDataUpdateDate == todaysDate {
+            self.fillData()
             return
         }
         self.lastDataUpdateDate = todaysDate
@@ -90,21 +91,25 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     
     // Takes the model and uses that data to fill in the values for this view controller.
     private func fillData() {
-        // First, clear out existing data
-        eventsInADay = []
-        
-        // Formulate each events date to the day, month, year the event is on into a string
-        // Create a grouping of events for each day
-        // Fill the dates and events arrays with data
-        var compareDateString: String = ""
-        for event in allEvents {
-            let currDateString: String = event.start!.formatted(date: .abbreviated, time: .omitted)
-            // If the last date we save is not the same as the current date, then start a new day
-            if compareDateString != currDateString {
-                eventsInADay.append(EventsViewModelDay(dateString: currDateString))
-                compareDateString = currDateString
+        // Dispatch work to main queue because this method affects data used in the UI
+        DispatchQueue.main.async { [self] in // [self] captures the object for this closure
+            // First, clear out existing data
+            eventsInADay = []
+            
+            // Formulate each events date to the day, month, year the event is on into a string
+            // Create a grouping of events for each day
+            // Fill the dates and events arrays with data
+            var compareDateString: String = ""
+            for event in allEvents {
+                let currDateString: String = event.start!.formatted(date: .abbreviated, time: .omitted)
+                // If the last date we save is not the same as the current date, then start a new day
+                if compareDateString != currDateString {
+                    eventsInADay.append(EventsViewModelDay(dateString: currDateString))
+                    compareDateString = currDateString
+                }
+                eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
             }
-            eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
         }
+
     }
 }
