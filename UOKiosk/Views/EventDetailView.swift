@@ -11,7 +11,7 @@ struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
     
-    // TODO: add colors to injector. Create a UIInjector that contains all the UI values to use throughout the app.
+    // TODO: add colors to the Color class as an extension.
     let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
     let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
     

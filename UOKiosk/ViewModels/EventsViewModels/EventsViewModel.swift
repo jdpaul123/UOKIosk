@@ -27,13 +27,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     }
     private let eventsRepository: EventsRepository
     private var resultsController: NSFetchedResultsController<Event>? = nil
-    
-    // MARK: NSFetchedResultsController
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        objectWillChange.send()
-    }
-
-    
+   
     // MARK: Initialization
     init(eventsRepository: EventsRepository) { // TODO: Why not use override like in the example here?
         self.eventsRepository = eventsRepository
@@ -51,6 +45,15 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         #endif
     }
     
+    // MARK: NSFetchedResultsController
+    // This function enables change tracking so that data stays up to date in the view when updates are made
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        // objectWillChange is the publisher of the ObservableObject protocol that emits the changed value before any
+        // of its @Pubished properties changs. Here we are manually saying that something has changed whenever
+        // the results controller gets changed.
+        objectWillChange.send()
+    }
+
     // MARK: Data Filling Functions
     func fetchEvents(shouldCheckLastUpdateDate: Bool = false) {
         /*
@@ -80,10 +83,13 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                 print("No Events were returned from the events repository fetchNewEvents method")
                 return
             }
+            self.fillData()
         }
     }
+    
+    
     // Takes the model and uses that data to fill in the values for this view controller.
-    func fillData() {
+    private func fillData() {
         // First, clear out existing data
         eventsInADay = []
         

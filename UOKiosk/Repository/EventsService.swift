@@ -142,16 +142,6 @@ final class EventsService: EventsRepository {
         
         persistentContainer.loadPersistentStores { storeDescription, error in
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-            
-            // TODO: Use the below 5 lines to do anything if there is no data loaded in, otherwise delete the code.
-            let context = self.persistentContainer.newBackgroundContext()
-            context.perform {
-                let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-                let count = try! context.count(for: fetchRequest)
-                // if the count is 0 then we should load data in from the api
-                // if the count is not 0 then we should check the lastUpdateDate, and if that is today then we should do nothing
-                // otherwise we should load in the data saved, delete whatever is older than today, and then load in any new data from the api
-            }
         }
     }
     
