@@ -18,6 +18,11 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     var allEvents: [Event] {
         resultsController?.fetchedObjects ?? []
     }
+
+    @Published var isLoading = false
+    @Published var showAlert = false
+    @Published var errorMessage: String?
+
     @Published var eventsInADay: [EventsViewModelDay]
     @Published var lastDataUpdateDate: String {
         didSet {
@@ -55,7 +60,8 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     }
 
     // MARK: Data Filling Functions
-    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) {
+    @MainActor
+    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) async {
         /*
          This function calls to get new events data.
          
@@ -66,6 +72,10 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
          If the user is trying to pull to refresh then shouldCheckLastUpdateDate should not matter
          and the app should try to get the most up to date data.
          */
+        isLoading.toggle()
+        defer {
+            isLoading.toggle()
+        }
         let todaysDate = Date().formatted(date: .complete, time: .omitted)
         
         // shouldCheckLastUpdateDate should be true if the viewDidLoad function on the view is triggered
@@ -79,13 +89,16 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         guard let resultsController = resultsController else {
             return
         }
-        eventsRepository.fetchNewEvents(eventResultsController: resultsController) { events in
-            guard events != nil else {
-                print("No Events were returned from the events repository fetchNewEvents method")
-                return
-            }
-            self.fillData()
+        do {
+            try await eventsRepository.fetchNewEvents(eventResultsController: resultsController)
+        } catch {
+            // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
+            showAlert = true
+            errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
+            print("No Events were returned from the events repository fetchNewEvents method")
+            return
         }
+        self.fillData()
     }
     
     
@@ -95,7 +108,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         DispatchQueue.main.async { [self] in // [self] captures the object for this closure
             // First, clear out existing data
             eventsInADay = []
-            
+
             // Formulate each events date to the day, month, year the event is on into a string
             // Create a grouping of events for each day
             // Fill the dates and events arrays with data
@@ -110,6 +123,5 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                 eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
             }
         }
-
     }
 }

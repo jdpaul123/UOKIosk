@@ -15,80 +15,79 @@ final class EventsService: EventsRepository {
      private let apiService: EventsApiServiceProtocol
      private let storageService: EventsStorageProtocol
      */
-    
+
     /// Parameters:
     ///     delegate: Used to create the NSFetchedResultsController to be used by the view for displaying events data
     func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
-        
+
         // Try to get the fetchedResultsController, but if it fails or there are no objects saved return nil
         let fetchedResultsController = eventResultsController(with: delegate)
         guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
             return nil
         }
-        
+
         // Delete any that are old (ie. their start date is before the current date)
         for event in fetchedObjects {
             if event.start?.compare(Date()) == ComparisonResult.orderedAscending {
                 deleteEvent(event)
             }
         }
-        
+
         // return the events
         return fetchedResultsController
     }
-    
-    /// Parameters:
-    ///     eventResultsController: The eventResultsController that should be updated to show the new events
-    /// This function expects that the eventResultsController has already been created through a call to the fetchSavedEvents method on the EventsService class
-    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>, completion: @escaping ([Event]?) -> Void) {
+
+    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         /*
          TODO: Must change a lot here in fetchEvents. Basically, this function should decide how we will fetch, either just going to get data from
          core data or getting data from core data, then deleting events that started before today, and then calling the api to only download new data
          to the core data persistent store.
          */
-        ApiService.shared.loadApiData(urlString: urlString, completion: { [self] (dto: EventsDto?) in
-            guard let dto = dto else {
-                print("failed to decode the apiService's data from the API")
-                completion(nil)
-                return
-            }
-            
-            // If there are no objects fetched then add all the events fetched from the api
-            guard let fetchedObjects = eventResultsController.fetchedObjects, eventResultsController.fetchedObjects?.count ?? 0 > 0 else {
-                for middleLayer in dto.eventMiddleLayerDto {
-                    self.addEvent(eventDto: middleLayer.eventDto)
-                }
-                completion(eventResultsController.fetchedObjects)
-                return
-            }
-            
-            // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
+        var dto: EventsDto? = nil
+        do {
+            dto = try await ApiService.shared.getJSON(urlString: urlString)
+        } catch {
+            let errorMessage = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
+        }
+
+        guard let dto = dto else {
+            return eventResultsController.fetchedObjects
+        }
+
+        // If there are no objects fetched then add all the events fetched from the api
+        guard let fetchedObjects = eventResultsController.fetchedObjects, eventResultsController.fetchedObjects?.count ?? 0 > 0 else {
             for middleLayer in dto.eventMiddleLayerDto {
-                var shouldSave = true
-                for object in fetchedObjects {
-                    if object.id == middleLayer.eventDto.id {
-                        shouldSave = false
-                    }
-                }
-                if shouldSave {
-                    self.addEvent(eventDto: middleLayer.eventDto)
+                self.addEvent(eventDto: middleLayer.eventDto)
+            }
+            return eventResultsController.fetchedObjects
+        }
+
+        // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
+        for middleLayer in dto.eventMiddleLayerDto {
+            var shouldSave = true
+            for object in fetchedObjects {
+                if object.id == middleLayer.eventDto.id {
+                    shouldSave = false
                 }
             }
-            
-            completion(eventResultsController.fetchedObjects)
-            // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
-        })
+            if shouldSave {
+                self.addEvent(eventDto: middleLayer.eventDto)
+            }
+        }
+
+        return eventResultsController.fetchedObjects
+        // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
     }
     
     func addEvent(eventDto: EventDto) {
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
-        
+
         saveViewContext()
     }
-    
+
     func deleteEvent(_ event: Event) {
         persistentContainer.viewContext.delete(event)
-        
+
         saveViewContext()
     }
     
@@ -105,7 +104,7 @@ final class EventsService: EventsRepository {
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
-        
+
         return createResultsController(for: delegate, fetchRequest: fetchRequest)
     }
     
@@ -125,14 +124,14 @@ final class EventsService: EventsRepository {
     
     init(urlString: String) {
         self.urlString = urlString
-        
+
         persistentContainer = NSPersistentContainer(name: "EventsModel")
-        
+
         persistentContainer.loadPersistentStores { storeDescription, error in
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         }
     }
-    
+
     // MARK: Properties
     private let persistentContainer: NSPersistentContainer
     var urlString: String
