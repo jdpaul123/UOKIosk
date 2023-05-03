@@ -1,0 +1,127 @@
+//
+//  EventsViewModel.swift
+//  UOKiosk
+//
+//  Created by Jonathan Paul on 8/23/22.
+//
+
+import Foundation
+import CoreData
+
+final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetchedResultsControllerDelegate {
+    /*
+     Contains all of the data for the Events View to display
+     */
+    
+    // MARK: Properties
+    let id: String = UUID().uuidString
+    var allEvents: [Event] {
+        resultsController?.fetchedObjects ?? []
+    }
+
+    @Published var isLoading = false
+    @Published var showAlert = false
+    @Published var errorMessage: String?
+
+    @Published var eventsInADay: [EventsViewModelDay]
+    @Published var lastDataUpdateDate: String {
+        didSet {
+            // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
+            UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
+        }
+    }
+    private let eventsRepository: EventsRepository
+    private var resultsController: NSFetchedResultsController<Event>? = nil
+   
+    // MARK: Initialization
+    init(eventsRepository: EventsRepository) { // TODO: Why not use override like in the example here?
+        self.eventsRepository = eventsRepository
+        self.eventsInADay = []
+        
+        // Check if the lastDataUpdateDate is not the same day as today
+        // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
+        // date, so it will trigger the data loading method
+        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? String ?? ""
+        super.init()
+        self.resultsController = eventsRepository.fetchSavedEvents(with: self)
+        
+        #if DEBUG
+        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+        #endif
+    }
+    
+    // MARK: NSFetchedResultsController
+    // This function enables change tracking so that data stays up to date in the view when updates are made
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        // objectWillChange is the publisher of the ObservableObject protocol that emits the changed value before any
+        // of its @Pubished properties changs. Here we are manually saying that something has changed whenever
+        // the results controller gets changed.
+        objectWillChange.send()
+    }
+
+    // MARK: Data Filling Functions
+    @MainActor
+    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) async {
+        /*
+         This function calls to get new events data.
+         
+         The function should not get events if the app opens, but the last time data was retrieved
+         was the day as the apps current opening hense on load should call with shouldCheckLastUpdateDate
+         containing the value true
+         
+         If the user is trying to pull to refresh then shouldCheckLastUpdateDate should not matter
+         and the app should try to get the most up to date data.
+         */
+        isLoading.toggle()
+        defer {
+            isLoading.toggle()
+        }
+        let todaysDate = Date().formatted(date: .complete, time: .omitted)
+        
+        // shouldCheckLastUpdateDate should be true if the viewDidLoad function on the view is triggered
+        // This if checks if data was updated today and if the program should care and if so then do not
+        // update the data and just return
+        if shouldCheckLastUpdateDate && self.lastDataUpdateDate == todaysDate {
+            self.fillData()
+            return
+        }
+        self.lastDataUpdateDate = todaysDate
+        guard let resultsController = resultsController else {
+            return
+        }
+        do {
+            try await eventsRepository.fetchNewEvents(eventResultsController: resultsController)
+        } catch {
+            // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
+            showAlert = true
+            errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
+            print("No Events were returned from the events repository fetchNewEvents method")
+            return
+        }
+        self.fillData()
+    }
+    
+    
+    // Takes the model and uses that data to fill in the values for this view controller.
+    private func fillData() {
+        // Dispatch work to main queue because this method affects data used in the UI
+        DispatchQueue.main.async { [self] in // [self] captures the object for this closure
+            // First, clear out existing data
+            eventsInADay = []
+
+            // Formulate each events date to the day, month, year the event is on into a string
+            // Create a grouping of events for each day
+            // Fill the dates and events arrays with data
+            var compareDateString: String = ""
+            for event in allEvents {
+                let currDateString: String = event.start!.formatted(date: .abbreviated, time: .omitted)
+                // If the last date we save is not the same as the current date, then start a new day
+                if compareDateString != currDateString {
+                    eventsInADay.append(EventsViewModelDay(dateString: currDateString))
+                    compareDateString = currDateString
+                }
+                eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
+            }
+        }
+    }
+}

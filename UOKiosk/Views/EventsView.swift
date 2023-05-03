@@ -16,6 +16,7 @@ struct EventsView: View {
     // MARK: INITIALIZERS
     init(injector: Injector) {
         self.injector = injector
+        // Set the var StateObject<EventsViewModel>
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
     
@@ -36,19 +37,23 @@ struct EventsView: View {
                 }
             }
         }
-        .onAppear {
+        .task {
             if !didLoad {
                 didLoad = true
-                viewModel.fetchEvents()
+                await viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
             }
+        }
+        .refreshable {
+            // TODO: BUG when fetchingEvents the old ones do not clear out. Make sure that this bug goes away with Core Data
+            await viewModel.fetchEvents()
         }
     }
 }
 
 #if DEBUG
-struct EventsView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsView(injector: Injector(eventsRepository: MockEventsService()))
-    }
-}
+//struct EventsView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventsView(injector: Injector(eventsRepository: MockEventsService()))
+//    }
+//}
 #endif

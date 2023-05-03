@@ -43,9 +43,10 @@ struct TabMenuView: View {
     }
 }
 
+#if DEBUG
 struct TabMenuView_Previews: PreviewProvider {
     static var previews: some View {
         TabMenuView(injector: Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100")))
     }
 }
-
+#endif

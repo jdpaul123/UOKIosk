@@ -26,10 +26,10 @@ struct EventListItemView: View {
 }
 
 #if DEBUG
-struct EventListItemView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventListItemView(event: EventsViewModelEvent(event: EventsModelExampleData().eventsModel.events[0]))
-            .previewLayout(.fixed(width: 400, height: 60))
-    }
-}
+//struct EventListItemView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventListItemView(event: EventsViewModelEvent(event: EventsModelExampleData().eventsModel.events[0]))
+//            .previewLayout(.fixed(width: 400, height: 60))
+//    }
+//}
 #endif

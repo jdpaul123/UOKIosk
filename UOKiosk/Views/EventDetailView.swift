@@ -11,11 +11,7 @@ struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
     
-    // TODO: add colors to injector. Create a UIInjector that contains all the UI values to use throughout the app.
-    let systemBackgroundColor = Color.init(uiColor: .systemGroupedBackground)
-    let contentBackgroundColor = Color.init(uiColor: .secondarySystemGroupedBackground)
-    
-    init(_ event: EventModel, injector: Injector) {
+    init(_ event: Event, injector: Injector) {
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
         self.injector = injector
     }
@@ -30,24 +26,23 @@ struct EventDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .padding()
-                    HStack {
-                        Text("Location")
-                            .bold()
-                            .font(.title3)
-                        Spacer()
-                        VStack {
-                            Text(viewModel.location)
+                    if viewModel.hasLocation {
+                        HStack {
+                            Text("Location")
+                                .bold()
                                 .font(.title3)
-                                .multilineTextAlignment(.center)
-                            Text(viewModel.roomNumber)
-                                .font(.subheadline)
+                            Spacer()
+                            VStack {
+                                Text(viewModel.location)
+                                    .font(.title3)
+                                    .multilineTextAlignment(.center)
+                                Text(viewModel.roomNumber)
+                                    .font(.subheadline)
+                            }
                         }
-/*
-TODO: check if the event has already started. If so, dispable the add to calendar and set reminder buttons and put in a message that says the events already started
-TODO: check if the event has a zoom link, if so replace the location with an option to copy the link or join the zoom link
-*/
+                        .padding()
                     }
-                    .padding()
+                  
                     HStack {
                         Text("Time")
                             .bold()
@@ -63,7 +58,7 @@ TODO: check if the event has a zoom link, if so replace the location with an opt
                     }
                     .padding()
                 }
-                .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
+                .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
                 
                 HStack {
                     Spacer()
@@ -91,9 +86,9 @@ TODO: check if the event has a zoom link, if so replace the location with an opt
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
                 
-                Text(viewModel.description)
+                Text(viewModel.eventDescription)
                     .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).fill(contentBackgroundColor))
+                    .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
                 if let website = viewModel.website {
                     Link("\(Image.init(systemName: "link.circle")) View Event Online", destination: website)
                         .padding()
@@ -103,14 +98,14 @@ TODO: check if the event has a zoom link, if so replace the location with an opt
         }
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
-        .background(systemBackgroundColor)
+        .background(Color.UOKioskBackgroundColor)
     }
 }
 
 #if DEBUG
-struct EventDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventDetailView(EventsModelExampleData().eventsModel.events[0], injector: Injector(eventsRepository: MockEventsService()))
-    }
-}
+//struct EventDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventDetailView(EventsModelExampleData().eventsModel.events[0], injector: Injector(eventsRepository: MockEventsService()))
+//    }
+//}
 #endif

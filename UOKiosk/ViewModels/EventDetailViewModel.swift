@@ -13,46 +13,49 @@ class EventDetailViewModel: ObservableObject {
     let title: String
     let image: UIImage
     let location: String
+    let hasLocation: Bool
     let roomNumber: String
     let dateRange: String // Ex. Thursday, August 18, 2022 or Thursday, August 18, 2022 - Thursday, September 25, 2022
     let timeRange: String // Ex. All Day or 8:00 AM - 5:30 PM
-    let description: String
+    let eventDescription: String
     let website: URL?
     
     let calendarData: EventCalendarViewModel
     let reminderData: EventReminderViewModel
 
-    init(event: EventModel) {
-        self.title = event.title
+    init(event: Event) {
+        self.title = event.title ?? "No Title"
         self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
         self.location = event.locationName ?? ""
+        self.hasLocation = event.locationName == "" ? false : true
         self.roomNumber = event.roomNumber ?? ""
         
         self.dateRange = {
-            let startDateString = event.start.formatted(date: .complete, time: .omitted)
+            let startDateString = event.start!.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
-            if startDateString == endDateString {
+            if startDateString == endDateString || endDateString == "" {
                 return startDateString
             }
+            
             return "\(startDateString) - \(endDateString)"
         }()
         
         self.timeRange = {
-            let startTimeString = event.start.formatted(date: .omitted, time: .shortened)
+            let startTimeString = event.start!.formatted(date: .omitted, time: .shortened)
             let endTimeString = event.end?.formatted(date: .omitted, time: .shortened) ?? ""
             
             if event.allDay {
                 return "All Day"
             }
-            else if startTimeString == endTimeString {
+            else if startTimeString == endTimeString || endTimeString == "" {
                 return startTimeString
             }
             
             return "\(startTimeString) - \(endTimeString)"
         }()
         
-        self.description = event.description
+        self.eventDescription = event.eventDescription ?? "No event description provided."
         self.website = event.eventUrl
         
         self.calendarData = EventCalendarViewModel()

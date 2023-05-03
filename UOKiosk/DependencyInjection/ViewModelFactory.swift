@@ -16,8 +16,8 @@ final class ViewModelFactory: ObservableObject {
         self.eventsRepository = eventsRepository
     }
    
-    // MARK: View Model Functions
-    func makeEventDetailViewModel(eventModel: EventModel) -> EventDetailViewModel {
+    // MARK: Make View Model Functions
+    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }
     
