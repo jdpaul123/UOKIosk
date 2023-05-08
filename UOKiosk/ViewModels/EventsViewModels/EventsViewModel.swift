@@ -9,10 +9,6 @@ import Foundation
 import CoreData
 
 final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetchedResultsControllerDelegate {
-    /*
-     Contains all of the data for the Events View to display
-     */
-    
     // MARK: Properties
     let id: String = UUID().uuidString
     var allEvents: [Event] {
@@ -30,11 +26,12 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
         }
     }
+
     private let eventsRepository: EventsRepository
     private var resultsController: NSFetchedResultsController<Event>? = nil
    
     // MARK: Initialization
-    init(eventsRepository: EventsRepository) { // TODO: Why not use override like in the example here?
+    init(eventsRepository: EventsRepository) {
         self.eventsRepository = eventsRepository
         self.eventsInADay = []
         
@@ -63,25 +60,34 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     @MainActor
     func fetchEvents(shouldCheckLastUpdateDate: Bool = false) async {
         /*
-         This function calls to get new events data.
-         
-         The function should not get events if the app opens, but the last time data was retrieved
-         was the day as the apps current opening hense on load should call with shouldCheckLastUpdateDate
-         containing the value true
-         
-         If the user is trying to pull to refresh then shouldCheckLastUpdateDate should not matter
-         and the app should try to get the most up to date data.
+         Callers:
+                When the Events View loads, this function is called.
+                When pull to refresh is triggered, this function is called.
+
+         Parameters:
+            shouldCheckLastUpdateDate:
+                If this is true then the function will check if the app made an API request for fresh data that day.
+                If so, then the app will not make an API request for fresh data and will instead use the data stored
+                in the Core Data Persistent Store.
+
+         Description:
+             This function calls to get new events data.
+
+             On Events View loading this function will not make an API request for fresh data if it already
+             loaded fresh data that day.
+
+             However, if the user is performing a pull to refresh then the function should make an API call
+             to get the most up to date data.
          */
         isLoading.toggle()
         defer {
             isLoading.toggle()
         }
+
         let todaysDate = Date().formatted(date: .complete, time: .omitted)
         
-        // shouldCheckLastUpdateDate should be true if the viewDidLoad function on the view is triggered
-        // This if checks if data was updated today and if the program should care and if so then do not
-        // update the data and just return
-        if shouldCheckLastUpdateDate && self.lastDataUpdateDate == todaysDate {
+        // Do not update the data if shouldCheckLastUpdateData is true and data was alread loaded from the API today
+        if shouldCheckLastUpdateDate, self.lastDataUpdateDate == todaysDate {
             self.fillData()
             return
         }
@@ -104,17 +110,16 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     
     // Takes the model and uses that data to fill in the values for this view controller.
     private func fillData() {
-        // Dispatch work to main queue because this method affects data used in the UI
-        DispatchQueue.main.async { [self] in // [self] captures the object for this closure
-            // First, clear out existing data
+        DispatchQueue.main.async { [self] in
             eventsInADay = []
 
-            // Formulate each events date to the day, month, year the event is on into a string
-            // Create a grouping of events for each day
-            // Fill the dates and events arrays with data
             var compareDateString: String = ""
             for event in allEvents {
-                let currDateString: String = event.start!.formatted(date: .abbreviated, time: .omitted)
+                guard let start = event.start else {
+                    continue // TODO: For now, skip the event if it has no start time
+                }
+                let currDateString: String = start.formatted(date: .abbreviated, time: .omitted)
+
                 // If the last date we save is not the same as the current date, then start a new day
                 if compareDateString != currDateString {
                     eventsInADay.append(EventsViewModelDay(dateString: currDateString))
