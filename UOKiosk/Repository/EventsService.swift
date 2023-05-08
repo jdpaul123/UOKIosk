@@ -26,7 +26,7 @@ final class EventsService: EventsRepository {
             return nil
         }
 
-        // Delete any that are old (ie. their start date is before the current date)
+        // Delete any events that are before the current date
         for event in fetchedObjects {
             if event.start?.compare(Date()) == ComparisonResult.orderedAscending {
                 deleteEvent(event)
@@ -38,11 +38,6 @@ final class EventsService: EventsRepository {
     }
 
     func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
-        /*
-         TODO: Must change a lot here in fetchEvents. Basically, this function should decide how we will fetch, either just going to get data from
-         core data or getting data from core data, then deleting events that started before today, and then calling the api to only download new data
-         to the core data persistent store.
-         */
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)

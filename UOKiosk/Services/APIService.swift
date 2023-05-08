@@ -7,13 +7,14 @@
 
 import Foundation
 
-// TODO: call it eventsService
+// MARK: - API Service Protocol
 protocol ApiServiceProtocol {
     func getJSON<T: Decodable>(urlString: String,
                                dateDecodingStrategy: JSONDecoder.DateDecodingStrategy,
                                keyDecodingStrategy:JSONDecoder.KeyDecodingStrategy) async throws -> T
 }
 
+// MARK: - API Service
 class ApiService: ApiServiceProtocol {
     /*
      This is a general API Service that can call any JSON Web API and fill the JSON data into
@@ -60,6 +61,7 @@ class ApiService: ApiServiceProtocol {
     static let shared = ApiService()
 }
 
+// MARK: - APIError Enumeration
 enum APIError: Error, LocalizedError {
     case invalidURL
     case invalidResponseStatus
