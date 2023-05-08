@@ -39,7 +39,7 @@ class ApiService: ApiServiceProtocol {
                     continuation.resume(with: .failure(APIError.dataTaskError(error!.localizedDescription)))
                     return
                 }
-                guard let data1 = data else {
+                guard let data = data else {
                     continuation.resume(with: .failure(APIError.corruptData))
                     return
                 }
@@ -47,7 +47,7 @@ class ApiService: ApiServiceProtocol {
                 decoder.dateDecodingStrategy = dateDecodingStrategy
                 decoder.keyDecodingStrategy = keyDecodingStrategy
                 do {
-                    let decodedData = try decoder.decode(T.self, from: data1)
+                    let decodedData = try decoder.decode(T.self, from: data)
                     continuation.resume(with: .success(decodedData))
                 } catch {
                     continuation.resume(with: .failure(APIError.decodingError(error.localizedDescription)))

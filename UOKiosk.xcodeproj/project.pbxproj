@@ -39,6 +39,7 @@
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
 		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
+		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
 		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
+		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				529861C0284553BC009C1E3B /* Preview Assets.xcassets */,
+				52BC04052A09A267005F93BF /* MockEventsData.json */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52BC04062A09A267005F93BF /* MockEventsData.json in Resources */,
 				529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */,
 				529861BE284553BC009C1E3B /* Assets.xcassets in Resources */,
 			);
