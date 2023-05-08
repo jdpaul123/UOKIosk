@@ -1,4 +1,3 @@
-// MARK: THIS VERSION CREATED 8/17/22 just before 11:00 pm
 //  UOKioskApp.swift
 //  UOKiosk
 //

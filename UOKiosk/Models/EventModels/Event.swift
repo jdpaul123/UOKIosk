@@ -128,15 +128,17 @@ public class Event: NSManagedObject {
             }
         }
     }
-    
-    // MARK: INIT for testing
+}
+
+// MARK: - Initialization for Testing
+extension Event {
     convenience init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?,
          address: String?, status: String, experience: String, eventUrl: URL?, streamUrl: URL?,
          ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoData: Data?, ticketCost: String?,
          start: Date, end: Date?, allDay: Bool, eventLocation: EventLocation?, departmentFilters: [EventFilter],
         targetAudienceFilters: [EventFilter], eventTypeFilters: [EventFilter], context: NSManagedObjectContext) {
         self.init(context: context)
-        
+
         self.id = Int64(exactly: id)!
         self.title = title
         self.eventDescription = eventDescription

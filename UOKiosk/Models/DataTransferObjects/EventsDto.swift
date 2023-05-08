@@ -96,11 +96,10 @@ struct EventDto: Decodable, Identifiable {
     let id: Int
     let title: String
 
-    let streamUrl: String? // stream_url THIS HAD TO BE A STRING
+    let streamUrl: String?
 
-    // url attribute in the JSON, but localist is better, also has to be a STRING type to work
-    let url: String? // Attribute is largely useless
-    let localistUrl: String? // URL leads to the page with more info about the event
+    let url: String? // DO NOT USE THIS URL
+    let localistUrl: String? // USE THIS URL. It leads to the page with more info about the event
     let icsUrl: String? // For subscribing to a calendar for the event
     let photoUrl: String? // Location of the image for the event
     let venueUrl: String? // URL to the website for the event venue
@@ -121,8 +120,8 @@ struct EventDto: Decodable, Identifiable {
     let ticketCost: String?
     
     // About event
-    let status: String? // live or canceled
-    let experience: String? // "inperson" or "hybrid" or "virtual"
+    let status: String? // Possible values: "live" or "canceled"
+    let experience: String? // Possible values: "inperson" or "hybrid" or "virtual"
 
     // No-use attributes
     let createdAt: String?

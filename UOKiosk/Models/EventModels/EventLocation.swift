@@ -23,14 +23,13 @@ public class EventLocation: NSManagedObject {
     }
 
     convenience init(geoData: GeoDto, context: NSManagedObjectContext) {
-        // TODO: SHOULD THERE BE THIS MUCH FORCE UNWRAPPING HERE?
         self.init(context: context)
         
-        self.latitude = Double(geoData.latitude!)!
-        self.longitude = Double(geoData.longitude!)!
-        self.street = geoData.street!
-        self.city = geoData.city!
-        self.country = geoData.country
-        self.zip = Int64(geoData.zip!)!
+        self.latitude = Double(geoData.latitude ?? "0.0") ?? 0.0
+        self.longitude = Double(geoData.longitude ?? "0.0") ?? 0.0
+        self.street = geoData.street ?? ""
+        self.city = geoData.city ?? ""
+        self.country = geoData.country ?? ""
+        self.zip = Int64(geoData.zip ?? "0") ?? Int64(0)
     }
 }
