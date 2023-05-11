@@ -25,13 +25,21 @@ class EventDetailViewModel: ObservableObject {
 
     init(event: Event) {
         self.title = event.title ?? "No Title"
-        self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
+        if let photoData = event.photoData {
+            self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
+        } else {
+            self.image = UIImage.init(named: "NoImage")!
+        }
+
         self.location = event.locationName ?? ""
         self.hasLocation = event.locationName == "" ? false : true
         self.roomNumber = event.roomNumber ?? ""
         
         self.dateRange = {
-            let startDateString = event.start!.formatted(date: .complete, time: .omitted)
+            guard let start = event.start else {
+                    return "No dates provided"
+            }
+            let startDateString = start.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
             if startDateString == endDateString || endDateString == "" {
@@ -42,7 +50,10 @@ class EventDetailViewModel: ObservableObject {
         }()
         
         self.timeRange = {
-            let startTimeString = event.start!.formatted(date: .omitted, time: .shortened)
+            guard let start = event.start else {
+                    return "No times provided"
+            }
+            let startTimeString = start.formatted(date: .omitted, time: .shortened)
             let endTimeString = event.end?.formatted(date: .omitted, time: .shortened) ?? ""
             
             if event.allDay {

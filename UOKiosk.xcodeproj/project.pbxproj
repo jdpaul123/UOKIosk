@@ -15,17 +15,18 @@
 		52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */; };
 		52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */; };
 		52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6028B54E58006C3094 /* EventsViewModel.swift */; };
-		52131E6328B54E6D006C3094 /* EventsViewModelEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6228B54E6D006C3094 /* EventsViewModelEvent.swift */; };
+		52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6228B54E6D006C3094 /* EventCellViewModel.swift */; };
 		52131E6528B54E96006C3094 /* EventsViewModelDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6428B54E96006C3094 /* EventsViewModelDay.swift */; };
 		52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */; };
 		52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */; };
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
 		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
-		52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB328AED99D007F4812 /* EventListItemView.swift */; };
+		52153BB428AED99D007F4812 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB328AED99D007F4812 /* EventCellView.swift */; };
 		52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB528AF5EE7007F4812 /* Documentation.docc */; };
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
-		52153BBE28AF6584007F4812 /* EventsModelExampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */; };
+		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
+		525538EA2A0C4CE3004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -68,17 +69,18 @@
 		52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EventFilter+CoreDataProperties.swift"; path = "../../../EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E6028B54E58006C3094 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		52131E6228B54E6D006C3094 /* EventsViewModelEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelEvent.swift; sourceTree = "<group>"; };
+		52131E6228B54E6D006C3094 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
 		52131E6428B54E96006C3094 /* EventsViewModelDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelDay.swift; sourceTree = "<group>"; };
 		52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ApplicationDefaults.swift"; sourceTree = "<group>"; };
 		52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerHelper.swift; sourceTree = "<group>"; };
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
-		52153BB328AED99D007F4812 /* EventListItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListItemView.swift; sourceTree = "<group>"; };
+		52153BB328AED99D007F4812 /* EventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
 		52153BB528AF5EE7007F4812 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
-		52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsModelExampleData.swift; sourceTree = "<group>"; };
+		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
+		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 			children = (
 				52131E6028B54E58006C3094 /* EventsViewModel.swift */,
 				52131E6428B54E96006C3094 /* EventsViewModelDay.swift */,
-				52131E6228B54E6D006C3094 /* EventsViewModelEvent.swift */,
+				52131E6228B54E6D006C3094 /* EventCellViewModel.swift */,
 			);
 			path = EventsViewModels;
 			sourceTree = "<group>";
@@ -180,12 +182,12 @@
 			path = MockRepository;
 			sourceTree = "<group>";
 		};
-		52153BBF28AF6743007F4812 /* ModelExampleData */ = {
+		52153BBF28AF6743007F4812 /* MockModelData */ = {
 			isa = PBXGroup;
 			children = (
-				52153BBD28AF6584007F4812 /* EventsModelExampleData.swift */,
+				52153BBD28AF6584007F4812 /* MockEventsModelData.swift */,
 			);
-			path = ModelExampleData;
+			path = MockModelData;
 			sourceTree = "<group>";
 		};
 		5274DC98289DFE560069D5A5 /* DependencyInjection */ = {
@@ -275,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				529861EB284558CD009C1E3B /* ApiService.swift */,
+				525538E92A0C4CE3004BD415 /* MockApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -292,7 +295,7 @@
 			children = (
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
 				5299D4F128493B8B001FEDB5 /* EventsView.swift */,
-				52153BB328AED99D007F4812 /* EventListItemView.swift */,
+				52153BB328AED99D007F4812 /* EventCellView.swift */,
 				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
 			);
 			path = Views;
@@ -301,7 +304,7 @@
 		529861E7284554C7009C1E3B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52153BBF28AF6743007F4812 /* ModelExampleData */,
+				52153BBF28AF6743007F4812 /* MockModelData */,
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
 				52131E4E28B31E91006C3094 /* EventModels */,
 			);
@@ -448,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525538EA2A0C4CE3004BD415 /* MockApiService.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
@@ -459,14 +463,14 @@
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
-				52153BB428AED99D007F4812 /* EventListItemView.swift in Sources */,
+				52153BB428AED99D007F4812 /* EventCellView.swift in Sources */,
 				52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
-				52153BBE28AF6584007F4812 /* EventsModelExampleData.swift in Sources */,
+				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
-				52131E6328B54E6D006C3094 /* EventsViewModelEvent.swift in Sources */,
+				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,

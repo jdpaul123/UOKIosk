@@ -103,9 +103,10 @@ struct EventDetailView: View {
 }
 
 #if DEBUG
-//struct EventDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventDetailView(EventsModelExampleData().eventsModel.events[0], injector: Injector(eventsRepository: MockEventsService()))
-//    }
-//}
+struct EventDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        let event = MockEventsModelData().event
+        EventDetailView(event, injector: Injector(eventsRepository: MockEventsService()))
+    }
+}
 #endif

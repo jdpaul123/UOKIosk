@@ -6,11 +6,19 @@
 //
 
 import Foundation
+import CoreData
 
-/*
+
 final class MockEventsService: EventsRepository {
-    func fetchEvents(completion: @escaping (EventsModel?) -> Void) {
-        completion(EventsModelExampleData().eventsModel)
+    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+        return nil
+    }
+
+    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+        return nil
+    }
+
+    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+        await MockEventsModelData().events
     }
 }
-*/

@@ -9,7 +9,7 @@ import Foundation
 
 final class EventsViewModelDay: Identifiable {
     /*
-     This is a necessary class for using nexted forEach loops in the view such that all of the events
+     This is a necessary class for using nested forEach loops in the view such that all of the events
      contained in each instance of this class account for one section's (aka one day's) events.
      
      Note: Before I used [[EventsViewModelEvent]] and tried a nested forEach on that in the loop,
@@ -20,10 +20,10 @@ final class EventsViewModelDay: Identifiable {
     // MARK: Properties
     let id: String = UUID().uuidString
     @Published var dateString: String
-    @Published var events: [EventsViewModelEvent]
-    
+    @Published var events: [EventCellViewModel]
+
     // MARK: Initialization
-    init(dateString: String, events: [EventsViewModelEvent] = []) {
+    init(dateString: String, events: [EventCellViewModel] = []) {
         self.dateString = dateString
         self.events = events
     }

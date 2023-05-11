@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class EventsViewModelEvent: ObservableObject, Identifiable, Hashable {
+final class EventCellViewModel: ObservableObject, Identifiable, Hashable {
     // MARK: Properties
     let eventModel: Event
 
@@ -19,7 +19,7 @@ final class EventsViewModelEvent: ObservableObject, Identifiable, Hashable {
     @Published var dateString: String
     
     // MARK: Equitable for Identifiable
-    static func == (lhs: EventsViewModelEvent, rhs: EventsViewModelEvent) -> Bool {
+    static func == (lhs: EventCellViewModel, rhs: EventCellViewModel) -> Bool {
         return lhs.id == rhs.id && lhs.image == rhs.image && lhs.title == rhs.title
     }
     
@@ -36,10 +36,19 @@ final class EventsViewModelEvent: ObservableObject, Identifiable, Hashable {
         
         self.title = event.title ?? "No Title"
         // Try to get the image and if there is none use the image that shows the event has no image
-        self.image = UIImage.init(data: event.photoData!) ?? UIImage.init(named: "NoImage")!
+        if let photoData = event.photoData {
+            self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
+        } else {
+            self.image = UIImage.init(named: "NoImage")!
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
-        self.dateString = dateFormatter.string(from: event.start!)
-        self.date = event.start!
+        if let start = event.start {
+            self.dateString = dateFormatter.string(from: start)
+            self.date = start
+        } else {
+            dateString = ""
+            self.date = Date(timeIntervalSince1970: TimeInterval(1)) // TODO: What should this date be if there is no event.start value?
+        }
     }
 }

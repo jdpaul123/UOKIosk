@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct EventListItemView: View {
-    var event: EventsViewModelEvent
+struct EventCellView: View {
+    var event: EventCellViewModel
     var body: some View {
         HStack {
             Image.init(uiImage: event.image)
@@ -26,10 +26,12 @@ struct EventListItemView: View {
 }
 
 #if DEBUG
-//struct EventListItemView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventListItemView(event: EventsViewModelEvent(event: EventsModelExampleData().eventsModel.events[0]))
-//            .previewLayout(.fixed(width: 400, height: 60))
-//    }
-//}
+struct EventListItemView_Previews: PreviewProvider {
+    static var previews: some View {
+        let event = MockEventsModelData().event
+        let eventCellViewModel = EventCellViewModel(event: event)
+        EventCellView(event: eventCellViewModel)
+            .previewLayout(.fixed(width: 400, height: 60))
+    }
+}
 #endif

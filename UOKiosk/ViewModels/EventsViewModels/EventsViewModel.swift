@@ -125,7 +125,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                     eventsInADay.append(EventsViewModelDay(dateString: currDateString))
                     compareDateString = currDateString
                 }
-                eventsInADay.last!.events.append(EventsViewModelEvent(event: event))
+                eventsInADay.last!.events.append(EventCellViewModel(event: event))
             }
         }
     }
