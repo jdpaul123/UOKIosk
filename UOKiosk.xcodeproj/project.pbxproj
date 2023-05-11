@@ -26,7 +26,8 @@
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
-		525538EA2A0C4CE3004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
+		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
+		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -81,6 +82,7 @@
 		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
+		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -190,6 +192,15 @@
 			path = MockModelData;
 			sourceTree = "<group>";
 		};
+		525538EE2A0DA606004BD415 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				52153BB728AF639F007F4812 /* MockRepository */,
+				52153BBF28AF6743007F4812 /* MockModelData */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		5274DC98289DFE560069D5A5 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +260,9 @@
 			isa = PBXGroup;
 			children = (
 				529861CA284553BC009C1E3B /* UOKioskTests.swift */,
+				525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */,
+				525538EE2A0DA606004BD415 /* Mocks */,
+				525538E92A0C4CE3004BD415 /* MockApiService.swift */,
 				52131E6C28B97D5C006C3094 /* Helper */,
 			);
 			path = UOKioskTests;
@@ -266,7 +280,6 @@
 		529861E3284553DB009C1E3B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				52153BB728AF639F007F4812 /* MockRepository */,
 				528A2A182849C83F0035F416 /* EventsRepository.swift */,
 				52153BBA28AF63E2007F4812 /* EventsService.swift */,
 			);
@@ -277,7 +290,6 @@
 			isa = PBXGroup;
 			children = (
 				529861EB284558CD009C1E3B /* ApiService.swift */,
-				525538E92A0C4CE3004BD415 /* MockApiService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -304,7 +316,6 @@
 		529861E7284554C7009C1E3B /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				52153BBF28AF6743007F4812 /* MockModelData */,
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
 				52131E4E28B31E91006C3094 /* EventModels */,
 			);
@@ -451,7 +462,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				525538EA2A0C4CE3004BD415 /* MockApiService.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
@@ -485,7 +495,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,
+				525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */,
 				529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

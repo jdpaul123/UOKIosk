@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import UOKiosk
 
 class MockApiService: ApiServiceProtocol {
     // Gets a local JSON file and decoding it

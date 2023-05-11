@@ -15,12 +15,12 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         resultsController?.fetchedObjects ?? []
     }
 
-    @Published var isLoading = false
-    @Published var showAlert = false
+    @Published var isLoading: Bool
+    @Published var showAlert: Bool
     @Published var errorMessage: String?
 
     @Published var eventsInADay: [EventsViewModelDay]
-    @Published var lastDataUpdateDate: String {
+    @Published private var lastDataUpdateDate: String {
         didSet {
             // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
             UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
@@ -31,9 +31,13 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     private var resultsController: NSFetchedResultsController<Event>? = nil
    
     // MARK: Initialization
-    init(eventsRepository: EventsRepository) {
+    init(eventsRepository: EventsRepository, isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.eventsRepository = eventsRepository
         self.eventsInADay = []
+        self.errorMessage = errorMessage
+
+        self.isLoading = isLoading
+        self.showAlert = showAlert
         
         // Check if the lastDataUpdateDate is not the same day as today
         // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
