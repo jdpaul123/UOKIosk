@@ -16,6 +16,7 @@ extension EventLocation {
         return NSFetchRequest<EventLocation>(entityName: "EventLocation")
     }
 
+    // MARK: Instance properties
     @NSManaged public var latitude: Double
     @NSManaged public var longitude: Double
     @NSManaged public var street: String?

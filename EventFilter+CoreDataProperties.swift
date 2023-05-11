@@ -16,6 +16,7 @@ extension EventFilter {
         return NSFetchRequest<EventFilter>(entityName: "EventFilter")
     }
 
+    // MARK: Instance properties
     @NSManaged public var id: Int64
     @NSManaged public var name: String?
     @NSManaged public var departmentEvents: NSSet?

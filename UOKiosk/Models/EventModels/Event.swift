@@ -11,6 +11,7 @@ import CoreData
 
 
 public class Event: NSManagedObject {
+    // MARK: Initialization
     convenience init(eventData: EventDto, context: NSManagedObjectContext) {
         self.init(context: context)
         
@@ -114,17 +115,17 @@ public class Event: NSManagedObject {
         if let eventFilters = eventData.filters.eventTypes {
             for eventFilter in eventFilters {
                 // TODO: Does this work for adding items to an NSSet?
-                eventTypeFilters?.adding(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
             }
         }
         if let dtoDepartmentFilters = eventData.filters.departments {
             for eventFilter in dtoDepartmentFilters {
-                departmentFilters?.adding(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
             }
         }
         if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
             for eventFilter in dtoTargetAudienceFilters {
-                self.targetAudienceFilters?.adding(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
             }
         }
     }

@@ -16,6 +16,7 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
+    // MARK: Instance properties
     @NSManaged public var id: Int64
     @NSManaged public var title: String?
     @NSManaged public var eventDescription: String?
