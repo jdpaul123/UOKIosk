@@ -115,6 +115,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     // Takes the model and uses that data to fill in the values for this view controller.
     private func fillData() {
         DispatchQueue.main.async { [self] in
+            // Note: Event objects are received in chronological order from the web API
             eventsInADay = []
 
             var compareDateString: String = ""

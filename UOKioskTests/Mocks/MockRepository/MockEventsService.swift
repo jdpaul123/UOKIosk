@@ -19,6 +19,11 @@ final class MockEventsService: EventsRepository {
     }
 
     func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+        /* TODO
+         2 ways to do this:
+            1. Hard code a bunch of events and return them
+            2. Decode the JSON that is in MockEventsData.json and return the objects as [Event] type
+         */
         await MockEventsModelData().events
     }
 }

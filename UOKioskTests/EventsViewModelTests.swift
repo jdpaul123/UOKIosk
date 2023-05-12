@@ -79,7 +79,7 @@ final class EventsViewModelTests: XCTestCase {
 
     func test_EventsViewModel_errorMessage_shouldBeInjectedValue() {
         // Given
-        let errorMessage = "random error message"
+        let errorMessage = UUID().uuidString
 
         // When
         let vm = EventsViewModel(eventsRepository: MockEventsService(), errorMessage: errorMessage)
@@ -120,4 +120,11 @@ final class EventsViewModelTests: XCTestCase {
         XCTAssertTrue(vm.eventsInADay.isEmpty)
         XCTAssertEqual(vm.eventsInADay.count, 0)
     }
+
+    // TODO: Tests to write
+    /*
+     eventsInADay has items
+     MOCK eventsRepository.fetchNewEvents() method to return Events data so that we can test the fetchEvents method in EventsViewModel
+     Set eventsRepository and resultsController and lastDataUpdateDate to be private(set) so that we can test those properties values
+     */
 }
