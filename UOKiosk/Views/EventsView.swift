@@ -5,7 +5,6 @@
 //  Created by Jonathan Paul on 6/2/22.
 //
 
-import Foundation
 import SwiftUI
 
 struct EventsView: View {
@@ -21,30 +20,36 @@ struct EventsView: View {
     }
     
     var body: some View {
-        List {
-            ForEach(viewModel.eventsInADay) { eventsInADay in
-                Section {
-                    ForEach(eventsInADay.events) { event in
-                        NavigationLink {
-                            EventDetailView(event.eventModel, injector: self.injector)
-                        } label: {
-                            EventCellView(event: event)
+        VStack {
+            Button("Customize Feed") {
+                // TODO: Segue to a modal view for customizing the feed.
+                
+            }
+            List {
+                ForEach(viewModel.eventsInADay) { eventsInADay in
+                    Section {
+                        ForEach(eventsInADay.events) { event in
+                            NavigationLink {
+                                EventDetailView(event.eventModel, injector: self.injector)
+                            } label: {
+                                EventCellView(event: event)
+                            }
                         }
+                    } header: {
+                        Text("\(eventsInADay.dateString)")
+                            .font(.title)
                     }
-                } header: {
-                    Text("\(eventsInADay.dateString)")
-                        .font(.title)
                 }
             }
-        }
-        .task {
-            if !didLoad {
-                didLoad = true
-                await viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
+            .task {
+                if !didLoad {
+                    didLoad = true
+                    await viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
+                }
             }
+            .refreshable {
+                await viewModel.fetchEvents()
         }
-        .refreshable {
-            await viewModel.fetchEvents()
         }
     }
 }

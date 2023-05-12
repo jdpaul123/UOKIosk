@@ -28,6 +28,8 @@
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
+		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
+		525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -83,6 +85,8 @@
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
+		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
+		525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedViewModel.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -146,6 +150,7 @@
 				52131E6028B54E58006C3094 /* EventsViewModel.swift */,
 				52131E6428B54E96006C3094 /* EventsViewModelDay.swift */,
 				52131E6228B54E6D006C3094 /* EventCellViewModel.swift */,
+				525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */,
 			);
 			path = EventsViewModels;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
 				5299D4F128493B8B001FEDB5 /* EventsView.swift */,
 				52153BB328AED99D007F4812 /* EventCellView.swift */,
+				525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */,
 				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
 			);
 			path = Views;
@@ -483,6 +489,8 @@
 				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
+				525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */,
+				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
