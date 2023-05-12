@@ -114,7 +114,6 @@ public class Event: NSManagedObject {
         self.targetAudienceFilters = []
         if let eventFilters = eventData.filters.eventTypes {
             for eventFilter in eventFilters {
-                // TODO: Does this work for adding items to an NSSet?
                 addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
             }
         }

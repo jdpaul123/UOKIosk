@@ -28,6 +28,7 @@ final class EventsService: EventsRepository {
 
         // Delete any events that are before the current date
         for event in fetchedObjects {
+            // TODO: Bug: Because we are using GMT for time when we save events we need to adjust their time data to be in pacific time
             if event.start?.compare(Date()) == ComparisonResult.orderedAscending {
                 deleteEvent(event)
             }
@@ -38,6 +39,33 @@ final class EventsService: EventsRepository {
     }
 
     func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+        func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
+            let startStr: String = dateData.start
+            let endStr: String? = dateData.end
+
+            // Format the start and end dates if they exist
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
+            let start: Date
+            let end: Date?
+
+            start = {
+                guard let date = dateFormatter.date(from: startStr) else {
+                    fatalError("Start date could not be determined form the provided date string")
+                }
+                return date
+            }()
+
+            if endStr != nil {
+                end = dateFormatter.date(from: endStr!)
+            } else {
+                end = nil
+            }
+
+            let allDay = dateData.allDay
+            return (allDay, start, end)
+        }
+
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
@@ -49,7 +77,7 @@ final class EventsService: EventsRepository {
             return eventResultsController.fetchedObjects
         }
 
-        // If there are no objects fetched then add all the events fetched from the api
+        // If there are no objects fetched from the local Core Data store, then add all the events fetched from the api to the Core Data Persistent Store
         guard let fetchedObjects = eventResultsController.fetchedObjects, eventResultsController.fetchedObjects?.count ?? 0 > 0 else {
             for middleLayer in dto.eventMiddleLayerDto {
                 self.addEvent(eventDto: middleLayer.eventDto)
@@ -65,10 +93,37 @@ final class EventsService: EventsRepository {
                     shouldSave = false
                 }
             }
-            if shouldSave {
+
+            if !shouldSave {
+                continue
+            }
+
+            // Make sure there is date info for the event
+            guard middleLayer.eventDto.eventInstances?.count ?? 0 > 0 else {
+                continue
+            }
+            let dateValues = getEventInstanceDateData(dateData: middleLayer.eventDto.eventInstances![0].eventInstance)
+            let allDay = dateValues.0
+            let start = dateValues.1
+            let end = dateValues.2
+            if allDay == true {
+                // If the event is all day then we should show it
                 self.addEvent(eventDto: middleLayer.eventDto)
             }
+            guard let end = end else {
+                // If the event is not all day, but we do not know when it ends, then we should add it
+                self.addEvent(eventDto: middleLayer.eventDto)
+                continue
+            }
+            if end < Date() {
+                // If the event is already over then we should not show the event
+                continue
+            }
+            // If the event is not all day, but the end of the event has not happened then add it
+            self.addEvent(eventDto: middleLayer.eventDto)
         }
+
+
 
         return eventResultsController.fetchedObjects
         // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?

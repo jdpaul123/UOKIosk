@@ -123,6 +123,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                 guard let start = event.start else {
                     continue // TODO: For now, skip the event if it has no start time
                 }
+
                 let currDateString: String = start.formatted(date: .abbreviated, time: .omitted)
 
                 // If the last date we save is not the same as the current date, then start a new day
