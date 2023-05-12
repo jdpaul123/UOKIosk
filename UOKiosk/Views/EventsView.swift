@@ -11,6 +11,7 @@ struct EventsView: View {
     let injector: Injector
     @StateObject var viewModel: EventsViewModel
     @State private var didLoad = false
+    @State private var showCustomizeFeedView = false
     
     // MARK: INITIALIZERS
     init(injector: Injector) {
@@ -22,8 +23,9 @@ struct EventsView: View {
     var body: some View {
         VStack {
             Button("Customize Feed") {
-                // TODO: Segue to a modal view for customizing the feed.
-                
+                showCustomizeFeedView = true
+            }.sheet(isPresented: $showCustomizeFeedView) {
+                CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
             }
             List {
                 ForEach(viewModel.eventsInADay) { eventsInADay in
