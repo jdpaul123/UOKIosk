@@ -28,8 +28,14 @@ final class EventsService: EventsRepository {
 
         // Delete any events that are before the current date
         for event in fetchedObjects {
+            // Delete object if it has no start date
+            guard let start = event.start else {
+                deleteEvent(event)
+                continue
+            }
+
             // TODO: Bug: Because we are using GMT for time when we save events we need to adjust their time data to be in pacific time
-            if event.start?.compare(Date()) == ComparisonResult.orderedAscending {
+            if start.compare(Date()) == ComparisonResult.orderedAscending {
                 deleteEvent(event)
             }
         }
