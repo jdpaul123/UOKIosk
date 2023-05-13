@@ -146,7 +146,7 @@ final class EventsService: EventsRepository {
             // TODO: Often get the "Thread 2: EXC_BAD_ACCESS (code=1, address=0xfffffffffffffff8)" error here on first run of the application
             try persistentContainer.viewContext.save()
         } catch {
-            print("Failed to save viewContext, rolling back")
+//            print("Failed to save viewContext, rolling back")
             persistentContainer.viewContext.rollback()
         }
     }

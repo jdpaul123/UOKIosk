@@ -47,7 +47,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         
         #if DEBUG
-        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+//        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
     
@@ -105,7 +105,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true
             errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
-            print("No Events were returned from the events repository fetchNewEvents method")
+//            print("No Events were returned from the events repository fetchNewEvents method")
             return
         }
         self.fillData()

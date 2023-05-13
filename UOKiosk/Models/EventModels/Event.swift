@@ -73,7 +73,7 @@ public class Event: NSManagedObject {
         self.status = eventData.status ?? "live"
         self.experience = eventData.experience ?? "assumed inperson"
         
-        print(self.title ?? "Default title")
+//        print(self.title ?? "Default title")
         
         self.eventUrl = getUrl(urlString: eventData.localistUrl)
         self.streamUrl = getUrl(urlString: eventData.streamUrl)
