@@ -38,34 +38,7 @@ final class EventsService: EventsRepository {
         return fetchedResultsController
     }
 
-    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
-        func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
-            let startStr: String = dateData.start
-            let endStr: String? = dateData.end
-
-            // Format the start and end dates if they exist
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
-            let start: Date
-            let end: Date?
-
-            start = {
-                guard let date = dateFormatter.date(from: startStr) else {
-                    fatalError("Start date could not be determined form the provided date string")
-                }
-                return date
-            }()
-
-            if endStr != nil {
-                end = dateFormatter.date(from: endStr!)
-            } else {
-                end = nil
-            }
-
-            let allDay = dateData.allDay
-            return (allDay, start, end)
-        }
-
+    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
@@ -127,6 +100,33 @@ final class EventsService: EventsRepository {
 
         return eventResultsController.fetchedObjects
         // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
+    }
+
+    private func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
+        let startStr: String = dateData.start
+        let endStr: String? = dateData.end
+
+        // Format the start and end dates if they exist
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "y-M-d'T'HH:mm:ssZ"
+        let start: Date
+        let end: Date?
+
+        start = {
+            guard let date = dateFormatter.date(from: startStr) else {
+                fatalError("Start date could not be determined form the provided date string")
+            }
+            return date
+        }()
+
+        if endStr != nil {
+            end = dateFormatter.date(from: endStr!)
+        } else {
+            end = nil
+        }
+
+        let allDay = dateData.allDay
+        return (allDay, start, end)
     }
     
     func addEvent(eventDto: EventDto) {

@@ -22,5 +22,5 @@ protocol EventsRepository {
 
     func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
 
-    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]?
+    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]?
 }

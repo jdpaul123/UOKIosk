@@ -100,7 +100,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             return
         }
         do {
-            try await eventsRepository.fetchNewEvents(eventResultsController: resultsController)
+            try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {
             // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true

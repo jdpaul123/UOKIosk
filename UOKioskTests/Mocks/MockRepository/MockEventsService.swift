@@ -18,7 +18,7 @@ final class MockEventsService: EventsRepository {
         return nil
     }
 
-    func fetchNewEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         /* TODO
          2 ways to do this:
             1. Hard code a bunch of events and return them
