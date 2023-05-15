@@ -32,7 +32,6 @@ final class EventsService: EventsRepository {
                 continue
             }
 
-            // TODO: Bug: Because we are using GMT for time when we save events we need to adjust their time data to be in pacific time
             if start.compare(Date()) == ComparisonResult.orderedAscending {
                 deleteEvent(event)
             }
