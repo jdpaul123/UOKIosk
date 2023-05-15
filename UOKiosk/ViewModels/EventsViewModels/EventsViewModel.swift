@@ -47,7 +47,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         
         #if DEBUG
-        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+//        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
     
@@ -100,12 +100,13 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             return
         }
         do {
-            try await eventsRepository.fetchNewEvents(eventResultsController: resultsController)
+            try await eventsRepository.updateEventsResultsController(eventResultsController: resultsController)
+            //try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {
             // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true
             errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
-            print("No Events were returned from the events repository fetchNewEvents method")
+//            print("No Events were returned from the events repository fetchNewEvents method")
             return
         }
         self.fillData()
@@ -123,6 +124,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
                 guard let start = event.start else {
                     continue // TODO: For now, skip the event if it has no start time
                 }
+
                 let currDateString: String = start.formatted(date: .abbreviated, time: .omitted)
 
                 // If the last date we save is not the same as the current date, then start a new day

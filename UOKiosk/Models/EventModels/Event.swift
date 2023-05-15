@@ -73,7 +73,7 @@ public class Event: NSManagedObject {
         self.status = eventData.status ?? "live"
         self.experience = eventData.experience ?? "assumed inperson"
         
-        print(self.title ?? "Default title")
+//        print(self.title ?? "Default title")
         
         self.eventUrl = getUrl(urlString: eventData.localistUrl)
         self.streamUrl = getUrl(urlString: eventData.streamUrl)
@@ -114,7 +114,6 @@ public class Event: NSManagedObject {
         self.targetAudienceFilters = []
         if let eventFilters = eventData.filters.eventTypes {
             for eventFilter in eventFilters {
-                // TODO: Does this work for adding items to an NSSet?
                 addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
             }
         }

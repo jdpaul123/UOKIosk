@@ -24,4 +24,8 @@ final class ViewModelFactory: ObservableObject {
     func makeEventsViewModel() -> EventsViewModel {
         EventsViewModel(eventsRepository: eventsRepository)
     }
+
+    func makeCustomizeEventsFeedViewModel() -> CustomizeEventsFeedViewModel {
+        CustomizeEventsFeedViewModel()
+    }
 }

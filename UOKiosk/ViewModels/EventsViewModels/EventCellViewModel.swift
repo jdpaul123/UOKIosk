@@ -5,7 +5,6 @@
 //  Created by Jonathan Paul on 8/23/22.
 //
 
-import Foundation
 import UIKit
 
 final class EventCellViewModel: ObservableObject, Identifiable, Hashable {
