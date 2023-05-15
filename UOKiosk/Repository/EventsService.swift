@@ -72,7 +72,7 @@ final class EventsService: EventsRepository {
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
-            let errorMessage = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
+            let _ = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
         }
 
         guard let dto = dto else {
@@ -111,7 +111,7 @@ final class EventsService: EventsRepository {
             }
             let dateValues = getEventInstanceDateData(dateData: middleLayer.eventDto.eventInstances![0].eventInstance)
             let allDay = dateValues.0
-            let start = dateValues.1
+            let _ = dateValues.1
             let end = dateValues.2
             if allDay == true {
                 // If the event is all day then we should show it

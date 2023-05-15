@@ -28,6 +28,6 @@ final class MockEventsService: EventsRepository {
             1. Hard code a bunch of events and return them
             2. Decode the JSON that is in MockEventsData.json and return the objects as [Event] type
          */
-        await MockEventsModelData().events
+        MockEventsModelData().events
     }
 }
