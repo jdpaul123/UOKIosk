@@ -10,6 +10,10 @@ import CoreData
 
 
 final class MockEventsService: EventsRepository {
+
+    func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
+    }
+
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
         return nil
     }

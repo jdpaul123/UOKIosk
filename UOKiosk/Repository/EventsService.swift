@@ -16,6 +16,29 @@ final class EventsService: EventsRepository {
      private let storageService: EventsStorageProtocol
      */
 
+    func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
+        let _ = try? await saveFreshEvents(eventResultsController: eventResultsController)
+
+        // IF there are no objects saved return
+        guard let fetchedObjects = eventResultsController.fetchedObjects else {
+            return
+        }
+
+        // Delete any events that are before the current date
+        for event in fetchedObjects {
+            // Delete object if it has no start date
+            guard let start = event.start else {
+                deleteEvent(event)
+                continue
+            }
+
+            // TODO: Bug: Because we are using GMT for time when we save events we need to adjust their time data to be in pacific time
+            if start.compare(Date()) == ComparisonResult.orderedAscending {
+                deleteEvent(event)
+            }
+        }
+    }
+
     /// Parameters:
     ///     delegate: Used to create the NSFetchedResultsController to be used by the view for displaying events data
     func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
@@ -44,6 +67,7 @@ final class EventsService: EventsRepository {
         return fetchedResultsController
     }
 
+    // TODO: Make this function private
     func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         var dto: EventsDto? = nil
         do {
@@ -66,6 +90,11 @@ final class EventsService: EventsRepository {
 
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
         for middleLayer in dto.eventMiddleLayerDto {
+            // Make sure the object has a start date
+            guard middleLayer.eventDto.eventInstances?.count ?? 0 > 0, middleLayer.eventDto.eventInstances?[0].eventInstance.start != "" else {
+                continue
+            }
+
             var shouldSave = true
             for object in fetchedObjects {
                 if object.id == middleLayer.eventDto.id {
@@ -101,8 +130,6 @@ final class EventsService: EventsRepository {
             // If the event is not all day, but the end of the event has not happened then add it
             self.addEvent(eventDto: middleLayer.eventDto)
         }
-
-
 
         return eventResultsController.fetchedObjects
         // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
@@ -153,7 +180,13 @@ final class EventsService: EventsRepository {
             try persistentContainer.viewContext.save()
         } catch {
 //            print("Failed to save viewContext, rolling back")
-            persistentContainer.viewContext.rollback()
+//            persistentContainer.viewContext.rollback()
+
+            // TODO: Delete the fatalError for production
+            // Replace this implementation with code to handle the error appropriately.
+            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
         }
     }
     
