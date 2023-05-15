@@ -27,6 +27,7 @@ struct TabMenuView: View {
                 EventsView(injector: injector)
                     .navigationTitle("Events")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.events)
             .tabItem {
                 Image(systemName: "calendar")

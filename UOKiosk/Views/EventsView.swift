@@ -19,7 +19,7 @@ struct EventsView: View {
         // Set the var StateObject<EventsViewModel>
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
-    
+
     var body: some View {
         VStack {
             Button("Customize Feed") {
