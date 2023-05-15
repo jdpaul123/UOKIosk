@@ -15,6 +15,17 @@ struct TabMenuView: View {
         case campusMap = "Campus Map"
         case radio = "KWVA Radio"
         case news = "The Daily Emerald"
+
+        var sfSymbol: String {
+            switch self {
+            case .events:
+                return "calendar"
+            case .facilityhours:
+                return "hourglass"
+            default:
+                return "dot.square"
+            }
+        }
     }
     
     // TODO: Make view factory as an environment variable so that I don't have to pass around the injector
@@ -30,8 +41,16 @@ struct TabMenuView: View {
             .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.events)
             .tabItem {
-                Image(systemName: "calendar")
-                Text("Events")
+                Image(systemName: Tabs.events.sfSymbol)
+                Text(Tabs.events.rawValue)
+            }
+            NavigationView {
+                Text("PLACE HOLDER")
+            }
+            .tag(Tabs.facilityhours)
+            .tabItem {
+                Image(systemName: Tabs.facilityhours.sfSymbol)
+                Text(Tabs.facilityhours.rawValue)
             }
         }
     }
