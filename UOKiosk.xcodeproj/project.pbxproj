@@ -30,10 +30,6 @@
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
 		525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */; };
-		5289CE9B2A12F07400E51257 /* CampusLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CE972A12F07400E51257 /* CampusLocale.swift */; };
-		5289CE9C2A12F07400E51257 /* CampusLocale+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CE982A12F07400E51257 /* CampusLocale+CoreDataProperties.swift */; };
-		5289CE9D2A12F07400E51257 /* HoursOfOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CE992A12F07400E51257 /* HoursOfOperation.swift */; };
-		5289CE9E2A12F07400E51257 /* HoursOfOperation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CE9A2A12F07400E51257 /* HoursOfOperation+CoreDataProperties.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -91,10 +87,6 @@
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
 		525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedViewModel.swift; sourceTree = "<group>"; };
-		5289CE972A12F07400E51257 /* CampusLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusLocale.swift; sourceTree = "<group>"; };
-		5289CE982A12F07400E51257 /* CampusLocale+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CampusLocale+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		5289CE992A12F07400E51257 /* HoursOfOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HoursOfOperation.swift; sourceTree = "<group>"; };
-		5289CE9A2A12F07400E51257 /* HoursOfOperation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoursOfOperation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -223,17 +215,6 @@
 			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
-		5289CE962A12F02B00E51257 /* CampusLocaleModels */ = {
-			isa = PBXGroup;
-			children = (
-				5289CE972A12F07400E51257 /* CampusLocale.swift */,
-				5289CE982A12F07400E51257 /* CampusLocale+CoreDataProperties.swift */,
-				5289CE992A12F07400E51257 /* HoursOfOperation.swift */,
-				5289CE9A2A12F07400E51257 /* HoursOfOperation+CoreDataProperties.swift */,
-			);
-			path = CampusLocaleModels;
-			sourceTree = "<group>";
-		};
 		529861AD284553BA009C1E3B = {
 			isa = PBXGroup;
 			children = (
@@ -343,7 +324,6 @@
 			children = (
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
 				52131E4E28B31E91006C3094 /* EventModels */,
-				5289CE962A12F02B00E51257 /* CampusLocaleModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -490,7 +470,6 @@
 			files = (
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
-				5289CE9C2A12F07400E51257 /* CampusLocale+CoreDataProperties.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				52131E6528B54E96006C3094 /* EventsViewModelDay.swift in Sources */,
@@ -504,13 +483,10 @@
 				52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
-				5289CE9D2A12F07400E51257 /* HoursOfOperation.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
-				5289CE9B2A12F07400E51257 /* CampusLocale.swift in Sources */,
 				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
-				5289CE9E2A12F07400E51257 /* HoursOfOperation+CoreDataProperties.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */,

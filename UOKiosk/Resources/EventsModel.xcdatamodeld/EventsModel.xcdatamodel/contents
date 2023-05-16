@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="CampusLocale" representedClassName="CampusLocale" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="storeHours" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="HoursOfOperation" inverseName="campusLocale" inverseEntity="HoursOfOperation"/>
-    </entity>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Event" representedClassName=".Event" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String"/>
         <attribute name="allDay" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -45,10 +40,9 @@
         <attribute name="zip" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="eventLocation" inverseEntity="Event"/>
     </entity>
-    <entity name="HoursOfOperation" representedClassName="HoursOfOperation" syncable="YES">
-        <attribute name="closeTime" optional="YES" attributeType="String"/>
-        <attribute name="day" optional="YES" attributeType="String"/>
-        <attribute name="openTime" optional="YES" attributeType="String"/>
-        <relationship name="campusLocale" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampusLocale" inverseName="storeHours" inverseEntity="CampusLocale"/>
-    </entity>
+    <elements>
+        <element name="EventLocation" positionX="-226.57421875" positionY="508.671875" width="128" height="148"/>
+        <element name="Event" positionX="-451.54296875" positionY="133.8984375" width="128" height="373"/>
+        <element name="EventFilter" positionX="-745.55078125" positionY="107.0859375" width="128" height="104"/>
+    </elements>
 </model>
