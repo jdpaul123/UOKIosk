@@ -5,9 +5,19 @@
 //
 
 import SwiftUI
+import FirebaseCore
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    FirebaseApp.configure()
+    return true
+  }
+}
 
 @main
 struct UOKioskApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     // FIXME: This url does not show recurring events. Add an option for allowing recurring events in a settings page on the app
     let injector = Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"))
 
