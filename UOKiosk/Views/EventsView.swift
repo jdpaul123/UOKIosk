@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAnalyticsSwift
 
 struct EventsView: View {
     let injector: Injector
@@ -51,8 +52,9 @@ struct EventsView: View {
             }
             .refreshable {
                 await viewModel.fetchEvents()
+            }
         }
-        }
+        .analyticsScreen(name: "\(EventsView.self)")
     }
 }
 
