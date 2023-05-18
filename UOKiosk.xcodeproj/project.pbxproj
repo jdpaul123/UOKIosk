@@ -37,6 +37,8 @@
 		5289CEA92A1422DC00E51257 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA82A1422DC00E51257 /* FirebaseFirestore */; };
 		5289CEAB2A1422DC00E51257 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
+		5289CEB12A16D57100E51257 /* FacilityHoursView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* FacilityHoursView.swift */; };
+		5289CEB32A16D57C00E51257 /* FacilityHoursViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* FacilityHoursViewModel.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -95,6 +97,8 @@
 		525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedViewModel.swift; sourceTree = "<group>"; };
 		5289CE9F2A13F6E700E51257 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5289CEB02A16D57100E51257 /* FacilityHoursView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityHoursView.swift; sourceTree = "<group>"; };
+		5289CEB22A16D57C00E51257 /* FacilityHoursViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacilityHoursViewModel.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -226,6 +230,15 @@
 			path = Events;
 			sourceTree = "<group>";
 		};
+		5289CEAF2A16D54B00E51257 /* FacilityHours */ = {
+			isa = PBXGroup;
+			children = (
+				5289CEB02A16D57100E51257 /* FacilityHoursView.swift */,
+				5289CEB22A16D57C00E51257 /* FacilityHoursViewModel.swift */,
+			);
+			path = FacilityHours;
+			sourceTree = "<group>";
+		};
 		529861AD284553BA009C1E3B = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +266,7 @@
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
 				5289CEAC2A16D04300E51257 /* Events */,
+				5289CEAF2A16D54B00E51257 /* FacilityHours */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				52131E6B28B97B42006C3094 /* Resources */,
@@ -497,6 +511,7 @@
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
+				5289CEB12A16D57100E51257 /* FacilityHoursView.swift in Sources */,
 				52131E6528B54E96006C3094 /* EventsViewModelDay.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
@@ -517,6 +532,7 @@
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
+				5289CEB32A16D57C00E51257 /* FacilityHoursViewModel.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,

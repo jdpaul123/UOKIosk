@@ -45,7 +45,7 @@ struct TabMenuView: View {
                 Text(Tabs.events.rawValue)
             }
             NavigationView {
-                Text("PLACE HOLDER")
+                FacilityHoursView()
             }
             .tag(Tabs.facilityhours)
             .tabItem {
