@@ -7,7 +7,17 @@
 
 import SwiftUI
 
-struct FacilitiesHoursView: View {
+struct WhatIsOpenView: View {
+    let injector: Injector
+    @StateObject var vm: WhatIsOpenViewModel
+
+    // MARK: INITIALIZER
+    init(injector: Injector) {
+        self.injector = injector
+        // Set the var StateObject<EventsViewModel>
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel())
+    }
+
     var body: some View {
         List {
             Text("Hello World!")
@@ -18,6 +28,6 @@ struct FacilitiesHoursView: View {
 
 struct FacilitiesHoursView_Previews: PreviewProvider {
     static var previews: some View {
-        FacilitiesHoursView()
+        WhatIsOpenView(injector: Injector(eventsRepository: MockEventsService()))
     }
 }

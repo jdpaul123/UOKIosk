@@ -45,7 +45,7 @@ struct TabMenuView: View {
                 Text(Tabs.events.rawValue)
             }
             NavigationView {
-                FacilitiesHoursView()
+                WhatIsOpenView(injector: injector)
             }
             .tag(Tabs.facilityhours)
             .tabItem {

@@ -7,18 +7,18 @@
 
 import Foundation
 
-class FacilitiesHoursViewModel: ObservableObject {
-    @Published var dining: [FacilityHoursViewModel]
-    @Published var coffee: [FacilityHoursViewModel]
-    @Published var duckStores: [FacilityHoursViewModel]
-    @Published var recreation: [FacilityHoursViewModel]
-    @Published var closed: [FacilityHoursViewModel] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
+class WhatIsOpenViewModel: ObservableObject {
+    @Published var dining: [PlaceViewModel]
+    @Published var coffee: [PlaceViewModel]
+    @Published var duckStores: [PlaceViewModel]
+    @Published var recreation: [PlaceViewModel]
+    @Published var closed: [PlaceViewModel] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
 
     @Published var isLoading: Bool
     @Published var showAlert: Bool
     @Published var errorMEssage: String?
 
-    init(dining: [FacilityHoursViewModel], coffee: [FacilityHoursViewModel], duckStores: [FacilityHoursViewModel], recreation: [FacilityHoursViewModel], closed: [FacilityHoursViewModel], isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
+    init(dining: [PlaceViewModel], coffee: [PlaceViewModel], duckStores: [PlaceViewModel], recreation: [PlaceViewModel], closed: [PlaceViewModel], isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.dining = dining
         self.coffee = coffee
         self.duckStores = duckStores
@@ -31,7 +31,7 @@ class FacilitiesHoursViewModel: ObservableObject {
     }
 }
 
-class FacilityHoursViewModel {
+class PlaceViewModel {
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL
