@@ -5,7 +5,7 @@
 //  Created by Jonathan Paul on 5/18/23.
 //
 
-import Foundation
+import SwiftUI
 
 class WhatIsOpenViewModel: ObservableObject {
     @Published var dining: [PlaceViewModel]
@@ -31,7 +31,11 @@ class WhatIsOpenViewModel: ObservableObject {
     }
 }
 
-class PlaceViewModel: Identifiable {
+struct PlaceViewModel: Identifiable {
+    var id = UUID()
+
+    public var isExpanded = false
+
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL

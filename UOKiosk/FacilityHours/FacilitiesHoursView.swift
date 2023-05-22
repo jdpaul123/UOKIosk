@@ -18,12 +18,18 @@ struct WhatIsOpenView: View {
     }
 
     var body: some View {
-        List {
-            ForEach(vm.dining) { restauraunt in
-                Text("\(restauraunt.name)")
+        List($vm.dining) { $restauraunt in
+            DisclosureGroup( isExpanded: $restauraunt.isExpanded) {
+                VStack {
+                    HStack {
+                        Text(restauraunt.note ?? "")
+                        Spacer()
+                    }
+                }
+            } label: {
+                Text(restauraunt.name)
             }
         }
-        .navigationTitle("What's Open")
     }
 }
 
