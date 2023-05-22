@@ -14,13 +14,14 @@ struct WhatIsOpenView: View {
     // MARK: INITIALIZER
     init(injector: Injector) {
         self.injector = injector
-        // Set the var StateObject<EventsViewModel>
         _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel())
     }
 
     var body: some View {
         List {
-            Text("Hello World!")
+            ForEach(vm.dining) { restauraunt in
+                Text("\(restauraunt.name)")
+            }
         }
         .navigationTitle("What's Open")
     }

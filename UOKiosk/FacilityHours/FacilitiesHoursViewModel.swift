@@ -31,7 +31,7 @@ class WhatIsOpenViewModel: ObservableObject {
     }
 }
 
-class PlaceViewModel {
+class PlaceViewModel: Identifiable {
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL
