@@ -42,15 +42,15 @@ final class ViewModelFactory: ObservableObject {
             "Sunday": "7:00a - 8:00p"
         ]
         return WhatIsOpenViewModel(dining: [
-                                        PlaceViewModel(name: "Test Restauraunt 0", note: "Test Dorm", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours),
-                                        PlaceViewModel(name: "Test Restauraunt 2", note: "Test Union", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours),
-                                        PlaceViewModel(name: "Test Restauraunt 3", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours),
-                                        PlaceViewModel(name: "Test Restauraunt 4", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours),
-                                        PlaceViewModel(name: "Test Restauraunt 5", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours)
+                                        PlaceViewModel(name: "Test Restauraunt 0", emojiCode: "🍔", note: "Test Dorm", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours),
+                                        PlaceViewModel(name: "Test Restauraunt 2", emojiCode: "🍕", note: "Test Union", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours),
+                                        PlaceViewModel(name: "Test Restauraunt 3", emojiCode: "🍣", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours),
+                                        PlaceViewModel(name: "Test Restauraunt 4", emojiCode: "🥪", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours),
+                                        PlaceViewModel(name: "Test Restauraunt 5", emojiCode: "🛒", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)
                                     ],
-                            coffee: [PlaceViewModel(name: "Test Coffee Shop", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours)],
-                            duckStores: [PlaceViewModel(name: "Test Duck Store", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours)],
-                            recreation: [PlaceViewModel(name: "Test Recreation Facility", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours)],
-                            closed: [PlaceViewModel(name: "Test closed restauraunt, coffee shop, duck store, or recreation facility", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), hours: hours)])
+                            coffee: [PlaceViewModel(name: "Test Coffee Shop", emojiCode: "☕", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
+                            duckStores: [PlaceViewModel(name: "Test Duck Store", emojiCode: "🦆", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
+                            recreation: [PlaceViewModel(name: "Test Recreation Facility", emojiCode: "💪", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
+                            closed: [PlaceViewModel(name: "Test closed restauraunt, coffee shop, duck store, or recreation facility", emojiCode: "🍕", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: false, hours: hours)])
     }
 }

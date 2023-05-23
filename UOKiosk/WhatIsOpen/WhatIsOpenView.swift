@@ -60,6 +60,8 @@ struct WhatIsOpenList: View {
                     VStack {
                         HStack {
                             Text(place.note ?? "")
+                                .font(.system(.footnote))
+                                .bold() // TODO: is the .bold() modifier only available in iOS 16.0 or greater?
                             Spacer()
                         }
                         Divider()
@@ -81,7 +83,17 @@ struct WhatIsOpenList: View {
                         }
                     }
                 } label: {
-                    Text(place.name)
+                    HStack {
+                        Text(place.emojiCode)
+                            .font(.system(size: 36))
+                        VStack {
+                            Text(place.name)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Text(place.isOpenString)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .foregroundColor(place.isOpenColor)
+                        }
+                    }
                 }
             }
         }

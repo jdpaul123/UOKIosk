@@ -34,27 +34,33 @@ class WhatIsOpenViewModel: ObservableObject {
 
 struct PlaceViewModel: Identifiable {
     var id = UUID()
+    let emojiCode: String
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL
     let WebSieLink: URL
-    let until: Date // If open, then this value is used as an indicator of when the place closes next. If closed, then this value is used as an indicator of when the place opens next
+    let isOpenString: String
+    let isOpenColor: Color
 
     // dayRangess and hoursOpen should be the same length and the nth item in each arrayu are paired up
     // Key: Each string is either one day (ex. "Monday") or a range (ex "Monday - Friday")
     // Value: Each string is either "closed", a single time range (ex. "7:00a-10:00p"), or multiple ranges split by newlines (ex. "7:00a-12:00\n1:00p-10:00p")
     let hours: OrderedDictionary<String, String>
 
-    init(name: String, note: String? = nil, mapLink: URL, WebSieLink: URL, until: Date, hours: OrderedDictionary<String, String>) {
+    // For the Until: Date value: If open, then this value is used as an indicator of when the place closes next. If closed, then this value is used as an indicator of when the place opens next
+    init(name: String, emojiCode: String, note: String? = nil, mapLink: URL, WebSieLink: URL, until: Date, isOpen: Bool, hours: OrderedDictionary<String, String>) {
         self.name = name
+        self.emojiCode = emojiCode
         self.note = note
         self.mapLink = mapLink
         self.WebSieLink = WebSieLink
-        self.until = until
         self.hours = hours
+        self.isOpenColor = isOpen ? .green: .red
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        self.isOpenString = "\(isOpen ? "Open": "Closed") until \(formatter.string(from: until))"
     }
 }
-
 
 
 class FacilityHours {
