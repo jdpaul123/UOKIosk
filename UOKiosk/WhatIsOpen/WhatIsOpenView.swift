@@ -34,7 +34,6 @@ struct WhatIsOpenView: View {
 }
 
 struct WhatIsOpenList: View {
-
     let listType: WhatIsOpenListCase
     @ObservedObject var vm: WhatIsOpenViewModel
 

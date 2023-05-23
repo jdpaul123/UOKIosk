@@ -11,7 +11,7 @@ import SwiftUI
 struct TabMenuView: View {
     enum Tabs: String {
         case events = "Events"
-        case facilityhours = "What's Open"
+        case whatIsOpen = "What's Open"
         case campusMap = "Campus Map"
         case radio = "KWVA Radio"
         case news = "The Daily Emerald"
@@ -20,7 +20,7 @@ struct TabMenuView: View {
             switch self {
             case .events:
                 return "calendar"
-            case .facilityhours:
+            case .whatIsOpen:
                 return "hourglass"
             default:
                 return "dot.square"
@@ -44,13 +44,15 @@ struct TabMenuView: View {
                 Image(systemName: Tabs.events.sfSymbol)
                 Text(Tabs.events.rawValue)
             }
+
             NavigationView {
                 WhatIsOpenView(injector: injector)
+                    .navigationTitle("What's Open")
             }
-            .tag(Tabs.facilityhours)
+            .tag(Tabs.whatIsOpen)
             .tabItem {
-                Image(systemName: Tabs.facilityhours.sfSymbol)
-                Text(Tabs.facilityhours.rawValue)
+                Image(systemName: Tabs.whatIsOpen.sfSymbol)
+                Text(Tabs.whatIsOpen.rawValue)
             }
         }
     }
