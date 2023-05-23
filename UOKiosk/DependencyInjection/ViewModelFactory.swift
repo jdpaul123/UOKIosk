@@ -10,17 +10,17 @@ import Foundation
 final class ViewModelFactory: ObservableObject {
     // MARK: Properties
     private let eventsRepository: EventsRepository
-    
+
     // MARK: Initialization
     init(eventsRepository: EventsRepository) {
         self.eventsRepository = eventsRepository
     }
-   
+
     // MARK: Make View Model Functions
     func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }
-    
+
     func makeEventsViewModel() -> EventsViewModel {
         EventsViewModel(eventsRepository: eventsRepository)
     }
@@ -32,7 +32,7 @@ final class ViewModelFactory: ObservableObject {
     func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
         // TODO: Replace this with an initializer that gets data from the "WhatIsOpenRepository"
         WhatIsOpenViewModel(dining: [
-                                        PlaceViewModel(name: "Test Restauraunt", note: "Test Dorm", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), dayRanges: ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"], hoursOpen: ["7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM"]),
+                                        PlaceViewModel(name: "Test Restauraunt 0", note: "Test Dorm", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), dayRanges: ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"], hoursOpen: ["7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM"]),
                                         PlaceViewModel(name: "Test Restauraunt 2", note: "Test Union", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), dayRanges: ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"], hoursOpen: ["7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM"]),
                                         PlaceViewModel(name: "Test Restauraunt 3", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), dayRanges: ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"], hoursOpen: ["7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM"]),
                                         PlaceViewModel(name: "Test Restauraunt 4", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), dayRanges: ["Monday", "Tuesday", "Wednsday", "Thursday", "Friday", "Saturday", "Sunday"], hoursOpen: ["7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM", "7:00 AM-8:00 PM"]),
