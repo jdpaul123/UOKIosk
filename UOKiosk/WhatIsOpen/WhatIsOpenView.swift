@@ -55,11 +55,29 @@ struct WhatIsOpenList: View {
     var body: some View {
         Section(header: Text(listType.rawValue)) {
             ForEach(listOfPlace) { $place in
+                // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
                 DisclosureGroup {
                     VStack {
                         HStack {
                             Text(place.note ?? "")
                             Spacer()
+                        }
+                        Divider()
+                        ForEach(0..<place.hours.count, id: \.self) { index in
+                            VStack {
+                                HStack {
+                                    VStack {
+                                        Text(place.hours.elements[index].key)
+                                        Spacer()
+                                    }
+                                    Spacer()
+                                    Text(place.hours.elements[index].value)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                                if index != place.hours.count-1 {
+                                    Divider()
+                                }
+                            }
                         }
                     }
                 } label: {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OrderedCollections
 
 class WhatIsOpenViewModel: ObservableObject {
     @Published var dining: [PlaceViewModel]
@@ -40,17 +41,17 @@ struct PlaceViewModel: Identifiable {
     let until: Date // If open, then this value is used as an indicator of when the place closes next. If closed, then this value is used as an indicator of when the place opens next
 
     // dayRangess and hoursOpen should be the same length and the nth item in each arrayu are paired up
-    let dayRanges: [String] // Each string is either one day (ex. "Monday") or a range (ex "Monday - Friday")
-    let hoursOpen: [String] // Each string is either "closed", a single time range (ex. "7:00a-10:00p"), or multiple ranges split by newlines (ex. "7:00a-12:00\n1:00p-10:00p")
+    // Key: Each string is either one day (ex. "Monday") or a range (ex "Monday - Friday")
+    // Value: Each string is either "closed", a single time range (ex. "7:00a-10:00p"), or multiple ranges split by newlines (ex. "7:00a-12:00\n1:00p-10:00p")
+    let hours: OrderedDictionary<String, String>
 
-    init(name: String, note: String? = nil, mapLink: URL, WebSieLink: URL, until: Date, dayRanges: [String], hoursOpen: [String]) {
+    init(name: String, note: String? = nil, mapLink: URL, WebSieLink: URL, until: Date, hours: OrderedDictionary<String, String>) {
         self.name = name
         self.note = note
         self.mapLink = mapLink
         self.WebSieLink = WebSieLink
         self.until = until
-        self.dayRanges = dayRanges
-        self.hoursOpen = hoursOpen
+        self.hours = hours
     }
 }
 
