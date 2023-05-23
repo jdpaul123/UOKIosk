@@ -33,9 +33,6 @@ class WhatIsOpenViewModel: ObservableObject {
 
 struct PlaceViewModel: Identifiable {
     var id = UUID()
-
-    public var isExpanded = false
-
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL
