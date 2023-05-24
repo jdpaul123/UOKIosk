@@ -117,18 +117,17 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         // Note: Event objects are received in chronological order from the web API
         eventsInADay = []
 
-        var compare: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: 0))
+        var compare = Date(timeIntervalSince1970: 0)
         for event in allEvents {
             // Don't add an event with no start time
             guard let start = event.start else {
                 continue
             }
 
-            let currDateInt = Calendar.current.component(.day, from: start)
             // If the last date we save is not the same as the current date, then start a new day
-            if compare - currDateInt != 0 {
+            if Calendar.current.compare(compare, to: start, toGranularity: .day) != .orderedSame {
                 eventsInADay.append(EventsViewModelDay(dateString: start.formatted(date: .abbreviated, time: .omitted)))
-                compare = currDateInt
+                compare = start
             }
             eventsInADay.last!.events.append(EventCellViewModel(event: event))
         }
