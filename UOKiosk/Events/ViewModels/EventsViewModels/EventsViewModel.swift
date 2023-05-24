@@ -43,7 +43,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         // so it will trigger the data loading method
         self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? Date ?? Date(timeIntervalSince1970: 0)
         super.init()
-        self.resultsController = eventsRepository.fetchSavedEvents(with: self)
+        //self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         #if DEBUG
 //        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
@@ -86,6 +86,15 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             isLoading.toggle()
         }
 
+        // IF results controller is nil then set it up
+        if resultsController == nil {
+            resultsController = eventsRepository.fetchSavedEvents(with: self)
+        }
+        guard let resultsController = resultsController else {
+            // TODO: Add error track here because the return below should never be hit
+            return
+        }
+
         // Do not update the data if shouldCheckLastUpdateData is true and data was alread loaded from the API today
         if shouldCheckLastUpdateDate, Calendar.current.isDateInToday(lastDataUpdateDate) {
             self.fillData()
@@ -93,12 +102,9 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         }
         self.lastDataUpdateDate = Date()
 
-        guard let resultsController = resultsController else {
-            // TODO: Add error track here because the return below should never be hit
-            return
-        }
-
         do {
+            // TODO: Bug #1 Step 2
+            // TODO: Bug #2 Step 2
             try await eventsRepository.updateEventsResultsController(eventResultsController: resultsController)
             //try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {

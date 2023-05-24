@@ -17,7 +17,7 @@ fileprivate enum EventServiceError: Error, LocalizedError {
         case .loadingBlocked:
             return NSLocalizedString("Data is already loading elsewhere in EventsService", comment: "")
         case .fetchedResultsProblem:
-            return NSLocalizedString("THere was a problem with fetchedREsults", comment: "")
+            return NSLocalizedString("THere was a problem with fetchedResults", comment: "")
         }
     }
 }
@@ -43,6 +43,10 @@ final class EventsService: EventsRepository {
         persistentContainer = NSPersistentContainer(name: "EventsModel")
 
         persistentContainer.loadPersistentStores { storeDescription, error in
+            guard error == nil else {
+                print("!!! Failed to load persisten stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
+                fatalError("Failed to load persisten stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
+            }
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         }
     }
@@ -58,8 +62,34 @@ final class EventsService: EventsRepository {
         3. Call for fresh data and only save events that are not already stored
         4. delete any outdated data.
      */
+    /// Parameters:
+    ///     delegate: Used to create the NSFetchedResultsController to be used by the view for displaying events data
+    // TODO: Make this function throw an error rather than return an optional
+    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+        let fetchedResultsController = eventResultsController(with: delegate)
+        guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
+            return nil
+        }
+
+        // Delete any events that are before the current date
+        for event in fetchedObjects {
+            // Delete object if it has no start date
+            guard let start = event.start else {
+                deleteEvent(event)
+                continue
+            }
+
+            if start.compare(Date()) == ComparisonResult.orderedAscending {
+                deleteEvent(event)
+            }
+        }
+
+        return fetchedResultsController
+    }
 
     func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
+        // TODO: Bug #1 Step 3
+        // TODO: Bug #2 Step 3
         let _ = try? await saveFreshEvents(eventResultsController: eventResultsController)
 
         // IF there are no objects saved return
@@ -81,64 +111,8 @@ final class EventsService: EventsRepository {
         }
     }
 
-    /// Parameters:
-    ///     delegate: Used to create the NSFetchedResultsController to be used by the view for displaying events data
-    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
-
-        // Try to get the fetchedResultsController, but if it fails or there are no objects saved return nil
-        let fetchedResultsController = eventResultsController(with: delegate)
-        guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
-            return nil
-        }
-
-        // Delete any events that are before the current date
-        for event in fetchedObjects {
-            // Delete object if it has no start date
-            guard let start = event.start else {
-                deleteEvent(event)
-                continue
-            }
-
-            if start.compare(Date()) == ComparisonResult.orderedAscending {
-                deleteEvent(event)
-            }
-        }
-
-        // return the events
-        return fetchedResultsController
-    }
-
-//    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) throws {
-////        if isLoading {
-////            return nil
-////        }
-////        isLoading = true
-////        defer {
-////            isLoading = false
-////        }
-//
-//        // Try to get the fetchedResultsController, but if it fails or there are no objects saved return nil
-//        let fetchedResultsController: NSFetchedResultsController<Event>? = eventResultsController(with: delegate)
-//        guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
-//            throw EventServiceError.fetchedResultsProblem
-//        }
-//
-//        // Delete any events that are before the current date
-//        for event in fetchedObjects {
-//            // Delete object if it has no start date
-//            guard let start = event.start else {
-//                deleteEvent(event)
-//                continue
-//            }
-//
-//            if start.compare(Date()) == ComparisonResult.orderedAscending {
-//                deleteEvent(event)
-//            }
-//        }
-//    }
-
-    // TODO: Make this function private
-    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+    // Gets Event data from the Localist REST API and saves it to core data, unless an Event with the same ID as the one revieved by the Localist API is already saved to the Core Data Persistent Store
+    private func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
@@ -152,7 +126,7 @@ final class EventsService: EventsRepository {
 
         // If there are no objects fetched from the local Core Data store, then add all the events fetched from the api to the Core Data Persistent Store
         guard let fetchedObjects = eventResultsController.fetchedObjects, eventResultsController.fetchedObjects?.count ?? 0 > 0 else {
-            for middleLayer in dto.eventMiddleLayerDto {
+            for middleLayer in dto.eventMiddleLayerDto { // TODO: Bug #2 Step 4
                 self.addEvent(eventDto: middleLayer.eventDto)
             }
             return eventResultsController.fetchedObjects
@@ -198,6 +172,7 @@ final class EventsService: EventsRepository {
                 continue
             }
             // If the event is not all day, but the end of the event has not happened then add it
+            // TODO: Bug #1 Step 4
             self.addEvent(eventDto: middleLayer.eventDto)
         }
 
@@ -234,6 +209,8 @@ final class EventsService: EventsRepository {
 
     // MARK: Core Data Functions
     func addEvent(eventDto: EventDto) {
+        // TODO: Bug #1 Step 5
+        // TODO: Bug #2 Step 5
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
 
         saveViewContext()
@@ -250,16 +227,11 @@ final class EventsService: EventsRepository {
             // TODO: Often get the "Thread 2: EXC_BAD_ACCESS (code=1, address=0xfffffffffffffff8)" error here on first run of the application
             try persistentContainer.viewContext.save()
         } catch {
-//            print("Failed to save viewContext, rolling back")
-//            persistentContainer.viewContext.rollback()
-
-            // TODO: FIGURED OUT PROBLEM, IF FRESH DOWNLOAD THEN PULL TO REFRESH BEFORE THE DATA HAS LOADED THEN THE APP CRASHES BECASUE IT TRIES TO CALL THIS METHOD BEFORE THE DATA STORE IS SET UP
-
-            // TODO: Delete the fatalError for production
-            // Replace this implementation with code to handle the error appropriately.
-            // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+            // TODO: Bug #1 Step 6
+            // TODO: Bug #2 Step 6
             let nserror = error as NSError
-            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            print("!!! Unresolved error \(nserror), \(nserror.userInfo). Failed to save viewContext, rolling back.")
+            persistentContainer.viewContext.rollback()
         }
     }
     

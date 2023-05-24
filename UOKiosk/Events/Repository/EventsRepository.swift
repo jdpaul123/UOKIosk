@@ -17,11 +17,9 @@ protocol EventsRepository {
      In the case of testing:
      - It will be used to make a mock repository for testing on local data not relying on a network connection
      */
+    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
+
     func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws
 
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
-
-    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
-
-    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]?
 }
