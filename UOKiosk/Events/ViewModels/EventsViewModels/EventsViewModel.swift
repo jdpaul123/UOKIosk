@@ -92,14 +92,17 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             return
         }
         self.lastDataUpdateDate = Date()
+
         guard let resultsController = resultsController else {
+            // TODO: Add error track here because the return below should never be hit
             return
         }
+
         do {
             try await eventsRepository.updateEventsResultsController(eventResultsController: resultsController)
             //try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {
-            // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
+            // TODO: Add error handling here and error track: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true
             errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
 //            print("No Events were returned from the events repository fetchNewEvents method")
@@ -129,7 +132,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             }
 
             guard let last = eventsGroupedByDays.last else {
-                // TODO: Add track here because this case should never be hit
+                // TODO: Add error track here because this case should never be hit
                 continue
             }
             last.events.append(EventCellViewModel(event: event))
