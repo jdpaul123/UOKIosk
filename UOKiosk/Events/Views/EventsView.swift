@@ -29,7 +29,7 @@ struct EventsView: View {
 //                CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
 //            }
             List {
-                ForEach(viewModel.eventsInADay) { eventsInADay in
+                ForEach(viewModel.eventsGroupedByDays) { eventsInADay in
                     Section {
                         ForEach(eventsInADay.events) { event in
                             NavigationLink {

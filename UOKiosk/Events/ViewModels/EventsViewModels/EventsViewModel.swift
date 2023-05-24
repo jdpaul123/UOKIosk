@@ -19,7 +19,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     @Published var showAlert: Bool
     @Published var errorMessage: String?
 
-    @Published var eventsInADay: [EventsViewModelDay]
+    @Published var eventsGroupedByDays: [GroupOfEventsViewModel]
     @Published private var lastDataUpdateDate: Date {
         didSet {
             // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
@@ -33,19 +33,17 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     // MARK: Initialization
     init(eventsRepository: EventsRepository, isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.eventsRepository = eventsRepository
-        self.eventsInADay = []
+        self.eventsGroupedByDays = []
 
         self.errorMessage = errorMessage
         self.isLoading = isLoading
         self.showAlert = showAlert
         
-        // Check if the lastDataUpdateDate is not the same day as today
-        // If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current
-        // date, so it will trigger the data loading method
+        // Check if the lastDataUpdateDate is not the same day as today. If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current date,
+        // so it will trigger the data loading method
         self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? Date ?? Date(timeIntervalSince1970: 0)
         super.init()
         self.resultsController = eventsRepository.fetchSavedEvents(with: self)
-        
         #if DEBUG
 //        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
@@ -115,7 +113,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     @MainActor
     private func fillData() {
         // Note: Event objects are received in chronological order from the web API
-        eventsInADay = []
+        eventsGroupedByDays = []
 
         var compare = Date(timeIntervalSince1970: 0)
         for event in allEvents {
@@ -126,10 +124,15 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
 
             // If the last date we save is not the same as the current date, then start a new day
             if Calendar.current.compare(compare, to: start, toGranularity: .day) != .orderedSame {
-                eventsInADay.append(EventsViewModelDay(dateString: start.formatted(date: .abbreviated, time: .omitted)))
+                eventsGroupedByDays.append(GroupOfEventsViewModel(dateString: start.formatted(date: .abbreviated, time: .omitted)))
                 compare = start
             }
-            eventsInADay.last!.events.append(EventCellViewModel(event: event))
+
+            guard let last = eventsGroupedByDays.last else {
+                // TODO: Add track here because this case should never be hit
+                continue
+            }
+            last.events.append(EventCellViewModel(event: event))
         }
     }
 }
