@@ -8,12 +8,55 @@
 import Foundation
 import CoreData
 
+fileprivate enum EventServiceError: Error, LocalizedError {
+    case loadingBlocked
+    case fetchedResultsProblem
+
+    var errorDescription: String? {
+        switch self {
+        case .loadingBlocked:
+            return NSLocalizedString("Data is already loading elsewhere in EventsService", comment: "")
+        case .fetchedResultsProblem:
+            return NSLocalizedString("THere was a problem with fetchedREsults", comment: "")
+        }
+    }
+}
+
+
 final class EventsService: EventsRepository {
     /*
      This class will use the below attributes in tandem to get the chached events
      and load new ones from the api
      private let apiService: EventsApiServiceProtocol
      private let storageService: EventsStorageProtocol
+     */
+
+    // MARK: Properties
+    private let persistentContainer: NSPersistentContainer
+    var urlString: String
+    var isLoading = false
+
+    // MARK: Initialization
+    init(urlString: String) {
+        self.urlString = urlString
+
+        persistentContainer = NSPersistentContainer(name: "EventsModel")
+
+        persistentContainer.loadPersistentStores { storeDescription, error in
+            self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        }
+    }
+
+    // MARK: Data Getters
+
+    /*
+     Logic of getting data:
+
+     On start-up,
+        1. Lock usage of Core Data Store so no Pull-To-Refresh can be attempted
+        2. Try and get data that is saved. If it is saved use that data and if not then start a new store
+        3. Call for fresh data and only save events that are not already stored
+        4. delete any outdated data.
      */
 
     func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
@@ -64,6 +107,35 @@ final class EventsService: EventsRepository {
         // return the events
         return fetchedResultsController
     }
+
+//    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) throws {
+////        if isLoading {
+////            return nil
+////        }
+////        isLoading = true
+////        defer {
+////            isLoading = false
+////        }
+//
+//        // Try to get the fetchedResultsController, but if it fails or there are no objects saved return nil
+//        let fetchedResultsController: NSFetchedResultsController<Event>? = eventResultsController(with: delegate)
+//        guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
+//            throw EventServiceError.fetchedResultsProblem
+//        }
+//
+//        // Delete any events that are before the current date
+//        for event in fetchedObjects {
+//            // Delete object if it has no start date
+//            guard let start = event.start else {
+//                deleteEvent(event)
+//                continue
+//            }
+//
+//            if start.compare(Date()) == ComparisonResult.orderedAscending {
+//                deleteEvent(event)
+//            }
+//        }
+//    }
 
     // TODO: Make this function private
     func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
@@ -159,7 +231,8 @@ final class EventsService: EventsRepository {
         let allDay = dateData.allDay
         return (allDay, start, end)
     }
-    
+
+    // MARK: Core Data Functions
     func addEvent(eventDto: EventDto) {
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
 
@@ -179,6 +252,8 @@ final class EventsService: EventsRepository {
         } catch {
 //            print("Failed to save viewContext, rolling back")
 //            persistentContainer.viewContext.rollback()
+
+            // TODO: FIGURED OUT PROBLEM, IF FRESH DOWNLOAD THEN PULL TO REFRESH BEFORE THE DATA HAS LOADED THEN THE APP CRASHES BECASUE IT TRIES TO CALL THIS METHOD BEFORE THE DATA STORE IS SET UP
 
             // TODO: Delete the fatalError for production
             // Replace this implementation with code to handle the error appropriately.
@@ -208,18 +283,4 @@ final class EventsService: EventsRepository {
 
         return resultsController
     }
-    
-    init(urlString: String) {
-        self.urlString = urlString
-
-        persistentContainer = NSPersistentContainer(name: "EventsModel")
-
-        persistentContainer.loadPersistentStores { storeDescription, error in
-            self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
-        }
-    }
-
-    // MARK: Properties
-    private let persistentContainer: NSPersistentContainer
-    var urlString: String
 }

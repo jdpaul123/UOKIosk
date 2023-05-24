@@ -13,7 +13,7 @@ struct EventsView: View {
     @StateObject var viewModel: EventsViewModel
     @State private var didLoad = false
     @State private var showCustomizeFeedView = false
-    
+
     // MARK: INITIALIZER
     init(injector: Injector) {
         self.injector = injector

@@ -20,7 +20,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     @Published var errorMessage: String?
 
     @Published var eventsInADay: [EventsViewModelDay]
-    @Published private var lastDataUpdateDate: String {
+    @Published private var lastDataUpdateDate: Date {
         didSet {
             // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
             UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
@@ -34,15 +34,15 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     init(eventsRepository: EventsRepository, isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.eventsRepository = eventsRepository
         self.eventsInADay = []
-        self.errorMessage = errorMessage
 
+        self.errorMessage = errorMessage
         self.isLoading = isLoading
         self.showAlert = showAlert
         
         // Check if the lastDataUpdateDate is not the same day as today
-        // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
+        // If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current
         // date, so it will trigger the data loading method
-        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? String ?? ""
+        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? Date ?? Date(timeIntervalSince1970: 0)
         super.init()
         self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         
@@ -88,14 +88,12 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             isLoading.toggle()
         }
 
-        let todaysDate = Date().formatted(date: .complete, time: .omitted)
-        
         // Do not update the data if shouldCheckLastUpdateData is true and data was alread loaded from the API today
-        if shouldCheckLastUpdateDate, self.lastDataUpdateDate == todaysDate {
+        if shouldCheckLastUpdateDate, Calendar.current.isDateInToday(lastDataUpdateDate) {
             self.fillData()
             return
         }
-        self.lastDataUpdateDate = todaysDate
+        self.lastDataUpdateDate = Date()
         guard let resultsController = resultsController else {
             return
         }
@@ -114,26 +112,25 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     
     
     // Takes the model and uses that data to fill in the values for this view controller.
+    @MainActor
     private func fillData() {
-        DispatchQueue.main.async { [self] in
-            // Note: Event objects are received in chronological order from the web API
-            eventsInADay = []
+        // Note: Event objects are received in chronological order from the web API
+        eventsInADay = []
 
-            var compareDateString: String = ""
-            for event in allEvents {
-                guard let start = event.start else {
-                    continue // TODO: For now, skip the event if it has no start time
-                }
-
-                let currDateString: String = start.formatted(date: .abbreviated, time: .omitted)
-
-                // If the last date we save is not the same as the current date, then start a new day
-                if compareDateString != currDateString {
-                    eventsInADay.append(EventsViewModelDay(dateString: currDateString))
-                    compareDateString = currDateString
-                }
-                eventsInADay.last!.events.append(EventCellViewModel(event: event))
+        var compare: Int = Calendar.current.component(.day, from: Date(timeIntervalSince1970: 0))
+        for event in allEvents {
+            // Don't add an event with no start time
+            guard let start = event.start else {
+                continue
             }
+
+            let currDateInt = Calendar.current.component(.day, from: start)
+            // If the last date we save is not the same as the current date, then start a new day
+            if compare - currDateInt != 0 {
+                eventsInADay.append(EventsViewModelDay(dateString: start.formatted(date: .abbreviated, time: .omitted)))
+                compare = currDateInt
+            }
+            eventsInADay.last!.events.append(EventCellViewModel(event: event))
         }
     }
 }
