@@ -112,21 +112,22 @@ public class Event: NSManagedObject {
         self.departmentFilters = []
         self.eventTypeFilters = []
         self.targetAudienceFilters = []
-        if let eventFilters = eventData.filters.eventTypes {
-            for eventFilter in eventFilters {
-                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        if let dtoDepartmentFilters = eventData.filters.departments {
-            for eventFilter in dtoDepartmentFilters {
-                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
-            for eventFilter in dtoTargetAudienceFilters {
-                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
+        // TODO: Calling addTo_Filters() method is causing problems having it in the init. Must change app so that these filters are set after the event is instantiated
+//        if let eventFilters = eventData.filters.eventTypes {
+//            for eventFilter in eventFilters {
+//                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        if let dtoDepartmentFilters = eventData.filters.departments {
+//            for eventFilter in dtoDepartmentFilters {
+//                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
+//            for eventFilter in dtoTargetAudienceFilters {
+//                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
     }
 }
 

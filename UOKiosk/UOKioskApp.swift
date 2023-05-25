@@ -18,8 +18,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct UOKioskApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    // FIXME: This url does not show recurring events. Add an option for allowing recurring events in a settings page on the app
-    let injector = Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"))
+    private var eventsUrlString: String
+    let injector: Injector
+
+    init() {
+        // FIXME: This url does not show recurring events. Add an option for allowing recurring events in a settings page on the app
+        // If no data, then set the URL for events to the default: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"
+        eventsUrlString = "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100" // TODO: make this customizable based on the filters
+        injector = Injector(eventsRepository: EventsService(urlString: eventsUrlString))
+    }
 
     var body: some Scene {
         WindowGroup {

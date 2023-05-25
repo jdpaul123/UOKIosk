@@ -49,6 +49,7 @@ struct TabMenuView: View {
                 WhatIsOpenView(injector: injector)
                     .navigationTitle("What's Open")
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.whatIsOpen)
             .tabItem {
                 Image(systemName: Tabs.whatIsOpen.sfSymbol)

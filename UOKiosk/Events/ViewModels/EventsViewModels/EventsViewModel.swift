@@ -35,8 +35,8 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         self.eventsRepository = eventsRepository
         self.eventsGroupedByDays = []
 
-        self.errorMessage = errorMessage
         self.isLoading = isLoading
+        self.errorMessage = errorMessage
         self.showAlert = showAlert
         
         // Check if the lastDataUpdateDate is not the same day as today. If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current date,
@@ -49,7 +49,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         #endif
     }
     
-    // MARK: NSFetchedResultsController
+    // MARK: NSFetchedResultsControllerDelegate
     // This function enables change tracking so that data stays up to date in the view when updates are made
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // objectWillChange is the publisher of the ObservableObject protocol that emits the changed value before any

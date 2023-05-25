@@ -24,11 +24,11 @@ struct EventsView: View {
 
     var body: some View {
         VStack {
-//            Button("Customize Feed") {
-//                showCustomizeFeedView = true
-//            }.sheet(isPresented: $showCustomizeFeedView) {
-//                CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
-//            }
+            //            Button("Customize Feed") {
+            //                showCustomizeFeedView = true
+            //            }.sheet(isPresented: $showCustomizeFeedView) {
+            //                CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
+            //            }
             List {
                 ForEach(viewModel.eventsGroupedByDays) { eventsInADay in
                     Section {
@@ -45,6 +45,7 @@ struct EventsView: View {
                     }
                 }
             }
+
             .task {
                 if loading { return }
                 loading = true

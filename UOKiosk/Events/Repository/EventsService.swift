@@ -44,8 +44,8 @@ final class EventsService: EventsRepository {
 
         persistentContainer.loadPersistentStores { storeDescription, error in
             guard error == nil else {
-                print("!!! Failed to load persisten stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
-                fatalError("Failed to load persisten stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
+                print("!!! Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
+                fatalError("Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
             }
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         }
@@ -225,6 +225,7 @@ final class EventsService: EventsRepository {
     private func saveViewContext() {
         do {
             // TODO: Often get the "Thread 2: EXC_BAD_ACCESS (code=1, address=0xfffffffffffffff8)" error here on first run of the application
+            // FIXME: Sometimes this persistentContainer.viewContext.save() is called fro ma background concurrent thread, like when .task is called. Is that causing the problem becasue it's calling to an object on the main thread?
             try persistentContainer.viewContext.save()
         } catch {
             // TODO: Bug #1 Step 6

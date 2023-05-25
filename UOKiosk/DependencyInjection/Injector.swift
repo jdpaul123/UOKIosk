@@ -20,10 +20,6 @@ final class Injector: ObservableObject {
     // MARK: - View Model Factory
     public let viewModelFactory: ViewModelFactory
 
-    // MARK: - Events Attributes
-    // If no data, then set the URL for events to the default: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"
-    public var eventsUrlString = "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100" // TODO: make this customizable based on the filters
-
     // MARK: - Initialization
     init(eventsRepository: EventsRepository) {
         self.eventsRepository = eventsRepository
