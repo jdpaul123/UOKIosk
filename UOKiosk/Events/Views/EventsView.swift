@@ -18,7 +18,6 @@ struct EventsView: View {
     // MARK: INITIALIZER
     init(injector: Injector) {
         self.injector = injector
-        // Set the var StateObject<EventsViewModel>
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
 
@@ -45,7 +44,6 @@ struct EventsView: View {
                     }
                 }
             }
-
             .task {
                 if loading { return }
                 loading = true
@@ -56,6 +54,7 @@ struct EventsView: View {
                     await viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
                 }
             }
+            /*
             .refreshable {
                 if loading { return }
                 loading = true
@@ -63,6 +62,7 @@ struct EventsView: View {
                 // TODO: Bug #1 Step 1 when viewModel.fetchEvents() is called while the .task to fetchEvents(shouldCheckLastUpdateDate: true) is still running
                 await viewModel.fetchEvents()
             }
+             */
         }
         .analyticsScreen(name: "\(EventsView.self)")
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class GroupOfEventsViewModel: Identifiable {
+final class GroupOfEventsViewModel: ObservableObject, Identifiable {
     /*
      This is a necessary class for using nested forEach loops in the view such that all of the events
      contained in each instance of this class account for one section's (aka one day's) events.

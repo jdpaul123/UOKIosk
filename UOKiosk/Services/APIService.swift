@@ -35,8 +35,8 @@ class ApiService: ApiServiceProtocol {
                     continuation.resume(with: .failure(APIError.invalidResponseStatus))
                     return
                 }
-                guard error == nil else {
-                    continuation.resume(with: .failure(APIError.dataTaskError(error!.localizedDescription)))
+                if let error = error {
+                    continuation.resume(with: .failure(APIError.dataTaskError(error.localizedDescription)))
                     return
                 }
                 guard let data = data else {

@@ -32,7 +32,7 @@ final class EventsService: EventsRepository {
      */
 
     // MARK: Properties
-    private let persistentContainer: NSPersistentContainer
+    var persistentContainer: NSPersistentContainer
     var urlString: String
     var isLoading = false
 
@@ -111,73 +111,60 @@ final class EventsService: EventsRepository {
         }
     }
 
-    // Gets Event data from the Localist REST API and saves it to core data, unless an Event with the same ID as the one revieved by the Localist API is already saved to the Core Data Persistent Store
+    // Gets Event data from the Localist REST API and saves it to core data. For each Event recieved from the API, it will be saved unless it has the same ID as one already saved to the Core Data Persistent Store
     private func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
+            // TODO: Add analytics for this error and an error banner
             let _ = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
         }
 
+        // If the ApiService fails and the dto variable is still nill then return any objects that may be saved
         guard let dto = dto else {
-            return eventResultsController.fetchedObjects
-        }
-
-        // If there are no objects fetched from the local Core Data store, then add all the events fetched from the api to the Core Data Persistent Store
-        guard let fetchedObjects = eventResultsController.fetchedObjects, eventResultsController.fetchedObjects?.count ?? 0 > 0 else {
-            for middleLayer in dto.eventMiddleLayerDto { // TODO: Bug #2 Step 4
-                self.addEvent(eventDto: middleLayer.eventDto)
-            }
             return eventResultsController.fetchedObjects
         }
 
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
         for middleLayer in dto.eventMiddleLayerDto {
-            // Make sure the object has a start date
-            guard middleLayer.eventDto.eventInstances?.count ?? 0 > 0, middleLayer.eventDto.eventInstances?[0].eventInstance.start != "" else {
+            // Make sure there is date info for the event and that the object has a start date
+            guard let eventInstanceWrapper = middleLayer.eventDto.eventInstances?[0], eventInstanceWrapper.eventInstance.start != "" else {
                 continue
             }
 
-            var shouldSave = true
-            for object in fetchedObjects {
-                if object.id == middleLayer.eventDto.id {
-                    shouldSave = false
+            // If the id of an event from Localist is the same as that of any already saved to Core Data's Persistent Store, then we should not save it
+            if let fetchedObjects = eventResultsController.fetchedObjects {
+                for object in fetchedObjects {
+                    if object.id == middleLayer.eventDto.id {
+                        continue
+                    }
                 }
             }
 
-            if !shouldSave {
-                continue
-            }
-
-            // Make sure there is date info for the event
-            guard middleLayer.eventDto.eventInstances?.count ?? 0 > 0 else {
-                continue
-            }
-            let dateValues = getEventInstanceDateData(dateData: middleLayer.eventDto.eventInstances![0].eventInstance)
+            let dateValues = getEventInstanceDateData(dateData: eventInstanceWrapper.eventInstance)
             let allDay = dateValues.0
             let _ = dateValues.1
             let end = dateValues.2
             if allDay == true {
-                // If the event is all day then we should show it
+                // If the event is all day then we should save it
                 self.addEvent(eventDto: middleLayer.eventDto)
             }
             guard let end = end else {
-                // If the event is not all day, but we do not know when it ends, then we should add it
+                // If the event is not all day, but we do not know when it ends, then we should save it
                 self.addEvent(eventDto: middleLayer.eventDto)
                 continue
             }
             if end < Date() {
-                // If the event is already over then we should not show the event
+                // If the event is already over then we should not save it
                 continue
             }
-            // If the event is not all day, but the end of the event has not happened then add it
+            // If the event is not all day, but the end of the event is in the future then save it
             // TODO: Bug #1 Step 4
             self.addEvent(eventDto: middleLayer.eventDto)
         }
 
         return eventResultsController.fetchedObjects
-        // TODO: Event in the eventsDto. Here the completion should take an array of event optional (ie. [Event]?) instead of EventsModel?
     }
 
     private func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
@@ -197,8 +184,8 @@ final class EventsService: EventsRepository {
             return date
         }()
 
-        if endStr != nil {
-            end = dateFormatter.date(from: endStr!)
+        if let endStr = endStr {
+            end = dateFormatter.date(from: endStr)
         } else {
             end = nil
         }

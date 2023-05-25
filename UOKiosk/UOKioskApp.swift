@@ -31,6 +31,7 @@ struct UOKioskApp: App {
     var body: some Scene {
         WindowGroup {
             TabMenuView(injector: injector)
+                .environment(\.managedObjectContext, injector.eventsRepository.persistentContainer.viewContext)
         }
     }
 }

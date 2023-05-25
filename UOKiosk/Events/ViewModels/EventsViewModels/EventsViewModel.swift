@@ -45,7 +45,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         super.init()
         //self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         #if DEBUG
-//        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+        print("!!! On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
     
@@ -60,7 +60,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
 
     // MARK: Data Filling Functions
     @MainActor
-    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) async {
+    func fetchEvents(shouldCheckLastUpdateDate: Bool = false, toggleLoadingIndicator: Bool = false) async {
         /*
          Callers:
                 When the Events View loads, this function is called.
@@ -81,12 +81,14 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
              However, if the user is performing a pull to refresh then the function should make an API call
              to get the most up to date data.
          */
-        isLoading.toggle()
+        if toggleLoadingIndicator {
+            isLoading = true
+        }
         defer {
-            isLoading.toggle()
+            isLoading = false
         }
 
-        // IF results controller is nil then set it up
+        // If results controller is nil then set it up
         if resultsController == nil {
             resultsController = eventsRepository.fetchSavedEvents(with: self)
         }

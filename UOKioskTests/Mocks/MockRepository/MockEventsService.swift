@@ -10,6 +10,8 @@ import CoreData
 
 
 final class MockEventsService: EventsRepository {
+    var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Mock")
+
 
     func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
     }

@@ -93,21 +93,6 @@ public class Event: NSManagedObject {
         self.allDay = dateValues.0
         self.start  = dateValues.1
         self.end = dateValues.2
-        
-        if eventData.geo == nil || eventData.geo!.latitude == nil || eventData.geo!.longitude == nil ||
-            eventData.geo!.city == nil || eventData.geo!.country == nil || eventData.geo!.state == nil ||
-            eventData.geo!.street == nil || eventData.geo!.zip == nil ||
-            Double(eventData.geo!.latitude!) == nil || Double(eventData.geo!.longitude!) == nil ||
-            Int(eventData.geo!.zip!) == nil
-        {
-            self.eventLocation = nil
-        }
-        else {
-            let geo = eventData.geo!
-            self.eventLocation = EventLocation(latitude: Double(geo.latitude!)!, longitude: Double(geo.longitude!)!,
-                                               street: geo.street!, city: geo.city!, country: geo.country!,
-                                               zip: Int(geo.zip!)!, context: context)
-        }
 
         self.departmentFilters = []
         self.eventTypeFilters = []
@@ -128,6 +113,14 @@ public class Event: NSManagedObject {
 //                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
 //            }
 //        }
+        guard let geo = eventData.geo, let latitude = geo.latitude, let longitude = geo.longitude, let city = geo.city, let country = geo.country,
+              let _ = geo.state, let street = geo.street, let zip = geo.zip else {
+            self.eventLocation = nil
+            return
+        }
+        self.eventLocation = EventLocation(latitude: Double(latitude) ?? 0.0, longitude: Double(longitude) ?? 0.0,
+                                           street: street, city: city, country: country,
+                                           zip: Int(zip) ?? 0, context: context)
     }
 }
 
