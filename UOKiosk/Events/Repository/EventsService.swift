@@ -121,6 +121,7 @@ final class EventsService: EventsRepository {
             let _ = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
         }
 
+        // FIXME: For some reson if I put a break point at "guard let dto = dto else {" and then pause there for just a second when LLDB hits the breakpoint, then the data arrives in the correct chronological order
         // If the ApiService fails and the dto variable is still nill then return any objects that may be saved
         guard let dto = dto else {
             return eventResultsController.fetchedObjects
@@ -128,19 +129,23 @@ final class EventsService: EventsRepository {
 
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
         for middleLayer in dto.eventMiddleLayerDto {
+            let eventDto = middleLayer.eventDto
             // Make sure there is date info for the event and that the object has a start date
-            guard let eventInstanceWrapper = middleLayer.eventDto.eventInstances?[0], eventInstanceWrapper.eventInstance.start != "" else {
+            guard let eventInstanceWrapper = eventDto.eventInstances?[0], eventInstanceWrapper.eventInstance.start != "" else {
                 continue
             }
 
             // If the id of an event from Localist is the same as that of any already saved to Core Data's Persistent Store, then we should not save it
+            var skip = false
             if let fetchedObjects = eventResultsController.fetchedObjects {
                 for object in fetchedObjects {
-                    if object.id == middleLayer.eventDto.id {
-                        continue
+                    if object.id == eventDto.id {
+                        skip = true
+                        break
                     }
                 }
             }
+            if skip { continue }
 
             let dateValues = getEventInstanceDateData(dateData: eventInstanceWrapper.eventInstance)
             let allDay = dateValues.0
@@ -148,11 +153,11 @@ final class EventsService: EventsRepository {
             let end = dateValues.2
             if allDay == true {
                 // If the event is all day then we should save it
-                self.addEvent(eventDto: middleLayer.eventDto)
+                self.addEvent(eventDto: eventDto)
             }
             guard let end = end else {
                 // If the event is not all day, but we do not know when it ends, then we should save it
-                self.addEvent(eventDto: middleLayer.eventDto)
+                self.addEvent(eventDto: eventDto)
                 continue
             }
             if end < Date() {
@@ -161,7 +166,7 @@ final class EventsService: EventsRepository {
             }
             // If the event is not all day, but the end of the event is in the future then save it
             // TODO: Bug #1 Step 4
-            self.addEvent(eventDto: middleLayer.eventDto)
+            self.addEvent(eventDto: eventDto)
         }
 
         return eventResultsController.fetchedObjects

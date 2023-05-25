@@ -38,6 +38,7 @@ struct TabMenuView: View {
                 EventsView(injector: injector)
                     .navigationTitle("Events")
             }
+            // StackNavigationViewStyle() causes logging bug where this log is shown when a list item is tapped: 2023-05-25 14:53:13.416096-0700 UOKiosk[3825:1682743] [API] Failed to create 0x88 image slot (alpha=1 wide=1) (client=0xc554bbe2) [0x5 (os/kern) failure]
             .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.events)
             .tabItem {

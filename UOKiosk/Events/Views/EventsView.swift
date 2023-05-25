@@ -51,10 +51,9 @@ struct EventsView: View {
                 if !didLoad {
                     didLoad = true
                     // TODO: Bug #2 Step 1 On fresh install this task failed when pulling to refresh even with the guarding code in this file to stop refreshing from working
-                    await viewModel.fetchEvents(shouldCheckLastUpdateDate: true)
+                    await viewModel.fetchEvents(shouldCheckLastUpdateDate: true, toggleLoadingIndicator: true)
                 }
             }
-            /*
             .refreshable {
                 if loading { return }
                 loading = true
@@ -62,7 +61,6 @@ struct EventsView: View {
                 // TODO: Bug #1 Step 1 when viewModel.fetchEvents() is called while the .task to fetchEvents(shouldCheckLastUpdateDate: true) is still running
                 await viewModel.fetchEvents()
             }
-             */
         }
         .analyticsScreen(name: "\(EventsView.self)")
     }
