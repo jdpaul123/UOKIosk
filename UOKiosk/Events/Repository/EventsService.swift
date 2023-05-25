@@ -79,7 +79,7 @@ final class EventsService: EventsRepository {
                 continue
             }
 
-            if start.compare(Date()) == ComparisonResult.orderedAscending {
+            if start.compare(Date()) == .orderedAscending {
                 deleteEvent(event)
             }
         }

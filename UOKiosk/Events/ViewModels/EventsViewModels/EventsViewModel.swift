@@ -92,6 +92,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         }
         guard let resultsController = resultsController else {
             // TODO: Add error track here because the return below should never be hit
+            print("!!! Results Controller is nil")
             return
         }
 
