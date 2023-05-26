@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class Event: NSManagedObject {
     // MARK: Initialization
     convenience init(eventData: EventDto, context: NSManagedObjectContext) {

@@ -29,7 +29,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
 
     private let eventsRepository: EventsRepository
     private var resultsController: NSFetchedResultsController<Event>? = nil
-   
+
     // MARK: Initialization
     init(eventsRepository: EventsRepository, isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.eventsRepository = eventsRepository
@@ -38,7 +38,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         self.isLoading = isLoading
         self.errorMessage = errorMessage
         self.showAlert = showAlert
-        
+
         // Check if the lastDataUpdateDate is not the same day as today. If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current date,
         // so it will trigger the data loading method
         self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? Date ?? Date(timeIntervalSince1970: 0)
@@ -48,7 +48,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         print("!!! On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
-    
+
     // MARK: NSFetchedResultsControllerDelegate
     // This function enables change tracking so that data stays up to date in the view when updates are made
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -112,13 +112,12 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
             // TODO: Add error handling here and error track: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true
             errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
-//            print("No Events were returned from the events repository fetchNewEvents method")
+//            print("!!! No Events were returned from the events repository fetchNewEvents method")
             return
         }
         self.fillData()
     }
-    
-    
+
     // Takes the model and uses that data to fill in the values for this view controller.
     @MainActor
     private func fillData() {

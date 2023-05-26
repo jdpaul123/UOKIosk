@@ -10,7 +10,7 @@ import SwiftUI
 struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
-    
+
     init(_ event: Event, injector: Injector) {
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
         self.injector = injector
@@ -42,7 +42,7 @@ struct EventDetailView: View {
                         }
                         .padding()
                     }
-                  
+
                     HStack {
                         Text("Time")
                             .bold()
@@ -53,28 +53,27 @@ struct EventDetailView: View {
                                 .font(.title3)
                             Text(viewModel.timeRange)
                                 .font(.subheadline)
-
                         }
                     }
                     .padding()
                 }
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
-                
+
                 HStack {
                     Spacer()
                     Button {
-                        
+                        // TODO: Insert action to add the Event to calendar
                     } label: {
                         VStack {
                             Image(systemName: "calendar")
                             Text("Add to Calendar")
                         }
                     }
-                    
+
                     Spacer()
-                    
+
                     Button {
-                        
+                        // TODO: Insert action to set reminder for the Event
                     } label: {
                         VStack {
                             Image(systemName: "bell")
@@ -85,7 +84,7 @@ struct EventDetailView: View {
                 }
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
-                
+
                 Text(viewModel.eventDescription)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))

@@ -110,7 +110,7 @@ final class EventsService: EventsRepository {
     }
 
     // Gets Event data from the Localist REST API and saves it to core data. For each Event recieved from the API, it will be saved unless it has the same ID as one already saved to the Core Data Persistent Store
-    private func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+    private func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event] {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
@@ -122,7 +122,8 @@ final class EventsService: EventsRepository {
         // FIXME: For some reson if I put a break point at "guard let dto = dto else {" and then pause there for just a second when LLDB hits the breakpoint, then the data arrives in the correct chronological order
         // If the ApiService fails and the dto variable is still nill then return any objects that may be saved
         guard let dto = dto else {
-            return eventResultsController.fetchedObjects
+            // TODO: Instead of returning here, throw an error
+            return eventResultsController.fetchedObjects ?? []
         }
 
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
@@ -166,7 +167,7 @@ final class EventsService: EventsRepository {
             self.addEvent(eventDto: eventDto)
         }
 
-        return eventResultsController.fetchedObjects
+        return eventResultsController.fetchedObjects ?? [] // TODO: Above this return add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
 
     private func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
@@ -208,7 +209,7 @@ final class EventsService: EventsRepository {
 
         saveViewContext()
     }
-    
+
     private func saveViewContext() {
         do {
             try persistentContainer.viewContext.save()
@@ -218,14 +219,14 @@ final class EventsService: EventsRepository {
             persistentContainer.viewContext.rollback()
         }
     }
-    
+
     func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
 
         return createResultsController(for: delegate, fetchRequest: fetchRequest)
     }
-    
+
     private func createResultsController<T>(for delegate: NSFetchedResultsControllerDelegate, fetchRequest: NSFetchRequest<T>) -> NSFetchedResultsController<T>? where T: NSFetchRequestResult {
         /*
          Generic function for creating results controller for any delegate and fetch request
