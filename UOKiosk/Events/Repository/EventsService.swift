@@ -88,8 +88,6 @@ final class EventsService: EventsRepository {
     }
 
     func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
-        // TODO: Bug #1 Step 3
-        // TODO: Bug #2 Step 3
         let _ = try? await saveFreshEvents(eventResultsController: eventResultsController)
 
         // IF there are no objects saved return
@@ -165,7 +163,6 @@ final class EventsService: EventsRepository {
                 continue
             }
             // If the event is not all day, but the end of the event is in the future then save it
-            // TODO: Bug #1 Step 4
             self.addEvent(eventDto: eventDto)
         }
 
@@ -201,8 +198,6 @@ final class EventsService: EventsRepository {
 
     // MARK: Core Data Functions
     func addEvent(eventDto: EventDto) {
-        // TODO: Bug #1 Step 5
-        // TODO: Bug #2 Step 5
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
 
         saveViewContext()
@@ -216,12 +211,8 @@ final class EventsService: EventsRepository {
     
     private func saveViewContext() {
         do {
-            // TODO: Often get the "Thread 2: EXC_BAD_ACCESS (code=1, address=0xfffffffffffffff8)" error here on first run of the application
-            // FIXME: Sometimes this persistentContainer.viewContext.save() is called fro ma background concurrent thread, like when .task is called. Is that causing the problem becasue it's calling to an object on the main thread?
             try persistentContainer.viewContext.save()
         } catch {
-            // TODO: Bug #1 Step 6
-            // TODO: Bug #2 Step 6
             let nserror = error as NSError
             print("!!! Unresolved error \(nserror), \(nserror.userInfo). Failed to save viewContext, rolling back.")
             persistentContainer.viewContext.rollback()

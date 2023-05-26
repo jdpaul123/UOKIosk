@@ -106,8 +106,6 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         self.lastDataUpdateDate = Date()
 
         do {
-            // TODO: Bug #1 Step 2
-            // TODO: Bug #2 Step 2
             try await eventsRepository.updateEventsResultsController(eventResultsController: resultsController)
             //try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {

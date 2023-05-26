@@ -50,7 +50,6 @@ struct EventsView: View {
                 defer { loading = false }
                 if !didLoad {
                     didLoad = true
-                    // TODO: Bug #2 Step 1 On fresh install this task failed when pulling to refresh even with the guarding code in this file to stop refreshing from working
                     await viewModel.fetchEvents(shouldCheckLastUpdateDate: true, toggleLoadingIndicator: true)
                 }
             }
@@ -58,7 +57,6 @@ struct EventsView: View {
                 if loading { return }
                 loading = true
                 defer { loading = false }
-                // TODO: Bug #1 Step 1 when viewModel.fetchEvents() is called while the .task to fetchEvents(shouldCheckLastUpdateDate: true) is still running
                 await viewModel.fetchEvents()
             }
         }

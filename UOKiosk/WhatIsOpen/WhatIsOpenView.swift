@@ -61,7 +61,7 @@ struct WhatIsOpenList: View {
                         HStack {
                             Text(place.note ?? "")
                                 .font(.system(.footnote))
-                                .bold() // TODO: is the .bold() modifier only available in iOS 16.0 or greater?
+                                .bold()
                             Spacer()
                         }
                         Divider()

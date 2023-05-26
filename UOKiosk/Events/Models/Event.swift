@@ -72,9 +72,7 @@ public class Event: NSManagedObject {
         
         self.status = eventData.status ?? "live"
         self.experience = eventData.experience ?? "assumed inperson"
-        
-//        print(self.title ?? "Default title")
-        
+
         self.eventUrl = getUrl(urlString: eventData.localistUrl)
         self.streamUrl = getUrl(urlString: eventData.streamUrl)
         self.ticketUrl = getUrl(urlString: eventData.ticketUrl)
@@ -113,6 +111,7 @@ public class Event: NSManagedObject {
 //                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
 //            }
 //        }
+
         guard let geo = eventData.geo, let latitude = geo.latitude, let longitude = geo.longitude, let city = geo.city, let country = geo.country,
               let _ = geo.state, let street = geo.street, let zip = geo.zip else {
             self.eventLocation = nil
