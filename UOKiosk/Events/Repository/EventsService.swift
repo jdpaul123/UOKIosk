@@ -31,12 +31,12 @@ final class EventsService: EventsRepository {
      private let storageService: EventsStorageProtocol
      */
 
-    // MARK: Properties
+    // MARK: - Properties
     var persistentContainer: NSPersistentContainer
     var urlString: String
     var isLoading = false
 
-    // MARK: Initialization
+    // MARK: - Initialization
     init(urlString: String) {
         self.urlString = urlString
 
@@ -51,8 +51,7 @@ final class EventsService: EventsRepository {
         }
     }
 
-    // MARK: Data Getters
-
+    // MARK: - Get FetchResults From REST API and/or Persisten Store Controller Methods
     /*
      Logic of getting data:
 
@@ -109,6 +108,7 @@ final class EventsService: EventsRepository {
         }
     }
 
+    // MARK: - Helper Methods For updateEventsResultsController
     // Gets Event data from the Localist REST API and saves it to core data. For each Event recieved from the API, it will be saved unless it has the same ID as one already saved to the Core Data Persistent Store
     private func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event] {
         var dto: EventsDto? = nil
@@ -197,7 +197,7 @@ final class EventsService: EventsRepository {
         return (allDay, start, end)
     }
 
-    // MARK: Core Data Functions
+    // MARK: - Core Data Functions
     func addEvent(eventDto: EventDto) {
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
 
