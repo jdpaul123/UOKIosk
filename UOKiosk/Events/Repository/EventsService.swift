@@ -47,6 +47,9 @@ final class EventsService: EventsRepository {
                 print("!!! Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
                 fatalError("Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
             }
+            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            // NSMergeByPropertyObjectTrumpMergePolicy means that any object that is trying to add an Event Object with the same id as one already saved then it only updates the data rather than saving a second copy
+            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
         }
     }
@@ -133,18 +136,6 @@ final class EventsService: EventsRepository {
             guard let eventInstanceWrapper = eventDto.eventInstances?[0], eventInstanceWrapper.eventInstance.start != "" else {
                 continue
             }
-
-            // If the id of an event from Localist is the same as that of any already saved to Core Data's Persistent Store, then we should not save it
-            var skip = false
-            if let fetchedObjects = eventResultsController.fetchedObjects {
-                for object in fetchedObjects {
-                    if object.id == eventDto.id {
-                        skip = true
-                        break
-                    }
-                }
-            }
-            if skip { continue }
 
             let dateValues = getEventInstanceDateData(dateData: eventInstanceWrapper.eventInstance)
             let allDay = dateValues.0
