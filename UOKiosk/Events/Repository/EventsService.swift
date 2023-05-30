@@ -129,7 +129,6 @@ final class EventsService: EventsRepository {
             return eventResultsController.fetchedObjects ?? []
         }
 
-//        var eventsToAdd: [Event] = []
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
         for middleLayer in dto.eventMiddleLayerDto {
             let eventDto = middleLayer.eventDto
@@ -144,12 +143,10 @@ final class EventsService: EventsRepository {
             let end = dateValues.2
             if allDay == true {
                 // If the event is all day then we should save it
-//                eventsToAdd.append(Event(eventData: eventDto, context: persistentContainer.viewContext))
                 self.addEvent(eventDto: eventDto)
             }
             guard let end = end else {
                 // If the event is not all day, but we do not know when it ends, then we should save it
-//                eventsToAdd.append(Event(eventData: eventDto, context: persistentContainer.viewContext))
                 self.addEvent(eventDto: eventDto)
                 continue
             }
@@ -158,13 +155,8 @@ final class EventsService: EventsRepository {
                 continue
             }
             // If the event is not all day, but the end of the event is in the future then save it
-//            eventsToAdd.append(Event(eventData: eventDto, context: persistentContainer.viewContext))
             self.addEvent(eventDto: eventDto)
         }
-
-        // TODO: Figure out batch insert
-//        let batchInsertRequest = NSBatchInsertRequest(entity: <#T##NSEntityDescription#>, managedObjectHandler: <#T##(NSManagedObject) -> Bool#>)
-//        let batchInsertRequest = NSBatchInsertRequest(entity: <#T##NSEntityDescription#>, dictionaryHandler: <#T##(NSMutableDictionary) -> Bool#>)
 
         return eventResultsController.fetchedObjects ?? [] // TODO: Above this return add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
