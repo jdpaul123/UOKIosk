@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>92313675737-f1rno4lvrm701mbehmkoua56ljba5orr.apps.googleusercontent.com</string>
+	<string>461411348244-n66nps6e2f48gk0o5ldf3uqutivrdvq8.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.92313675737-f1rno4lvrm701mbehmkoua56ljba5orr</string>
+	<string>com.googleusercontent.apps.461411348244-n66nps6e2f48gk0o5ldf3uqutivrdvq8</string>
 	<key>API_KEY</key>
-	<string>AIzaSyDL2_kztaKWFp1IkBgQ-3MdBoFR1aoIhl8</string>
+	<string>AIzaSyB419S5W8gF0pvIt-622pwca7-I-3iKM9U</string>
 	<key>GCM_SENDER_ID</key>
-	<string>92313675737</string>
+	<string>461411348244</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.JDPaul.UOKiosk</string>
 	<key>PROJECT_ID</key>
-	<string>uokiosk</string>
+	<string>uokiosk-ab2f2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>uokiosk.appspot.com</string>
+	<string>uokiosk-ab2f2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:92313675737:ios:82eb5deb18806bff9c5bc8</string>
+	<string>1:461411348244:ios:2225c690038e0c544b1c01</string>
 </dict>
 </plist>
