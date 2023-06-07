@@ -14,20 +14,20 @@ struct WhatIsOpenDto: Decodable {
         case features = "features"
     }
     let type: String
-    let pagination: Pagination
-    let features: [Feature]
+    let pagination: WhatIsOpenPaginationDto
+    let features: [StoreDto]
 }
 
-struct Feature: Decodable {
+struct StoreDto: Decodable {
     enum CodingKeys: String, CodingKey {
         case type = "type"
         case properties = "properties"
     }
     let type: String
-    let properties: StoreProperties
+    let properties: StorePropertiesDto
 }
 
-struct StoreProperties: Decodable {
+struct StorePropertiesDto: Decodable {
     enum CodingKeys: String, CodingKey {
         case id = "store_id"
         case name = "name"
@@ -36,11 +36,11 @@ struct StoreProperties: Decodable {
     }
     let id: String
     let name: String
-    let contact: StoreContact?
-    let hours: WeeklyStoreSchedule
+    let contact: StoreContactDto?
+    let hours: WeeklyStoreScheduleDto
 }
 
-struct WeeklyStoreSchedule: Decodable {
+struct WeeklyStoreScheduleDto: Decodable {
     enum CodingKeys: String, CodingKey {
         case timezone = "timezone"
         case monday = "1"
@@ -53,30 +53,30 @@ struct WeeklyStoreSchedule: Decodable {
 
     }
     let timezone: String
-    let monday: StoreDay
-    let tuesday: StoreDay
-    let wednsday: StoreDay
-    let thursday: StoreDay
-    let friday: StoreDay
-    let saturday: StoreDay
-    let sunday: StoreDay
+    let monday: StoreDayScheduleDto
+    let tuesday: StoreDayScheduleDto
+    let wednsday: StoreDayScheduleDto
+    let thursday: StoreDayScheduleDto
+    let friday: StoreDayScheduleDto
+    let saturday: StoreDayScheduleDto
+    let sunday: StoreDayScheduleDto
 }
 
-struct StoreDay: Decodable {
-    let hours: [StoreHours]
+struct StoreDayScheduleDto: Decodable {
+    let hours: [OpenHoursIntervalDto]
     let isSpecial: Bool
 }
 
-struct StoreHours: Decodable {
+struct OpenHoursIntervalDto: Decodable {
     let start: String
     let end: String
 }
 
-struct StoreContact: Decodable {
+struct StoreContactDto: Decodable {
     let phone: String?
 }
 
-struct Pagination: Decodable {
+struct WhatIsOpenPaginationDto: Decodable {
     let page: Int
     let pageCount: Int
 }
