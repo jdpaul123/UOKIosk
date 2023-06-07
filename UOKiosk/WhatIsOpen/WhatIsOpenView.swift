@@ -30,6 +30,11 @@ struct WhatIsOpenView: View {
             WhatIsOpenList(listType: .duckStores, vm: vm)
             WhatIsOpenList(listType: .closed, vm: vm)
         }
+// FIXME: BELOW CODE IS FOR TESTING
+//        .task {
+//            print("!!! CALLING VM.REFRESH()")
+//            await vm.refresh()
+//        }
     }
 }
 

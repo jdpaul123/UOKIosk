@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */; };
 		52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */; };
 		52131E4828B31E85006C3094 /* EventLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4028B31E85006C3094 /* EventLocation.swift */; };
 		52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4228B31E85006C3094 /* EventFilter.swift */; };
@@ -75,6 +76,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenDto.swift; sourceTree = "<group>"; };
 		52131E3C28B30762006C3094 /* EventsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventsModel.xcdatamodel; sourceTree = "<group>"; };
 		52131E4028B31E85006C3094 /* EventLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocation.swift; sourceTree = "<group>"; };
 		52131E4228B31E85006C3094 /* EventFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilter.swift; sourceTree = "<group>"; };
@@ -153,6 +155,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5201D6882A30050000B1F939 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		52131E5F28B54E33006C3094 /* EventsViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -247,6 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
+				5201D6882A30050000B1F939 /* Models */,
 				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
 			);
 			path = WhatIsOpen;
@@ -533,6 +544,7 @@
 				52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
+				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,

@@ -30,6 +30,11 @@ class WhatIsOpenViewModel: ObservableObject {
         self.showAlert = showAlert
         self.errorMEssage = errorMessage
     }
+    // FIXME: BELOW CODE IS FOR TESTING
+//    var data: WhatIsOpenDto? = nil
+//    func refresh() async {
+//        self.data = try? await ApiService.shared.getJSON(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
+//    }
 }
 
 struct PlaceViewModel: Identifiable {
