@@ -28,6 +28,7 @@ struct WhatIsOpenView: View {
             WhatIsOpenList(listType: .coffee, vm: vm)
             WhatIsOpenList(listType: .recreation, vm: vm)
             WhatIsOpenList(listType: .duckStores, vm: vm)
+            WhatIsOpenList(listType: .library, vm: vm)
             WhatIsOpenList(listType: .closed, vm: vm)
         }
 // FIXME: BELOW CODE IS FOR TESTING
