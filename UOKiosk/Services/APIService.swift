@@ -63,10 +63,14 @@ class ApiService: ApiServiceProtocol {
 //                        print("!!! Success decoding the data")
 //                        if let whatsOpenData = decodedData as? WhatIsOpenDto {
 //                            print(whatsOpenData.features.count)
+//                            print()
 //                            for feature in whatsOpenData.features {
-//                                print(feature.type)
 //                                print(feature.properties.name)
-//                                print(feature.properties.hours.friday)
+//                                print(feature.type)
+//                                print("Friday Hours: \(feature.properties.hours.friday)")
+//                                print("Asset Type: \(feature.properties.types)")
+//                                print("Open Status: \(feature.properties.open.isOpen)")
+//                                print()
 //                            }
 //                        }
 //                    }

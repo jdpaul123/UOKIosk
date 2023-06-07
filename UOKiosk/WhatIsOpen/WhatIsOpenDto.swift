@@ -25,12 +25,23 @@ struct StorePropertiesDto: Decodable {
         case contact = "contact"
         case hours = "weekly_opening"
         case types = "types"
+        case open = "open"
     }
     let id: String
     let name: String
     let contact: StoreContactDto?
     let hours: WeeklyStoreScheduleDto
     let types: [String] // "Dining" "Coffee" "Duck Store" "Recreation" "Library" (note: There is also closed. Anything that is closed should go in that bucket.)
+    let open: CurrentStoreStatusDto
+}
+
+struct CurrentStoreStatusDto: Decodable {
+    enum CodingKeys: String, CodingKey {
+        case isOpen = "open_now"
+        case openHours = "open_hours"
+    }
+    let isOpen: Bool
+    let openHours: [OpenHoursIntervalDto]
 }
 
 struct WeeklyStoreScheduleDto: Decodable {

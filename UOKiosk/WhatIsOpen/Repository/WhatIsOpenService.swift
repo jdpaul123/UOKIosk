@@ -17,6 +17,9 @@ class WhatIsOpenService {
             fatalError("FAILED TO GET THE DATA WITH ERROR")
         }
 
+        // Go through each new "Asset"
+        // Create the current asset's
+
         return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [])
     }
 }
