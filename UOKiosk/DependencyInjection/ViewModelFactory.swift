@@ -49,8 +49,9 @@ final class ViewModelFactory: ObservableObject {
                                         PlaceViewModel(name: "Test Restauraunt 5", emojiCode: "🛒", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)
                                     ],
                             coffee: [PlaceViewModel(name: "Test Coffee Shop", emojiCode: "☕", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
-                            duckStores: [PlaceViewModel(name: "Test Duck Store", emojiCode: "🦆", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
+                            duckStore: [PlaceViewModel(name: "Test Duck Store", emojiCode: "🦆", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
                             recreation: [PlaceViewModel(name: "Test Recreation Facility", emojiCode: "💪", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: true, hours: hours)],
+                            library: [],
                             closed: [PlaceViewModel(name: "Test closed restauraunt, coffee shop, duck store, or recreation facility", emojiCode: "🍕", mapLink: URL(string: "www.google.com")!, WebSieLink: URL(string: "www.youtube.com")!, until: Date.init(timeIntervalSinceNow: 3600), isOpen: false, hours: hours)])
     }
 }

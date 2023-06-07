@@ -11,19 +11,21 @@ import OrderedCollections
 class WhatIsOpenViewModel: ObservableObject {
     @Published var dining: [PlaceViewModel]
     @Published var coffee: [PlaceViewModel]
-    @Published var duckStores: [PlaceViewModel]
+    @Published var duckStore: [PlaceViewModel]
     @Published var recreation: [PlaceViewModel]
+    @Published var library: [PlaceViewModel]
     @Published var closed: [PlaceViewModel] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
 
     @Published var isLoading: Bool
     @Published var showAlert: Bool
     @Published var errorMEssage: String?
 
-    init(dining: [PlaceViewModel], coffee: [PlaceViewModel], duckStores: [PlaceViewModel], recreation: [PlaceViewModel], closed: [PlaceViewModel], isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
+    init(dining: [PlaceViewModel], coffee: [PlaceViewModel], duckStore: [PlaceViewModel], recreation: [PlaceViewModel], library: [PlaceViewModel], closed: [PlaceViewModel], isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.dining = dining
         self.coffee = coffee
-        self.duckStores = duckStores
+        self.duckStore = duckStore
         self.recreation = recreation
+        self.library = library
         self.closed = closed
 
         self.isLoading = isLoading

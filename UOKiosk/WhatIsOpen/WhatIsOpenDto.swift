@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  WhatIsOpenDto.swift
 //  UOKiosk
 //
 //  Created by Jonathan Paul on 6/6/23.
@@ -8,21 +8,12 @@
 import Foundation
 
 struct WhatIsOpenDto: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case type = "type"
-        case pagination = "pagination"
-        case features = "features"
-    }
     let type: String
     let pagination: WhatIsOpenPaginationDto
     let features: [StoreDto]
 }
 
 struct StoreDto: Decodable {
-    enum CodingKeys: String, CodingKey {
-        case type = "type"
-        case properties = "properties"
-    }
     let type: String
     let properties: StorePropertiesDto
 }
@@ -33,11 +24,13 @@ struct StorePropertiesDto: Decodable {
         case name = "name"
         case contact = "contact"
         case hours = "weekly_opening"
+        case types = "types"
     }
     let id: String
     let name: String
     let contact: StoreContactDto?
     let hours: WeeklyStoreScheduleDto
+    let types: [String] // "Dining" "Coffee" "Duck Store" "Recreation" "Library" (note: There is also closed. Anything that is closed should go in that bucket.)
 }
 
 struct WeeklyStoreScheduleDto: Decodable {

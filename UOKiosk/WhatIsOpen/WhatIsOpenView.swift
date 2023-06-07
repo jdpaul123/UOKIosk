@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum WhatIsOpenListCase: String {
-    case dining, coffee, recreation, closed
+    case dining, coffee, recreation, closed, library
     case duckStores = "Duck Stores"
 }
 
@@ -49,9 +49,11 @@ struct WhatIsOpenList: View {
         case .coffee:
             return $vm.coffee
         case .duckStores:
-            return $vm.duckStores
+            return $vm.duckStore
         case .recreation:
             return $vm.recreation
+        case .library:
+            return $vm.library
         case .closed:
             return $vm.closed
         }

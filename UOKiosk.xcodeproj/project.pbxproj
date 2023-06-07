@@ -56,6 +56,8 @@
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */; };
+		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
+		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
+		52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,14 +159,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5201D6882A30050000B1F939 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		52131E5F28B54E33006C3094 /* EventsViewModels */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,9 +252,10 @@
 		5289CEAF2A16D54B00E51257 /* WhatIsOpen */ = {
 			isa = PBXGroup;
 			children = (
-				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
-				5201D6882A30050000B1F939 /* Models */,
+				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
 				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
+				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
+				52F1F65A2A304CE800F9CF3B /* Repository */,
 			);
 			path = WhatIsOpen;
 			sourceTree = "<group>";
@@ -387,6 +384,15 @@
 				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		52F1F65A2A304CE800F9CF3B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */,
+				52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -556,9 +562,11 @@
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
 				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
+				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */,
+				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
