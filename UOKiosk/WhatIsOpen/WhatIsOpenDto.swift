@@ -30,7 +30,7 @@ struct StorePropertiesDto: Decodable {
     }
     let id: String
     let name: String
-    let contact: StoreContactDto
+    let contact: StoreContactDto?
     let hours: WeeklyStoreScheduleDto
     let types: [String] // "Dining" "Coffee" "Duck Store" "Recreation" "Library" (note: There is also closed. Anything that is closed should go in that bucket.)
     let open: CurrentStoreStatusDto

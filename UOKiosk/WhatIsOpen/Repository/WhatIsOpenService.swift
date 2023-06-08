@@ -301,7 +301,7 @@ class WhatIsOpenService {
             let vm = PlaceViewModel(name: asset.properties.name,
                            emojiCode: asset.properties.userProperties.emoji ?? "💚",
                            mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
-                           WebSieLink: URL(string: asset.properties.contact.website ?? ""),
+                           WebSieLink: URL(string: asset.properties.contact?.website ?? ""),
                            until: until,
                            isOpen: asset.properties.open.isOpen,
                            hours: hours)
