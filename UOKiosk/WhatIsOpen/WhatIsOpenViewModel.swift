@@ -33,9 +33,24 @@ class WhatIsOpenViewModel: ObservableObject {
         self.errorMEssage = errorMessage
     }
     // FIXME: BELOW CODE IS FOR TESTING
-    var data: WhatIsOpenViewModel? = nil// WhatIsOpenDto? = nil
     func refresh() async {
-        self.data = try? await WhatIsOpenService().getAssetData(url: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
+        var data: [WhatIsOpenCategories: [PlaceViewModel]]?
+        do {
+            data = try await WhatIsOpenService().getAssetData(url: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
+        } catch {
+            fatalError("Refresh of What's Open data failed")
+        }
+        guard let data = data else {
+            return
+        }
+        DispatchQueue.main.async { [self] in
+            dining = data[.dining]!
+            coffee = data[.coffee]!
+            duckStore = data[.duckStore]!
+            recreation = data[.recreation]!
+            library = data[.library]!
+            closed = data[.closed]!
+        }
 //        self.data = try? await ApiService.shared.getJSON(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
     }
 }

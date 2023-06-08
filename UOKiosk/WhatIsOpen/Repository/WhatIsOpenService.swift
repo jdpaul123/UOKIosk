@@ -24,6 +24,11 @@ extension StringProtocol {
     subscript(offset: Int) -> Character { self[index(startIndex, offsetBy: offset)] }
 }
 
+enum WhatIsOpenCategories: String {
+    case dining, coffee, recreation, library, closed
+    case duckStore = "duck store"
+}
+
 enum WoosmapDays: String {
     case monday
     case tuesday
@@ -134,7 +139,7 @@ enum WoosmapDays: String {
 }
 
 class WhatIsOpenService {
-    func getAssetData(url: String) async throws -> WhatIsOpenViewModel {
+    func getAssetData(url: String) async throws -> [WhatIsOpenCategories: [PlaceViewModel]] {
         // get the data from the ApiService. Turn the returned Dto object into a view model so that the data can be displayed
         var whatIsOpenDto: WhatIsOpenDto? = nil
         do {
@@ -148,7 +153,7 @@ class WhatIsOpenService {
         // Place each store into the correct array based off of its type (ie. dining, coffee, duckStore, recreation, library, closed)
         // Instantiate and return the WhatIsOpenViewModel
         guard let whatIsOpenDto = whatIsOpenDto else {
-            return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [])
+            return [:]
         }
 
         var (dining, coffee, duckStore, recreation, library, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
@@ -317,6 +322,7 @@ class WhatIsOpenService {
             }
         }
 
-        return WhatIsOpenViewModel(dining: dining, coffee: coffee, duckStore: duckStore, recreation: recreation, library: library, closed: closed)
+        let returnDictionary: [WhatIsOpenCategories: [PlaceViewModel]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library, .closed: closed]
+        return returnDictionary
     }
 }
