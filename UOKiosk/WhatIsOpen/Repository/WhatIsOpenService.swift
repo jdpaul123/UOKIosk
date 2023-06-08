@@ -8,6 +8,17 @@
 import Foundation
 import Collections
 
+// https://www.hackingwithswift.com/example-code/language/how-to-make-array-access-safer-using-a-custom-subscript
+extension Array {
+    public subscript(index: Int, default defaultValue: @autoclosure () -> Element) -> Element {
+        guard index >= 0, index < endIndex else {
+            return defaultValue()
+        }
+
+        return self[index]
+    }
+}
+
 // https://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift
 extension StringProtocol {
     subscript(offset: Int) -> Character { self[index(startIndex, offsetBy: offset)] }
@@ -139,6 +150,9 @@ class WhatIsOpenService {
         guard let whatIsOpenDto = whatIsOpenDto else {
             return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [])
         }
+
+        var (dining, coffee, duckStore, recreation, library, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
+
         for asset in whatIsOpenDto.features {
             let today = WoosmapDays(dayNumber: asset.properties.open.today)
 
@@ -279,15 +293,30 @@ class WhatIsOpenService {
             print(hours)
             print()
 
-            PlaceViewModel(name: asset.properties.name,
+            let vm = PlaceViewModel(name: asset.properties.name,
                            emojiCode: asset.properties.userProperties.emoji ?? "💚",
                            mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
                            WebSieLink: URL(string: asset.properties.contact.website ?? ""),
                            until: until,
                            isOpen: asset.properties.open.isOpen,
                            hours: hours)
+            let assetCategory = asset.properties.types[0, default: ""]
+            switch assetCategory {
+            case "dining":
+                dining.append(vm)
+            case "coffee":
+                coffee.append(vm)
+            case "duckStore":
+                duckStore.append(vm)
+            case "recreation":
+                recreation.append(vm)
+            case "library":
+                library.append(vm)
+            default:
+                continue
+            }
         }
 
-        return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [])
+        return WhatIsOpenViewModel(dining: dining, coffee: coffee, duckStore: duckStore, recreation: recreation, library: library, closed: closed)
     }
 }
