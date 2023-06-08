@@ -242,55 +242,27 @@ class WhatIsOpenService {
             dateIntervalFormatter.dateStyle = .none
             dateIntervalFormatter.timeStyle = .short
 
-            var mondayIntervalString = ""
-            for interval in mondayHours {
-                if mondayIntervalString != "" {
-                    mondayIntervalString += "\n"
+            func intervalString(hours: [DateInterval]) -> String {
+                var intervalString = ""
+                for interval in hours {
+                    if intervalString != "" {
+                        intervalString += "\n"
+                    }
+                    intervalString += dateIntervalFormatter.string(from: interval) ?? ""
                 }
-                mondayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
-            var tuesdayIntervalString = ""
-            for interval in tuesdayHours {
-                if tuesdayIntervalString != "" {
-                    tuesdayIntervalString += "\n"
+                if intervalString.isEmpty {
+                    intervalString = "Closed"
                 }
-                tuesdayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
+                return intervalString
             }
-            var wednsdayIntervalString = ""
-            for interval in wednsdayHours {
-                if wednsdayIntervalString != "" {
-                    wednsdayIntervalString += "\n"
-                }
-                wednsdayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
-            var thursdayIntervalString = ""
-            for interval in thurdayHours {
-                if thursdayIntervalString != "" {
-                    thursdayIntervalString += "\n"
-                }
-                thursdayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
-            var fridayIntervalString = ""
-            for interval in fridayHours {
-                if fridayIntervalString != "" {
-                    fridayIntervalString += "\n"
-                }
-                fridayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
-            var saturdayIntervalString = ""
-            for interval in saturdayHours {
-                if saturdayIntervalString != "" {
-                    saturdayIntervalString += "\n"
-                }
-                saturdayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
-            var sundayIntervalString = ""
-            for interval in sundayHours {
-                if sundayIntervalString != "" {
-                    sundayIntervalString += "\n"
-                }
-                sundayIntervalString += dateIntervalFormatter.string(from: interval) ?? ""
-            }
+
+            var mondayIntervalString = intervalString(hours: mondayHours)
+            var tuesdayIntervalString = intervalString(hours: tuesdayHours)
+            var wednsdayIntervalString = intervalString(hours: wednsdayHours)
+            var thursdayIntervalString = intervalString(hours: thurdayHours)
+            var fridayIntervalString = intervalString(hours: fridayHours)
+            var saturdayIntervalString = intervalString(hours: saturdayHours)
+            var sundayIntervalString = intervalString(hours: sundayHours)
 
             var hours: OrderedDictionary<String, String> = [
                 "Monday": mondayIntervalString,
