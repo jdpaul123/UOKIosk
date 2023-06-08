@@ -24,8 +24,9 @@ extension StringProtocol {
     subscript(offset: Int) -> Character { self[index(startIndex, offsetBy: offset)] }
 }
 
-enum WhatIsOpenCategories: String {
-    case dining, coffee, recreation, library, closed
+enum WhatIsOpenCategories: String, CaseIterable {
+//    case emu, llc, unthank, carson,
+    case dining, coffee, recreation, library, grocery, building, bank, other, closed
     case duckStore = "duck store"
 }
 
@@ -156,7 +157,7 @@ class WhatIsOpenService {
             return [:]
         }
 
-        var (dining, coffee, duckStore, recreation, library, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
+        var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
 
         for asset in whatIsOpenDto.features {
             let today = WoosmapDays(dayNumber: asset.properties.open.today)
@@ -275,13 +276,13 @@ class WhatIsOpenService {
                 return intervalString
             }
 
-            var mondayIntervalString = intervalString(hours: mondayHours)
-            var tuesdayIntervalString = intervalString(hours: tuesdayHours)
-            var wednsdayIntervalString = intervalString(hours: wednsdayHours)
-            var thursdayIntervalString = intervalString(hours: thurdayHours)
-            var fridayIntervalString = intervalString(hours: fridayHours)
-            var saturdayIntervalString = intervalString(hours: saturdayHours)
-            var sundayIntervalString = intervalString(hours: sundayHours)
+            let mondayIntervalString = intervalString(hours: mondayHours)
+            let tuesdayIntervalString = intervalString(hours: tuesdayHours)
+            let wednsdayIntervalString = intervalString(hours: wednsdayHours)
+            let thursdayIntervalString = intervalString(hours: thurdayHours)
+            let fridayIntervalString = intervalString(hours: fridayHours)
+            let saturdayIntervalString = intervalString(hours: saturdayHours)
+            let sundayIntervalString = intervalString(hours: sundayHours)
 
             var hours: OrderedDictionary<String, String> = [
                 "Monday": mondayIntervalString,
@@ -317,12 +318,19 @@ class WhatIsOpenService {
                 recreation.append(vm)
             case "library":
                 library.append(vm)
+            case "grocery":
+                grocery.append(vm)
+            case "building":
+                building.append(vm)
+            case "bank":
+                bank.append(vm)
             default:
-                continue
+                other.append(vm)
             }
         }
 
-        let returnDictionary: [WhatIsOpenCategories: [PlaceViewModel]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library, .closed: closed]
+        let returnDictionary: [WhatIsOpenCategories: [PlaceViewModel]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library,
+                                                                          .closed: closed, .grocery: grocery, .building: building, .bank: bank, .other: other]
         return returnDictionary
     }
 }

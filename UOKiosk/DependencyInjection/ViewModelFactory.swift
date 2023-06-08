@@ -31,7 +31,7 @@ final class ViewModelFactory: ObservableObject {
     }
 
     func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
-        return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [])
+        return WhatIsOpenViewModel(dining: [], coffee: [], duckStore: [], recreation: [], library: [], closed: [], grocery: [], building: [], bank: [], other: [])
         // TODO: Replace this with an initializer that gets data from the "WhatIsOpenRepository"
 //        let hours: OrderedDictionary<String, String> = [
 //            "Monday": "7:00a - 12:00p\n1:00a - 8:00p",

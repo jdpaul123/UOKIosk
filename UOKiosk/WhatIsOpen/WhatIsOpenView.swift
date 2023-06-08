@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-enum WhatIsOpenListCase: String {
-    case dining, coffee, recreation, closed, library
-    case duckStores = "Duck Stores"
-}
-
 struct WhatIsOpenView: View {
     let injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
@@ -24,14 +19,11 @@ struct WhatIsOpenView: View {
 
     var body: some View {
         List {
-            WhatIsOpenList(listType: .dining, vm: vm)
-            WhatIsOpenList(listType: .coffee, vm: vm)
-            WhatIsOpenList(listType: .recreation, vm: vm)
-            WhatIsOpenList(listType: .duckStores, vm: vm)
-            WhatIsOpenList(listType: .library, vm: vm)
-            WhatIsOpenList(listType: .closed, vm: vm)
+            ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
+                WhatIsOpenList(listType: $0, vm: vm)
+            }
         }
-// FIXME: BELOW CODE IS FOR TESTING
+        // FIXME: BELOW CODE IS FOR TESTING
         .task {
             print("!!! CALLING VM.REFRESH()")
             await vm.refresh()
@@ -40,7 +32,7 @@ struct WhatIsOpenView: View {
 }
 
 struct WhatIsOpenList: View {
-    let listType: WhatIsOpenListCase
+    let listType: WhatIsOpenCategories
     @ObservedObject var vm: WhatIsOpenViewModel
 
     var listOfPlace: Binding<[PlaceViewModel]> {
@@ -49,57 +41,69 @@ struct WhatIsOpenList: View {
             return $vm.dining
         case .coffee:
             return $vm.coffee
-        case .duckStores:
+        case .duckStore:
             return $vm.duckStore
         case .recreation:
             return $vm.recreation
         case .library:
             return $vm.library
+        case .bank:
+            return $vm.bank
+        case .building:
+            return $vm.building
+        case .grocery:
+            return $vm.grocery
+        case .other:
+            return $vm.other
         case .closed:
             return $vm.closed
         }
     }
 
     var body: some View {
-        Section(header: Text(listType.rawValue)) {
-            ForEach(listOfPlace) { $place in
-                // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
-                DisclosureGroup {
-                    VStack {
-                        HStack {
-                            Text(place.note ?? "")
-                                .font(.system(.footnote))
-                                .bold()
-                            Spacer()
-                        }
-                        Divider()
-                        ForEach(0..<place.hours.count, id: \.self) { index in
-                            VStack {
-                                HStack {
-                                    VStack {
-                                        Text(place.hours.elements[index].key)
+        if listOfPlace.isEmpty {
+            EmptyView()
+        } else {
+            Section(header: Text(listType.rawValue)) {
+                ForEach(listOfPlace) { $place in
+                    // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
+                    DisclosureGroup {
+                        VStack {
+                            HStack {
+                                Text(place.note ?? "")
+                                    .font(.system(.footnote))
+                                    .bold()
+                                Spacer()
+                            }
+                            Divider()
+                            ForEach(0..<place.hours.count, id: \.self) { index in
+                                VStack {
+                                    HStack {
+                                        VStack {
+                                            Text(place.hours.elements[index].key)
+                                            Spacer()
+                                        }
                                         Spacer()
+                                        Text(place.hours.elements[index].value)
+                                            .fixedSize(horizontal: false, vertical: true)
                                     }
-                                    Spacer()
-                                    Text(place.hours.elements[index].value)
-                                        .fixedSize(horizontal: false, vertical: true)
-                                }
-                                if index != place.hours.count-1 {
-                                    Divider()
+                                    if index != place.hours.count-1 {
+                                        Divider()
+                                    }
                                 }
                             }
                         }
-                    }
-                } label: {
-                    HStack {
-                        Text(place.emojiCode)
-                            .font(.system(size: 36))
-                        VStack {
-                            Text(place.name)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Text(place.isOpenString)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .foregroundColor(place.isOpenColor)
+                    } label: {
+                        HStack {
+                            Text(place.emojiCode)
+                                .font(.system(size: 36))
+                            VStack {
+                                Text(place.name)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Text(place.isOpenString)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .foregroundColor(place.isOpenColor)
+                            }
                         }
                     }
                 }
