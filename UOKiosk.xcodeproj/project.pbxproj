@@ -58,6 +58,10 @@
 		52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
 		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
+		52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */; };
+		52F56AEA2A32970B0046A999 /* WhatsOpenEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */; };
+		52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */; };
+		52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +128,10 @@
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
 		52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenService.swift; sourceTree = "<group>"; };
+		52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatsOpenData.swift; sourceTree = "<group>"; };
+		52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsOpenEnums.swift; sourceTree = "<group>"; };
+		52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Subscript.swift"; sourceTree = "<group>"; };
+		52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeSubscript.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */,
+				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
+				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -209,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				52153BBD28AF6584007F4812 /* MockEventsModelData.swift */,
+				52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */,
 			);
 			path = MockModelData;
 			sourceTree = "<group>";
@@ -253,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
+				52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */,
 				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
 				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
 				52F1F65A2A304CE800F9CF3B /* Repository */,
@@ -542,6 +554,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
@@ -550,6 +563,7 @@
 				52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
+				52F56AEA2A32970B0046A999 /* WhatsOpenEnums.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
@@ -571,6 +585,7 @@
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
+				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
@@ -582,6 +597,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */,
 				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,
 				525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */,

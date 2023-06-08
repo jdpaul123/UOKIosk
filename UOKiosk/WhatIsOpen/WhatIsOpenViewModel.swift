@@ -24,8 +24,8 @@ class WhatIsOpenViewModel: ObservableObject {
     @Published var showAlert: Bool
     @Published var errorMEssage: String?
 
-    init(dining: [PlaceViewModel], coffee: [PlaceViewModel], duckStore: [PlaceViewModel], recreation: [PlaceViewModel], library: [PlaceViewModel],
-         closed: [PlaceViewModel], grocery: [PlaceViewModel], building: [PlaceViewModel], bank: [PlaceViewModel], other: [PlaceViewModel],
+    init(dining: [PlaceViewModel] = [], coffee: [PlaceViewModel] = [], duckStore: [PlaceViewModel] = [], recreation: [PlaceViewModel] = [], library: [PlaceViewModel] = [],
+         closed: [PlaceViewModel] = [], grocery: [PlaceViewModel] = [], building: [PlaceViewModel] = [], bank: [PlaceViewModel] = [], other: [PlaceViewModel] = [],
          isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.dining = dining
         self.coffee = coffee
@@ -113,10 +113,6 @@ class FacilityHours {
         self.WebSiteLink = WebSiteLink
         self.hoursOfOperations = hoursOfOperations
     }
-}
-
-enum DayOfTheWeek: String {
-    case Monday, Tuesday, Webnesday, Thursday, Friday, Saturday, Sunday
 }
 
 class HoursOfOperation {
