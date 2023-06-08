@@ -45,12 +45,12 @@ class ApiService: ApiServiceProtocol {
                 }
 
                 // FIXME: BELOW CODE IS FOR TESTING
-//                let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
-//                if let response = jsonResponse as? [String: Any] {
-//                        print("PRINTING DATA")
-//                        print(response)
-//                        print()
-//                }
+                let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let response = jsonResponse as? [String: Any] {
+                        print("PRINTING DATA")
+                        print(response)
+                        print()
+                }
 
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = dateDecodingStrategy
@@ -59,21 +59,23 @@ class ApiService: ApiServiceProtocol {
                     let decodedData = try decoder.decode(T.self, from: data)
 
                     // FIXME: BELOW CODE IS FOR TESTING
-//                    if decodedData != nil {
-//                        print("!!! Success decoding the data")
-//                        if let whatsOpenData = decodedData as? WhatIsOpenDto {
-//                            print(whatsOpenData.features.count)
-//                            print()
-//                            for feature in whatsOpenData.features {
-//                                print(feature.properties.name)
-//                                print(feature.type)
-//                                print("Friday Hours: \(feature.properties.hours.friday)")
-//                                print("Asset Type: \(feature.properties.types)")
-//                                print("Open Status: \(feature.properties.open.isOpen)")
-//                                print()
-//                            }
-//                        }
-//                    }
+                    if decodedData != nil {
+                        print("!!! Success decoding the data")
+                        if let whatsOpenData = decodedData as? WhatIsOpenDto {
+                            print(whatsOpenData.features.count)
+                            print()
+                            for feature in whatsOpenData.features {
+                                print(feature.properties.name)
+                                print(feature.type)
+                                print("Friday Hours: \(feature.properties.hours.friday)")
+                                print("Asset Type: \(feature.properties.types)")
+                                print("Open Status: \(feature.properties.open.isOpen)")
+                                print("Emoji: \(feature.properties.userProperties.emoji ?? "No Emoji")")
+                                print("Today is: \(feature.properties.open.today)")
+                                print()
+                            }
+                        }
+                    }
 
                     continuation.resume(with: .success(decodedData))
                 } catch {

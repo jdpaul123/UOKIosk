@@ -33,10 +33,11 @@ class WhatIsOpenViewModel: ObservableObject {
         self.errorMEssage = errorMessage
     }
     // FIXME: BELOW CODE IS FOR TESTING
-//    var data: WhatIsOpenDto? = nil
-//    func refresh() async {
+    var data: WhatIsOpenViewModel? = nil// WhatIsOpenDto? = nil
+    func refresh() async {
+        self.data = try? await WhatIsOpenService().getAssetData(url: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
 //        self.data = try? await ApiService.shared.getJSON(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
-//    }
+    }
 }
 
 struct PlaceViewModel: Identifiable {
@@ -44,8 +45,8 @@ struct PlaceViewModel: Identifiable {
     let emojiCode: String
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
-    let mapLink: URL
-    let WebSieLink: URL
+    let mapLink: URL?
+    let WebSieLink: URL?
     let isOpenString: String
     let isOpenColor: Color
 
@@ -55,7 +56,7 @@ struct PlaceViewModel: Identifiable {
     let hours: OrderedDictionary<String, String>
 
     // For the Until: Date value: If open, then this value is used as an indicator of when the place closes next. If closed, then this value is used as an indicator of when the place opens next
-    init(name: String, emojiCode: String, note: String? = nil, mapLink: URL, WebSieLink: URL, until: Date, isOpen: Bool, hours: OrderedDictionary<String, String>) {
+    init(name: String, emojiCode: String, note: String? = nil, mapLink: URL?, WebSieLink: URL?, until: Date, isOpen: Bool, hours: OrderedDictionary<String, String>) {
         self.name = name
         self.emojiCode = emojiCode
         self.note = note

@@ -32,10 +32,10 @@ struct WhatIsOpenView: View {
             WhatIsOpenList(listType: .closed, vm: vm)
         }
 // FIXME: BELOW CODE IS FOR TESTING
-//        .task {
-//            print("!!! CALLING VM.REFRESH()")
-//            await vm.refresh()
-//        }
+        .task {
+            print("!!! CALLING VM.REFRESH()")
+            await vm.refresh()
+        }
     }
 }
 
