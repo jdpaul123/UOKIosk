@@ -8,5 +8,5 @@
 import Foundation
 
 protocol WhatIsOpenRepository {
-
+    func getAssetData() async throws -> [WhatIsOpenCategories: [PlaceViewModel]]
 }

@@ -9,6 +9,8 @@ import SwiftUI
 import OrderedCollections
 
 class WhatIsOpenViewModel: ObservableObject {
+    private let whatIsOpenRepository: WhatIsOpenRepository
+
     @Published var dining: [PlaceViewModel]
     @Published var coffee: [PlaceViewModel]
     @Published var duckStore: [PlaceViewModel]
@@ -24,9 +26,12 @@ class WhatIsOpenViewModel: ObservableObject {
     @Published var showAlert: Bool
     @Published var errorMEssage: String?
 
-    init(dining: [PlaceViewModel] = [], coffee: [PlaceViewModel] = [], duckStore: [PlaceViewModel] = [], recreation: [PlaceViewModel] = [], library: [PlaceViewModel] = [],
+    init(whatIsOpenRepository: WhatIsOpenRepository,
+         dining: [PlaceViewModel] = [], coffee: [PlaceViewModel] = [], duckStore: [PlaceViewModel] = [], recreation: [PlaceViewModel] = [], library: [PlaceViewModel] = [],
          closed: [PlaceViewModel] = [], grocery: [PlaceViewModel] = [], building: [PlaceViewModel] = [], bank: [PlaceViewModel] = [], other: [PlaceViewModel] = [],
          isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
+        self.whatIsOpenRepository = whatIsOpenRepository
+
         self.dining = dining
         self.coffee = coffee
         self.duckStore = duckStore
@@ -42,18 +47,20 @@ class WhatIsOpenViewModel: ObservableObject {
         self.showAlert = showAlert
         self.errorMEssage = errorMessage
     }
-    // FIXME: BELOW CODE IS FOR TESTING
+
     func refresh() async {
         var data: [WhatIsOpenCategories: [PlaceViewModel]]?
         do {
-            data = try await WhatIsOpenService().getAssetData(url: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
+            data = try await whatIsOpenRepository.getAssetData()
         } catch {
+            // TODO: Get the error here and display it
             fatalError("Refresh of What's Open data failed")
         }
         guard let data = data else {
             return
         }
-        DispatchQueue.main.async { [self] in
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             dining = data[.dining]!
             coffee = data[.coffee]!
             duckStore = data[.duckStore]!
@@ -65,7 +72,6 @@ class WhatIsOpenViewModel: ObservableObject {
             other = data[.other]!
             closed = data[.closed]!
         }
-//        self.data = try? await ApiService.shared.getJSON(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")
     }
 }
 

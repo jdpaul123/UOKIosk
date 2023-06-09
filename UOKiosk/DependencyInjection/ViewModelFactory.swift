@@ -11,10 +11,12 @@ import OrderedCollections
 final class ViewModelFactory: ObservableObject {
     // MARK: Properties
     private let eventsRepository: EventsRepository
+    private let whatIsOpenRepository: WhatIsOpenRepository
 
     // MARK: Initialization
-    init(eventsRepository: EventsRepository) {
+    init(eventsRepository: EventsRepository, whatIsOpenRepository: WhatIsOpenRepository) {
         self.eventsRepository = eventsRepository
+        self.whatIsOpenRepository = whatIsOpenRepository
     }
 
     // MARK: Make View Model Functions
@@ -31,6 +33,6 @@ final class ViewModelFactory: ObservableObject {
     }
 
     func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
-        return WhatIsOpenViewModel()
+        return WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository)
     }
 }

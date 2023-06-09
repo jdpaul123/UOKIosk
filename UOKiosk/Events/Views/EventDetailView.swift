@@ -105,7 +105,7 @@ struct EventDetailView: View {
 struct EventDetailView_Previews: PreviewProvider {
     static var previews: some View {
         let event = MockEventsModelData().event
-        EventDetailView(event, injector: Injector(eventsRepository: MockEventsService()))
+        EventDetailView(event, injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
     }
 }
 #endif

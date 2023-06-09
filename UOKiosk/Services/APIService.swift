@@ -45,12 +45,14 @@ class ApiService: ApiServiceProtocol {
                 }
 
                 // FIXME: BELOW CODE IS FOR TESTING
+                /*
                 let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
                 if let response = jsonResponse as? [String: Any] {
                         print("PRINTING DATA")
                         print(response)
                         print()
                 }
+                 */
 
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = dateDecodingStrategy
@@ -59,6 +61,7 @@ class ApiService: ApiServiceProtocol {
                     let decodedData = try decoder.decode(T.self, from: data)
 
                     // FIXME: BELOW CODE IS FOR TESTING
+                    /*
                     if decodedData != nil {
                         print("!!! Success decoding the data")
                         if let whatsOpenData = decodedData as? WhatIsOpenDto {
@@ -76,7 +79,7 @@ class ApiService: ApiServiceProtocol {
                             }
                         }
                     }
-
+                     */
                     continuation.resume(with: .success(decodedData))
                 } catch {
                     continuation.resume(with: .failure(APIError.decodingError(error.localizedDescription)))

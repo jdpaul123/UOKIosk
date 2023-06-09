@@ -67,7 +67,7 @@ struct EventsView: View {
 #if DEBUG
 struct EventsView_Previews: PreviewProvider {
     static var previews: some View {
-        EventsView(injector: Injector(eventsRepository: MockEventsService()))
+        EventsView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
     }
 }
 #endif

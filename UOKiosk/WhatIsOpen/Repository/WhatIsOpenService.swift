@@ -8,30 +8,38 @@
 import Foundation
 import Collections
 
-class WhatIsOpenService {
-    func getAssetData(url: String) async throws -> [WhatIsOpenCategories: [PlaceViewModel]] {
+class WhatIsOpenService: WhatIsOpenRepository {
+    private let urlString: String
+
+    init(urlString: String) {
+        self.urlString = urlString
+    }
+
+    func getAssetData() async throws -> [WhatIsOpenCategories: [PlaceViewModel]] {
         // get the data from the ApiService. Turn the returned Dto object into a view model so that the data can be displayed
         var whatIsOpenDto: WhatIsOpenDto? = nil
         do {
-            whatIsOpenDto = try await ApiService.shared.getJSON(urlString: url)
+            whatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
             fatalError("FAILED TO GET THE DATA WITH ERROR")
         }
 
-        // Go through each new "Asset"
-        // Create the current asset's PlaceViewModel with all of the correct data
-        // Place each store into the correct array based off of its type (ie. dining, coffee, duckStore, recreation, library, closed)
-        // Instantiate and return the WhatIsOpenViewModel
+        // Go through each new "Asset". Create the current asset's PlaceViewModel with all of the correct data
         guard let whatIsOpenDto = whatIsOpenDto else {
             return [:]
         }
 
+        return fillViewModelData(dto: whatIsOpenDto)
+    }
+
+    func fillViewModelData(dto: WhatIsOpenDto) -> [WhatIsOpenCategories: [PlaceViewModel]] {
         var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
 
-        for asset in whatIsOpenDto.features {
+        for asset in dto.features {
             let today = WoosmapDays(dayNumber: asset.properties.open.today)
 
             // FIXME: BELOW CODE IS FOR TESTING
+            /*
             print()
             print("Monday is: \(today.mondayDate)")
             print("Tuesday is: \(today.tuesdayDate)")
@@ -41,6 +49,7 @@ class WhatIsOpenService {
             print("Saturday is: \(today.saturdayDate)")
             print("Sunday is: \(today.sundayDate)")
             print()
+            */
 
             var mondayHours = [DateInterval]()
             var tuesdayHours = [DateInterval]()
@@ -83,6 +92,7 @@ class WhatIsOpenService {
             }
 
             // FIXME: BELOW CODE IS FOR TESTING
+            /*
             print()
             print("For \(asset.properties.name) the hours on Monday are: \(mondayHours)")
             print("The hours on Tuesday are: \(tuesdayHours)")
@@ -92,6 +102,7 @@ class WhatIsOpenService {
             print("The hours on Tuesday are: \(saturdayHours)")
             print("The hours on Tuesday are: \(sundayHours)")
             print()
+             */
 
             var todaysHours: [DateInterval] {
                 switch today {
@@ -153,7 +164,7 @@ class WhatIsOpenService {
             let saturdayIntervalString = intervalString(hours: saturdayHours)
             let sundayIntervalString = intervalString(hours: sundayHours)
 
-            var hours: OrderedDictionary<String, String> = [
+            let hours: OrderedDictionary<String, String> = [
                 "Monday": mondayIntervalString,
                 "Tuesday": tuesdayIntervalString,
                 "Wednsday": wednsdayIntervalString,
@@ -164,9 +175,11 @@ class WhatIsOpenService {
             ]
 
             // FIXME: BELOW CODE IS FOR TESTING
+            /*
             print()
             print(hours)
             print()
+             */
 
             let vm = PlaceViewModel(name: asset.properties.name,
                            emojiCode: asset.properties.userProperties.emoji ?? "💚",

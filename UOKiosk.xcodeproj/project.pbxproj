@@ -62,6 +62,7 @@
 		52F56AEA2A32970B0046A999 /* WhatsOpenEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */; };
 		52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */; };
 		52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */; };
+		52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,7 @@
 		52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsOpenEnums.swift; sourceTree = "<group>"; };
 		52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Subscript.swift"; sourceTree = "<group>"; };
 		52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeSubscript.swift"; sourceTree = "<group>"; };
+		52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatIsOpenService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
+				52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */,
 			);
 			path = MockRepository;
 			sourceTree = "<group>";
@@ -588,6 +591,7 @@
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
+				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 			);

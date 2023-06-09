@@ -25,7 +25,7 @@ struct WhatIsOpenView: View {
         }
         // FIXME: BELOW CODE IS FOR TESTING
         .task {
-            print("!!! CALLING VM.REFRESH()")
+//            print("!!! CALLING VM.REFRESH()")
             await vm.refresh()
         }
     }
@@ -114,6 +114,6 @@ struct WhatIsOpenList: View {
 
 struct FacilitiesHoursView_Previews: PreviewProvider {
     static var previews: some View {
-        WhatIsOpenView(injector: Injector(eventsRepository: MockEventsService()))
+        WhatIsOpenView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
     }
 }
