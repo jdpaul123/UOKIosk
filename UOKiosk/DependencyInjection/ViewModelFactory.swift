@@ -20,12 +20,12 @@ final class ViewModelFactory: ObservableObject {
     }
 
     // MARK: Make View Model Functions
-    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
-        EventDetailViewModel(event: eventModel)
-    }
-
     func makeEventsViewModel() -> EventsViewModel {
         EventsViewModel(eventsRepository: eventsRepository)
+    }
+
+    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
+        EventDetailViewModel(event: eventModel)
     }
 
     func makeCustomizeEventsFeedViewModel() -> CustomizeEventsFeedViewModel {
@@ -34,5 +34,9 @@ final class ViewModelFactory: ObservableObject {
 
     func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
         return WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository)
+    }
+
+    func makeWhatIsOpenListViewModel(places: [PlaceViewModel], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) -> WhatIsOpenListViewModel {
+        return WhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel)
     }
 }

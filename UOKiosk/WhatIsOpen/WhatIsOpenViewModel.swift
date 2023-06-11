@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 import OrderedCollections
 
 class WhatIsOpenViewModel: ObservableObject {
@@ -24,7 +25,7 @@ class WhatIsOpenViewModel: ObservableObject {
 
     @Published var isLoading: Bool
     @Published var showAlert: Bool
-    @Published var errorMEssage: String?
+    @Published var errorMessage: String?
 
     init(whatIsOpenRepository: WhatIsOpenRepository,
          dining: [PlaceViewModel] = [], coffee: [PlaceViewModel] = [], duckStore: [PlaceViewModel] = [], recreation: [PlaceViewModel] = [], library: [PlaceViewModel] = [],
@@ -45,10 +46,10 @@ class WhatIsOpenViewModel: ObservableObject {
 
         self.isLoading = isLoading
         self.showAlert = showAlert
-        self.errorMEssage = errorMessage
+        self.errorMessage = errorMessage
     }
 
-    func refresh() async {
+    func getData() async {
         var data: [WhatIsOpenCategories: [PlaceViewModel]]?
         do {
             data = try await whatIsOpenRepository.getAssetData()
@@ -75,15 +76,38 @@ class WhatIsOpenViewModel: ObservableObject {
     }
 }
 
-struct PlaceViewModel: Identifiable {
+class WhatIsOpenListViewModel: ObservableObject {
+    let listType: WhatIsOpenCategories
+    @Published var places: [PlaceViewModel]
+    var cancellables = Set<AnyCancellable>()
+
+    init(places: [PlaceViewModel], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) {
+        self.listType = listType
+        self.places =  places
+        listType.getWhatIsOpenViewModelData(vm: parentViewModel).sink { completion in
+            switch completion {
+            case .finished:
+                print("finished")
+            case .failure(let error):
+                print("Error: \(error.localizedDescription)")
+            }
+        } receiveValue: { placeViewModels in
+            self.places = placeViewModels
+        }
+        .store(in: &cancellables)
+
+    }
+}
+
+class PlaceViewModel: Identifiable {
     var id = UUID()
     let emojiCode: String
     let name: String
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL?
     let WebSieLink: URL?
-    let isOpenString: String
-    let isOpenColor: Color
+    @Published var isOpenString: String
+    @Published var isOpenColor: Color
 
     // dayRangess and hoursOpen should be the same length and the nth item in each arrayu are paired up
     // Key: Each string is either one day (ex. "Monday") or a range (ex "Monday - Friday")
@@ -102,44 +126,5 @@ struct PlaceViewModel: Identifiable {
         let formatter = DateFormatter()
         formatter.timeStyle = .short
         self.isOpenString = "\(isOpen ? "Open": "Closed") until \(formatter.string(from: until))"
-    }
-}
-
-
-class FacilityHours {
-    let name: String
-    let mapLink: URL
-    let WebSiteLink : URL
-
-    let hoursOfOperations: [HoursOfOperation] // There is always 7 items in this array starting with Monday as index 0 to Sunday at index 6
-
-    init(name: String, mapLink: URL, WebSiteLink: URL, hoursOfOperations: [HoursOfOperation]) {
-        self.name = name
-        self.mapLink = mapLink
-        self.WebSiteLink = WebSiteLink
-        self.hoursOfOperations = hoursOfOperations
-    }
-}
-
-class HoursOfOperation {
-    let day: DayOfTheWeek
-    let isCloasedToday: Bool
-    let hours: [TimeRange] // Empty if closed, otherwise there should be at least one TimeRange
-
-    init(day: DayOfTheWeek, isCloasedToday: Bool, hours: [TimeRange]) {
-        self.day = day
-        self.isCloasedToday = isCloasedToday
-        self.hours = hours
-    }
-}
-
-class TimeRange {
-    // startTime and endTIme are both represented as seconds since midnight. So 2:00 PM would be 50400, while 12:02 AM is 120.
-    let startTime: Int
-    let endTime: Int
-
-    init(startTime: Int, endTime: Int) {
-        self.startTime = startTime
-        self.endTime = endTime
     }
 }

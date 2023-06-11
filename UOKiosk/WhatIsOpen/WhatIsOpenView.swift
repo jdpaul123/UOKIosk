@@ -20,52 +20,29 @@ struct WhatIsOpenView: View {
     var body: some View {
         List {
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
-                WhatIsOpenList(listType: $0, vm: vm)
+                WhatIsOpenListView(listType: $0, parentViewModel: self.vm, injector: injector)
             }
         }
-        // FIXME: BELOW CODE IS FOR TESTING
         .task {
-//            print("!!! CALLING VM.REFRESH()")
-            await vm.refresh()
+            await vm.getData()
+            // TODO: Once data is recieved it should use Combine to update the walues in the WhatIsOpenListViews
         }
     }
 }
 
-struct WhatIsOpenList: View {
-    let listType: WhatIsOpenCategories
-    @ObservedObject var vm: WhatIsOpenViewModel
+struct WhatIsOpenListView: View {
+    @StateObject var vm: WhatIsOpenListViewModel
 
-    var listOfPlace: Binding<[PlaceViewModel]> {
-        switch listType {
-        case .dining:
-            return $vm.dining
-        case .coffee:
-            return $vm.coffee
-        case .duckStore:
-            return $vm.duckStore
-        case .recreation:
-            return $vm.recreation
-        case .library:
-            return $vm.library
-        case .bank:
-            return $vm.bank
-        case .building:
-            return $vm.building
-        case .grocery:
-            return $vm.grocery
-        case .other:
-            return $vm.other
-        case .closed:
-            return $vm.closed
-        }
+    init(listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel, injector: Injector, places: [PlaceViewModel] = []) {
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel))
     }
 
     var body: some View {
-        if listOfPlace.isEmpty {
+        if vm.places.isEmpty {
             EmptyView()
         } else {
-            Section(header: Text(listType.rawValue)) {
-                ForEach(listOfPlace) { $place in
+            Section(header: Text(vm.listType.rawValue)) {
+                ForEach(vm.places) { place in
                     // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
                     DisclosureGroup {
                         VStack {

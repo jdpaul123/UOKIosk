@@ -26,6 +26,7 @@
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
+		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
@@ -59,7 +60,7 @@
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
 		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
 		52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */; };
-		52F56AEA2A32970B0046A999 /* WhatsOpenEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */; };
+		52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */; };
 		52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */; };
 		52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */; };
 		52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
@@ -102,6 +103,7 @@
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
+		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
 		52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenService.swift; sourceTree = "<group>"; };
 		52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatsOpenData.swift; sourceTree = "<group>"; };
-		52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsOpenEnums.swift; sourceTree = "<group>"; };
+		52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenCategories.swift; sourceTree = "<group>"; };
 		52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Subscript.swift"; sourceTree = "<group>"; };
 		52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeSubscript.swift"; sourceTree = "<group>"; };
 		52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatIsOpenService.swift; sourceTree = "<group>"; };
@@ -227,6 +229,15 @@
 			path = MockModelData;
 			sourceTree = "<group>";
 		};
+		52463ECF2A35560E007BF9B1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */,
+				52463ED02A35563C007BF9B1 /* WoosmapDays.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		525538EE2A0DA606004BD415 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -267,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
-				52F56AE92A32970B0046A999 /* WhatsOpenEnums.swift */,
+				52463ECF2A35560E007BF9B1 /* Enums */,
 				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
 				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
 				52F1F65A2A304CE800F9CF3B /* Repository */,
@@ -566,7 +577,7 @@
 				52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
-				52F56AEA2A32970B0046A999 /* WhatsOpenEnums.swift in Sources */,
+				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
@@ -586,6 +597,7 @@
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
+				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,

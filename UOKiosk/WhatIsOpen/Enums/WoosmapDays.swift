@@ -1,21 +1,11 @@
 //
-//  WhatsOpenEnums.swift
+//  WoosmapDays.swift
 //  UOKiosk
 //
-//  Created by Jonathan Paul on 6/8/23.
+//  Created by Jonathan Paul on 6/10/23.
 //
 
 import Foundation
-
-enum DayOfTheWeek: String {
-    case Monday, Tuesday, Webnesday, Thursday, Friday, Saturday, Sunday
-}
-
-enum WhatIsOpenCategories: String, CaseIterable {
-//    case emu, llc, unthank, carson,
-    case dining, coffee, recreation, library, grocery, building, bank, other, closed
-    case duckStore = "duck store"
-}
 
 enum WoosmapDays: String {
     case monday
