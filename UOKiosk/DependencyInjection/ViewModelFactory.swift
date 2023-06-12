@@ -41,6 +41,6 @@ final class ViewModelFactory: ObservableObject {
     }
 
     func makeWhatIsOpenPlaceViewModel(place: WhatIsOpenPlace) -> WhatIsOpenPlaceViewModel {
-        WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, note: place.note, mapLink: place.mapLink, WebSieLink: place.WebSieLink, isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours)
+        WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, note: place.note, mapLink: place.mapLink, WebSieLink: place.WebSieLink, isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
 }

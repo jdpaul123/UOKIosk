@@ -81,14 +81,17 @@ class WhatIsOpenService: WhatIsOpenRepository {
                 let secondHourDigit: String = String(timeString[1])
                 let firstMinuteDigit: String = String(timeString[3])
                 let secondMinuteDigit: String = String(timeString[4])
+
                 // TODO: Create an error if the code does not get an integer value from the next two operations because it always should
                 let timeHours: Int = Int(String(firstHourDigit+secondHourDigit)) ?? 0
                 let timeMinutes: Int = Int(String(firstMinuteDigit+secondMinuteDigit)) ?? 0
                 let timeHoursInSeconds: Int = 60*60*timeHours //Seconds*Minutes*Hours
                 let timeMinutesInSeconds: Int = 60*timeMinutes // Seconds*Minutes
                 var timeSeconds: Int { timeMinutes == 59 ? 59 : 0 }
+
                 let timeInterval = TimeInterval(timeHoursInSeconds+timeMinutesInSeconds+timeSeconds)
-                return Date(timeInterval: timeInterval, since: today.mondayDate)
+
+                return Date(timeInterval: timeInterval, since: since)
             }
 
             // FIXME: BELOW CODE IS FOR TESTING
@@ -182,12 +185,13 @@ class WhatIsOpenService: WhatIsOpenRepository {
              */
 
             let vm = WhatIsOpenPlace(name: asset.properties.name,
-                           emojiCode: asset.properties.userProperties.emoji ?? "💚",
-                           mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
-                           WebSieLink: URL(string: asset.properties.contact?.website ?? ""),
-                           until: until,
-                           isOpen: asset.properties.open.isOpen,
-                           hours: hours)
+                                     emojiCode: asset.properties.userProperties.emoji ?? "💚",
+                                     mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
+                                     WebSieLink: URL(string: asset.properties.contact?.website ?? ""),
+                                     until: until,
+                                     isOpen: asset.properties.open.isOpen,
+                                     hours: hours,
+                                     hoursIntervals: [mondayHours, tuesdayHours, wednsdayHours, thurdayHours, fridayHours, saturdayHours, sundayHours])
             let assetCategory = asset.properties.types[0, default: ""]
             switch assetCategory {
             case "dining":
