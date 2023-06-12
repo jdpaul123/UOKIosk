@@ -54,7 +54,6 @@ struct WhatIsOpenListView: View {
 }
 
 struct WhatIsOpenPlaceView: View {
-
     @StateObject var vm: WhatIsOpenPlaceViewModel
 
     init(whatIsOpenPlace: WhatIsOpenPlace, injector: Injector) {

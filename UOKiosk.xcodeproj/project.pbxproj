@@ -28,6 +28,7 @@
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
+		52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
@@ -106,6 +107,7 @@
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
+		52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DayOfWeek.swift"; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
@@ -190,6 +192,7 @@
 				52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */,
 				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
 				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
+				52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
+				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
