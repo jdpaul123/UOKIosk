@@ -54,7 +54,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             var mondayHours = [DateInterval]()
             var tuesdayHours = [DateInterval]()
             var wednsdayHours = [DateInterval]()
-            var thurdayHours = [DateInterval]()
+            var thursdayHours = [DateInterval]()
             var fridayHours = [DateInterval]()
             var saturdayHours = [DateInterval]()
             var sundayHours = [DateInterval]()
@@ -62,7 +62,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             fillHours(hoursDto: asset.properties.hours.monday.hours, hours: &mondayHours, dayAtMidnight: today.mondayDate)
             fillHours(hoursDto: asset.properties.hours.tuesday.hours, hours: &tuesdayHours, dayAtMidnight: today.tuesdayDate)
             fillHours(hoursDto: asset.properties.hours.wednsday.hours, hours: &wednsdayHours, dayAtMidnight: today.wednsdayDate)
-            fillHours(hoursDto: asset.properties.hours.thursday.hours, hours: &thurdayHours, dayAtMidnight: today.thursdayDate)
+            fillHours(hoursDto: asset.properties.hours.thursday.hours, hours: &thursdayHours, dayAtMidnight: today.thursdayDate)
             fillHours(hoursDto: asset.properties.hours.friday.hours, hours: &fridayHours, dayAtMidnight: today.fridayDate)
             fillHours(hoursDto: asset.properties.hours.saturday.hours, hours: &saturdayHours, dayAtMidnight: today.saturdayDate)
             fillHours(hoursDto: asset.properties.hours.sunday.hours, hours: &sundayHours, dayAtMidnight: today.sundayDate)
@@ -100,33 +100,12 @@ class WhatIsOpenService: WhatIsOpenRepository {
             print("For \(asset.properties.name) the hours on Monday are: \(mondayHours)")
             print("The hours on Tuesday are: \(tuesdayHours)")
             print("The hours on Tuesday are: \(wednsdayHours)")
-            print("The hours on Tuesday are: \(thurdayHours)")
+            print("The hours on Tuesday are: \(thursdayHours)")
             print("The hours on Tuesday are: \(fridayHours)")
             print("The hours on Tuesday are: \(saturdayHours)")
             print("The hours on Tuesday are: \(sundayHours)")
             print()
              */
-
-            var todaysHours: [DateInterval] {
-                switch today {
-                case .monday:
-                    return mondayHours
-                case .tuesday:
-                    return tuesdayHours
-                case .wednsday:
-                    return wednsdayHours
-                case .thursday:
-                    return thurdayHours
-                case .friday:
-                    return fridayHours
-                case .saturday:
-                    return saturdayHours
-                case .sunday:
-                    return sundayHours
-                case .notADay:
-                    return []
-                }
-            }
 
             var until = Date(timeIntervalSince1970: 0)
             if let currentSlice = asset.properties.open.currentSlice { // This means the store is opened
@@ -162,7 +141,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             let mondayIntervalString = intervalString(hours: mondayHours)
             let tuesdayIntervalString = intervalString(hours: tuesdayHours)
             let wednsdayIntervalString = intervalString(hours: wednsdayHours)
-            let thursdayIntervalString = intervalString(hours: thurdayHours)
+            let thursdayIntervalString = intervalString(hours: thursdayHours)
             let fridayIntervalString = intervalString(hours: fridayHours)
             let saturdayIntervalString = intervalString(hours: saturdayHours)
             let sundayIntervalString = intervalString(hours: sundayHours)
@@ -191,7 +170,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
                                      until: until,
                                      isOpen: asset.properties.open.isOpen,
                                      hours: hours,
-                                     hoursIntervals: [mondayHours, tuesdayHours, wednsdayHours, thurdayHours, fridayHours, saturdayHours, sundayHours])
+                                     hoursIntervals: [mondayHours, tuesdayHours, wednsdayHours, thursdayHours, fridayHours, saturdayHours, sundayHours])
             let assetCategory = asset.properties.types[0, default: ""]
             switch assetCategory {
             case "dining":
