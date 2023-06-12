@@ -8,7 +8,7 @@
 import Foundation
 
 class MockWhatIsOpenService: WhatIsOpenRepository {
-    func getAssetData() async throws -> [WhatIsOpenCategories : [PlaceViewModel]] {
+    func getAssetData() async throws -> [WhatIsOpenCategories : [WhatIsOpenPlace]] {
         return [.bank:[]]
     }
 }

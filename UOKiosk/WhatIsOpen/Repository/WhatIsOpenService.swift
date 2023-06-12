@@ -15,7 +15,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
         self.urlString = urlString
     }
 
-    func getAssetData() async throws -> [WhatIsOpenCategories: [PlaceViewModel]] {
+    func getAssetData() async throws -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
         // get the data from the ApiService. Turn the returned Dto object into a view model so that the data can be displayed
         var whatIsOpenDto: WhatIsOpenDto? = nil
         do {
@@ -32,8 +32,8 @@ class WhatIsOpenService: WhatIsOpenRepository {
         return fillViewModelData(dto: whatIsOpenDto)
     }
 
-    func fillViewModelData(dto: WhatIsOpenDto) -> [WhatIsOpenCategories: [PlaceViewModel]] {
-        var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel](), [PlaceViewModel]())
+    func fillViewModelData(dto: WhatIsOpenDto) -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
+        var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace]())
 
         for asset in dto.features {
             let today = WoosmapDays(dayNumber: asset.properties.open.today)
@@ -181,7 +181,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             print()
              */
 
-            let vm = PlaceViewModel(name: asset.properties.name,
+            let vm = WhatIsOpenPlace(name: asset.properties.name,
                            emojiCode: asset.properties.userProperties.emoji ?? "💚",
                            mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
                            WebSieLink: URL(string: asset.properties.contact?.website ?? ""),
@@ -211,7 +211,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             }
         }
 
-        let returnDictionary: [WhatIsOpenCategories: [PlaceViewModel]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library,
+        let returnDictionary: [WhatIsOpenCategories: [WhatIsOpenPlace]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library,
                                                                           .closed: closed, .grocery: grocery, .building: building, .bank: bank, .other: other]
         return returnDictionary
     }

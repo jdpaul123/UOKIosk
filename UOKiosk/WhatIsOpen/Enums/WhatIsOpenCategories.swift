@@ -11,7 +11,7 @@ enum WhatIsOpenCategories: String, CaseIterable {
     case dining, coffee, recreation, library, grocery, building, bank, other, closed
     case duckStore = "duck store"
 
-    func getWhatIsOpenViewModelData(vm: WhatIsOpenViewModel) -> Published<[PlaceViewModel]>.Publisher {
+    func getWhatIsOpenViewModelData(vm: WhatIsOpenViewModel) -> Published<[WhatIsOpenPlace]>.Publisher {
         switch self {
         case .dining:
             return vm.$dining

@@ -33,10 +33,14 @@ final class ViewModelFactory: ObservableObject {
     }
 
     func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
-        return WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository)
+        WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository)
     }
 
-    func makeWhatIsOpenListViewModel(places: [PlaceViewModel], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) -> WhatIsOpenListViewModel {
-        return WhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel)
+    func makeWhatIsOpenListViewModel(places: [WhatIsOpenPlace], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) -> WhatIsOpenListViewModel {
+        WhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel)
+    }
+
+    func makeWhatIsOpenPlaceViewModel(place: WhatIsOpenPlace) -> WhatIsOpenPlaceViewModel {
+        WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, note: place.note, mapLink: place.mapLink, WebSieLink: place.WebSieLink, isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours)
     }
 }
