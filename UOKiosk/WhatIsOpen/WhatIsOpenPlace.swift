@@ -16,8 +16,8 @@ struct WhatIsOpenPlace: Identifiable {
     let note: String? // Contains the building the store/facility is located in or a fun note
     let mapLink: URL?
     let WebSieLink: URL?
-    var isOpenString: String
-    var isOpenColor: Color
+    let isOpenString: String
+    let isOpenColor: Color
     let hours: OrderedDictionary<String, String>
     let hoursIntervals: [[DateInterval]]
 
@@ -36,6 +36,9 @@ struct WhatIsOpenPlace: Identifiable {
             if isOpen { return "" }
             if Calendar(identifier: .gregorian).compare(Date.now, to: until, toGranularity: .day) == .orderedSame {
                 return ""
+            }
+            if Calendar(identifier: .gregorian).isDateInTomorrow(until) {
+                return "tomorrow"
             }
             return "on \(until.dayOfWeek() ?? "")"
         }()

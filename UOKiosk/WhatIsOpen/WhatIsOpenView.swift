@@ -23,11 +23,11 @@ struct DiningHoursView: WhatIsOpenView {
 
     var body: some View {
         List {
-            NavigationLink(destination: FacilityHoursView(injector: injector, whatIsOpenViewModel: vm).navigationTitle("What's Open: Facility Hours")) {
-                Text("Facilities Hours")
+            NavigationLink(destination: FacilityHoursView(injector: injector, diningHoursViewModel: vm).navigationTitle("Facility Hours")) {
+                Text("Facility Hours")
             }
-            NavigationLink(destination: StoreHoursView(injector: injector, whatIsOpenViewModel: vm).navigationTitle("What's Open: Store Hours")) {
-                Text("Stores Hours")
+            NavigationLink(destination: StoreHoursView(injector: injector, diningHoursViewModel: vm).navigationTitle("Store Hours")) {
+                Text("Store Hours")
             }
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
@@ -45,20 +45,20 @@ struct DiningHoursView: WhatIsOpenView {
 struct FacilityHoursView: WhatIsOpenView {
     let injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
-    let whatIsOpenViewModel: WhatIsOpenViewModel
+    let diningHoursViewModel: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, whatIsOpenViewModel: WhatIsOpenViewModel) {
+    init(injector: Injector, diningHoursViewModel: WhatIsOpenViewModel) {
         _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .facilities))
         self.injector = injector
-        self.whatIsOpenViewModel = whatIsOpenViewModel
+        self.diningHoursViewModel = diningHoursViewModel
     }
 
     var body: some View {
         List {
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
-                    WhatIsOpenListView(listType: $0, parentViewModel: whatIsOpenViewModel, injector: injector)
+                    WhatIsOpenListView(listType: $0, parentViewModel: diningHoursViewModel, injector: injector)
                 }
             }
         }
@@ -68,20 +68,20 @@ struct FacilityHoursView: WhatIsOpenView {
 struct StoreHoursView: WhatIsOpenView {
     let injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
-    let whatIsOpenViewModel: WhatIsOpenViewModel
+    let diningHoursViewModel: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, whatIsOpenViewModel: WhatIsOpenViewModel) {
+    init(injector: Injector, diningHoursViewModel: WhatIsOpenViewModel) {
         _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .stores))
         self.injector = injector
-        self.whatIsOpenViewModel = whatIsOpenViewModel
+        self.diningHoursViewModel = diningHoursViewModel
     }
 
     var body: some View {
         List {
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
-                    WhatIsOpenListView(listType: $0, parentViewModel: whatIsOpenViewModel, injector: injector)
+                    WhatIsOpenListView(listType: $0, parentViewModel: diningHoursViewModel, injector: injector)
                 }
             }
         }
