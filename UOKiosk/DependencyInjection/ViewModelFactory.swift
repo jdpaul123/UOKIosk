@@ -32,8 +32,9 @@ final class ViewModelFactory: ObservableObject {
         CustomizeEventsFeedViewModel()
     }
 
-    func makeWhatIsOpenViewModel() -> WhatIsOpenViewModel {
-        WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository)
+    func makeWhatIsOpenViewModel(type: WhatIsOpenViewType) -> WhatIsOpenViewModel {
+        WhatIsOpenViewModel(whatIsOpenRepository: whatIsOpenRepository, showDining: type == .dining,
+                            showFacilities: type == .facilities, showStores: type == .stores)
     }
 
     func makeWhatIsOpenListViewModel(places: [WhatIsOpenPlace], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) -> WhatIsOpenListViewModel {
@@ -41,6 +42,7 @@ final class ViewModelFactory: ObservableObject {
     }
 
     func makeWhatIsOpenPlaceViewModel(place: WhatIsOpenPlace) -> WhatIsOpenPlaceViewModel {
-        WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, note: place.note, mapLink: place.mapLink, WebSieLink: place.WebSieLink, isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours, hoursIntervals: place.hoursIntervals)
+        WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, note: place.note, mapLink: place.mapLink, WebSieLink: place.WebSieLink,
+                                 isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
 }

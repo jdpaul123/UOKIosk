@@ -7,20 +7,32 @@
 
 import SwiftUI
 
-struct WhatIsOpenView: View {
+protocol WhatIsOpenView: View {
+
+}
+
+struct DiningHoursView: WhatIsOpenView {
     let injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
     init(injector: Injector) {
         self.injector = injector
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel())
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .dining))
     }
 
     var body: some View {
         List {
+            NavigationLink(destination: FacilityHoursView(injector: injector, whatIsOpenViewModel: vm).navigationTitle("What's Open: Facility Hours")) {
+                Text("Facilities Hours")
+            }
+            NavigationLink(destination: StoreHoursView(injector: injector, whatIsOpenViewModel: vm).navigationTitle("What's Open: Store Hours")) {
+                Text("Stores Hours")
+            }
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
-                WhatIsOpenListView(listType: $0, parentViewModel: self.vm, injector: injector)
+                if vm.isCategoryShown(category: $0) {
+                    WhatIsOpenListView(listType: $0, parentViewModel: self.vm, injector: injector)
+                }
             }
         }
         .task {
@@ -30,81 +42,55 @@ struct WhatIsOpenView: View {
     }
 }
 
-struct WhatIsOpenListView: View {
+struct FacilityHoursView: WhatIsOpenView {
     let injector: Injector
-    @StateObject var vm: WhatIsOpenListViewModel
+    @StateObject var vm: WhatIsOpenViewModel
+    let whatIsOpenViewModel: WhatIsOpenViewModel
 
-    init(listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel, injector: Injector, places: [WhatIsOpenPlace] = []) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel))
+    // MARK: INITIALIZER
+    init(injector: Injector, whatIsOpenViewModel: WhatIsOpenViewModel) {
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .facilities))
         self.injector = injector
+        self.whatIsOpenViewModel = whatIsOpenViewModel
     }
 
     var body: some View {
-        if vm.places.isEmpty {
-            EmptyView()
-        } else {
-            Section(header: Text(vm.listType.rawValue)) {
-                ForEach(vm.places) { place in
-                    // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
-                    WhatIsOpenPlaceView(whatIsOpenPlace: place, injector: injector)
+        List {
+            ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
+                if vm.isCategoryShown(category: $0) {
+                    WhatIsOpenListView(listType: $0, parentViewModel: whatIsOpenViewModel, injector: injector)
                 }
             }
         }
     }
 }
 
-struct WhatIsOpenPlaceView: View {
-    @StateObject var vm: WhatIsOpenPlaceViewModel
+struct StoreHoursView: WhatIsOpenView {
+    let injector: Injector
+    @StateObject var vm: WhatIsOpenViewModel
+    let whatIsOpenViewModel: WhatIsOpenViewModel
 
-    init(whatIsOpenPlace: WhatIsOpenPlace, injector: Injector) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenPlaceViewModel(place: whatIsOpenPlace))
+    // MARK: INITIALIZER
+    init(injector: Injector, whatIsOpenViewModel: WhatIsOpenViewModel) {
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .stores))
+        self.injector = injector
+        self.whatIsOpenViewModel = whatIsOpenViewModel
     }
 
     var body: some View {
-        DisclosureGroup {
-            VStack {
-                HStack {
-                    Text(vm.note ?? "")
-                        .font(.system(.footnote))
-                        .bold()
-                    Spacer()
-                }
-                Divider()
-                ForEach(0..<vm.hours.count, id: \.self) { index in
-                    VStack {
-                        HStack {
-                            VStack {
-                                Text(vm.hours.elements[index].key)
-                                Spacer()
-                            }
-                            Spacer()
-                            Text(vm.hours.elements[index].value)
-                                .fixedSize(horizontal: false, vertical: true)
-                        }
-                        if index != vm.hours.count-1 {
-                            Divider()
-                        }
-                    }
-                }
-            }
-        } label: {
-            HStack {
-                Text(vm.emoji)
-                    .font(.system(size: 36))
-                VStack {
-                    Text(vm.name)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    Text(vm.isOpenString)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .foregroundColor(vm.isOpenColor)
+        List {
+            ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
+                if vm.isCategoryShown(category: $0) {
+                    WhatIsOpenListView(listType: $0, parentViewModel: whatIsOpenViewModel, injector: injector)
                 }
             }
         }
     }
 }
 
-struct FacilitiesHoursView_Previews: PreviewProvider {
+
+struct WhatIsOpenView_Previews: PreviewProvider {
     static var previews: some View {
-        WhatIsOpenView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
+        DiningHoursView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
     }
 }

@@ -47,8 +47,8 @@ struct TabMenuView: View {
             }
 
             NavigationView {
-                WhatIsOpenView(injector: injector)
-                    .navigationTitle("What's Open")
+                DiningHoursView(injector: injector)
+                    .navigationTitle(Tabs.whatIsOpen.rawValue)
             }
             .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.whatIsOpen)

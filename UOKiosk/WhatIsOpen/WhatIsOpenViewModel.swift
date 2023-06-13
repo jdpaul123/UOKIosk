@@ -12,44 +12,47 @@ import OrderedCollections
 class WhatIsOpenViewModel: ObservableObject {
     private let whatIsOpenRepository: WhatIsOpenRepository
 
-    @Published var dining: [WhatIsOpenPlace]
-    @Published var coffee: [WhatIsOpenPlace]
-    @Published var duckStore: [WhatIsOpenPlace]
-    @Published var recreation: [WhatIsOpenPlace]
-    @Published var library: [WhatIsOpenPlace]
-    @Published var grocery: [WhatIsOpenPlace]
-    @Published var building: [WhatIsOpenPlace]
-    @Published var bank: [WhatIsOpenPlace]
-    @Published var other: [WhatIsOpenPlace]
-    @Published var closed: [WhatIsOpenPlace] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
+    @Published var dining: [WhatIsOpenPlace] = []
+    @Published var coffee: [WhatIsOpenPlace] = []
+
+    // Stores
+    @Published var grocery: [WhatIsOpenPlace] = []
+    @Published var duckStore: [WhatIsOpenPlace] = []
+    @Published var bank: [WhatIsOpenPlace] = []
+
+    // Facilities = []
+    @Published var building: [WhatIsOpenPlace] = []
+    @Published var recreation: [WhatIsOpenPlace] = []
+    @Published var library: [WhatIsOpenPlace] = []
+
+    // Other = []
+    @Published var other: [WhatIsOpenPlace] = []
+    @Published var closed: [WhatIsOpenPlace] = [] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
 
     @Published var isLoading: Bool
     @Published var showAlert: Bool
     @Published var errorMessage: String?
 
+    let showDining: Bool
+    let showFacilities: Bool
+    let showStores: Bool
+
     init(whatIsOpenRepository: WhatIsOpenRepository,
-         dining: [WhatIsOpenPlace] = [], coffee: [WhatIsOpenPlace] = [],
-         duckStore: [WhatIsOpenPlace] = [], recreation: [WhatIsOpenPlace] = [],
-         library: [WhatIsOpenPlace] = [], closed: [WhatIsOpenPlace] = [],
-         grocery: [WhatIsOpenPlace] = [], building: [WhatIsOpenPlace] = [],
-         bank: [WhatIsOpenPlace] = [], other: [WhatIsOpenPlace] = [],
+         showDining: Bool = false, showFacilities: Bool = false, showStores: Bool = false,
          isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.whatIsOpenRepository = whatIsOpenRepository
-
-        self.dining = dining
-        self.coffee = coffee
-        self.duckStore = duckStore
-        self.recreation = recreation
-        self.library = library
-        self.closed = closed
-        self.grocery = grocery
-        self.building = building
-        self.bank = bank
-        self.other = other
 
         self.isLoading = isLoading
         self.showAlert = showAlert
         self.errorMessage = errorMessage
+
+        self.showDining = showDining
+        self.showFacilities = showFacilities
+        self.showStores = showStores
+    }
+
+    func isCategoryShown(category: WhatIsOpenCategories) -> Bool {
+        return category.isCategoryShown(vm: self).contains(category)
     }
 
     func getData() async {
@@ -100,7 +103,6 @@ class WhatIsOpenListViewModel: ObservableObject {
                 self.places = places
             }
             .store(in: &cancellables)
-
     }
 }
 
@@ -176,3 +178,33 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
             .store(in: &cancelables)
     }
 }
+
+//class FacilityHoursViewModel: ObservableObject {
+//    let whatIsOpenViewModel: WhatIsOpenViewModel
+//
+//    init(whatIsOpenViewModel: WhatIsOpenViewModel) {
+//        self.whatIsOpenViewModel = whatIsOpenViewModel
+//    }
+//
+//    func isCategoryShown(category: WhatIsOpenCategories) -> Bool {
+//        if category == .building || category == .recreation || category == .library {
+//            return true
+//        }
+//        return false
+//    }
+//}
+//
+//class StoreHoursViewModel: ObservableObject {
+//    let whatIsOpenViewModel: WhatIsOpenViewModel
+//
+//    init(whatIsOpenViewModel: WhatIsOpenViewModel) {
+//        self.whatIsOpenViewModel = whatIsOpenViewModel
+//    }
+//
+//    func isCategoryShown(category: WhatIsOpenCategories) -> Bool {
+//        if category == .grocery || category == .duckStore || category == .bank {
+//            return true
+//        }
+//        return false
+//    }
+//}

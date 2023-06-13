@@ -45,7 +45,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         super.init()
         //self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         #if DEBUG
-        print("!!! On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+//        print("!!! On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
 
@@ -94,7 +94,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
         }
         guard let resultsController = resultsController else {
             // TODO: Add error track here because the return below should never be hit
-            print("!!! Results Controller is nil")
+//            print("!!! Results Controller is nil")
             return
         }
 

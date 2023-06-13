@@ -35,4 +35,15 @@ enum WhatIsOpenCategories: String, CaseIterable {
             return vm.$duckStore
         }
     }
+
+    func isCategoryShown(vm: WhatIsOpenViewModel) -> [WhatIsOpenCategories] {
+        if vm.showStores {
+            return [.duckStore, .grocery, .bank]
+        } else if vm.showDining {
+            return [.dining, .coffee]
+        } else if vm.showFacilities {
+            return [.recreation, .building, .library]
+        }
+        return []
+    }
 }

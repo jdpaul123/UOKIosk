@@ -32,7 +32,13 @@ struct WhatIsOpenPlace: Identifiable {
         self.isOpenColor = isOpen ? .green: .red
         let formatter = DateFormatter()
         formatter.timeStyle = .short
-        let on = isOpen ? "": "on \(until.dayOfWeek() ?? "")"
+        let on: String = {
+            if isOpen { return "" }
+            if Calendar(identifier: .gregorian).compare(Date.now, to: until, toGranularity: .day) == .orderedSame {
+                return ""
+            }
+            return "on \(until.dayOfWeek() ?? "")"
+        }()
         self.isOpenString = "\(isOpen ? "Open": "Closed") until \(formatter.string(from: until)) \(on)"
         self.hoursIntervals = hoursIntervals
     }
