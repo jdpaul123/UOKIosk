@@ -27,7 +27,7 @@ class WhatIsOpenListViewModel: ObservableObject {
                     print("Error: \(error.localizedDescription)")
                 }
             } receiveValue: { places in
-                self.places = places
+                self.places = places.sorted(by: { $0.building ?? "" < $1.building ?? "" })
             }
             .store(in: &cancellables)
     }
