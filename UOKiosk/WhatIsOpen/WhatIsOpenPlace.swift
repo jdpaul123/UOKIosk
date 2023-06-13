@@ -13,7 +13,7 @@ struct WhatIsOpenPlace: Identifiable {
     var id = UUID()
     let emoji: String
     let name: String
-    let note: String? // Contains the building the store/facility is located in or a fun note
+    let building: String?
     let mapLink: URL?
     let WebSieLink: URL?
     let isOpenString: String
@@ -22,10 +22,10 @@ struct WhatIsOpenPlace: Identifiable {
     let hoursIntervals: [[DateInterval]]
 
     // For the Until: Date value: If open, then this value is used as an indicator of when the place closes next. If closed, then this value is used as an indicator of when the place opens next
-    init(name: String, emojiCode: String, note: String? = nil, mapLink: URL?, WebSieLink: URL?, until: Date, isOpen: Bool, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
+    init(name: String, emojiCode: String, building: String?, mapLink: URL?, WebSieLink: URL?, until: Date, isOpen: Bool, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
         self.name = name
         self.emoji = emojiCode
-        self.note = note
+        self.building = building
         self.mapLink = mapLink
         self.WebSieLink = WebSieLink
         self.hours = hours

@@ -39,6 +39,7 @@ struct StorePropertiesDto: Decodable {
 
 struct UserPropertiesDto: Decodable {
     let emoji: String?
+    let building: String?
 }
 
 struct CurrentStoreStatusDto: Decodable {

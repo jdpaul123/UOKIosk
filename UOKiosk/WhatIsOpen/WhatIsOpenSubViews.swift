@@ -43,7 +43,7 @@ struct WhatIsOpenPlaceView: View {
         DisclosureGroup {
             VStack {
                 HStack {
-                    Text(vm.note ?? "")
+                    Text(vm.building ?? "")
                         .font(.system(.footnote))
                         .bold()
                     Spacer()
@@ -59,6 +59,7 @@ struct WhatIsOpenPlaceView: View {
                             Spacer()
                             Text(vm.hours.elements[index].value)
                                 .fixedSize(horizontal: false, vertical: true)
+                                .foregroundColor(vm.isClosedColor(closedValue: vm.hours.elements[index].value))
                         }
                         if index != vm.hours.count-1 {
                             Divider()
