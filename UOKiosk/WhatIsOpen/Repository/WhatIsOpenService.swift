@@ -167,7 +167,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
                                      emojiCode: asset.properties.userProperties.emoji ?? "💚",
                                      building: asset.properties.userProperties.building,
                                      mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
-                                     WebSieLink: URL(string: asset.properties.contact?.website ?? ""),
+                                     websiteLink: URL(string: asset.properties.contact?.website ?? ""),
                                      until: until,
                                      isOpen: asset.properties.open.isOpen,
                                      hours: hours,

@@ -47,6 +47,15 @@ struct WhatIsOpenPlaceView: View {
                         .font(.system(.footnote))
                         .bold()
                     Spacer()
+                    if let websiteLink = vm.websiteLink {
+                        HStack {
+                            Link("More Info", destination: websiteLink)
+                                .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
+                                .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
+                                .cornerRadius(4)
+                        }
+                        .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
+                    }
                 }
                 Divider()
                 ForEach(0..<vm.hours.count, id: \.self) { index in

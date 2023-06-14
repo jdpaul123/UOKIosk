@@ -38,7 +38,7 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
     let name: String
     let building: String?
     let mapLink: URL?
-    let WebSieLink: URL?
+    let websiteLink: URL?
     let hoursIntervals: [[DateInterval]]
     @Published var isOpenString: String
     @Published var isOpenColor: Color
@@ -50,12 +50,12 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
     // Value: Each string is either "closed", a single time range (ex. "7:00a-10:00p"), or multiple ranges split by newlines (ex. "7:00a-12:00\n1:00p-10:00p")
     let hours: OrderedDictionary<String, String>
 
-    init(emojiCode: String, name: String, building: String?, mapLink: URL?, WebSieLink: URL?, isOpenString: String, isOpenColor: Color, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
+    init(emojiCode: String, name: String, building: String?, mapLink: URL?, websiteLink: URL?, isOpenString: String, isOpenColor: Color, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
         self.emoji = emojiCode
         self.name = name
         self.building = building
         self.mapLink = mapLink
-        self.WebSieLink = WebSieLink
+        self.websiteLink = websiteLink
         self.isOpenString = isOpenString
         self.isOpenColor = isOpenColor
         self.hours = hours
