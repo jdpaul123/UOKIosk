@@ -41,38 +41,30 @@ struct WhatIsOpenPlaceView: View {
 
     var body: some View {
         DisclosureGroup {
-            VStack {
-                HStack {
-                    Text(vm.building ?? "")
-                        .font(.system(.footnote))
-                        .bold()
-                    Spacer()
-                    if let websiteLink = vm.websiteLink {
-                        HStack {
-                            Link("More Info", destination: websiteLink)
-                                .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
-                                .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
-                                .cornerRadius(4)
-                        }
-                        .padding(EdgeInsets(top: 2, leading: 10, bottom: 2, trailing: 10))
-                    }
+            HStack {
+                Text(vm.building ?? "")
+                    .font(.system(.footnote))
+                    .bold()
+                Spacer()
+                if let websiteLink = vm.websiteLink {
+                    Link("More Info", destination: websiteLink)
+                        .font(.system(.footnote).weight(.bold  ))
+                        .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
+                        .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
+                        .cornerRadius(4)
                 }
-                Divider()
-                ForEach(0..<vm.hours.count, id: \.self) { index in
-                    VStack {
-                        HStack {
-                            VStack {
-                                Text(vm.hours.elements[index].key)
-                                Spacer()
-                            }
+            }
+            ForEach(0..<vm.hours.count, id: \.self) { index in
+                VStack {
+                    HStack {
+                        VStack {
+                            Text(vm.hours.elements[index].key)
                             Spacer()
-                            Text(vm.hours.elements[index].value)
-                                .fixedSize(horizontal: false, vertical: true)
-                                .foregroundColor(vm.isClosedColor(closedValue: vm.hours.elements[index].value))
                         }
-                        if index != vm.hours.count-1 {
-                            Divider()
-                        }
+                        Spacer()
+                        Text(vm.hours.elements[index].value)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .foregroundColor(vm.isClosedColor(closedValue: vm.hours.elements[index].value))
                     }
                 }
             }
