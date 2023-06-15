@@ -32,17 +32,15 @@
 		52463ED72A380F20007BF9B1 /* WhatIsOpenSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */; };
 		52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED82A381C5E007BF9B1 /* WhatIsOpenViewType.swift */; };
 		52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */; };
+		52463EDF2A3AC76B007BF9B1 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EDE2A3AC76B007BF9B1 /* Collections */; };
+		52463EE12A3AC76B007BF9B1 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE02A3AC76B007BF9B1 /* DequeModule */; };
+		52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE22A3AC76B007BF9B1 /* OrderedCollections */; };
+		52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */; };
+		52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
 		525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */; };
-		5274097D2A1D31B500C64353 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 5274097C2A1D31B500C64353 /* Collections */; };
-		5274097F2A1D31B500C64353 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5274097E2A1D31B500C64353 /* DequeModule */; };
-		527409812A1D31B500C64353 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 527409802A1D31B500C64353 /* OrderedCollections */; };
-		5289CEA52A1422DC00E51257 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA42A1422DC00E51257 /* FirebaseAnalytics */; };
-		5289CEA72A1422DC00E51257 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */; };
-		5289CEA92A1422DC00E51257 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA82A1422DC00E51257 /* FirebaseFirestore */; };
-		5289CEAB2A1422DC00E51257 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -61,7 +59,6 @@
 		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
-		52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
 		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
 		52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */; };
@@ -153,14 +150,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5289CEA72A1422DC00E51257 /* FirebaseAnalyticsSwift in Frameworks */,
-				5289CEA52A1422DC00E51257 /* FirebaseAnalytics in Frameworks */,
-				5274097D2A1D31B500C64353 /* Collections in Frameworks */,
-				52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */,
-				5289CEA92A1422DC00E51257 /* FirebaseFirestore in Frameworks */,
-				5289CEAB2A1422DC00E51257 /* FirebaseFirestoreSwift in Frameworks */,
-				527409812A1D31B500C64353 /* OrderedCollections in Frameworks */,
-				5274097F2A1D31B500C64353 /* DequeModule in Frameworks */,
+				52463EDF2A3AC76B007BF9B1 /* Collections in Frameworks */,
+				52463EE12A3AC76B007BF9B1 /* DequeModule in Frameworks */,
+				52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */,
+				52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */,
+				52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -453,14 +447,11 @@
 			);
 			name = UOKiosk;
 			packageProductDependencies = (
-				5289CEA42A1422DC00E51257 /* FirebaseAnalytics */,
-				5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */,
-				5289CEA82A1422DC00E51257 /* FirebaseFirestore */,
-				5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */,
-				5274097C2A1D31B500C64353 /* Collections */,
-				5274097E2A1D31B500C64353 /* DequeModule */,
-				527409802A1D31B500C64353 /* OrderedCollections */,
-				52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */,
+				52463EDE2A3AC76B007BF9B1 /* Collections */,
+				52463EE02A3AC76B007BF9B1 /* DequeModule */,
+				52463EE22A3AC76B007BF9B1 /* OrderedCollections */,
+				52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */,
+				52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */,
 			);
 			productName = UOKiosk;
 			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
@@ -535,9 +526,8 @@
 			);
 			mainGroup = 529861AD284553BA009C1E3B;
 			packageReferences = (
-				5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */,
-				52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
+				52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
@@ -956,7 +946,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+		52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
@@ -964,7 +954,7 @@
 				minimumVersion = 1.0.0;
 			};
 		};
-		5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+		52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
@@ -972,56 +962,33 @@
 				minimumVersion = 10.0.0;
 			};
 		};
-		52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		5274097C2A1D31B500C64353 /* Collections */ = {
+		52463EDE2A3AC76B007BF9B1 /* Collections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = 52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = Collections;
 		};
-		5274097E2A1D31B500C64353 /* DequeModule */ = {
+		52463EE02A3AC76B007BF9B1 /* DequeModule */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = 52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = DequeModule;
 		};
-		527409802A1D31B500C64353 /* OrderedCollections */ = {
+		52463EE22A3AC76B007BF9B1 /* OrderedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			package = 52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
 		};
-		5289CEA42A1422DC00E51257 /* FirebaseAnalytics */ = {
+		52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
 		};
-		5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */ = {
+		52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			package = 52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
-		};
-		5289CEA82A1422DC00E51257 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-		5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestoreSwift;
-		};
-		52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
-			productName = GoogleAPIClientForREST_Calendar;
 		};
 /* End XCSwiftPackageProductDependency section */
 
