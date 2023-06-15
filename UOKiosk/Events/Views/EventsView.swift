@@ -16,21 +16,18 @@ import FirebaseAnalyticsSwift
 
 struct EventsView: View {
     let injector: Injector
-    @StateObject var viewModel: EventsViewModel
-    @State private var didLoad = false
+    @StateObject var vm: EventsViewModel
     @State private var showCustomizeFeedView = false
-    @State private var isLoading = false
-    @State private var showLoading = false
 
     // MARK: INITIALIZER
     init(injector: Injector) {
         self.injector = injector
-        _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsViewModel())
     }
 
     var body: some View {
             List {
-                ForEach(viewModel.eventsGroupedByDays) { eventsInADay in
+                ForEach(vm.eventsGroupedByDays) { eventsInADay in
                     Section {
                         ForEach(eventsInADay.events) { event in
                             NavigationLink {
@@ -46,29 +43,25 @@ struct EventsView: View {
                 }
             }
             .overlay(content: {
-                if showLoading {
+                if vm.showLoading {
                     ProgressView()
                         .scaleEffect(2)
                 }
             })
             .task {
-                if isLoading { return }
-                isLoading = true
-                showLoading = true
-                defer {
-                    isLoading = false
-                    showLoading = false
-                }
-                if !didLoad {
-                    didLoad = true
-                    await viewModel.fetchEvents(shouldCheckLastUpdateDate: true, toggleLoadingIndicator: true)
+                if vm.isLoading { return }
+                vm.isLoading = true
+                defer { vm.isLoading = false }
+                if !vm.didLoad {
+                    vm.didLoad = true
+                    await vm.fetchEvents(shouldCheckLastUpdateDate: true, toggleLoadingIndicator: true)
                 }
             }
             .refreshable {
-                if isLoading { return }
-                isLoading = true
-                defer { isLoading = false }
-                await viewModel.fetchEvents()
+                if vm.isLoading { return }
+                vm.isLoading = true
+                defer { vm.isLoading = false }
+                await vm.fetchEvents()
             }
         .analyticsScreen(name: "\(EventsView.self)")
     }

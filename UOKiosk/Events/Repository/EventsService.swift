@@ -17,7 +17,7 @@ fileprivate enum EventServiceError: Error, LocalizedError {
         case .loadingBlocked:
             return NSLocalizedString("Data is already loading elsewhere in EventsService", comment: "")
         case .fetchedResultsProblem:
-            return NSLocalizedString("THere was a problem with fetchedResults", comment: "")
+            return NSLocalizedString("There was a problem with fetchedResults", comment: "")
         }
     }
 }

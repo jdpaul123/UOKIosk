@@ -16,6 +16,14 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     }
 
     @Published var isLoading: Bool
+    var showLoading: Bool {
+        if isLoading, allEvents.isEmpty {
+            return true
+        }
+        return false
+    }
+    @Published var didLoad: Bool = false
+
     @Published var showAlert: Bool
     @Published var errorMessage: String?
 
