@@ -4,6 +4,12 @@
 //
 //  Created by Jonathan Paul on 6/2/22.
 //
+/*
+ Button("Customize Feed") {
+     showCustomizeFeedView = true
+ }.sheet(isPresented: $showCustomizeFeedView) {
+     CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
+ */
 
 import SwiftUI
 import FirebaseAnalyticsSwift
@@ -23,12 +29,6 @@ struct EventsView: View {
     }
 
     var body: some View {
-//            VStack {
-//                        Button("Customize Feed") {
-//                            showCustomizeFeedView = true
-//                        }.sheet(isPresented: $showCustomizeFeedView) {
-//                            CustomizeEventsFeedView(vm: injector.viewModelFactory.makeCustomizeEventsFeedViewModel())
-//                        }
             List {
                 ForEach(viewModel.eventsGroupedByDays) { eventsInADay in
                     Section {
@@ -70,7 +70,6 @@ struct EventsView: View {
                 defer { isLoading = false }
                 await viewModel.fetchEvents()
             }
-//        }
         .analyticsScreen(name: "\(EventsView.self)")
     }
 }
