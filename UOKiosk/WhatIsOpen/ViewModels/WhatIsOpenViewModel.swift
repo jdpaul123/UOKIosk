@@ -85,6 +85,14 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
             closed = data[.closed] ?? []
         }
     }
+
+    func isDataEmpty() -> Bool {
+        if dining.isEmpty, coffee.isEmpty, duckStore.isEmpty, recreation.isEmpty, library.isEmpty,
+            bank.isEmpty, grocery.isEmpty, building.isEmpty, other.isEmpty, closed.isEmpty {
+            return true
+        }
+        return false
+    }
 }
 
 //class FacilityHoursViewModel: WhatIsOpenViewModelType {

@@ -37,7 +37,7 @@ struct DiningHoursView: WhatIsOpenView {
             }
         }
         .overlay(content: {
-            if showLoading {
+            if showLoading, vm.isDataEmpty() {
                 ProgressView()
                     .scaleEffect(2)
             }
