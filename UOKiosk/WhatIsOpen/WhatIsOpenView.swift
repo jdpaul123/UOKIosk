@@ -1,5 +1,5 @@
 //
-//  FacilityHoursView.swift
+//  WhatIsOpenView.swift
 //  UOKiosk
 //
 //  Created by Jonathan Paul on 5/18/23.
