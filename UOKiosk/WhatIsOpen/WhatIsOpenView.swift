@@ -14,6 +14,7 @@ protocol WhatIsOpenView: View {
 struct DiningHoursView: WhatIsOpenView {
     let injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
+    @State var showLoading = false
 
     // MARK: INITIALIZER
     init(injector: Injector) {
@@ -35,7 +36,15 @@ struct DiningHoursView: WhatIsOpenView {
                 }
             }
         }
+        .overlay(content: {
+            if showLoading {
+                ProgressView()
+                    .scaleEffect(2)
+            }
+        })
         .task {
+            showLoading = true
+            defer { showLoading = false }
             await vm.getData()
             // TODO: Once data is recieved it should use Combine to update the walues in the WhatIsOpenListViews
         }
