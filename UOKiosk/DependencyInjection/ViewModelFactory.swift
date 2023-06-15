@@ -20,16 +20,12 @@ final class ViewModelFactory: ObservableObject {
     }
 
     // MARK: Make View Model Functions
-    func makeEventsViewModel() -> EventsViewModel {
-        EventsViewModel(eventsRepository: eventsRepository)
-    }
+//    func makeEventsViewModel() -> EventsViewModel {
+//        EventsViewModel(eventsRepository: eventsRepository)
+//    }
 
     func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
-    }
-
-    func makeCustomizeEventsFeedViewModel() -> CustomizeEventsFeedViewModel {
-        CustomizeEventsFeedViewModel()
     }
 
     func makeWhatIsOpenViewModel(type: WhatIsOpenViewType) -> WhatIsOpenViewModel {

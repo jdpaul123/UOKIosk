@@ -14,17 +14,12 @@
 		52131E4C28B31E85006C3094 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4428B31E85006C3094 /* Event.swift */; };
 		52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */; };
 		52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */; };
-		52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6028B54E58006C3094 /* EventsViewModel.swift */; };
-		52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6228B54E6D006C3094 /* EventCellViewModel.swift */; };
-		52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */; };
 		52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */; };
 		52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */; };
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
 		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
-		52153BB428AED99D007F4812 /* EventCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB328AED99D007F4812 /* EventCellView.swift */; };
 		52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB528AF5EE7007F4812 /* Documentation.docc */; };
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
-		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
@@ -37,14 +32,13 @@
 		52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE22A3AC76B007BF9B1 /* OrderedCollections */; };
 		52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */; };
 		52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */; };
+		52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EF82A3BC443007BF9B1 /* EventsRepository.swift */; };
+		52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EFA2A3BC452007BF9B1 /* EventsService.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
-		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
-		525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
-		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
 		529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861B9284553BA009C1E3B /* UOKioskApp.swift */; };
@@ -56,7 +50,6 @@
 		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
-		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -93,17 +86,12 @@
 		52131E4428B31E85006C3094 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		52131E6028B54E58006C3094 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
-		52131E6228B54E6D006C3094 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
-		52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOfEventsViewModel.swift; sourceTree = "<group>"; };
 		52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ApplicationDefaults.swift"; sourceTree = "<group>"; };
 		52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerHelper.swift; sourceTree = "<group>"; };
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
-		52153BB328AED99D007F4812 /* EventCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellView.swift; sourceTree = "<group>"; };
 		52153BB528AF5EE7007F4812 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
-		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
@@ -111,14 +99,13 @@
 		52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenSubViews.swift; sourceTree = "<group>"; };
 		52463ED82A381C5E007BF9B1 /* WhatIsOpenViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewType.swift; sourceTree = "<group>"; };
 		52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenSubViewModels.swift; sourceTree = "<group>"; };
+		52463EF82A3BC443007BF9B1 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
+		52463EFA2A3BC452007BF9B1 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
-		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
-		525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedViewModel.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
-		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		529861B6284553BA009C1E3B /* UOKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +120,6 @@
 		529861E92845587C009C1E3B /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
-		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -178,10 +164,6 @@
 		52131E5F28B54E33006C3094 /* EventsViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				52131E6028B54E58006C3094 /* EventsViewModel.swift */,
-				52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */,
-				52131E6228B54E6D006C3094 /* EventCellViewModel.swift */,
-				525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */,
 			);
 			path = EventsViewModels;
 			sourceTree = "<group>";
@@ -389,8 +371,8 @@
 		529861E3284553DB009C1E3B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				528A2A182849C83F0035F416 /* EventsRepository.swift */,
-				52153BBA28AF63E2007F4812 /* EventsService.swift */,
+				52463EF82A3BC443007BF9B1 /* EventsRepository.swift */,
+				52463EFA2A3BC452007BF9B1 /* EventsService.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -414,9 +396,6 @@
 		529861E6284554C1009C1E3B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5299D4F128493B8B001FEDB5 /* EventsView.swift */,
-				52153BB328AED99D007F4812 /* EventCellView.swift */,
-				525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */,
 				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
 			);
 			path = Views;
@@ -600,13 +579,11 @@
 				52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
-				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
+				52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */,
 				52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
-				52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
-				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
 				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
@@ -616,27 +593,22 @@
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
-				52153BB428AED99D007F4812 /* EventCellView.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
+				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
-				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
-				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
-				525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
-				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
-				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
