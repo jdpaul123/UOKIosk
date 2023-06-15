@@ -23,10 +23,6 @@ struct EventsView: View {
     }
 
     var body: some View {
-        if showLoading {
-            ProgressView()
-                .scaleEffect(2)
-        }
 //            VStack {
 //                        Button("Customize Feed") {
 //                            showCustomizeFeedView = true
@@ -49,6 +45,12 @@ struct EventsView: View {
                     }
                 }
             }
+            .overlay(content: {
+                if showLoading {
+                    ProgressView()
+                        .scaleEffect(2)
+                }
+            })
             .task {
                 if isLoading { return }
                 isLoading = true
