@@ -7,16 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */; };
 		52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */; };
 		52131E4828B31E85006C3094 /* EventLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4028B31E85006C3094 /* EventLocation.swift */; };
 		52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4228B31E85006C3094 /* EventFilter.swift */; };
 		52131E4C28B31E85006C3094 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E4428B31E85006C3094 /* Event.swift */; };
 		52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */; };
 		52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */; };
-		52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */; };
 		52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6028B54E58006C3094 /* EventsViewModel.swift */; };
 		52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6228B54E6D006C3094 /* EventCellViewModel.swift */; };
-		52131E6528B54E96006C3094 /* EventsViewModelDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6428B54E96006C3094 /* EventsViewModelDay.swift */; };
+		52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */; };
 		52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */; };
 		52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */; };
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
@@ -26,10 +26,26 @@
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBA28AF63E2007F4812 /* EventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
+		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
+		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
+		52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */; };
+		52463ED72A380F20007BF9B1 /* WhatIsOpenSubViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */; };
+		52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED82A381C5E007BF9B1 /* WhatIsOpenViewType.swift */; };
+		52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */; };
 		525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */; };
+		5274097D2A1D31B500C64353 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 5274097C2A1D31B500C64353 /* Collections */; };
+		5274097F2A1D31B500C64353 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 5274097E2A1D31B500C64353 /* DequeModule */; };
+		527409812A1D31B500C64353 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 527409802A1D31B500C64353 /* OrderedCollections */; };
+		5289CEA52A1422DC00E51257 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA42A1422DC00E51257 /* FirebaseAnalytics */; };
+		5289CEA72A1422DC00E51257 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */; };
+		5289CEA92A1422DC00E51257 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEA82A1422DC00E51257 /* FirebaseFirestore */; };
+		5289CEAB2A1422DC00E51257 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */; };
+		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
+		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
+		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
 		528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A182849C83F0035F416 /* EventsRepository.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
@@ -44,6 +60,15 @@
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
 		5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5299D4F128493B8B001FEDB5 /* EventsView.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
+		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
+		52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */ = {isa = PBXBuildFile; productRef = 52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */; };
+		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
+		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
+		52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */; };
+		52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */; };
+		52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */; };
+		52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */; };
+		52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,16 +89,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenDto.swift; sourceTree = "<group>"; };
 		52131E3C28B30762006C3094 /* EventsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EventsModel.xcdatamodel; sourceTree = "<group>"; };
 		52131E4028B31E85006C3094 /* EventLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventLocation.swift; sourceTree = "<group>"; };
 		52131E4228B31E85006C3094 /* EventFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventFilter.swift; sourceTree = "<group>"; };
 		52131E4428B31E85006C3094 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventLocation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "EventFilter+CoreDataProperties.swift"; path = "../../../EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		52131E6028B54E58006C3094 /* EventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		52131E6228B54E6D006C3094 /* EventCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCellViewModel.swift; sourceTree = "<group>"; };
-		52131E6428B54E96006C3094 /* EventsViewModelDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelDay.swift; sourceTree = "<group>"; };
+		52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupOfEventsViewModel.swift; sourceTree = "<group>"; };
 		52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ApplicationDefaults.swift"; sourceTree = "<group>"; };
 		52131E6D28B97D6E006C3094 /* PersistentContainerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainerHelper.swift; sourceTree = "<group>"; };
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
@@ -83,10 +108,19 @@
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBA28AF63E2007F4812 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
+		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
+		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
+		52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DayOfWeek.swift"; sourceTree = "<group>"; };
+		52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenSubViews.swift; sourceTree = "<group>"; };
+		52463ED82A381C5E007BF9B1 /* WhatIsOpenViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewType.swift; sourceTree = "<group>"; };
+		52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenSubViewModels.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedView.swift; sourceTree = "<group>"; };
 		525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizeEventsFeedViewModel.swift; sourceTree = "<group>"; };
+		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
+		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
 		528A2A182849C83F0035F416 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
@@ -104,6 +138,14 @@
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
 		5299D4F128493B8B001FEDB5 /* EventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsView.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
+		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
+		52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenService.swift; sourceTree = "<group>"; };
+		52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatsOpenData.swift; sourceTree = "<group>"; };
+		52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenCategories.swift; sourceTree = "<group>"; };
+		52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringProtocol+Subscript.swift"; sourceTree = "<group>"; };
+		52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+SafeSubscript.swift"; sourceTree = "<group>"; };
+		52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWhatIsOpenService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +153,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5289CEA72A1422DC00E51257 /* FirebaseAnalyticsSwift in Frameworks */,
+				5289CEA52A1422DC00E51257 /* FirebaseAnalytics in Frameworks */,
+				5274097D2A1D31B500C64353 /* Collections in Frameworks */,
+				52C3CFE42A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar in Frameworks */,
+				5289CEA92A1422DC00E51257 /* FirebaseFirestore in Frameworks */,
+				5289CEAB2A1422DC00E51257 /* FirebaseFirestoreSwift in Frameworks */,
+				527409812A1D31B500C64353 /* OrderedCollections in Frameworks */,
+				5274097F2A1D31B500C64353 /* DequeModule in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,24 +181,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52131E4E28B31E91006C3094 /* EventModels */ = {
-			isa = PBXGroup;
-			children = (
-				52131E4428B31E85006C3094 /* Event.swift */,
-				52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */,
-				52131E4228B31E85006C3094 /* EventFilter.swift */,
-				52131E5628B34AC0006C3094 /* EventFilter+CoreDataProperties.swift */,
-				52131E4028B31E85006C3094 /* EventLocation.swift */,
-				52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */,
-			);
-			path = EventModels;
-			sourceTree = "<group>";
-		};
 		52131E5F28B54E33006C3094 /* EventsViewModels */ = {
 			isa = PBXGroup;
 			children = (
 				52131E6028B54E58006C3094 /* EventsViewModel.swift */,
-				52131E6428B54E96006C3094 /* EventsViewModelDay.swift */,
+				52131E6428B54E96006C3094 /* GroupOfEventsViewModel.swift */,
 				52131E6228B54E6D006C3094 /* EventCellViewModel.swift */,
 				525538F22A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift */,
 			);
@@ -159,6 +196,9 @@
 			isa = PBXGroup;
 			children = (
 				52131E6928B96CC5006C3094 /* Color+ApplicationDefaults.swift */,
+				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
+				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
+				52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -168,6 +208,7 @@
 			children = (
 				529861BF284553BC009C1E3B /* Preview Content */,
 				529861BD284553BC009C1E3B /* Assets.xcassets */,
+				52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */,
 				52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */,
 			);
 			path = Resources;
@@ -185,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
+				52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */,
 			);
 			path = MockRepository;
 			sourceTree = "<group>";
@@ -193,8 +235,19 @@
 			isa = PBXGroup;
 			children = (
 				52153BBD28AF6584007F4812 /* MockEventsModelData.swift */,
+				52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */,
 			);
 			path = MockModelData;
+			sourceTree = "<group>";
+		};
+		52463ECF2A35560E007BF9B1 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */,
+				52463ED82A381C5E007BF9B1 /* WhatIsOpenViewType.swift */,
+				52463ED02A35563C007BF9B1 /* WoosmapDays.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		525538EE2A0DA606004BD415 /* Mocks */ = {
@@ -206,6 +259,13 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		5274097A2A1D317C00C64353 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5274DC98289DFE560069D5A5 /* DependencyInjection */ = {
 			isa = PBXGroup;
 			children = (
@@ -215,6 +275,32 @@
 			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
+		5289CEAC2A16D04300E51257 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				529861E7284554C7009C1E3B /* Models */,
+				529861E8284554CB009C1E3B /* ViewModels */,
+				529861E6284554C1009C1E3B /* Views */,
+				529861E3284553DB009C1E3B /* Repository */,
+			);
+			path = Events;
+			sourceTree = "<group>";
+		};
+		5289CEAF2A16D54B00E51257 /* WhatIsOpen */ = {
+			isa = PBXGroup;
+			children = (
+				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
+				52463ECF2A35560E007BF9B1 /* Enums */,
+				52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */,
+				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
+				52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */,
+				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
+				52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */,
+				52F1F65A2A304CE800F9CF3B /* Repository */,
+			);
+			path = WhatIsOpen;
+			sourceTree = "<group>";
+		};
 		529861AD284553BA009C1E3B = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +308,7 @@
 				529861C9284553BC009C1E3B /* UOKioskTests */,
 				529861D3284553BC009C1E3B /* UOKioskUITests */,
 				529861B7284553BA009C1E3B /* Products */,
+				5274097A2A1D317C00C64353 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,12 +327,11 @@
 			children = (
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
-				529861E7284554C7009C1E3B /* Models */,
-				529861E6284554C1009C1E3B /* Views */,
-				529861E8284554CB009C1E3B /* ViewModels */,
+				529861E92845587C009C1E3B /* TabMenuView.swift */,
+				5289CEAC2A16D04300E51257 /* Events */,
+				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
-				529861E3284553DB009C1E3B /* Repository */,
 				52131E6B28B97B42006C3094 /* Resources */,
 				52131E6828B96C91006C3094 /* Extension */,
 			);
@@ -310,7 +396,6 @@
 		529861E6284554C1009C1E3B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				529861E92845587C009C1E3B /* TabMenuView.swift */,
 				5299D4F128493B8B001FEDB5 /* EventsView.swift */,
 				52153BB328AED99D007F4812 /* EventCellView.swift */,
 				525538F02A0ED0EE004BD415 /* CustomizeEventsFeedView.swift */,
@@ -323,7 +408,12 @@
 			isa = PBXGroup;
 			children = (
 				529861E5284553EC009C1E3B /* DataTransferObjects */,
-				52131E4E28B31E91006C3094 /* EventModels */,
+				52131E4428B31E85006C3094 /* Event.swift */,
+				52131E5428B34AC0006C3094 /* Event+CoreDataProperties.swift */,
+				52131E4228B31E85006C3094 /* EventFilter.swift */,
+				5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */,
+				52131E4028B31E85006C3094 /* EventLocation.swift */,
+				52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -335,6 +425,15 @@
 				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		52F1F65A2A304CE800F9CF3B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */,
+				52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -353,6 +452,16 @@
 			dependencies = (
 			);
 			name = UOKiosk;
+			packageProductDependencies = (
+				5289CEA42A1422DC00E51257 /* FirebaseAnalytics */,
+				5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */,
+				5289CEA82A1422DC00E51257 /* FirebaseFirestore */,
+				5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */,
+				5274097C2A1D31B500C64353 /* Collections */,
+				5274097E2A1D31B500C64353 /* DequeModule */,
+				527409802A1D31B500C64353 /* OrderedCollections */,
+				52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */,
+			);
 			productName = UOKiosk;
 			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
 			productType = "com.apple.product-type.application";
@@ -425,6 +534,11 @@
 				Base,
 			);
 			mainGroup = 529861AD284553BA009C1E3B;
+			packageReferences = (
+				5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */,
+			);
 			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -442,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52BC04062A09A267005F93BF /* MockEventsData.json in Resources */,
+				52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */,
 				529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */,
 				529861BE284553BC009C1E3B /* Assets.xcassets in Resources */,
 			);
@@ -468,32 +583,47 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				5299D4F228493B8B001FEDB5 /* EventsView.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
-				52131E6528B54E96006C3094 /* EventsViewModelDay.swift in Sources */,
+				52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */,
+				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
+				52131E6528B54E96006C3094 /* GroupOfEventsViewModel.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52153BBB28AF63E2007F4812 /* EventsService.swift in Sources */,
+				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
+				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
+				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
+				52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */,
+				52463ED72A380F20007BF9B1 /* WhatIsOpenSubViews.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
 				52153BB428AED99D007F4812 /* EventCellView.swift in Sources */,
-				52131E5E28B34AC0006C3094 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
 				52131E6328B54E6D006C3094 /* EventCellViewModel.swift in Sources */,
+				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
 				528A2A192849C83F0035F416 /* EventsRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				525538F32A0ED35C004BD415 /* CustomizeEventsFeedViewModel.swift in Sources */,
+				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
+				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				525538F12A0ED0EE004BD415 /* CustomizeEventsFeedView.swift in Sources */,
+				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
+				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
+				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
+				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52131E6128B54E58006C3094 /* EventsViewModel.swift in Sources */,
+				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 			);
@@ -503,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */,
 				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,
 				525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */,
@@ -823,6 +954,76 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/google-api-objectivec-client-for-rest";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5274097C2A1D31B500C64353 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		5274097E2A1D31B500C64353 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		527409802A1D31B500C64353 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5274097B2A1D31B500C64353 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+		5289CEA42A1422DC00E51257 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		5289CEA62A1422DC00E51257 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		5289CEA82A1422DC00E51257 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		5289CEAA2A1422DC00E51257 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5289CEA32A1422DC00E51257 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		52C3CFE32A294F4E001DF1D1 /* GoogleAPIClientForREST_Calendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52C3CFE22A294F4E001DF1D1 /* XCRemoteSwiftPackageReference "google-api-objectivec-client-for-rest" */;
+			productName = GoogleAPIClientForREST_Calendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */ = {

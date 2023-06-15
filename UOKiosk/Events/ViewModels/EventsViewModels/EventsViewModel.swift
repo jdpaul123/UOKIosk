@@ -19,8 +19,8 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
     @Published var showAlert: Bool
     @Published var errorMessage: String?
 
-    @Published var eventsInADay: [EventsViewModelDay]
-    @Published private var lastDataUpdateDate: String {
+    @Published var eventsGroupedByDays: [GroupOfEventsViewModel]
+    @Published private var lastDataUpdateDate: Date {
         didSet {
             // Save the day date that the data is updated to compare with the date on subsiquent application boot ups.
             UserDefaults.standard.set(lastDataUpdateDate, forKey: "lastDataUpdateDate")
@@ -29,29 +29,27 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
 
     private let eventsRepository: EventsRepository
     private var resultsController: NSFetchedResultsController<Event>? = nil
-   
+
     // MARK: Initialization
     init(eventsRepository: EventsRepository, isLoading: Bool = false, showAlert: Bool = false, errorMessage: String? = nil) {
         self.eventsRepository = eventsRepository
-        self.eventsInADay = []
-        self.errorMessage = errorMessage
+        self.eventsGroupedByDays = []
 
         self.isLoading = isLoading
+        self.errorMessage = errorMessage
         self.showAlert = showAlert
-        
-        // Check if the lastDataUpdateDate is not the same day as today
-        // If the app has never been opened and loaded data, then the last date is "" which will not equal the current
-        // date, so it will trigger the data loading method
-        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? String ?? ""
+
+        // Check if the lastDataUpdateDate is not the same day as today. If the app has never been opened and loaded data, then the last date is Jan 1, 1970 which will not equal the current date,
+        // so it will trigger the data loading method
+        self.lastDataUpdateDate = UserDefaults.standard.object(forKey: "lastDataUpdateDate") as? Date ?? Date(timeIntervalSince1970: 0)
         super.init()
-        self.resultsController = eventsRepository.fetchSavedEvents(with: self)
-        
+        //self.resultsController = eventsRepository.fetchSavedEvents(with: self)
         #if DEBUG
-//        print("On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
+//        print("!!! On instantiation of the EventsViewModel the value loaded in for the last data update date is \(lastDataUpdateDate).")
         #endif
     }
-    
-    // MARK: NSFetchedResultsController
+
+    // MARK: NSFetchedResultsControllerDelegate
     // This function enables change tracking so that data stays up to date in the view when updates are made
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         // objectWillChange is the publisher of the ObservableObject protocol that emits the changed value before any
@@ -62,7 +60,7 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
 
     // MARK: Data Filling Functions
     @MainActor
-    func fetchEvents(shouldCheckLastUpdateDate: Bool = false) async {
+    func fetchEvents(shouldCheckLastUpdateDate: Bool = false, toggleLoadingIndicator: Bool = false) async {
         /*
          Callers:
                 When the Events View loads, this function is called.
@@ -83,57 +81,67 @@ final class EventsViewModel: NSObject, ObservableObject, Identifiable, NSFetched
              However, if the user is performing a pull to refresh then the function should make an API call
              to get the most up to date data.
          */
-        isLoading.toggle()
+        if toggleLoadingIndicator {
+            isLoading = true
+        }
         defer {
-            isLoading.toggle()
+            isLoading = false
         }
 
-        let todaysDate = Date().formatted(date: .complete, time: .omitted)
-        
+        // If results controller is nil then set it up
+        if resultsController == nil {
+            resultsController = eventsRepository.fetchSavedEvents(with: self)
+        }
+        guard let resultsController = resultsController else {
+            // TODO: Add error track here because the return below should never be hit
+//            print("!!! Results Controller is nil")
+            return
+        }
+
         // Do not update the data if shouldCheckLastUpdateData is true and data was alread loaded from the API today
-        if shouldCheckLastUpdateDate, self.lastDataUpdateDate == todaysDate {
+        if shouldCheckLastUpdateDate, Calendar.current.isDateInToday(lastDataUpdateDate) {
             self.fillData()
             return
         }
-        self.lastDataUpdateDate = todaysDate
-        guard let resultsController = resultsController else {
-            return
-        }
+        self.lastDataUpdateDate = Date()
+
         do {
             try await eventsRepository.updateEventsResultsController(eventResultsController: resultsController)
             //try await eventsRepository.saveFreshEvents(eventResultsController: resultsController)
         } catch {
-            // TODO: Add error handling here: The showAlert bool and message are already set up. Just need to show the error
+            // TODO: Add error handling here and error track: The showAlert bool and message are already set up. Just need to show the error
             showAlert = true
             errorMessage = error.localizedDescription + " No Events were returned from the events repository fetchNewEvents method"
-//            print("No Events were returned from the events repository fetchNewEvents method")
+//            print("!!! No Events were returned from the events repository fetchNewEvents method")
             return
         }
         self.fillData()
     }
-    
-    
+
     // Takes the model and uses that data to fill in the values for this view controller.
+    @MainActor
     private func fillData() {
-        DispatchQueue.main.async { [self] in
-            // Note: Event objects are received in chronological order from the web API
-            eventsInADay = []
+        // Note: Event objects are received in chronological order from the web API
+        eventsGroupedByDays = []
 
-            var compareDateString: String = ""
-            for event in allEvents {
-                guard let start = event.start else {
-                    continue // TODO: For now, skip the event if it has no start time
-                }
-
-                let currDateString: String = start.formatted(date: .abbreviated, time: .omitted)
-
-                // If the last date we save is not the same as the current date, then start a new day
-                if compareDateString != currDateString {
-                    eventsInADay.append(EventsViewModelDay(dateString: currDateString))
-                    compareDateString = currDateString
-                }
-                eventsInADay.last!.events.append(EventCellViewModel(event: event))
+        var compare = Date(timeIntervalSince1970: 0)
+        for event in allEvents {
+            // Don't add an event with no start time
+            guard let start = event.start else {
+                continue
             }
+
+            // If the last date we save is not the same as the current date, then start a new day
+            if Calendar.current.compare(compare, to: start, toGranularity: .day) != .orderedSame {
+                eventsGroupedByDays.append(GroupOfEventsViewModel(dateString: start.formatted(date: .abbreviated, time: .omitted)))
+                compare = start
+            }
+
+            guard let last = eventsGroupedByDays.last else {
+                // TODO: Add error track here because this case should never be hit
+                continue
+            }
+            last.events.append(EventCellViewModel(event: event))
         }
     }
 }

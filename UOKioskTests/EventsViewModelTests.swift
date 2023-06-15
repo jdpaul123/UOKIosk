@@ -117,8 +117,8 @@ final class EventsViewModelTests: XCTestCase {
         let vm = EventsViewModel(eventsRepository: MockEventsService())
 
         // Then
-        XCTAssertTrue(vm.eventsInADay.isEmpty)
-        XCTAssertEqual(vm.eventsInADay.count, 0)
+        XCTAssertTrue(vm.eventsGroupedByDays.isEmpty)
+        XCTAssertEqual(vm.eventsGroupedByDays.count, 0)
     }
 
     // TODO: Tests to write

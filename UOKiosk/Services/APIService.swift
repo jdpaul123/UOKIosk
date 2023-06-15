@@ -35,19 +35,51 @@ class ApiService: ApiServiceProtocol {
                     continuation.resume(with: .failure(APIError.invalidResponseStatus))
                     return
                 }
-                guard error == nil else {
-                    continuation.resume(with: .failure(APIError.dataTaskError(error!.localizedDescription)))
+                if let error = error {
+                    continuation.resume(with: .failure(APIError.dataTaskError(error.localizedDescription)))
                     return
                 }
                 guard let data = data else {
                     continuation.resume(with: .failure(APIError.corruptData))
                     return
                 }
+
+                // FIXME: BELOW CODE IS FOR TESTING
+                /*
+                let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let response = jsonResponse as? [String: Any] {
+                        print("PRINTING DATA")
+                        print(response)
+                        print()
+                }
+                 */
+
                 let decoder = JSONDecoder()
                 decoder.dateDecodingStrategy = dateDecodingStrategy
                 decoder.keyDecodingStrategy = keyDecodingStrategy
                 do {
                     let decodedData = try decoder.decode(T.self, from: data)
+
+                    // FIXME: BELOW CODE IS FOR TESTING
+                    /*
+                    if decodedData != nil {
+                        print("!!! Success decoding the data")
+                        if let whatsOpenData = decodedData as? WhatIsOpenDto {
+                            print(whatsOpenData.features.count)
+                            print()
+                            for feature in whatsOpenData.features {
+                                print(feature.properties.name)
+                                print(feature.type)
+                                print("Friday Hours: \(feature.properties.hours.friday)")
+                                print("Asset Type: \(feature.properties.types)")
+                                print("Open Status: \(feature.properties.open.isOpen)")
+                                print("Emoji: \(feature.properties.userProperties.emoji ?? "No Emoji")")
+                                print("Today is: \(feature.properties.open.today)")
+                                print()
+                            }
+                        }
+                    }
+                     */
                     continuation.resume(with: .success(decodedData))
                 } catch {
                     continuation.resume(with: .failure(APIError.decodingError(error.localizedDescription)))

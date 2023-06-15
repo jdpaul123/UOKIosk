@@ -46,8 +46,9 @@ final class EventCellViewModel: ObservableObject, Identifiable, Hashable {
             self.dateString = dateFormatter.string(from: start)
             self.date = start
         } else {
+            // This case should never be hit because any event that does not have a start date is not saved to the CD Persistent Store
             dateString = ""
-            self.date = Date(timeIntervalSince1970: TimeInterval(1)) // TODO: What should this date be if there is no event.start value?
+            self.date = Date(timeIntervalSince1970: 0)
         }
     }
 }

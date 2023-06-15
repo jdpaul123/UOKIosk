@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 public class Event: NSManagedObject {
     // MARK: Initialization
     convenience init(eventData: EventDto, context: NSManagedObjectContext) {
@@ -72,9 +71,7 @@ public class Event: NSManagedObject {
         
         self.status = eventData.status ?? "live"
         self.experience = eventData.experience ?? "assumed inperson"
-        
-//        print(self.title ?? "Default title")
-        
+
         self.eventUrl = getUrl(urlString: eventData.localistUrl)
         self.streamUrl = getUrl(urlString: eventData.streamUrl)
         self.ticketUrl = getUrl(urlString: eventData.ticketUrl)
@@ -93,40 +90,35 @@ public class Event: NSManagedObject {
         self.allDay = dateValues.0
         self.start  = dateValues.1
         self.end = dateValues.2
-        
-        if eventData.geo == nil || eventData.geo!.latitude == nil || eventData.geo!.longitude == nil ||
-            eventData.geo!.city == nil || eventData.geo!.country == nil || eventData.geo!.state == nil ||
-            eventData.geo!.street == nil || eventData.geo!.zip == nil ||
-            Double(eventData.geo!.latitude!) == nil || Double(eventData.geo!.longitude!) == nil ||
-            Int(eventData.geo!.zip!) == nil
-        {
-            self.eventLocation = nil
-        }
-        else {
-            let geo = eventData.geo!
-            self.eventLocation = EventLocation(latitude: Double(geo.latitude!)!, longitude: Double(geo.longitude!)!,
-                                               street: geo.street!, city: geo.city!, country: geo.country!,
-                                               zip: Int(geo.zip!)!, context: context)
-        }
 
         self.departmentFilters = []
         self.eventTypeFilters = []
         self.targetAudienceFilters = []
-        if let eventFilters = eventData.filters.eventTypes {
-            for eventFilter in eventFilters {
-                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
+        // TODO: Calling addTo_Filters() method is causing problems having it in the init. Must change app so that these filters are set after the event is instantiated
+//        if let eventFilters = eventData.filters.eventTypes {
+//            for eventFilter in eventFilters {
+//                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        if let dtoDepartmentFilters = eventData.filters.departments {
+//            for eventFilter in dtoDepartmentFilters {
+//                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
+//            for eventFilter in dtoTargetAudienceFilters {
+//                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+
+        guard let geo = eventData.geo, let latitude = geo.latitude, let longitude = geo.longitude, let city = geo.city, let country = geo.country,
+              let _ = geo.state, let street = geo.street, let zip = geo.zip else {
+            self.eventLocation = nil
+            return
         }
-        if let dtoDepartmentFilters = eventData.filters.departments {
-            for eventFilter in dtoDepartmentFilters {
-                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
-            for eventFilter in dtoTargetAudienceFilters {
-                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
+        self.eventLocation = EventLocation(latitude: Double(latitude) ?? 0.0, longitude: Double(longitude) ?? 0.0,
+                                           street: street, city: city, country: country,
+                                           zip: Int(zip) ?? 0, context: context)
     }
 }
 
