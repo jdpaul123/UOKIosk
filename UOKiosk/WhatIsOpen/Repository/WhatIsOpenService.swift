@@ -155,6 +155,22 @@ class WhatIsOpenService: WhatIsOpenRepository {
                 "Saturday": saturdayIntervalString,
                 "Sunday": sundayIntervalString
             ]
+            /*
+             TODO: This is a dynamic programming problem. The results could be in a 2D graph where the x-axis is days Monday through Friday and the y-axis is the same
+             Once you got the range from Monday to whenever the time interval for open-hours changes you would start on the next day.
+             For example, if the range went from Monday through Friday then the next dynamic programming calculation would start at Saturday.
+             Monday
+             Monday - Tuesday
+             Monday - Wednsday
+             Monday - Thursday
+             Monday - Friday
+             Monday - Saturday
+             Monday - Sunday
+             if mondayIntervalString == tuesdayIntervalString {
+                Monday-Tuesday: mondayIntervalString
+                if
+             }
+             */
 
             // FIXME: BELOW CODE IS FOR TESTING
             /*

@@ -5,10 +5,9 @@
 //  Created by Jonathan Paul on 6/13/23.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 import Collections
-import SwiftUI
 
 class WhatIsOpenListViewModel: ObservableObject {
     let listType: WhatIsOpenCategories

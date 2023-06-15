@@ -43,12 +43,11 @@ struct WhatIsOpenPlaceView: View {
         DisclosureGroup {
             HStack {
                 Text(vm.building ?? "")
-                    .font(.system(.footnote))
-                    .bold()
+                    .font(.system(.footnote).weight(.bold))
                 Spacer()
                 if let websiteLink = vm.websiteLink {
                     Link("More Info", destination: websiteLink)
-                        .font(.system(.footnote).weight(.bold  ))
+                        .font(.system(.footnote).weight(.bold ))
                         .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
                         .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                         .cornerRadius(4)
