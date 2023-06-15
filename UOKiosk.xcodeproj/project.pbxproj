@@ -244,6 +244,33 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		52463EE92A3AEA0C007BF9B1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
+				52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		52463EEA2A3AEA16007BF9B1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
+				52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		52463EEB2A3AEA2A007BF9B1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
+				52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		525538EE2A0DA606004BD415 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,13 +310,10 @@
 		5289CEAF2A16D54B00E51257 /* WhatIsOpen */ = {
 			isa = PBXGroup;
 			children = (
-				5201D6892A30051100B1F939 /* WhatIsOpenDto.swift */,
 				52463ECF2A35560E007BF9B1 /* Enums */,
-				52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */,
-				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
-				52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */,
-				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
-				52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */,
+				52463EEB2A3AEA2A007BF9B1 /* Models */,
+				52463EE92A3AEA0C007BF9B1 /* Views */,
+				52463EEA2A3AEA16007BF9B1 /* ViewModels */,
 				52F1F65A2A304CE800F9CF3B /* Repository */,
 			);
 			path = WhatIsOpen;
