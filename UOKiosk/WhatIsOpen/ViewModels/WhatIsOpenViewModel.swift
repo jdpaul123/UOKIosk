@@ -34,6 +34,7 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
     @Published var closed: [WhatIsOpenPlace] = [] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
 
     // Loading
+    @Published var viewHasLoaded = false
     @Published private var isLoading: Bool
     var showLoading: Bool {
         if isLoading, isDataEmpty() {
@@ -68,6 +69,7 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         return category.isCategoryShown(vm: self).contains(category)
     }
 
+    @MainActor
     func getData() async {
         isLoading = true
         defer { isLoading = false }
@@ -81,20 +83,19 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         guard let data = data else {
             return
         }
-        DispatchQueue.main.async { [weak self] in
-            guard let self = self else { return }
-            // Note: The default empty array ([]) should never be set
-            dining = data[.dining] ?? []
-            coffee = data[.coffee] ?? []
-            duckStore = data[.duckStore] ?? []
-            recreation = data[.recreation] ?? []
-            library = data[.library] ?? []
-            bank = data[.bank] ?? []
-            grocery = data[.grocery] ?? []
-            building = data[.building] ?? []
-            other = data[.other] ?? []
-            closed = data[.closed] ?? []
-        }
+
+        // Note: The default empty array ([]) should never be set
+        dining = data[.dining] ?? []
+        coffee = data[.coffee] ?? []
+        duckStore = data[.duckStore] ?? []
+        recreation = data[.recreation] ?? []
+        library = data[.library] ?? []
+        bank = data[.bank] ?? []
+        grocery = data[.grocery] ?? []
+        building = data[.building] ?? []
+        other = data[.other] ?? []
+        closed = data[.closed] ?? []
+        viewHasLoaded = true
     }
 
     private func isDataEmpty() -> Bool {

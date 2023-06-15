@@ -42,7 +42,9 @@ struct DiningHoursView: WhatIsOpenView {
             }
         }
         .task {
-            await vm.getData()
+            if !vm.viewHasLoaded {
+                await vm.getData()
+            }
         }
     }
 }
