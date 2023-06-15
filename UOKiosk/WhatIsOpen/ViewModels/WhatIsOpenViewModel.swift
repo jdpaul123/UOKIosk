@@ -33,7 +33,16 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
     @Published var other: [WhatIsOpenPlace] = []
     @Published var closed: [WhatIsOpenPlace] = [] // This list contains any closed dining, coffee, duckStores, or recreation stores/facilityies
 
-    @Published var isLoading: Bool
+    // Loading
+    @Published private var isLoading: Bool
+    var showLoading: Bool {
+        if isLoading, isDataEmpty() {
+            return true
+        }
+        return false
+    }
+
+    // Error Handling
     @Published var showAlert: Bool
     @Published var errorMessage: String?
 
@@ -60,6 +69,8 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
     }
 
     func getData() async {
+        isLoading = true
+        defer { isLoading = false }
         var data: [WhatIsOpenCategories: [WhatIsOpenPlace]]?
         do {
             data = try await whatIsOpenRepository.getAssetData()
@@ -86,7 +97,7 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         }
     }
 
-    func isDataEmpty() -> Bool {
+    private func isDataEmpty() -> Bool {
         if dining.isEmpty, coffee.isEmpty, duckStore.isEmpty, recreation.isEmpty, library.isEmpty,
             bank.isEmpty, grocery.isEmpty, building.isEmpty, other.isEmpty, closed.isEmpty {
             return true
