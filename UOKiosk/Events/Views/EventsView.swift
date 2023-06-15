@@ -13,7 +13,8 @@ struct EventsView: View {
     @StateObject var viewModel: EventsViewModel
     @State private var didLoad = false
     @State private var showCustomizeFeedView = false
-    @State private var loading = false
+    @State private var isLoading = false
+    @State private var showLoading = false
 
     // MARK: INITIALIZER
     init(injector: Injector) {
@@ -22,6 +23,10 @@ struct EventsView: View {
     }
 
     var body: some View {
+        if showLoading {
+            ProgressView()
+                .scaleEffect(2)
+        }
 //            VStack {
 //                        Button("Customize Feed") {
 //                            showCustomizeFeedView = true
@@ -45,18 +50,22 @@ struct EventsView: View {
                 }
             }
             .task {
-                if loading { return }
-                loading = true
-                defer { loading = false }
+                if isLoading { return }
+                isLoading = true
+                showLoading = true
+                defer {
+                    isLoading = false
+                    showLoading = false
+                }
                 if !didLoad {
                     didLoad = true
                     await viewModel.fetchEvents(shouldCheckLastUpdateDate: true, toggleLoadingIndicator: true)
                 }
             }
             .refreshable {
-                if loading { return }
-                loading = true
-                defer { loading = false }
+                if isLoading { return }
+                isLoading = true
+                defer { isLoading = false }
                 await viewModel.fetchEvents()
             }
 //        }
