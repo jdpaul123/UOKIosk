@@ -23,6 +23,12 @@ struct EventsListView: View {
                 EventsListSectionView(injector: injector, parentViewModel: self.vm, dateToDisplay: dateToDisplay)
             }
         }
+        .overlay {
+            if vm.showLoading {
+                ProgressView()
+                    .scaleEffect(2)
+            }
+        }
         .task {
             if vm.viewModelHasLoading { return }
             if vm.isLoading { return }

@@ -24,7 +24,7 @@ class EventDetailViewModel: ObservableObject {
     let reminderData: EventReminderViewModel
 
     init(event: IMEvent) {
-        self.title = event.title ?? "No Title"
+        self.title = event.title
         if let photoData = event.photoData {
             self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
         } else {
@@ -62,7 +62,7 @@ class EventDetailViewModel: ObservableObject {
             return "\(startTimeString) - \(endTimeString)"
         }()
         
-        self.eventDescription = event.eventDescription ?? "No event description provided."
+        self.eventDescription = event.eventDescription
         self.website = event.eventUrl
         
         self.calendarData = EventCalendarViewModel()

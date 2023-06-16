@@ -76,6 +76,7 @@ class EventsService: EventsRepository {
                                 ticketUrl: URL(string: eventDto.ticketUrl ?? ""),
                                 venueUrl: URL(string: eventDto.venueUrl ?? ""),
                                 calendarUrl: URL(string: eventDto.icsUrl ?? ""),
+                                photoUrl: URL(string: eventDto.photoUrl ?? ""),
                                 photoData: nil, // TODO: MAKE THIS NIL AT FIRST AND LOAD IT ASYNCRONOUSLY
                                 ticketCost: eventDto.ticketCost,
                                 start: dateValues.1, end: dateValues.2, allDay: dateValues.0,

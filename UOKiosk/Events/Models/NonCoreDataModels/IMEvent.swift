@@ -23,6 +23,7 @@ class IMEvent: Identifiable {
     let ticketUrl: URL?
     let venueUrl: URL?
     let calendarUrl: URL?
+    let photoUrl: URL?
     let photoData: Data?
     let ticketCost: String?
     let start: Date
@@ -33,7 +34,7 @@ class IMEvent: Identifiable {
     var targetAudienceFilters: [IMEventFilter]
     var eventTypeFilters: [IMEventFilter]
 
-    init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?, address: String?, status: String?, experience: String?, eventUrl: URL?, streamUrl: URL?, ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoData: Data?, ticketCost: String?, start: Date, end: Date?, allDay: Bool, eventLocation: IMEventLocation? = nil, departmentFilters: [IMEventFilter], targetAudienceFilters: [IMEventFilter], eventTypeFilters: [IMEventFilter]) {
+    init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?, address: String?, status: String?, experience: String?, eventUrl: URL?, streamUrl: URL?, ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoUrl: URL?, photoData: Data?, ticketCost: String?, start: Date, end: Date?, allDay: Bool, eventLocation: IMEventLocation? = nil, departmentFilters: [IMEventFilter], targetAudienceFilters: [IMEventFilter], eventTypeFilters: [IMEventFilter]) {
         self.id = id
         self.title = title
         self.eventDescription = eventDescription
@@ -47,6 +48,7 @@ class IMEvent: Identifiable {
         self.ticketUrl = ticketUrl
         self.venueUrl = venueUrl
         self.calendarUrl = calendarUrl
+        self.photoUrl = photoUrl
         self.photoData = photoData
         self.ticketCost = ticketCost
         self.start = start
