@@ -32,7 +32,7 @@ final class ViewModelFactory: ObservableObject {
         EventsListCellViewModel(imageData: imageData, title: title)
     }
 
-    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
+    func makeEventDetailViewModel(eventModel: IMEvent) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }
 

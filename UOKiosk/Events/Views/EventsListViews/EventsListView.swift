@@ -19,9 +19,16 @@ struct EventsListView: View {
 
     var body: some View {
         List {
-            ForEach(vm.eventDictionary.keys, id: \.description) { dateToDisplay in
+            ForEach(vm.eventsDictionary.keys, id: \.description) { dateToDisplay in
                 EventsListSectionView(injector: injector, parentViewModel: self.vm, dateToDisplay: dateToDisplay)
             }
+        }
+        .task {
+            if vm.isLoading { return }
+            vm.isLoading = true
+            defer { vm.isLoading = false }
+            print("!!! FETCHING EVENTS")
+            await vm.fetchEvents()
         }
     }
 }

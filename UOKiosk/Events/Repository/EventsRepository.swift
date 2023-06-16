@@ -8,5 +8,5 @@
 import Foundation
 
 protocol EventsRepository {
-    
+    func getFreshEvents() async throws -> [IMEvent]
 }

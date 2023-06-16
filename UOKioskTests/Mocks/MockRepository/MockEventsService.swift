@@ -10,26 +10,30 @@ import CoreData
 
 
 final class MockEventsService: EventsRepository {
-    var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Mock")
-
-
-    func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
+    func getFreshEvents() async throws -> [IMEvent] {
+        return []
     }
 
-    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
-        return nil
-    }
-
-    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
-        return nil
-    }
-
-    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
-        /* TODO
-         2 ways to do this:
-            1. Hard code a bunch of events and return them
-            2. Decode the JSON that is in MockEventsData.json and return the objects as [Event] type
-         */
-        MockEventsModelData().events
-    }
+//    var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Mock")
+//
+//
+//    func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws {
+//    }
+//
+//    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+//        return nil
+//    }
+//
+//    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+//        return nil
+//    }
+//
+//    func saveFreshEvents(eventResultsController: NSFetchedResultsController<Event>) async throws -> [Event]? {
+//        /* TODO
+//         2 ways to do this:
+//            1. Hard code a bunch of events and return them
+//            2. Decode the JSON that is in MockEventsData.json and return the objects as [Event] type
+//         */
+//        MockEventsModelData().events
+//    }
 }

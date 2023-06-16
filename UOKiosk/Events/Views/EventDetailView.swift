@@ -11,7 +11,7 @@ struct EventDetailView: View {
     let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
 
-    init(_ event: Event, injector: Injector) {
+    init(_ event: IMEvent, injector: Injector) {
         _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
         self.injector = injector
     }
@@ -102,10 +102,10 @@ struct EventDetailView: View {
 }
 
 #if DEBUG
-struct EventDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        let event = MockEventsModelData().event
-        EventDetailView(event, injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
-    }
-}
+//struct EventDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let event = MockEventsModelData().event
+//        EventDetailView(event, injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
+//    }
+//}
 #endif

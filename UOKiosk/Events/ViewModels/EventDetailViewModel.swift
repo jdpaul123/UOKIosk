@@ -23,7 +23,7 @@ class EventDetailViewModel: ObservableObject {
     let calendarData: EventCalendarViewModel
     let reminderData: EventReminderViewModel
 
-    init(event: Event) {
+    init(event: IMEvent) {
         self.title = event.title ?? "No Title"
         if let photoData = event.photoData {
             self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
@@ -36,9 +36,7 @@ class EventDetailViewModel: ObservableObject {
         self.roomNumber = event.roomNumber ?? ""
         
         self.dateRange = {
-            guard let start = event.start else {
-                    return "No dates provided"
-            }
+            let start = event.start
             let startDateString = start.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
@@ -50,9 +48,7 @@ class EventDetailViewModel: ObservableObject {
         }()
         
         self.timeRange = {
-            guard let start = event.start else {
-                    return "No times provided"
-            }
+            let start = event.start
             let startTimeString = start.formatted(date: .omitted, time: .shortened)
             let endTimeString = event.end?.formatted(date: .omitted, time: .shortened) ?? ""
             

@@ -15,14 +15,13 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
     var cancellables = Set<AnyCancellable>()
     let date: Date
     let displayDateString: String
-    @Published var events: [Event]
+    @Published var events: [IMEvent]
 
     init(parentViewModel: EventsListViewModel, dateToDisplay: Date) {
         self.date = dateToDisplay
 
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, MMM d"
-        dateFormatter.timeStyle = .none
         self.displayDateString = dateFormatter.string(from: dateToDisplay)
 
         self.events = []
@@ -30,7 +29,7 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
     }
 
     func setUpEventsSink(_ parentViewModel: EventsListViewModel, dateToDisplay: Date) {
-        parentViewModel.$eventDictionary
+        parentViewModel.$eventsDictionary
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -39,7 +38,9 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
                     print("Error: \(error.localizedDescription)")
                 }
             } receiveValue: { eventsDictionary in
-                self.events = eventsDictionary[dateToDisplay] ?? []
+                DispatchQueue.main.async {
+                    self.events = eventsDictionary[dateToDisplay] ?? []
+                }
             }
             .store(in: &cancellables)
     }

@@ -23,7 +23,7 @@ struct EventsListSectionView: View {
                 NavigationLink {
                     EventDetailView(event, injector: injector)
                 } label: {
-                    EventsListCellView(injector: injector, imageData: event.photoData ?? Data(), title: event.title ?? "No Title")
+                    EventsListCellView(injector: injector, imageData: event.photoData ?? Data(), title: event.title)
                 }
             }
         } header: {
