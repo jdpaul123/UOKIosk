@@ -34,6 +34,12 @@
 		52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */; };
 		52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EF82A3BC443007BF9B1 /* EventsRepository.swift */; };
 		52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EFA2A3BC452007BF9B1 /* EventsService.swift */; };
+		52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EFC2A3BC55E007BF9B1 /* EventsListView.swift */; };
+		52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463EFE2A3BC59A007BF9B1 /* EventsListCellView.swift */; };
+		52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F002A3BC603007BF9B1 /* EventsListViewModel.swift */; };
+		52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F032A3BC71C007BF9B1 /* EventsListCellViewModel.swift */; };
+		52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F052A3BCA11007BF9B1 /* EventsListSectionView.swift */; };
+		52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F072A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
@@ -101,6 +107,12 @@
 		52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenSubViewModels.swift; sourceTree = "<group>"; };
 		52463EF82A3BC443007BF9B1 /* EventsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsRepository.swift; sourceTree = "<group>"; };
 		52463EFA2A3BC452007BF9B1 /* EventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsService.swift; sourceTree = "<group>"; };
+		52463EFC2A3BC55E007BF9B1 /* EventsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListView.swift; sourceTree = "<group>"; };
+		52463EFE2A3BC59A007BF9B1 /* EventsListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListCellView.swift; sourceTree = "<group>"; };
+		52463F002A3BC603007BF9B1 /* EventsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewModel.swift; sourceTree = "<group>"; };
+		52463F032A3BC71C007BF9B1 /* EventsListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListCellViewModel.swift; sourceTree = "<group>"; };
+		52463F052A3BCA11007BF9B1 /* EventsListSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListSectionView.swift; sourceTree = "<group>"; };
+		52463F072A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListSectionViewModel.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -161,11 +173,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52131E5F28B54E33006C3094 /* EventsViewModels */ = {
+		52131E5F28B54E33006C3094 /* EventsListViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				52463F002A3BC603007BF9B1 /* EventsListViewModel.swift */,
+				52463F072A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift */,
+				52463F032A3BC71C007BF9B1 /* EventsListCellViewModel.swift */,
 			);
-			path = EventsViewModels;
+			path = EventsListViewModels;
 			sourceTree = "<group>";
 		};
 		52131E6828B96C91006C3094 /* Extension */ = {
@@ -251,6 +266,16 @@
 				52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		52463F022A3BC624007BF9B1 /* EventsListViews */ = {
+			isa = PBXGroup;
+			children = (
+				52463EFC2A3BC55E007BF9B1 /* EventsListView.swift */,
+				52463F052A3BCA11007BF9B1 /* EventsListSectionView.swift */,
+				52463EFE2A3BC59A007BF9B1 /* EventsListCellView.swift */,
+			);
+			path = EventsListViews;
 			sourceTree = "<group>";
 		};
 		525538EE2A0DA606004BD415 /* Mocks */ = {
@@ -396,6 +421,7 @@
 		529861E6284554C1009C1E3B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				52463F022A3BC624007BF9B1 /* EventsListViews */,
 				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
 			);
 			path = Views;
@@ -418,7 +444,7 @@
 		529861E8284554CB009C1E3B /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				52131E5F28B54E33006C3094 /* EventsViewModels */,
+				52131E5F28B54E33006C3094 /* EventsListViewModels */,
 				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
 			);
 			path = ViewModels;
@@ -582,9 +608,11 @@
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */,
 				52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */,
+				52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
 				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
+				52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
 				52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */,
@@ -607,9 +635,13 @@
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
+				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
+				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
+				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
+				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 			);
