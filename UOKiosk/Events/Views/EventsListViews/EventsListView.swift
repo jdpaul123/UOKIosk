@@ -27,9 +27,11 @@ struct EventsListView: View {
             if vm.viewModelHasLoading { return }
             if vm.isLoading { return }
             vm.isLoading = true
-            defer { vm.isLoading = false }
+            defer {
+                vm.isLoading = false
+                vm.viewModelHasLoading = true
+            }
             await vm.fetchEvents()
-            vm.viewModelHasLoading = true
         }
     }
 }
