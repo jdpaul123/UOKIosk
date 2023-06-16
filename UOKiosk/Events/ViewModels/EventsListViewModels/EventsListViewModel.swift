@@ -19,6 +19,9 @@ class EventsListViewModel: ObservableObject {
         return false
     }
 
+    @Published var viewModelHasLoading = false
+
+    // FIXME: Publishing changes from background threads is not allowed; make sure to publish values from the main thread (via operators like receive(on:)) on model updates.
     @Published var eventsDictionary = OrderedDictionary<Date, [IMEvent]>()
 
     // MARK: Initializer
@@ -27,6 +30,7 @@ class EventsListViewModel: ObservableObject {
     }
 
     // MARK: Fetch Events
+    @MainActor
     func fetchEvents() async {
         var events = [IMEvent]()
         do {
@@ -48,6 +52,5 @@ class EventsListViewModel: ObservableObject {
                 eventsDictionary[startOfEventAtMidnight] = [event]
             }
         }
-        print("Events: \(events)")
     }
 }

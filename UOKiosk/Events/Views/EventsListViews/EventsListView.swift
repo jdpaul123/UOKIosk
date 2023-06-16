@@ -24,11 +24,12 @@ struct EventsListView: View {
             }
         }
         .task {
+            if vm.viewModelHasLoading { return }
             if vm.isLoading { return }
             vm.isLoading = true
             defer { vm.isLoading = false }
-            print("!!! FETCHING EVENTS")
             await vm.fetchEvents()
+            vm.viewModelHasLoading = true
         }
     }
 }
