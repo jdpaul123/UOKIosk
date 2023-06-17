@@ -37,6 +37,7 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
                 case .failure(let error):
                     print("!!! Error with the eventsDictionary Sync: \(error.localizedDescription)")
                 }
+                self.cancellables.removeAll()
             } receiveValue: { [ weak self ] eventsDictionary in
                     self?.events = eventsDictionary[dateToDisplay] ?? []
             }

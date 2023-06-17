@@ -77,10 +77,10 @@ class IMEvent: Identifiable {
                 case .failure(let error):
                     print("FAILED to get photo for event: \(self.title)\n With error: \(error.localizedDescription)")
                 }
+                self.cancellables.removeAll()
             } receiveValue: { [weak self] (data, respose) in
                 self?.photoData = data
             }
             .store(in: &cancellables)
-        //ApiService.shared.getImageData(url: photoUrl, photoDataProperty: &photoData, cancellables: &cancellables)
     }
 }

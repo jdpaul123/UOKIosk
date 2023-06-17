@@ -30,11 +30,11 @@ class EventsListCellViewModel: ObservableObject {
                 case .failure(let error):
                     print("Failed to get image data for Event Cell for event: \(event.title)\nWith Error: \(error.localizedDescription)")
                 }
+                self.cancellables.removeAll()
             } receiveValue: { [weak self] data in
                 guard let self = self else { return }
                 if let imageData = data {
                     self.imageData = imageData
-                    self.cancellables.removeAll()
                 }
             }
             .store(in: &cancellables)
