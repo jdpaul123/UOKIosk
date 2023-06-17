@@ -25,10 +25,11 @@ class EventDetailViewModel: ObservableObject {
 
     init(event: IMEvent) {
         self.title = event.title
+        let noImage = UIImage.init(named: "NoImage")!
         if let photoData = event.photoData {
-            self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
+            self.image = UIImage.init(data: photoData) ?? noImage
         } else {
-            self.image = UIImage.init(named: "NoImage")!
+            self.image = noImage
         }
 
         self.location = event.locationName ?? ""

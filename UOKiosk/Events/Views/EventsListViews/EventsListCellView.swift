@@ -11,13 +11,13 @@ struct EventsListCellView: View {
     @StateObject var vm: EventsListCellViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, imageData: Data, title: String) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsListCellViewModel(imageData: imageData, title: title))
+    init(injector: Injector, event: IMEvent) {
+        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsListCellViewModel(event: event))
     }
 
     var body: some View {
         HStack {
-            Image.init(uiImage: (UIImage(data: vm.imageData) ?? UIImage(named: "NoImage")!))
+            Image.init(uiImage: (UIImage(data: vm.imageData ?? Data()) ?? UIImage(named: "NoImage")!))
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)
@@ -31,8 +31,8 @@ struct EventsListCellView: View {
     }
 }
 
-struct EventsListCellView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsListCellView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()), imageData: Data(), title: "Test Title")
-    }
-}
+//struct EventsListCellView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventsListCellView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()), event: <#IMEvent#>)
+//    }
+//}

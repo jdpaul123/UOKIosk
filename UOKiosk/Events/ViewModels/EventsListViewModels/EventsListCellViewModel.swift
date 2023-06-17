@@ -6,13 +6,38 @@
 //
 
 import Foundation
+import Combine
 
 class EventsListCellViewModel: ObservableObject {
-    @Published var imageData: Data
+    @Published var imageData: Data?
     @Published var title: String
 
-    init(imageData: Data, title: String) {
-        self.imageData = imageData
-        self.title = title
+    var cancellables = Set<AnyCancellable>()
+
+    init(event: IMEvent) {
+        self.imageData = event.photoData
+        self.title = event.title
+        subscribeImageDataToEvent(event: event)
+    }
+
+    func subscribeImageDataToEvent(event: IMEvent) {
+        event.$photoData
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("Successfully got image data for Event Cell for event: \(event.title)")
+                case .failure(let error):
+                    print("Failed to get image data for Event Cell for event: \(event.title)\nWith Error: \(error.localizedDescription)")
+                }
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                if let imageData = data {
+                    DispatchQueue.main.async {
+                        self.imageData = imageData
+                        self.cancellables.removeAll()
+                    }
+                }
+            }
+            .store(in: &cancellables)
     }
 }

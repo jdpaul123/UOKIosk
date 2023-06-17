@@ -6,11 +6,14 @@
 //
 
 import Foundation
+import Combine
 
 // IM == In-memory
 class IMEvent: Identifiable {
     // MARK: Instance properties
     var id: Int
+    var cancellables = Set<AnyCancellable>()
+
     let title: String
     let eventDescription: String
     let locationName: String?
@@ -24,7 +27,7 @@ class IMEvent: Identifiable {
     let venueUrl: URL?
     let calendarUrl: URL?
     let photoUrl: URL?
-    let photoData: Data?
+    @Published var photoData: Data?
     let ticketCost: String?
     let start: Date
     let end: Date?
@@ -58,5 +61,26 @@ class IMEvent: Identifiable {
         self.departmentFilters = departmentFilters
         self.targetAudienceFilters = targetAudienceFilters
         self.eventTypeFilters = eventTypeFilters
+        getImage()
+    }
+
+    func getImage() {
+        guard let photoUrl = photoUrl else {
+            return
+        }
+        URLSession.shared.dataTaskPublisher(for: photoUrl)
+            .sink { completion in
+                // TODO: Add error handling
+                switch completion {
+                case .finished:
+                    print("SUCCEEDED to get photo for event: \(self.title)")
+                case .failure(let error):
+                    print("FAILED to get photo for event: \(self.title)\n With error: \(error.localizedDescription)")
+                }
+            } receiveValue: { [weak self] (data, respose) in
+                self?.photoData = data
+            }
+            .store(in: &cancellables)
+        //ApiService.shared.getImageData(url: photoUrl, photoDataProperty: &photoData, cancellables: &cancellables)
     }
 }

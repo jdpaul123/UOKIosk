@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Collections
 
 class EventsListSectionViewModel: ObservableObject, Identifiable {
     let id = UUID()
@@ -33,13 +32,13 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("Finished")
+                    print("!!! Finished Successfully")
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    print("!!! Error with the eventsDictionary Sync: \(error.localizedDescription)")
                 }
-            } receiveValue: { eventsDictionary in
+            } receiveValue: { [ weak self ] eventsDictionary in
                 DispatchQueue.main.async {
-                    self.events = eventsDictionary[dateToDisplay] ?? []
+                    self?.events = eventsDictionary[dateToDisplay] ?? []
                 }
             }
             .store(in: &cancellables)
