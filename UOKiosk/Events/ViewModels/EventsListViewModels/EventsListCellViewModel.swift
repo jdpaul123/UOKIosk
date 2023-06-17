@@ -22,6 +22,7 @@ class EventsListCellViewModel: ObservableObject {
 
     func subscribeImageDataToEvent(event: IMEvent) {
         event.$photoData
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -32,10 +33,8 @@ class EventsListCellViewModel: ObservableObject {
             } receiveValue: { [weak self] data in
                 guard let self = self else { return }
                 if let imageData = data {
-                    DispatchQueue.main.async {
-                        self.imageData = imageData
-                        self.cancellables.removeAll()
-                    }
+                    self.imageData = imageData
+                    self.cancellables.removeAll()
                 }
             }
             .store(in: &cancellables)

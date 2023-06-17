@@ -29,6 +29,7 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
 
     func setUpEventsSink(_ parentViewModel: EventsListViewModel, dateToDisplay: Date) {
         parentViewModel.$eventsDictionary
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
@@ -37,9 +38,7 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
                     print("!!! Error with the eventsDictionary Sync: \(error.localizedDescription)")
                 }
             } receiveValue: { [ weak self ] eventsDictionary in
-                DispatchQueue.main.async {
                     self?.events = eventsDictionary[dateToDisplay] ?? []
-                }
             }
             .store(in: &cancellables)
     }

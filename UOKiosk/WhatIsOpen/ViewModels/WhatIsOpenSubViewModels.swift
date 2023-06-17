@@ -18,6 +18,7 @@ class WhatIsOpenListViewModel: ObservableObject {
         self.listType = listType
         self.places =  places
         listType.getWhatIsOpenViewModelData(vm: parentViewModel)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
