@@ -127,16 +127,4 @@ class EventsService: EventsRepository {
         let allDay = dateData.allDay
         return (allDay, start, end)
     }
-
-    // MARK: - EventsServiceError Enumeration
-    enum EventsServiceError: Error, LocalizedError {
-        case dataTransferObjectIsNil
-
-        var errorDescription: String? {
-            switch self {
-            case .dataTransferObjectIsNil:
-                return NSLocalizedString("The api did not return the data transfer object", comment: "")
-            }
-        }
-    }
 }

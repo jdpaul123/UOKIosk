@@ -46,6 +46,8 @@
 		52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
+		526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */; };
+		526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -123,6 +125,8 @@
 		52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
+		526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsServiceErrorEnum.swift; sourceTree = "<group>"; };
+		526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorEnum.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -300,6 +304,8 @@
 			isa = PBXGroup;
 			children = (
 				52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */,
+				526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */,
+				526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */,
 			);
 			path = "Error Handling";
 			sourceTree = "<group>";
@@ -636,6 +642,7 @@
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				52463F0F2A3C26E5007BF9B1 /* IMEventFilter.swift in Sources */,
 				52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */,
+				526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */,
 				52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */,
 				52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
@@ -663,6 +670,7 @@
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
+				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
 				52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */,
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,

@@ -26,9 +26,9 @@ class EventsListCellViewModel: ObservableObject {
             .sink { completion in
                 switch completion {
                 case .finished:
-                    print("Successfully got image data for Event Cell for event: \(event.title)")
+                    break
                 case .failure(let error):
-                    print("Failed to get image data for Event Cell for event: \(event.title)\nWith Error: \(error.localizedDescription)")
+                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
                 }
                 self.cancellables.removeAll()
             } receiveValue: { [weak self] data in
