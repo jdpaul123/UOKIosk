@@ -34,6 +34,7 @@ class EventsListViewModel: ObservableObject {
     // MARK: Fetch Events
     @MainActor
     func fetchEvents() async {
+        isLoading = true
         var events = [IMEvent]()
         do {
             events = try await eventsRepository.getFreshEvents()
@@ -41,6 +42,7 @@ class EventsListViewModel: ObservableObject {
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
             showBanner = true
+            isLoading = false
             return
         }
 
@@ -57,6 +59,7 @@ class EventsListViewModel: ObservableObject {
                 eventsDictionary[startOfEventAtMidnight] = [event]
             }
         }
+        isLoading = false
         viewModelHasLoaded = true
     }
 }
