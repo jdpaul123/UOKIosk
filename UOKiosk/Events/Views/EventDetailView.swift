@@ -8,33 +8,33 @@
 import SwiftUI
 
 struct EventDetailView: View {
-    @StateObject var viewModel: EventDetailViewModel
+    @StateObject var vm: EventDetailViewModel
 
     init(vm: EventDetailViewModel) {
-        _viewModel = StateObject(wrappedValue: vm)
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         ScrollView {
             VStack {
-                Text("\(viewModel.title)")
+                Text("\(vm.title)")
                     .font(.title)
                 VStack {
-                    Image.init(uiImage: viewModel.image)
+                    Image(uiImage: .init(data: vm.imageData)!)
                         .resizable()
                         .scaledToFit()
                         .padding()
-                    if viewModel.hasLocation {
+                    if vm.hasLocation {
                         HStack {
                             Text("Location")
                                 .bold()
                                 .font(.title3)
                             Spacer()
                             VStack {
-                                Text(viewModel.location)
+                                Text(vm.location)
                                     .font(.title3)
                                     .multilineTextAlignment(.center)
-                                Text(viewModel.roomNumber)
+                                Text(vm.roomNumber)
                                     .font(.subheadline)
                             }
                         }
@@ -47,9 +47,9 @@ struct EventDetailView: View {
                             .font(.title3)
                         Spacer()
                         VStack {
-                            Text(viewModel.dateRange)
+                            Text(vm.dateRange)
                                 .font(.title3)
-                            Text(viewModel.timeRange)
+                            Text(vm.timeRange)
                                 .font(.subheadline)
                         }
                     }
@@ -83,10 +83,10 @@ struct EventDetailView: View {
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
 
-                Text(viewModel.eventDescription)
+                Text(vm.eventDescription)
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
-                if let website = viewModel.website {
+                if let website = vm.website {
                     Link("\(Image.init(systemName: "link.circle")) View Event Online", destination: website)
                         .padding()
                 }

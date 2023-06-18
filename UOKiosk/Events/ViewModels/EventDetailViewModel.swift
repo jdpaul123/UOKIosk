@@ -8,10 +8,13 @@
 import Foundation
 import SwiftUI
 import UIKit
+import Combine
 
 class EventDetailViewModel: ObservableObject {
+    @Published var imageData: Data
+    var cancellables = Set<AnyCancellable>()
+
     let title: String
-    @Published var image: UIImage // TODO: Subscribe this image to the one in the parent view model
     let location: String
     let hasLocation: Bool
     let roomNumber: String
@@ -25,11 +28,11 @@ class EventDetailViewModel: ObservableObject {
 
     init(event: IMEvent) {
         self.title = event.title
-        let noImage = UIImage.init(named: "NoImage")!
+        let noImageData = UIImage.init(named: "NoImage")!.pngData()!
         if let photoData = event.photoData {
-            self.image = UIImage.init(data: photoData) ?? noImage
+            self.imageData = photoData
         } else {
-            self.image = noImage
+            self.imageData = noImageData
         }
 
         self.location = event.locationName ?? ""
@@ -68,6 +71,28 @@ class EventDetailViewModel: ObservableObject {
         
         self.calendarData = EventCalendarViewModel()
         self.reminderData = EventReminderViewModel()
+
+        subscribeImageDataToEvent(event: event)
+    }
+
+    func subscribeImageDataToEvent(event: IMEvent) {
+        event.$photoData
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
+                }
+                self.cancellables.removeAll()
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                if let imageData = data {
+                    self.imageData = imageData
+                }
+            }
+            .store(in: &cancellables)
     }
 }
 

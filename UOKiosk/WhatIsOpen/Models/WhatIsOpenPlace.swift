@@ -65,6 +65,7 @@ struct WhatIsOpenPlace: Identifiable {
             }
         }
         isOpenColor = .red
+        // TODO: Get the next open time value from the api task and show that time
         isOpenString = "Closed until at least Monday"
     }
 }

@@ -28,7 +28,6 @@ struct TabMenuView: View {
         }
     }
 
-    // TODO: Make view factory as an environment variable so that I don't have to pass around the injector
     @State var selectedTab: Tabs = .events
     @EnvironmentObject var injector: Injector
 
