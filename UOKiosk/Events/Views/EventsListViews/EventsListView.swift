@@ -30,15 +30,15 @@ struct EventsListView: View {
             }
         }
         .task {
-            if vm.viewModelHasLoading { return }
+            if vm.viewModelHasLoaded { return }
             if vm.isLoading { return }
             vm.isLoading = true
             defer {
                 vm.isLoading = false
-                vm.viewModelHasLoading = true
             }
             await vm.fetchEvents()
         }
+        .banner(data: $vm.bannerData, show: $vm.showBanner)
     }
 }
 

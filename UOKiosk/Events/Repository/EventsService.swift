@@ -19,8 +19,7 @@ class EventsService: EventsRepository {
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
-            // TODO: Add analytics for this error and an error banner
-            let _ = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
+            throw error
         }
 
         guard let dto = dto else {

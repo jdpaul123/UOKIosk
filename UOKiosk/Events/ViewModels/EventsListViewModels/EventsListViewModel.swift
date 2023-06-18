@@ -19,9 +19,12 @@ class EventsListViewModel: ObservableObject {
         return false
     }
 
-    @Published var viewModelHasLoading = false
+    @Published var viewModelHasLoaded = false
 
     @Published var eventsDictionary = OrderedDictionary<Date, [IMEvent]>()
+
+    @Published var showBanner: Bool = false
+    @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
 
     // MARK: Initializer
     init(eventsRepository: EventsRepository) {
@@ -35,7 +38,10 @@ class EventsListViewModel: ObservableObject {
         do {
             events = try await eventsRepository.getFreshEvents()
         } catch {
-            print("!! FAILED TO GET EVENTS")
+            bannerData.title = "Error"
+            bannerData.detail = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
+            showBanner = true
+            return
         }
 
         let cal = Calendar(identifier: .gregorian)
@@ -51,5 +57,6 @@ class EventsListViewModel: ObservableObject {
                 eventsDictionary[startOfEventAtMidnight] = [event]
             }
         }
+        viewModelHasLoaded = true
     }
 }
