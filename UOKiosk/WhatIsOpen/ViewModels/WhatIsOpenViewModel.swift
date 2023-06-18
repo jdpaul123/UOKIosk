@@ -75,7 +75,6 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         do {
             data = try await whatIsOpenRepository.getAssetData()
         } catch {
-//            fatalError("Refresh of What's Open data failed")
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription
             showBanner = true

@@ -23,13 +23,10 @@ class EventsService: EventsRepository {
         }
 
         guard let dto = dto else {
-            // TODO: Instead of returning here, throw an error
-            return []
+            throw EventsServiceError.dataTransferObjectIsNil
         }
 
-
         var eventDtos = [EventDto]()
-
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
         for middleLayer in dto.eventMiddleLayerDto {
             let eventDto = middleLayer.eventDto
@@ -59,7 +56,6 @@ class EventsService: EventsRepository {
             eventDtos.append(eventDto)
         }
 
-        // TOOD: Take eventsDto array and turn them into events and return those
         var events = [IMEvent]()
         for eventDto in eventDtos {
             guard let eventInstances = eventDto.eventInstances else {
@@ -67,6 +63,25 @@ class EventsService: EventsRepository {
             }
             let dateData = eventInstances[0].eventInstance
             let dateValues = getEventInstanceDateData(dateData: dateData)
+
+            var eventTypeFilters = [IMEventFilter]()
+            var departmentFilters = [IMEventFilter]()
+            var targetAudienceFilters = [IMEventFilter]()
+            if let dtoEventFilters = eventDto.filters.eventTypes {
+                for eventFilter in dtoEventFilters {
+                    eventTypeFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
+                }
+            }
+            if let dtoDepartmentFilters = eventDto.filters.departments {
+                for eventFilter in dtoDepartmentFilters {
+                    departmentFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
+                }
+            }
+            if let dtoTargetAudienceFilters = eventDto.filters.eventTargetAudience {
+                for eventFilter in dtoTargetAudienceFilters {
+                    targetAudienceFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
+                }
+            }
 
             let event = IMEvent(id: eventDto.id, title: eventDto.title, eventDescription: eventDto.descriptionText, locationName: eventDto.locationName,
                                 roomNumber: eventDto.roomNumber, address: eventDto.address, status: eventDto.status, experience: eventDto.experience,
@@ -76,14 +91,14 @@ class EventsService: EventsRepository {
                                 venueUrl: URL(string: eventDto.venueUrl ?? ""),
                                 calendarUrl: URL(string: eventDto.icsUrl ?? ""),
                                 photoUrl: URL(string: eventDto.photoUrl ?? ""),
-                                photoData: nil, // TODO: MAKE THIS NIL AT FIRST AND LOAD IT ASYNCRONOUSLY
+                                photoData: nil, // photo data is loaded asyncronously after instantiation
                                 ticketCost: eventDto.ticketCost,
                                 start: dateValues.1, end: dateValues.2, allDay: dateValues.0,
-                                departmentFilters: [], targetAudienceFilters: [], eventTypeFilters: [])
+                                departmentFilters: departmentFilters, targetAudienceFilters: targetAudienceFilters, eventTypeFilters: eventTypeFilters)
             events.append(event)
         }
 
-        return events // TODO: Above this return add in a check that fetchedObjects exists and has Events, otherwise Throw an error
+        return events // TODO: Above this return, once Core Data is implimented add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
 
     private func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
@@ -111,5 +126,17 @@ class EventsService: EventsRepository {
 
         let allDay = dateData.allDay
         return (allDay, start, end)
+    }
+
+    // MARK: - EventsServiceError Enumeration
+    enum EventsServiceError: Error, LocalizedError {
+        case dataTransferObjectIsNil
+
+        var errorDescription: String? {
+            switch self {
+            case .dataTransferObjectIsNil:
+                return NSLocalizedString("The api did not return the data transfer object", comment: "")
+            }
+        }
     }
 }
