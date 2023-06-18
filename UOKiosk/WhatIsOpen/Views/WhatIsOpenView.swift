@@ -46,6 +46,7 @@ struct DiningHoursView: WhatIsOpenView {
                 await vm.getData()
             }
         }
+        .banner(data: $vm.bannerData, show: $vm.showBanner)
     }
 }
 

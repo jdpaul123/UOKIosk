@@ -21,7 +21,11 @@ class WhatIsOpenService: WhatIsOpenRepository {
         do {
             whatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
-            fatalError("FAILED TO GET THE DATA WITH ERROR")
+            let errorMessage = error.localizedDescription
+            print("!!! Error In WhatIsOpenService: \(errorMessage)")
+            throw error
+            // TODO: Here is the error that we want to pass up to the user to say they are not connected to the internet or whatever other error appears
+//            fatalError("FAILED TO GET THE DATA WITH ERROR")
         }
 
         // Go through each new "Asset". Create the current asset's PlaceViewModel with all of the correct data

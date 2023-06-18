@@ -73,7 +73,8 @@ class IMEvent: Identifiable {
                 // TODO: Add error handling
                 switch completion {
                 case .finished:
-                    print("SUCCEEDED to get photo for event: \(self.title)")
+                    //print("SUCCEEDED to get photo for event: \(self.title)")
+                    break
                 case .failure(let error):
                     print("FAILED to get photo for event: \(self.title)\n With error: \(error.localizedDescription)")
                 }

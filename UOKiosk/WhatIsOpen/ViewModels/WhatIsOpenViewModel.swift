@@ -44,8 +44,8 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
     }
 
     // Error Handling
-    @Published var showAlert: Bool
-    @Published var errorMessage: String?
+    @Published var showBanner: Bool = false
+    @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
 
     let showDining: Bool
     let showFacilities: Bool
@@ -57,8 +57,6 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         self.whatIsOpenRepository = whatIsOpenRepository
 
         self.isLoading = isLoading
-        self.showAlert = showAlert
-        self.errorMessage = errorMessage
 
         self.showDining = showDining
         self.showFacilities = showFacilities
@@ -77,8 +75,11 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         do {
             data = try await whatIsOpenRepository.getAssetData()
         } catch {
-            // TODO: Get the error here and display it
-            fatalError("Refresh of What's Open data failed")
+//            fatalError("Refresh of What's Open data failed")
+            bannerData.title = "Error"
+            bannerData.detail = error.localizedDescription
+            showBanner = true
+            return
         }
         guard let data = data else {
             return
