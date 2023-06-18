@@ -23,72 +23,33 @@ class ApiService: ApiServiceProtocol {
      */
 
     // Code source: https://www.youtube.com/watch?v=5oBiSNnSvdQ&list=RDCMUC2D6eRvCeMtcF5OGHf1-trw&index=4 Swift Concurrency Lesson 4 - Async and Await by CodeWithChris Ft. Stewart Lynch
+    // TODO: Impliment getJSON with Combine: https://www.youtube.com/watch?v=fdxFp5vU6MQ&t=9s
     func getJSON<T: Decodable>(urlString: String,
                                dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
                                keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) async throws -> T {
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
         }
-        return try await withCheckedThrowingContinuation { continuation in
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                guard
-                    let httpResponse = response as? HTTPURLResponse,
-                    httpResponse.statusCode == 200
-                else {
-                    continuation.resume(with: .failure(APIError.invalidResponseStatus))
-                    return
-                }
-                if let error = error {
-                    continuation.resume(with: .failure(APIError.dataTaskError(error.localizedDescription)))
-                    return
-                }
-                guard let data = data else {
-                    continuation.resume(with: .failure(APIError.corruptData))
-                    return
-                }
 
-                // FIXME: BELOW CODE IS FOR TESTING
-                /*
-                let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let response = jsonResponse as? [String: Any] {
-                        print("PRINTING DATA")
-                        print(response)
-                        print()
-                }
-                 */
-
-                let decoder = JSONDecoder()
-                decoder.dateDecodingStrategy = dateDecodingStrategy
-                decoder.keyDecodingStrategy = keyDecodingStrategy
-                do {
-                    let decodedData = try decoder.decode(T.self, from: data)
-
-                    // FIXME: BELOW CODE IS FOR TESTING
-                    /*
-                    if decodedData != nil {
-                        print("!!! Success decoding the data")
-                        if let whatsOpenData = decodedData as? WhatIsOpenDto {
-                            print(whatsOpenData.features.count)
-                            print()
-                            for feature in whatsOpenData.features {
-                                print(feature.properties.name)
-                                print(feature.type)
-                                print("Friday Hours: \(feature.properties.hours.friday)")
-                                print("Asset Type: \(feature.properties.types)")
-                                print("Open Status: \(feature.properties.open.isOpen)")
-                                print("Emoji: \(feature.properties.userProperties.emoji ?? "No Emoji")")
-                                print("Today is: \(feature.properties.open.today)")
-                                print()
-                            }
-                        }
-                    }
-                     */
-                    continuation.resume(with: .success(decodedData))
-                } catch {
-                    continuation.resume(with: .failure(APIError.decodingError(error.localizedDescription)))
-                }
+        do {
+            let (data, response) = try await URLSession.shared.data(from: url)
+            guard
+                let httpResponse = response as? HTTPURLResponse,
+                httpResponse.statusCode == 200
+            else {
+                throw APIError.invalidResponseStatus
             }
-            .resume()
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = dateDecodingStrategy
+            decoder.keyDecodingStrategy = keyDecodingStrategy
+            do {
+                let decodedData = try decoder.decode(T.self, from: data)
+                return decodedData
+            } catch {
+                throw APIError.decodingError(error.localizedDescription)
+            }
+        } catch {
+            throw APIError.dataTaskError(error.localizedDescription)
         }
     }
 

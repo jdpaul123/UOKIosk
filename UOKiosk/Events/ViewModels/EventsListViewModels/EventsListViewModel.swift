@@ -35,6 +35,7 @@ class EventsListViewModel: ObservableObject {
     @MainActor
     func fetchEvents() async {
         isLoading = true
+        defer { isLoading = false }
         var events = [IMEvent]()
         do {
             events = try await eventsRepository.getFreshEvents()
@@ -42,7 +43,6 @@ class EventsListViewModel: ObservableObject {
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription
             showBanner = true
-            isLoading = false
             return
         }
 
@@ -59,7 +59,6 @@ class EventsListViewModel: ObservableObject {
                 eventsDictionary[startOfEventAtMidnight] = [event]
             }
         }
-        isLoading = false
         viewModelHasLoaded = true
     }
 }
