@@ -40,7 +40,7 @@ class EventsListViewModel: ObservableObject {
             events = try await eventsRepository.getFreshEvents()
         } catch {
             bannerData.title = "Error"
-            bannerData.detail = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to replicate."
+            bannerData.detail = error.localizedDescription
             showBanner = true
             isLoading = false
             return

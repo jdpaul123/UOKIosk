@@ -21,6 +21,8 @@ class ApiService: ApiServiceProtocol {
      This is a general API Service that can call any JSON Web API and fill the JSON data into
      a conforming, generic, decodable Swift object.
      */
+
+    // Code source: https://www.youtube.com/watch?v=5oBiSNnSvdQ&list=RDCMUC2D6eRvCeMtcF5OGHf1-trw&index=4 Swift Concurrency Lesson 4 - Async and Await by CodeWithChris Ft. Stewart Lynch
     func getJSON<T: Decodable>(urlString: String,
                                dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
                                keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) async throws -> T {
