@@ -43,6 +43,7 @@
 		52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F0A2A3C26C8007BF9B1 /* IMEvent.swift */; };
 		52463F0F2A3C26E5007BF9B1 /* IMEventFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F0E2A3C26E5007BF9B1 /* IMEventFilter.swift */; };
 		52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F102A3C26F9007BF9B1 /* IMEventLocation.swift */; };
+		52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
@@ -119,6 +120,7 @@
 		52463F0A2A3C26C8007BF9B1 /* IMEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMEvent.swift; sourceTree = "<group>"; };
 		52463F0E2A3C26E5007BF9B1 /* IMEventFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMEventFilter.swift; sourceTree = "<group>"; };
 		52463F102A3C26F9007BF9B1 /* IMEventLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IMEventLocation.swift; sourceTree = "<group>"; };
+		52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,14 @@
 			path = NonCoreDataModels;
 			sourceTree = "<group>";
 		};
+		52463F122A3E7B39007BF9B1 /* Error Handling */ = {
+			isa = PBXGroup;
+			children = (
+				52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */,
+			);
+			path = "Error Handling";
+			sourceTree = "<group>";
+		};
 		525538EE2A0DA606004BD415 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +379,7 @@
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
+				52463F122A3E7B39007BF9B1 /* Error Handling */,
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
@@ -653,6 +664,7 @@
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
+				52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */,
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
