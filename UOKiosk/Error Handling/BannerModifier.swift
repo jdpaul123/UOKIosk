@@ -4,7 +4,9 @@
 //
 //  Created by Jonathan Paul on 6/17/23.
 //
-// Code credit to: JEAN-MARC BOULLIANNE at https://trailingclosure.com/notification-banner-using-swiftui/
+// Code credit to: JEAN-MARC BOULLIANNE
+// Article about code: https://trailingclosure.com/notification-banner-using-swiftui/
+// GitHub repo: https://github.com/jboullianne/SwiftUIBanner
 
 import SwiftUI
 
