@@ -29,13 +29,13 @@ struct TabMenuView: View {
     }
 
     // TODO: Make view factory as an environment variable so that I don't have to pass around the injector
-    let injector: Injector
     @State var selectedTab: Tabs = .events
+    @EnvironmentObject var injector: Injector
 
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationView {
-                EventsListView(injector: injector)
+                EventsListView(vm: injector.viewModelFactory.makeEventsListViewModel())
                     .navigationTitle("Events")
             }
             // StackNavigationViewStyle() causes logging bug where this log is shown when a list item is tapped: 2023-05-25 14:53:13.416096-0700 UOKiosk[3825:1682743] [API] Failed to create 0x88 image slot (alpha=1 wide=1) (client=0xc554bbe2) [0x5 (os/kern) failure]
@@ -61,11 +61,11 @@ struct TabMenuView: View {
 }
 
 #if DEBUG
-struct TabMenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        // TODO: Pass in dummy data for this
-        TabMenuView(injector: Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"),
-                                       whatIsOpenRepository: WhatIsOpenService(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")))
-    }
-}
+//struct TabMenuView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // TODO: Pass in dummy data for this
+//        TabMenuView(injector: Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"),
+//                                       whatIsOpenRepository: WhatIsOpenService(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")))
+//    }
+//}
 #endif

@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct EventDetailView: View {
-    let injector: Injector
     @StateObject var viewModel: EventDetailViewModel
 
-    init(_ event: IMEvent, injector: Injector) {
-        _viewModel = StateObject(wrappedValue: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
-        self.injector = injector
+    init(vm: EventDetailViewModel) {
+        _viewModel = StateObject(wrappedValue: vm)
     }
 
     var body: some View {

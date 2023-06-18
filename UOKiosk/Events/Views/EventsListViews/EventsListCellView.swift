@@ -11,8 +11,8 @@ struct EventsListCellView: View {
     @StateObject var vm: EventsListCellViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, event: IMEvent) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsListCellViewModel(event: event))
+    init(vm: EventsListCellViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {

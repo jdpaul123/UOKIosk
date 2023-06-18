@@ -11,7 +11,7 @@ import UIKit
 
 class EventDetailViewModel: ObservableObject {
     let title: String
-    let image: UIImage
+    @Published var image: UIImage // TODO: Subscribe this image to the one in the parent view model
     let location: String
     let hasLocation: Bool
     let roomNumber: String

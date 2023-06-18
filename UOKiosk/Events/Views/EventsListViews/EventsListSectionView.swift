@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct EventsListSectionView: View {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
     @StateObject var vm: EventsListSectionViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, parentViewModel: EventsListViewModel, dateToDisplay: Date) {
-        self.injector = injector
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsListSectionViewModel(parentViewModel: parentViewModel, dateToDisplay: dateToDisplay))
+    init(vm: EventsListSectionViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         Section {
             ForEach(vm.events) { event in
                 NavigationLink {
-                    EventDetailView(event, injector: injector)
+                    EventDetailView(vm: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
                 } label: {
-                    EventsListCellView(injector: injector, event: event)
+                    EventsListCellView(vm: injector.viewModelFactory.makeEventsListCellViewModel(event: event))
                 }
             }
         } header: {
@@ -33,9 +32,9 @@ struct EventsListSectionView: View {
     }
 }
 
-struct EventsListSectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        let injector = Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService())
-        EventsListSectionView(injector: injector, parentViewModel: injector.viewModelFactory.makeEventsListViewModel(), dateToDisplay: Date())
-    }
-}
+//struct EventsListSectionView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        let injector = Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService())
+//        EventsListSectionView(vm: injector.viewModelFactory.makeEventsListSectionViewModel(parentViewModel: EventsListViewModel(eventsRepository:), dateToDisplay: <#T##Date#>))
+//    }
+//}

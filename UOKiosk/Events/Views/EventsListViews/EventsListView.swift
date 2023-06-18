@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct EventsListView: View {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
     @StateObject var vm: EventsListViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector) {
-        self.injector = injector
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeEventsListViewModel())
+    init(vm: EventsListViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         List {
             ForEach(vm.eventsDictionary.keys, id: \.description) { dateToDisplay in
-                EventsListSectionView(injector: injector, parentViewModel: self.vm, dateToDisplay: dateToDisplay)
+                EventsListSectionView(vm: injector.viewModelFactory.makeEventsListSectionViewModel(parentViewModel: self.vm, dateToDisplay: dateToDisplay))
             }
         }
         .overlay {
@@ -38,9 +37,9 @@ struct EventsListView: View {
     }
 }
 
-struct EventsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        EventsListView(injector: Injector(eventsRepository: MockEventsService(),
-                                          whatIsOpenRepository: MockWhatIsOpenService()))
-    }
-}
+//struct EventsListView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EventsListView(injector: Injector(eventsRepository: MockEventsService(),
+//                                          whatIsOpenRepository: MockWhatIsOpenService()))
+//    }
+//}
