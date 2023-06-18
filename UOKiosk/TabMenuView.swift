@@ -47,7 +47,7 @@ struct TabMenuView: View {
             }
 
             NavigationView {
-                DiningHoursView(injector: injector)
+                DiningHoursView(vm: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .dining))
                     .navigationTitle(Tabs.whatIsOpen.rawValue)
             }
             .navigationViewStyle(StackNavigationViewStyle())

@@ -29,20 +29,42 @@ struct WhatIsOpenPlace: Identifiable {
         self.mapLink = mapLink
         self.websiteLink = websiteLink
         self.hours = hours
-        self.isOpenColor = isOpen ? .green: .red
-        let formatter = DateFormatter()
-        formatter.timeStyle = .short
-        let on: String = {
-            if isOpen { return "" }
-            if Calendar(identifier: .gregorian).compare(Date.now, to: until, toGranularity: .day) == .orderedSame {
-                return ""
-            }
-            if Calendar(identifier: .gregorian).isDateInTomorrow(until) {
-                return "tomorrow"
-            }
-            return "on \(until.dayOfWeek() ?? "")"
-        }()
-        self.isOpenString = "\(isOpen ? "Open": "Closed") until \(formatter.string(from: until)) \(on)"
         self.hoursIntervals = hoursIntervals
+
+        var openTimes = [Date]()
+        let timeFormatter = DateFormatter()
+        timeFormatter.timeStyle = .short
+        let dayFormatter = DateFormatter()
+        dayFormatter.dateStyle = .short
+
+        for hoursIntervalArray in hoursIntervals {
+            for interval in hoursIntervalArray {
+                guard !interval.contains(.now) else {
+                    isOpenColor = .green
+                    isOpenString = "Open until \(timeFormatter.string(from: interval.end))"
+                    return
+                }
+                openTimes.append(interval.start)
+            }
+        }
+
+        for startTime in openTimes {
+            // since the dates are in chronological order we can just find the first startTime that is after now and return that
+            guard Date.now > startTime else {
+                isOpenColor = .red
+
+                let cal = Calendar(identifier: .gregorian)
+                let on = cal.isDate(Date.now, inSameDayAs: startTime) ? "": "on \(startTime.dayOfWeek() ?? "")"
+
+                guard !cal.isDateInTomorrow(startTime) else {
+                    isOpenString = "Closed until \(timeFormatter.string(from: startTime)) tomorrow"
+                    return
+                }
+                isOpenString = "Closed until \(timeFormatter.string(from: startTime)) \(on)"
+                return
+            }
+        }
+        isOpenColor = .red
+        isOpenString = "Closed until at least Monday"
     }
 }
