@@ -115,8 +115,8 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
                         return
                     }
                 }
+                // In theory: This code should never be hit unless the store has passed its last closing time for the week
                 isOpenColor = .red
-                // TODO: Get the next open time value from the api task and show that time
                 let cal = Calendar(identifier: .gregorian)
                 let on = cal.isDate(Date.now, inSameDayAs: until) ? "": "on \(until.dayOfWeek() ?? "")"
 
