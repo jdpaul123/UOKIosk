@@ -41,6 +41,7 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
     let mapLink: URL?
     let websiteLink: URL?
     let hoursIntervals: [[DateInterval]]
+    let until: Date
     @Published var isOpenString: String
     @Published var isOpenColor: Color
 
@@ -51,7 +52,8 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
     // Value: Each string is either "closed", a single time range (ex. "7:00a-10:00p"), or multiple ranges split by newlines (ex. "7:00a-12:00\n1:00p-10:00p")
     let hours: OrderedDictionary<String, String>
 
-    init(emojiCode: String, name: String, building: String?, mapLink: URL?, websiteLink: URL?, isOpenString: String, isOpenColor: Color, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
+    // Until parameter represents, at time of instantiation, when the place will close if it is open, or open if it is closed.
+    init(emojiCode: String, name: String, building: String?, mapLink: URL?, websiteLink: URL?, isOpenString: String, isOpenColor: Color, until: Date, hours: OrderedDictionary<String, String>, hoursIntervals: [[DateInterval]]) {
         self.emoji = emojiCode
         self.name = name
         self.building = building
@@ -61,6 +63,7 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
         self.isOpenColor = isOpenColor
         self.hours = hours
         self.hoursIntervals = hoursIntervals
+        self.until = until
         setUpTimer()
     }
 
@@ -114,7 +117,14 @@ class WhatIsOpenPlaceViewModel: ObservableObject {
                 }
                 isOpenColor = .red
                 // TODO: Get the next open time value from the api task and show that time
-                isOpenString = "Closed until at least Monday"
+                let cal = Calendar(identifier: .gregorian)
+                let on = cal.isDate(Date.now, inSameDayAs: until) ? "": "on \(until.dayOfWeek() ?? "")"
+
+                guard !cal.isDateInTomorrow(until) else {
+                    isOpenString = "Closed until \(timeFormatter.string(from: until)) tomorrow"
+                    return
+                }
+                isOpenString = "Closed until \(timeFormatter.string(from: until)) \(on)"
             }
             .store(in: &cancelables)
     }

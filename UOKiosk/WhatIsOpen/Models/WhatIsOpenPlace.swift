@@ -18,6 +18,7 @@ struct WhatIsOpenPlace: Identifiable {
     let websiteLink: URL?
     let isOpenString: String
     let isOpenColor: Color
+    let until: Date
     let hours: OrderedDictionary<String, String>
     let hoursIntervals: [[DateInterval]]
 
@@ -28,6 +29,7 @@ struct WhatIsOpenPlace: Identifiable {
         self.building = building
         self.mapLink = mapLink
         self.websiteLink = websiteLink
+        self.until = until
         self.hours = hours
         self.hoursIntervals = hoursIntervals
 
@@ -64,8 +66,16 @@ struct WhatIsOpenPlace: Identifiable {
                 return
             }
         }
+
         isOpenColor = .red
-        // TODO: Get the next open time value from the api task and show that time
-        isOpenString = "Closed until at least Monday"
+
+        let cal = Calendar(identifier: .gregorian)
+        let on = cal.isDate(Date.now, inSameDayAs: until) ? "": "on \(until.dayOfWeek() ?? "")"
+
+        guard !cal.isDateInTomorrow(until) else {
+            isOpenString = "Closed until \(timeFormatter.string(from: until)) tomorrow"
+            return
+        }
+        isOpenString = "Closed until \(timeFormatter.string(from: until)) \(on)"
     }
 }
