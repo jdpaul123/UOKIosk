@@ -48,6 +48,7 @@
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
 		526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */; };
 		526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */; };
+		526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F62A3FF2910029FDAD /* EventKitViewController.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -127,6 +128,7 @@
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
 		526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsServiceErrorEnum.swift; sourceTree = "<group>"; };
 		526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorEnum.swift; sourceTree = "<group>"; };
+		526220F62A3FF2910029FDAD /* EventKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewController.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -319,6 +321,14 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
+		526220F52A3FF2440029FDAD /* EventKit */ = {
+			isa = PBXGroup;
+			children = (
+				526220F62A3FF2910029FDAD /* EventKitViewController.swift */,
+			);
+			path = EventKit;
+			sourceTree = "<group>";
+		};
 		5274097A2A1D317C00C64353 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,6 +351,7 @@
 				529861E7284554C7009C1E3B /* Models */,
 				529861E8284554CB009C1E3B /* ViewModels */,
 				529861E6284554C1009C1E3B /* Views */,
+				526220F52A3FF2440029FDAD /* EventKit */,
 				529861E3284553DB009C1E3B /* Repository */,
 			);
 			path = Events;
@@ -658,6 +669,7 @@
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
+				526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */,
 				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
@@ -849,6 +861,8 @@
 				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your calendar";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your Reminders";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -878,6 +892,8 @@
 				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your calendar";
+				INFOPLIST_KEY_NSRemindersUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your Reminders";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

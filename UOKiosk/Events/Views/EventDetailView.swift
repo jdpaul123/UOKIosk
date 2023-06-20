@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import EventKit
 
 struct EventDetailView: View {
     @StateObject var vm: EventDetailViewModel
+    @State private var showingCalendarSheet = false
+    @State var eventStore = EKEventStore()
 
     init(vm: EventDetailViewModel) {
         _vm = StateObject(wrappedValue: vm)
@@ -57,9 +60,11 @@ struct EventDetailView: View {
                 }
                 .background(RoundedRectangle(cornerRadius: 10).fill(Color.UOKioskContentBackgroundColor))
 
+                // Start Calendar/Reminder Buttons
                 HStack {
                     Spacer()
                     Button {
+                        showingCalendarSheet.toggle()
                         // TODO: Insert action to add the Event to calendar
                     } label: {
                         VStack {
@@ -80,8 +85,12 @@ struct EventDetailView: View {
                     }
                     Spacer()
                 }
+                .sheet(isPresented: $showingCalendarSheet) {
+                    EventKitView(eventTitle: vm.title, eventDescription: vm.eventDescription, eventAllDay: vm.event.allDay, eventStart: vm.event.start, eventEnd: vm.event.end)
+                }
                 .padding()
                 .padding(EdgeInsets(top: 5, leading: 20, bottom: 5, trailing: 20))
+                // End Calendar/Reminder Buttons
 
                 Text(vm.eventDescription)
                     .padding()

@@ -13,6 +13,7 @@ class EventDetailViewModel: ObservableObject {
     @Published var imageData: Data
     var cancellables = Set<AnyCancellable>()
 
+    let event: IMEvent
     let title: String
     let location: String
     let hasLocation: Bool
@@ -26,6 +27,7 @@ class EventDetailViewModel: ObservableObject {
     let reminderData: EventReminderViewModel
 
     init(event: IMEvent) {
+        self.event = event
         self.title = event.title
         let noImageData = UIImage.init(named: "NoImage")!.pngData()!
         if let photoData = event.photoData {
@@ -37,7 +39,7 @@ class EventDetailViewModel: ObservableObject {
         self.location = event.locationName ?? ""
         self.hasLocation = event.locationName == "" ? false : true
         self.roomNumber = event.roomNumber ?? ""
-        
+
         self.dateRange = {
             let start = event.start
             let startDateString = start.formatted(date: .complete, time: .omitted)
