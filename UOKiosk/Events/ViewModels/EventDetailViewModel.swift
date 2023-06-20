@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Combine
+import EventKit
 
 class EventDetailViewModel: ObservableObject {
     @Published var imageData: Data
@@ -22,9 +23,10 @@ class EventDetailViewModel: ObservableObject {
     let timeRange: String // Ex. All Day or 8:00 AM - 5:30 PM
     let eventDescription: String
     let website: URL?
-    
-    let calendarData: EventCalendarViewModel
-    let reminderData: EventReminderViewModel
+
+    var hasAbilityToAddReminder: Bool {
+        ReminderService.shared.isAvailable
+    }
 
     init(event: IMEvent) {
         self.event = event
@@ -69,9 +71,6 @@ class EventDetailViewModel: ObservableObject {
         
         self.eventDescription = event.eventDescription
         self.website = event.eventUrl
-        
-        self.calendarData = EventCalendarViewModel()
-        self.reminderData = EventReminderViewModel()
 
         subscribeImageDataToEvent(event: event)
     }
@@ -95,14 +94,39 @@ class EventDetailViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-}
 
-// TODO: Fill the below two classes for adding the event to calendar and reminders
-// with the code to hold the data needed to add the event to cal or reminders. Then,
-// write a method in each class that the view can call to do so
-class EventCalendarViewModel {
-    
-}
+    // MARK: - Reminders
+    func tryAddReminder() -> Bool {
+        if ReminderService.shared.isAvailable {
+            do {
+                try ReminderService.shared.addReminder(title: title, eventDescription: eventDescription, eventStart: event.start)
+            } catch {
+                print("Adding reminder failed with error: \(error.localizedDescription)")
+                return false
+            }
+            print("SUCCEEDED ADDING REMINDER")
+            return true
+        }
+        return false
+    }
 
-class EventReminderViewModel {
+    func prepareReminderStore() {
+        Task {
+            do {
+                try await ReminderService.shared.requestAccess()
+            } catch PermissionError.accessDenied, PermissionError.accessRestricted {
+                print("prepareReminderStore access denied and access restricted")
+            } catch {
+                print("prepareReminderStore failed")
+            }
+
+            do {
+                try await ReminderService.shared.requestContactAccess()
+            } catch PermissionError.accessDenied, PermissionError.accessRestricted {
+                print("prepareReminderStore access denied and access restricted")
+            } catch {
+                print("prepareReminderStore failed")
+            }
+        }
+    }
 }

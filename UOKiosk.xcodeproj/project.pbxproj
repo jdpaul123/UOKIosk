@@ -49,6 +49,7 @@
 		526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */; };
 		526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */; };
 		526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F62A3FF2910029FDAD /* EventKitViewController.swift */; };
+		526221002A4173540029FDAD /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220FF2A4173540029FDAD /* ReminderService.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -129,6 +130,7 @@
 		526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsServiceErrorEnum.swift; sourceTree = "<group>"; };
 		526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorEnum.swift; sourceTree = "<group>"; };
 		526220F62A3FF2910029FDAD /* EventKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewController.swift; sourceTree = "<group>"; };
+		526220FF2A4173540029FDAD /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderService.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				526220F62A3FF2910029FDAD /* EventKitViewController.swift */,
+				526220FF2A4173540029FDAD /* ReminderService.swift */,
 			);
 			path = EventKit;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
+				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -861,7 +865,9 @@
 				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UOKiosk/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your calendar";
+				INFOPLIST_KEY_NSContactsUsageDescription = "When adding to the calendar the app will allow you to add contacts to the event";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your Reminders";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -892,7 +898,9 @@
 				DEVELOPMENT_TEAM = 5MHQLWW6Y5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = UOKiosk/Info.plist;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your calendar";
+				INFOPLIST_KEY_NSContactsUsageDescription = "When adding to the calendar the app will allow you to add contacts to the event";
 				INFOPLIST_KEY_NSRemindersUsageDescription = "The app would like to be able to allow you to add University of Oregon events to your Reminders";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

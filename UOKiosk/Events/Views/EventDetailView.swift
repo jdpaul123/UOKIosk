@@ -6,12 +6,19 @@
 //
 
 import SwiftUI
-import EventKit
 
 struct EventDetailView: View {
+    @State var firstAppear = true
     @StateObject var vm: EventDetailViewModel
     @State private var showingCalendarSheet = false
-    @State var eventStore = EKEventStore()
+
+    // Banner values for the case that the reminder was successfully created
+    @State var successfullyCreatedReminderBannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "Success", detail: "Reminder was created!", type: .Success)
+    @State var reminderCreated = false
+
+    // Banner values for teh case that the reminder failed to be created
+    @State var failedToCreateReminderBannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "Failed", detail: "Failed to create reminder", type: .Error)
+    @State var reminderFailed = false
 
     init(vm: EventDetailViewModel) {
         _vm = StateObject(wrappedValue: vm)
@@ -65,7 +72,6 @@ struct EventDetailView: View {
                     Spacer()
                     Button {
                         showingCalendarSheet.toggle()
-                        // TODO: Insert action to add the Event to calendar
                     } label: {
                         VStack {
                             Image(systemName: "calendar")
@@ -76,7 +82,13 @@ struct EventDetailView: View {
                     Spacer()
 
                     Button {
-                        // TODO: Insert action to set reminder for the Event
+                        if !reminderCreated, vm.hasAbilityToAddReminder {
+                            if vm.tryAddReminder() {
+                                reminderCreated = true
+                            } else {
+                                reminderFailed = true
+                            }
+                        }
                     } label: {
                         VStack {
                             Image(systemName: "bell")
@@ -101,6 +113,14 @@ struct EventDetailView: View {
                 }
             }
             .padding()
+        }
+        .banner(data: $successfullyCreatedReminderBannerData, show: $reminderCreated)
+        .banner(data: $failedToCreateReminderBannerData, show: $reminderFailed)
+        .onAppear {
+            if firstAppear {
+                firstAppear.toggle()
+                vm.prepareReminderStore()
+            }
         }
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
