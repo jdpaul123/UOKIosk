@@ -21,7 +21,7 @@ final class Injector: ObservableObject {
     var whatIsOpenUrlString = "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d"
 
     // MARK: - Repositories
-    private let eventsRepository: EventsRepository
+    let eventsRepository: EventsRepository
     private let whatIsOpenRepository: WhatIsOpenRepository
 
     // MARK: - View Model Factory

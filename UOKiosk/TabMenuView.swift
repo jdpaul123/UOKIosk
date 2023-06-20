@@ -60,11 +60,11 @@ struct TabMenuView: View {
 }
 
 #if DEBUG
-//struct TabMenuView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        // TODO: Pass in dummy data for this
-//        TabMenuView(injector: Injector(eventsRepository: EventsService(urlString: "https://calendar.uoregon.edu/api/2/events?days=90&recurring=false&pp=100"),
-//                                       whatIsOpenRepository: WhatIsOpenService(urlString: "https://api.woosmap.com/stores/search/?private_key=cd319766-0df2-4135-bf2a-0a1ee3ad9a6d")))
-//    }
-//}
+struct TabMenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        // TODO: Pass in dummy data for this
+        TabMenuView()
+            .environmentObject(Injector())
+    }
+}
 #endif

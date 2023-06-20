@@ -402,12 +402,12 @@
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
-				52463F122A3E7B39007BF9B1 /* Error Handling */,
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				52131E6B28B97B42006C3094 /* Resources */,
+				52463F122A3E7B39007BF9B1 /* Error Handling */,
 				52131E6828B96C91006C3094 /* Extension */,
 			);
 			path = UOKiosk;

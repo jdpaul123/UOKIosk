@@ -37,9 +37,13 @@ struct EventsListView: View {
     }
 }
 
-//struct EventsListView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EventsListView(injector: Injector(eventsRepository: MockEventsService(),
-//                                          whatIsOpenRepository: MockWhatIsOpenService()))
-//    }
-//}
+struct EventsListView_Previews: PreviewProvider {
+    static var previews: some View {
+        let injector = Injector()
+        NavigationView {
+            EventsListView(vm: injector.viewModelFactory.makeEventsListViewModel())
+                .environmentObject(injector)
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+    }
+}
