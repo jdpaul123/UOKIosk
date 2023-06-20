@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct WhatIsOpenListView: View {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
     @StateObject var vm: WhatIsOpenListViewModel
 
-    init(listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel, injector: Injector, places: [WhatIsOpenPlace] = []) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: places, listType: listType, parentViewModel: parentViewModel))
-        self.injector = injector
+    init(vm: WhatIsOpenListViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
@@ -32,11 +31,9 @@ struct WhatIsOpenListView: View {
 
 struct WhatIsOpenPlaceView: View {
     @StateObject var vm: WhatIsOpenPlaceViewModel
-    let injector: Injector
 
     init(whatIsOpenPlace: WhatIsOpenPlace, injector: Injector) {
         _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenPlaceViewModel(place: whatIsOpenPlace))
-        self.injector = injector
     }
 
     var body: some View {

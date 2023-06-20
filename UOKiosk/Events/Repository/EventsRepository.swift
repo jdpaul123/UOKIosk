@@ -2,26 +2,11 @@
 //  EventsRepository.swift
 //  UOKiosk
 //
-//  Created by Jonathan Paul on 6/2/22.
+//  Created by Jonathan Paul on 6/15/23.
 //
 
 import Foundation
-import CoreData
 
 protocol EventsRepository {
-    /*
-     This function will be used to get the event Models
-
-     In the case of the App:
-     - It will get the Data from the API or core data
-     In the case of testing:
-     - It will be used to make a mock repository for testing on local data not relying on a network connection
-     */
-    var persistentContainer: NSPersistentContainer { get }
-
-    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
-
-    func updateEventsResultsController(eventResultsController: NSFetchedResultsController<Event>) async throws
-
-    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>?
+    func getFreshEvents() async throws -> [IMEvent]
 }

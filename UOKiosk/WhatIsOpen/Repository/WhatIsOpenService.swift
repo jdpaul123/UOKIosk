@@ -21,7 +21,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
         do {
             whatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
-            fatalError("FAILED TO GET THE DATA WITH ERROR")
+            throw error
         }
 
         // Go through each new "Asset". Create the current asset's PlaceViewModel with all of the correct data

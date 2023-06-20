@@ -6,12 +6,16 @@
 //
 
 import Foundation
-import SwiftUI
 import UIKit
+import Combine
+import EventKit
 
 class EventDetailViewModel: ObservableObject {
+    @Published var imageData: Data
+    var cancellables = Set<AnyCancellable>()
+
+    let event: IMEvent
     let title: String
-    let image: UIImage
     let location: String
     let hasLocation: Bool
     let roomNumber: String
@@ -19,26 +23,27 @@ class EventDetailViewModel: ObservableObject {
     let timeRange: String // Ex. All Day or 8:00 AM - 5:30 PM
     let eventDescription: String
     let website: URL?
-    
-    let calendarData: EventCalendarViewModel
-    let reminderData: EventReminderViewModel
 
-    init(event: Event) {
-        self.title = event.title ?? "No Title"
+    var hasAbilityToAddReminder: Bool {
+        ReminderService.shared.isAvailable
+    }
+
+    init(event: IMEvent) {
+        self.event = event
+        self.title = event.title
+        let noImageData = UIImage.init(named: "NoImage")!.pngData()!
         if let photoData = event.photoData {
-            self.image = UIImage.init(data: photoData) ?? UIImage.init(named: "NoImage")!
+            self.imageData = photoData
         } else {
-            self.image = UIImage.init(named: "NoImage")!
+            self.imageData = noImageData
         }
 
         self.location = event.locationName ?? ""
         self.hasLocation = event.locationName == "" ? false : true
         self.roomNumber = event.roomNumber ?? ""
-        
+
         self.dateRange = {
-            guard let start = event.start else {
-                    return "No dates provided"
-            }
+            let start = event.start
             let startDateString = start.formatted(date: .complete, time: .omitted)
             let endDateString = event.end?.formatted(date: .complete, time: .omitted) ?? ""
             
@@ -50,9 +55,7 @@ class EventDetailViewModel: ObservableObject {
         }()
         
         self.timeRange = {
-            guard let start = event.start else {
-                    return "No times provided"
-            }
+            let start = event.start
             let startTimeString = start.formatted(date: .omitted, time: .shortened)
             let endTimeString = event.end?.formatted(date: .omitted, time: .shortened) ?? ""
             
@@ -66,20 +69,64 @@ class EventDetailViewModel: ObservableObject {
             return "\(startTimeString) - \(endTimeString)"
         }()
         
-        self.eventDescription = event.eventDescription ?? "No event description provided."
+        self.eventDescription = event.eventDescription
         self.website = event.eventUrl
-        
-        self.calendarData = EventCalendarViewModel()
-        self.reminderData = EventReminderViewModel()
+
+        subscribeImageDataToEvent(event: event)
     }
-}
 
-// TODO: Fill the below two classes for adding the event to calendar and reminders
-// with the code to hold the data needed to add the event to cal or reminders. Then,
-// write a method in each class that the view can call to do so
-class EventCalendarViewModel {
-    
-}
+    func subscribeImageDataToEvent(event: IMEvent) {
+        event.$photoData
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
+                }
+                self.cancellables.removeAll()
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                if let imageData = data {
+                    self.imageData = imageData
+                }
+            }
+            .store(in: &cancellables)
+    }
 
-class EventReminderViewModel {
+    // MARK: - Reminders
+    func tryAddReminder() -> Bool {
+        if ReminderService.shared.isAvailable {
+            do {
+                try ReminderService.shared.addReminder(title: title, eventDescription: eventDescription, eventStart: event.start)
+            } catch {
+                print("Adding reminder failed with error: \(error.localizedDescription)")
+                return false
+            }
+            print("SUCCEEDED ADDING REMINDER")
+            return true
+        }
+        return false
+    }
+
+    func prepareReminderStore() {
+        Task {
+            do {
+                try await ReminderService.shared.requestAccess()
+            } catch PermissionError.accessDenied, PermissionError.accessRestricted {
+                print("prepareReminderStore access denied and access restricted")
+            } catch {
+                print("prepareReminderStore failed")
+            }
+
+            do {
+                try await ReminderService.shared.requestContactAccess()
+            } catch PermissionError.accessDenied, PermissionError.accessRestricted {
+                print("prepareReminderStore access denied and access restricted")
+            } catch {
+                print("prepareReminderStore failed")
+            }
+        }
+    }
 }

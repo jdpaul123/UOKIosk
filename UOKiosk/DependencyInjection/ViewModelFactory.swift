@@ -20,16 +20,20 @@ final class ViewModelFactory: ObservableObject {
     }
 
     // MARK: Make View Model Functions
-    func makeEventsViewModel() -> EventsViewModel {
-        EventsViewModel(eventsRepository: eventsRepository)
+    func makeEventsListViewModel() -> EventsListViewModel {
+        EventsListViewModel(eventsRepository: eventsRepository)
     }
 
-    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
+    func makeEventsListSectionViewModel(parentViewModel: EventsListViewModel, dateToDisplay: Date) -> EventsListSectionViewModel {
+        EventsListSectionViewModel(parentViewModel: parentViewModel, dateToDisplay: dateToDisplay)
+    }
+
+    func makeEventsListCellViewModel(event: IMEvent) -> EventsListCellViewModel {
+        EventsListCellViewModel(event: event)
+    }
+
+    func makeEventDetailViewModel(eventModel: IMEvent) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
-    }
-
-    func makeCustomizeEventsFeedViewModel() -> CustomizeEventsFeedViewModel {
-        CustomizeEventsFeedViewModel()
     }
 
     func makeWhatIsOpenViewModel(type: WhatIsOpenViewType) -> WhatIsOpenViewModel {
@@ -43,6 +47,6 @@ final class ViewModelFactory: ObservableObject {
 
     func makeWhatIsOpenPlaceViewModel(place: WhatIsOpenPlace) -> WhatIsOpenPlaceViewModel {
         WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, building: place.building, mapLink: place.mapLink, websiteLink: place.websiteLink,
-                                 isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, hours: place.hours, hoursIntervals: place.hoursIntervals)
+                                 isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, until: place.until, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
 }

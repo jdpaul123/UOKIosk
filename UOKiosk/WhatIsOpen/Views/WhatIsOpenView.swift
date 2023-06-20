@@ -12,26 +12,30 @@ protocol WhatIsOpenView: View {
 }
 
 struct DiningHoursView: WhatIsOpenView {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
     @StateObject var vm: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector) {
-        self.injector = injector
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .dining))
+    init(vm: WhatIsOpenViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         List {
-            NavigationLink(destination: FacilityHoursView(injector: injector, diningHoursViewModel: vm).navigationTitle("Facility Hours")) {
+            NavigationLink(destination: FacilityHoursView(vm: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .facilities))
+                .environmentObject(vm)
+                .navigationTitle("Facility Hours")) {
                 Text("Facility Hours")
             }
-            NavigationLink(destination: StoreHoursView(injector: injector, diningHoursViewModel: vm).navigationTitle("Store Hours")) {
+            NavigationLink(destination: StoreHoursView(vm: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .stores))
+                .environmentObject(vm)
+                .navigationTitle("Store Hours")) {
                 Text("Store Hours")
             }
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
-                    WhatIsOpenListView(listType: $0, parentViewModel: self.vm, injector: injector)
+                    WhatIsOpenListView(vm: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: [], listType: $0, parentViewModel: vm))
+                        .environmentObject(vm)
                 }
             }
         }
@@ -46,26 +50,25 @@ struct DiningHoursView: WhatIsOpenView {
                 await vm.getData()
             }
         }
+        .banner(data: $vm.bannerData, show: $vm.showBanner)
     }
 }
 
 struct FacilityHoursView: WhatIsOpenView {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
+    @EnvironmentObject var diningHoursViewModel: WhatIsOpenViewModel
     @StateObject var vm: WhatIsOpenViewModel
-    let diningHoursViewModel: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, diningHoursViewModel: WhatIsOpenViewModel) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .facilities))
-        self.injector = injector
-        self.diningHoursViewModel = diningHoursViewModel
+    init(vm: WhatIsOpenViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         List {
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
-                    WhatIsOpenListView(listType: $0, parentViewModel: diningHoursViewModel, injector: injector)
+                    WhatIsOpenListView(vm: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: [], listType: $0, parentViewModel: diningHoursViewModel))
                 }
             }
         }
@@ -73,22 +76,20 @@ struct FacilityHoursView: WhatIsOpenView {
 }
 
 struct StoreHoursView: WhatIsOpenView {
-    let injector: Injector
+    @EnvironmentObject var injector: Injector
+    @EnvironmentObject var diningHoursViewModel: WhatIsOpenViewModel
     @StateObject var vm: WhatIsOpenViewModel
-    let diningHoursViewModel: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
-    init(injector: Injector, diningHoursViewModel: WhatIsOpenViewModel) {
-        _vm = StateObject(wrappedValue: injector.viewModelFactory.makeWhatIsOpenViewModel(type: .stores))
-        self.injector = injector
-        self.diningHoursViewModel = diningHoursViewModel
+    init(vm: WhatIsOpenViewModel) {
+        _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
         List {
             ForEach(WhatIsOpenCategories.allCases, id: \.rawValue) {
                 if vm.isCategoryShown(category: $0) {
-                    WhatIsOpenListView(listType: $0, parentViewModel: diningHoursViewModel, injector: injector)
+                    WhatIsOpenListView(vm: injector.viewModelFactory.makeWhatIsOpenListViewModel(places: [], listType: $0, parentViewModel: diningHoursViewModel))
                 }
             }
         }
@@ -96,8 +97,8 @@ struct StoreHoursView: WhatIsOpenView {
 }
 
 
-struct WhatIsOpenView_Previews: PreviewProvider {
-    static var previews: some View {
-        DiningHoursView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
-    }
-}
+//struct WhatIsOpenView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DiningHoursView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()))
+//    }
+//}
