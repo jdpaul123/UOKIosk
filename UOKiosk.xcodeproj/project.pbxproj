@@ -51,6 +51,8 @@
 		526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F62A3FF2910029FDAD /* EventKitViewController.swift */; };
 		526221002A4173540029FDAD /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220FF2A4173540029FDAD /* ReminderService.swift */; };
 		526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */; };
+		526221062A4261F90029FDAD /* CampusMapWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221052A4261F90029FDAD /* CampusMapWebView.swift */; };
+		526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221072A4263BD0029FDAD /* CampusMapView.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -133,6 +135,8 @@
 		526220F62A3FF2910029FDAD /* EventKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewController.swift; sourceTree = "<group>"; };
 		526220FF2A4173540029FDAD /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderService.swift; sourceTree = "<group>"; };
 		526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+genericDataTaskPublisher.swift"; sourceTree = "<group>"; };
+		526221052A4261F90029FDAD /* CampusMapWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapWebView.swift; sourceTree = "<group>"; };
+		526221072A4263BD0029FDAD /* CampusMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapView.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -335,6 +339,15 @@
 			path = EventKit;
 			sourceTree = "<group>";
 		};
+		526221042A4261DB0029FDAD /* CampusMap */ = {
+			isa = PBXGroup;
+			children = (
+				526221052A4261F90029FDAD /* CampusMapWebView.swift */,
+				526221072A4263BD0029FDAD /* CampusMapView.swift */,
+			);
+			path = CampusMap;
+			sourceTree = "<group>";
+		};
 		5274097A2A1D317C00C64353 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,6 +417,7 @@
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
+				526221042A4261DB0029FDAD /* CampusMap */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				52131E6B28B97B42006C3094 /* Resources */,
@@ -682,6 +696,7 @@
 				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
 				526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */,
+				526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
@@ -702,6 +717,7 @@
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
+				526221062A4261F90029FDAD /* CampusMapWebView.swift in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);

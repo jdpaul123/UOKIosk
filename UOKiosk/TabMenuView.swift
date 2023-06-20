@@ -58,7 +58,7 @@ struct TabMenuView: View {
             }
 
             NavigationView {
-                Text("MAP WILL GO HERE")
+                CampusMapView()
                     .navigationTitle(Tabs.campusMap.rawValue)
             }
             .tag(Tabs.campusMap)
