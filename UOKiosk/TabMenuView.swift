@@ -7,27 +7,28 @@
 
 import SwiftUI
 
+enum Tabs: String {
+    case events = "Events"
+    case whatIsOpen = "What's Open"
+    case campusMap = "Campus Map"
+    case radio = "KWVA Radio"
+    case news = "The Daily Emerald"
 
-struct TabMenuView: View {
-    enum Tabs: String {
-        case events = "Events"
-        case whatIsOpen = "What's Open"
-        case campusMap = "Campus Map"
-        case radio = "KWVA Radio"
-        case news = "The Daily Emerald"
-
-        var sfSymbol: String {
-            switch self {
-            case .events:
-                return "calendar"
-            case .whatIsOpen:
-                return "hourglass"
-            default:
-                return "dot.square"
-            }
+    var sfSymbol: String {
+        switch self {
+        case .events:
+            return "calendar"
+        case .whatIsOpen:
+            return "hourglass"
+        case .campusMap:
+            return "map"
+        default:
+            return "dot.square"
         }
     }
+}
 
+struct TabMenuView: View {
     @State var selectedTab: Tabs = .events
     @EnvironmentObject var injector: Injector
 
@@ -54,6 +55,16 @@ struct TabMenuView: View {
             .tabItem {
                 Image(systemName: Tabs.whatIsOpen.sfSymbol)
                 Text(Tabs.whatIsOpen.rawValue)
+            }
+
+            NavigationView {
+                Text("MAP WILL GO HERE")
+                    .navigationTitle(Tabs.campusMap.rawValue)
+            }
+            .tag(Tabs.campusMap)
+            .tabItem {
+                Image(systemName: Tabs.campusMap.sfSymbol)
+                Text(Tabs.campusMap.rawValue)
             }
         }
     }
