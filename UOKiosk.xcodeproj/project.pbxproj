@@ -50,6 +50,7 @@
 		526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */; };
 		526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F62A3FF2910029FDAD /* EventKitViewController.swift */; };
 		526221002A4173540029FDAD /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220FF2A4173540029FDAD /* ReminderService.swift */; };
+		526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -131,6 +132,7 @@
 		526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorEnum.swift; sourceTree = "<group>"; };
 		526220F62A3FF2910029FDAD /* EventKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewController.swift; sourceTree = "<group>"; };
 		526220FF2A4173540029FDAD /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderService.swift; sourceTree = "<group>"; };
+		526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+genericDataTaskPublisher.swift"; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
 				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
 				52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */,
+				526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -678,6 +681,7 @@
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
+				526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
