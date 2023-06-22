@@ -61,6 +61,7 @@ struct TabMenuView: View {
                 CampusMapView()
                     .navigationTitle(Tabs.campusMap.rawValue)
             }
+            .navigationViewStyle(StackNavigationViewStyle())
             .tag(Tabs.campusMap)
             .tabItem {
                 Image(systemName: Tabs.campusMap.sfSymbol)

@@ -10,8 +10,7 @@ import SwiftUI
 // TODO: Ask for location permissions at the instantiation of the view
 struct CampusMapView: View {
     var body: some View {
-        CampusMapWebView(url: URL(string: "https://map.uoregon.edu")!)
-//            .ignoresSafeArea()
+        CampusMapWebViewRepresentable(url: URL(string: "https://map.uoregon.edu")!)
             .navigationBarTitleDisplayMode(.inline)
     }
 }
