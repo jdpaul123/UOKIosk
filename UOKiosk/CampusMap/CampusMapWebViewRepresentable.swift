@@ -11,9 +11,10 @@ import WebKit
 
 struct CampusMapWebViewRepresentable: UIViewRepresentable {
     let url: URL
+    let view = WKWebView()
 
     func makeUIView(context: Context) -> WKWebView {
-        WKWebView()
+        return view
     }
 
     // This method is called any time there is a state change
