@@ -9,6 +9,7 @@ import SwiftUI
 
 // TODO: Ask for location permissions at the instantiation of the view
 struct CampusMapView: View {
+    @State private var showingInformationSheet = false
     var viewRepresentable = CampusMapWebViewRepresentable(url: URL(string: "https://map.uoregon.edu")!)
 
     var body: some View {
@@ -17,7 +18,7 @@ struct CampusMapView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        print("INFO")
+                        showingInformationSheet.toggle()
                     } label: {
                         Image(systemName: "info.circle")
                     }
@@ -36,13 +37,17 @@ struct CampusMapView: View {
                         Image(systemName: "arrow.clockwise")
                     }
                 }
-
+            }
+            .sheet(isPresented: $showingInformationSheet) {
+                InformationView()
             }
     }
 }
 
 struct CampusMapView_Previews: PreviewProvider {
     static var previews: some View {
-        CampusMapView()
+        NavigationView {
+            CampusMapView()
+        }
     }
 }

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EventsListView: View {
     @EnvironmentObject var injector: Injector
+    @State var showingInformationSheet = false
     @StateObject var vm: EventsListViewModel
 
     // MARK: INITIALIZER
@@ -34,6 +35,16 @@ struct EventsListView: View {
             await vm.fetchEvents()
         }
         .banner(data: $vm.bannerData, show: $vm.showBanner)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    showingInformationSheet.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $showingInformationSheet) { InformationView() }
     }
 }
 
