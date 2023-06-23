@@ -11,36 +11,17 @@ struct InformationView: View {
     var body: some View {
         NavigationView {
             List {
+                // TODO: Fill in the Rate UO Kiosk Link
                 Link(destination: URL(string: "https://www.youtube.com")!) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                            .background(.yellow)
-                            .foregroundColor(.white)
-                            .cornerRadius(4)
-                        Text("Rate UO Kiosk")
-                    }
+                    getImageAndText(systemName: "star.fill", text: "Rate UO Kiosk", color: .yellow)
                 }
+                // TODO: Fill in the Give Feedback Link
                 Link(destination: URL(string: "https://www.youtube.com")!) {
-                    HStack {
-                        Image(systemName: "exclamationmark.bubble.fill")
-                            .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                            .background(.purple)
-                            .foregroundColor(.white)
-                            .cornerRadius(4)
-                        Text("Give Feedback")
-                    }
+                    getImageAndText(systemName: "exclamationmark.bubble.fill", text: "Give Feedback", color: .purple)
                 }
                 Section("Emergency") {
                     Link(destination: URL(string: "tel:911")!) {
-                        HStack {
-                            Image(systemName: "exclamationmark.triangle")
-                                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                                .background(.red)
-                                .foregroundColor(.white)
-                                .cornerRadius(4)
-                            Text("Emergency Call 911")
-                        }
+                        getImageAndText(systemName: "exclamationmark.triangle", text: "Emergency Call 911", color: .red)
                     }
                     NavigationLink("Non-Emergency Click Here") {
                         List {
@@ -60,51 +41,73 @@ struct InformationView: View {
                 Section("Useful stuff") {
                     NavigationLink {
                         QuickLinksView()
+                            .navigationTitle("Quick Links")
                     } label: {
-                        HStack {
-                            Image(systemName: "link")
-                                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                                .background(.blue)
-                                .foregroundColor(.white)
-                                .cornerRadius(4)
-                            Text("Quick Links")
-                        }
+                        getImageAndText(systemName: "link", text: "Quick Links", color: .blue)
                     }
                     NavigationLink {
-                        Text("UO Rides")
+                        TransportationLinksView()
+                            .navigationTitle("Transportation Links")
                     } label: {
-                        HStack {
-                            Image(systemName: "car")
-                                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                                .background(.green)
-                                .foregroundColor(.white)
-                                .cornerRadius(4)
-                            Text("UO Rides")
-                        }
+                        getImageAndText(systemName: "car", text: "Transportation Links", color: .green)
                     }
-                    NavigationLink {
-                        Text("Academic Calendar")
-                    } label: {
-                        HStack {
-                            Image(systemName: "calendar")
-                                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
-                                .background(.cyan)
-                                .foregroundColor(.white)
-                                .cornerRadius(4)
-                            Text("Academic Calendar")
-                        }
-                    }
+                    // TODO: Impliment the Academic Calendar View
+//                    NavigationLink {
+//                        Text("Academic Calendar")
+//                    } label: {
+//                        getImageAndText(systemName: "calendar", text: "Academic Calendar", color: .cyan)
+//                    }
                 }
                 Text("Made with 💚 by JD Paul. Sco Ducks!")
             }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
+
+    func getImageAndText(systemName: String, text: String, color: Color) -> some View {
+        return HStack {
+            Image(systemName: systemName)
+                .padding(EdgeInsets(top: 4, leading: 2, bottom: 4, trailing: 2))
+                .background(color)
+                .foregroundColor(.white)
+                .cornerRadius(4)
+            Text(text)
+        }
+    }
 }
 
 struct QuickLinksView: View {
     var body: some View {
-        Text("HELLO")
+        List {
+            Link("One Stop Student Resources", destination: URL(string: "https://onestop.uoregon.edu/")!)
+            Link("University of Oregon's YouTube Channel", destination: URL(string: "https://www.youtube.com/channel/UCrRdNuHLBSGjZEoby4d5gmw")!)
+            Section("Academic") {
+                Link("Duck Web", destination: URL(string: "http://duckweb.uoregon.edu/pls/prod/twbkwbis.P_WWWLogin")!)
+                Link("Canvas", destination: URL(string: "https://canvas.uoregon.edu/")!)
+                Link("Webmail", destination: URL(string: "https://webmail.uoregon.edu/")!)
+                Link("UOmail", destination: URL(string: "https://uomail.uoregon.edu/")!)
+            }
+            Section("Health") {
+                Link("myUOHealth Portal", destination: URL(string: "https://uoregon.medicatconnect.com/Shibboleth.sso/Login?entityID=https%3A%2F%2Fshibboleth.uoregon.edu%2Fidp%2Fshibboleth")!)
+            }
+            Section("Campus Facilities") {
+                Link("Starrez Housing Portal", destination: URL(string: "https://oregon.starrezhousing.com/StarRezPortalX/1219965E/7/140/Login-Log_In/")!)
+                Link("Add Duck Bucks", destination: URL(string: "https://emu.uoregon.edu/duck-bucks/online-services/")!)
+            }
+        }
+    }
+}
+
+struct TransportationLinksView: View {
+    var body: some View {
+        List {
+            Link("Duck Rides", destination: URL(string: "https://transportation.uoregon.edu/duck-rides/")!)
+            Link("Superpedestrian E-Scooters", destination: URL(string: "https://apps.apple.com/us/app/superpedestrian-link-scooters/id1487864428/")!)
+            Link("E-Bike Lending Library", destination: URL(string: "https://transportation.uoregon.edu/e-bike/")!)
+            Link("PeaceHealth Rides", destination: URL(string: "https://transportation.uoregon.edu/peacehealth-rides/")!)
+            Link("Lyft Discounted Rides", destination: URL(string: "https://transportation.uoregon.edu/uo-lyft-night-rides/")!)
+            Link("Umo Bus App", destination: URL(string: "https://transportation.uoregon.edu/bus/")!)
+        }
     }
 }
 
