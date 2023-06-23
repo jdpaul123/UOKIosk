@@ -128,7 +128,7 @@ class EventsService: EventsRepository {
             event.departmentFilters = departmentFilters
             event.targetAudienceFilters = targetAudienceFilters
 
-            var eventLocation = IMEventLocation(latitude: Double(eventDto.geo?.latitude ?? "0.0") ?? 0.0, longitude: Double(eventDto.geo?.longitude ?? "0.0") ?? 0.0, street: eventDto.geo?.street, city: eventDto.geo?.city, country: eventDto.geo?.country, zip: Int64(Int(eventDto.geo?.zip ?? "0") ?? 0), event: event)
+            let eventLocation = IMEventLocation(latitude: Double(eventDto.geo?.latitude ?? "0.0") ?? 0.0, longitude: Double(eventDto.geo?.longitude ?? "0.0") ?? 0.0, street: eventDto.geo?.street, city: eventDto.geo?.city, country: eventDto.geo?.country, zip: Int64(Int(eventDto.geo?.zip ?? "0") ?? 0), event: event)
             event.eventLocation = eventLocation
 
             events.append(event)
