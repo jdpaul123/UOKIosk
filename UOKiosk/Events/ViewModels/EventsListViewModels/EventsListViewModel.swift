@@ -38,6 +38,16 @@ class EventsListViewModel: ObservableObject {
     func fetchEvents() async {
         isLoading = true
         defer { isLoading = false }
+
+        /*
+         TODO: Call service to get events.
+         The service will decide if it just gets data from the Core Data Persistent Store
+         or if it calls the api for fresh data, waits for it, and returns data from the Persistent Store.
+
+         Once that works, impliment pull-to-refrehs which will perform the fetchEvents that is described above but it will call
+         the api every time.
+         */
+
         var events = [IMEvent]()
         do {
             events = try await eventsRepository.getFreshEvents()
