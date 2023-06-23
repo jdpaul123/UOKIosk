@@ -49,5 +49,6 @@ struct CampusMapView_Previews: PreviewProvider {
         NavigationView {
             CampusMapView()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }

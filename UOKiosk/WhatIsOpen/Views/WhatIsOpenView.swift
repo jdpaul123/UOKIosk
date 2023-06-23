@@ -13,7 +13,6 @@ protocol WhatIsOpenView: View {
 
 struct DiningHoursView: WhatIsOpenView {
     @EnvironmentObject var injector: Injector
-    @State var showingInformationSheet = false
     @StateObject var vm: WhatIsOpenViewModel
 
     // MARK: INITIALIZER
@@ -55,13 +54,13 @@ struct DiningHoursView: WhatIsOpenView {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    showingInformationSheet.toggle()
+                    vm.showingInformationSheet.toggle()
                 } label: {
                     Image(systemName: "info.circle")
                 }
             }
         }
-        .sheet(isPresented: $showingInformationSheet) { InformationView() }
+        .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
     }
 }
 

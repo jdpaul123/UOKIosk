@@ -11,6 +11,8 @@ import Collections
 class EventsListViewModel: ObservableObject {
     let eventsRepository: EventsRepository
 
+    @Published var showingInformationSheet = false
+
     @Published var isLoading: Bool = false
     var showLoading: Bool {
         if isLoading, eventsDictionary.isEmpty {
