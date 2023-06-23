@@ -91,26 +91,6 @@ public class Event: NSManagedObject {
         self.start  = dateValues.1
         self.end = dateValues.2
 
-        self.departmentFilters = []
-        self.eventTypeFilters = []
-        self.targetAudienceFilters = []
-        // TODO: Calling addTo_Filters() method is causing problems having it in the init. Must change app so that these filters are set after the event is instantiated
-//        if let eventFilters = eventData.filters.eventTypes {
-//            for eventFilter in eventFilters {
-//                addToEventTypeFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-//            }
-//        }
-//        if let dtoDepartmentFilters = eventData.filters.departments {
-//            for eventFilter in dtoDepartmentFilters {
-//                addToDepartmentFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-//            }
-//        }
-//        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
-//            for eventFilter in dtoTargetAudienceFilters {
-//                addToTargetAudienceFilters(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-//            }
-//        }
-
         guard let geo = eventData.geo, let latitude = geo.latitude, let longitude = geo.longitude, let city = geo.city, let country = geo.country,
               let _ = geo.state, let street = geo.street, let zip = geo.zip else {
             self.eventLocation = nil
@@ -119,6 +99,35 @@ public class Event: NSManagedObject {
         self.eventLocation = EventLocation(latitude: Double(latitude) ?? 0.0, longitude: Double(longitude) ?? 0.0,
                                            street: street, city: city, country: country,
                                            zip: Int(zip) ?? 0, context: context)
+
+        // TODO: Calling addTo_Filters() method is causing problems having it in the init. Must change app so that these filters are set after the event is instantiated
+        self.departmentFilters = NSSet()
+        self.eventTypeFilters = NSSet()
+        self.targetAudienceFilters = NSSet()
+        var departmentFiltersArray = [EventFilter]()
+        var eventTypeFiltersArray = [EventFilter]()
+        var targetAudienceFiltersArray = [EventFilter]()
+        if let eventFilters = eventData.filters.eventTypes {
+            for eventFilter in eventFilters {
+                departmentFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+            }
+        }
+        let departmentFiltersSet = NSSet.init(array: departmentFiltersArray)
+        addToDepartmentFilters(departmentFiltersSet)
+        if let dtoDepartmentFilters = eventData.filters.departments {
+            for eventFilter in dtoDepartmentFilters {
+                eventTypeFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+            }
+        }
+        let eventTypeFiltersSet = NSSet.init(array: eventTypeFiltersArray)
+        addToEventTypeFilters(eventTypeFiltersSet)
+        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
+            for eventFilter in dtoTargetAudienceFilters {
+                targetAudienceFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+            }
+        }
+        let targetAudienceFiltersSet = NSSet.init(array: targetAudienceFiltersArray)
+        addToTargetAudienceFilters(targetAudienceFiltersSet)
     }
 }
 
