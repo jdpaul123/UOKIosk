@@ -51,6 +51,16 @@ struct DiningHoursView: WhatIsOpenView {
             }
         }
         .banner(data: $vm.bannerData, show: $vm.showBanner)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    vm.showingInformationSheet.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
     }
 }
 

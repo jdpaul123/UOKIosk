@@ -53,6 +53,7 @@
 		526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */; };
 		526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221052A4261F90029FDAD /* CampusMapWebViewRepresentable.swift */; };
 		526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526221072A4263BD0029FDAD /* CampusMapView.swift */; };
+		5262210D2A45040B0029FDAD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5262210C2A45040B0029FDAD /* InformationView.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -137,6 +138,7 @@
 		526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+genericDataTaskPublisher.swift"; sourceTree = "<group>"; };
 		526221052A4261F90029FDAD /* CampusMapWebViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapWebViewRepresentable.swift; sourceTree = "<group>"; };
 		526221072A4263BD0029FDAD /* CampusMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapView.swift; sourceTree = "<group>"; };
+		5262210C2A45040B0029FDAD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -348,6 +350,14 @@
 			path = CampusMap;
 			sourceTree = "<group>";
 		};
+		5262210B2A4503EC0029FDAD /* InformationView */ = {
+			isa = PBXGroup;
+			children = (
+				5262210C2A45040B0029FDAD /* InformationView.swift */,
+			);
+			path = InformationView;
+			sourceTree = "<group>";
+		};
 		5274097A2A1D317C00C64353 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -415,6 +425,7 @@
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
+				5262210B2A4503EC0029FDAD /* InformationView */,
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				526221042A4261DB0029FDAD /* CampusMap */,
@@ -718,6 +729,7 @@
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
+				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);

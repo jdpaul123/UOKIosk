@@ -34,6 +34,16 @@ struct EventsListView: View {
             await vm.fetchEvents()
         }
         .banner(data: $vm.bannerData, show: $vm.showBanner)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    vm.showingInformationSheet.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
     }
 }
 
