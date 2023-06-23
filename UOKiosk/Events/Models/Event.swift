@@ -11,6 +11,34 @@ import CoreData
 
 public class Event: NSManagedObject {
     // MARK: Initialization
+    convenience init(eventData: IMEvent, context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        self.id = Int64(eventData.id)
+        self.title = eventData.title
+        self.eventDescription = eventData.eventDescription
+        self.locationName = eventData.locationName
+        self.roomNumber = eventData.roomNumber
+        self.address = eventData.address
+        self.status = eventData.status
+        self.experience = eventData.experience
+        self.eventUrl = eventData.eventUrl
+        self.streamUrl = eventData.streamUrl
+        self.ticketUrl = eventData.ticketUrl
+        self.venueUrl = eventData.venueUrl
+        self.calendarUrl = eventData.calendarUrl
+//        self.photoUrl = eventData.photoUrl
+        self.photoData = eventData.photoData
+        self.ticketCost = ticketCost
+        self.start = eventData.start
+        self.end = eventData.end
+        self.allDay = eventData.allDay
+//        self.eventLocation = eventData.eventLocation
+//        self.departmentFilters = eventData.departmentFilters
+//        self.targetAudienceFilters = eventData.targetAudienceFilters
+//        self.eventTypeFilters = eventData.eventTypeFilters
+    }
+
     convenience init(eventData: EventDto, context: NSManagedObjectContext) {
         self.init(context: context)
         

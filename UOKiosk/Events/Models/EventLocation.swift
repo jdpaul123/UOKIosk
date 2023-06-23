@@ -11,6 +11,17 @@ import CoreData
 
 
 public class EventLocation: NSManagedObject {
+    convenience init(location: IMEventLocation, context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        self.latitude = location.latitude
+        self.longitude = location.longitude
+        self.street = location.street
+        self.city = city
+        self.country = country
+        self.zip = location.zip
+    }
+
     convenience init(geoData: GeoDto, context: NSManagedObjectContext) {
         self.init(context: context)
         
