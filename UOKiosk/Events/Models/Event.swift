@@ -104,30 +104,30 @@ public class Event: NSManagedObject {
         self.departmentFilters = NSSet()
         self.eventTypeFilters = NSSet()
         self.targetAudienceFilters = NSSet()
-        var departmentFiltersArray = [EventFilter]()
-        var eventTypeFiltersArray = [EventFilter]()
-        var targetAudienceFiltersArray = [EventFilter]()
-        if let eventFilters = eventData.filters.eventTypes {
-            for eventFilter in eventFilters {
-                departmentFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        let departmentFiltersSet = NSSet.init(array: departmentFiltersArray)
-        addToDepartmentFilters(departmentFiltersSet)
-        if let dtoDepartmentFilters = eventData.filters.departments {
-            for eventFilter in dtoDepartmentFilters {
-                eventTypeFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        let eventTypeFiltersSet = NSSet.init(array: eventTypeFiltersArray)
-        addToEventTypeFilters(eventTypeFiltersSet)
-        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
-            for eventFilter in dtoTargetAudienceFilters {
-                targetAudienceFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
-            }
-        }
-        let targetAudienceFiltersSet = NSSet.init(array: targetAudienceFiltersArray)
-        addToTargetAudienceFilters(targetAudienceFiltersSet)
+//        var departmentFiltersArray = [EventFilter]()
+//        var eventTypeFiltersArray = [EventFilter]()
+//        var targetAudienceFiltersArray = [EventFilter]()
+//        if let eventFilters = eventData.filters.eventTypes {
+//            for eventFilter in eventFilters {
+//                departmentFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        let departmentFiltersSet = NSSet.init(array: departmentFiltersArray)
+//        addToDepartmentFilters(departmentFiltersSet)
+//        if let dtoDepartmentFilters = eventData.filters.departments {
+//            for eventFilter in dtoDepartmentFilters {
+//                eventTypeFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        let eventTypeFiltersSet = NSSet.init(array: eventTypeFiltersArray)
+//        addToEventTypeFilters(eventTypeFiltersSet)
+//        if let dtoTargetAudienceFilters = eventData.filters.eventTargetAudience {
+//            for eventFilter in dtoTargetAudienceFilters {
+//                targetAudienceFiltersArray.append(EventFilter(id: eventFilter.id, name: eventFilter.name, context: context))
+//            }
+//        }
+//        let targetAudienceFiltersSet = NSSet.init(array: targetAudienceFiltersArray)
+//        addToTargetAudienceFilters(targetAudienceFiltersSet)
     }
 }
 
@@ -161,18 +161,18 @@ extension Event {
         self.eventLocation = eventLocation
         // Create the department filters array
         self.departmentFilters = []
-        for filter in departmentFilters {
-            self.departmentFilters?.adding(filter)
-        }
+//        for filter in departmentFilters {
+//            self.departmentFilters?.adding(filter)
+//        }
         // Create the audience filters array
         self.targetAudienceFilters = []
-        for filter in targetAudienceFilters {
-            self.targetAudienceFilters?.adding(filter)
-        }
+//        for filter in targetAudienceFilters {
+//            self.targetAudienceFilters?.adding(filter)
+//        }
         // Create the event type filters array
         self.eventTypeFilters = []
-        for filter in eventTypeFilters {
-            self.eventTypeFilters?.adding(filter)
-        }
+//        for filter in eventTypeFilters {
+//            self.eventTypeFilters?.adding(filter)
+//        }
     }
 }
