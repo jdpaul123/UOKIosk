@@ -6,12 +6,39 @@
 //
 
 import Foundation
+import CoreData
+
+/*
+ TODO: Call service to get events.
+ The service will decide if it just gets data from the Core Data Persistent Store
+ or if it calls the api for fresh data, waits for it, and returns data from the Persistent Store.
+
+ Once that works, impliment pull-to-refrehs which will perform the fetchEvents that is described above but it will call
+ the api every time.
+
+ Note: Get the events from API and turn into IMEvent (Event should have all of the same properties as IMEvent) then save the
+ IMEvents to Core Data Event entities. Then the view can display the fetched results.
+ */
 
 class EventsService: EventsRepository {
     let urlString: String
+    var persistentContainer: NSPersistentContainer
 
     init(urlString: String) {
         self.urlString = urlString
+
+        persistentContainer = NSPersistentContainer(name: "EventsModel")
+
+        persistentContainer.loadPersistentStores { storeDescription, error in
+            guard error == nil else {
+                print("!!! Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
+                return
+            }
+            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+            // NSMergeByPropertyObjectTrumpMergePolicy means that any object that is trying to add an Event Object with the same id as one already saved then it only updates the data rather than saving a second copy
+            self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+            self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
+        }
     }
 
     func getFreshEvents() async throws -> [IMEvent] {
@@ -67,21 +94,6 @@ class EventsService: EventsRepository {
             var eventTypeFilters = [IMEventFilter]()
             var departmentFilters = [IMEventFilter]()
             var targetAudienceFilters = [IMEventFilter]()
-            if let dtoEventFilters = eventDto.filters.eventTypes {
-                for eventFilter in dtoEventFilters {
-                    eventTypeFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
-                }
-            }
-            if let dtoDepartmentFilters = eventDto.filters.departments {
-                for eventFilter in dtoDepartmentFilters {
-                    departmentFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
-                }
-            }
-            if let dtoTargetAudienceFilters = eventDto.filters.eventTargetAudience {
-                for eventFilter in dtoTargetAudienceFilters {
-                    targetAudienceFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name))
-                }
-            }
 
             let event = IMEvent(id: eventDto.id, title: eventDto.title, eventDescription: eventDto.descriptionText, locationName: eventDto.locationName,
                                 roomNumber: eventDto.roomNumber, address: eventDto.address, status: eventDto.status, experience: eventDto.experience,
@@ -95,6 +107,30 @@ class EventsService: EventsRepository {
                                 ticketCost: eventDto.ticketCost,
                                 start: dateValues.1, end: dateValues.2, allDay: dateValues.0,
                                 departmentFilters: departmentFilters, targetAudienceFilters: targetAudienceFilters, eventTypeFilters: eventTypeFilters)
+
+            // Create the relationships
+            if let dtoEventFilters = eventDto.filters.eventTypes {
+                for eventFilter in dtoEventFilters {
+                    eventTypeFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+                }
+            }
+            if let dtoDepartmentFilters = eventDto.filters.departments {
+                for eventFilter in dtoDepartmentFilters {
+                    departmentFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+                }
+            }
+            if let dtoTargetAudienceFilters = eventDto.filters.eventTargetAudience {
+                for eventFilter in dtoTargetAudienceFilters {
+                    targetAudienceFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+                }
+            }
+            event.eventTypeFilters = eventTypeFilters
+            event.departmentFilters = departmentFilters
+            event.targetAudienceFilters = targetAudienceFilters
+
+            var eventLocation = IMEventLocation(latitude: Double(eventDto.geo?.latitude ?? "0.0") ?? 0.0, longitude: Double(eventDto.geo?.longitude ?? "0.0") ?? 0.0, street: eventDto.geo?.street, city: eventDto.geo?.city, country: eventDto.geo?.country, zip: Int64(Int(eventDto.geo?.zip ?? "0") ?? 0), event: event)
+            event.eventLocation = eventLocation
+
             events.append(event)
         }
 
@@ -126,5 +162,49 @@ class EventsService: EventsRepository {
 
         let allDay = dateData.allDay
         return (allDay, start, end)
+    }
+
+    // MARK: - Core Data Functions
+    func addEvent(eventDto: EventDto) {
+        let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
+
+        saveViewContext()
+    }
+
+    func deleteEvent(_ event: Event) {
+        persistentContainer.viewContext.delete(event)
+
+        saveViewContext()
+    }
+
+    private func saveViewContext() {
+        do {
+            try persistentContainer.viewContext.save()
+        } catch {
+            let nserror = error as NSError
+            print("!!! Unresolved error \(nserror), \(nserror.userInfo). Failed to save viewContext, rolling back.")
+            persistentContainer.viewContext.rollback()
+        }
+    }
+
+    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
+
+        return createResultsController(for: delegate, fetchRequest: fetchRequest)
+    }
+
+    private func createResultsController<T>(for delegate: NSFetchedResultsControllerDelegate, fetchRequest: NSFetchRequest<T>) -> NSFetchedResultsController<T>? where T: NSFetchRequestResult {
+        /*
+         Generic function for creating results controller for any delegate and fetch request
+         */
+        let resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        resultsController.delegate = delegate
+
+        guard let _ = try? resultsController.performFetch() else {
+            return nil
+        }
+
+        return resultsController
     }
 }

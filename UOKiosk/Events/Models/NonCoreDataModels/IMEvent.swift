@@ -9,33 +9,34 @@ import Foundation
 import Combine
 
 // IM == In-memory
+// Check == The attribute also exists in the Event core data object
 class IMEvent: Identifiable {
     // MARK: Instance properties
-    var id: Int
+    var id: Int // Check
     var cancellables = Set<AnyCancellable>()
 
-    let title: String
-    let eventDescription: String
-    let locationName: String?
-    let roomNumber: String?
-    let address: String?
-    let status: String?
-    let experience: String?
-    let eventUrl: URL?
-    let streamUrl: URL?
-    let ticketUrl: URL?
-    let venueUrl: URL?
-    let calendarUrl: URL?
+    let title: String // Check
+    let eventDescription: String // Check
+    let locationName: String? // Check
+    let roomNumber: String? // Check
+    let address: String? // Check
+    let status: String? // Check
+    let experience: String? // Check
+    let eventUrl: URL? // Check
+    let streamUrl: URL? // Check
+    let ticketUrl: URL? // Check
+    let venueUrl: URL? // Check
+    let calendarUrl: URL? // Check
     let photoUrl: URL?
-    @Published var photoData: Data?
-    let ticketCost: String?
-    let start: Date
-    let end: Date?
-    let allDay: Bool
-    var eventLocation: IMEventLocation?
-    var departmentFilters: [IMEventFilter]
-    var targetAudienceFilters: [IMEventFilter]
-    var eventTypeFilters: [IMEventFilter]
+    @Published var photoData: Data? // Check
+    let ticketCost: String? // Check
+    let start: Date // Check
+    let end: Date? // Check
+    let allDay: Bool // Check
+    var eventLocation: IMEventLocation? // Check
+    var departmentFilters: [IMEventFilter] // Check
+    var targetAudienceFilters: [IMEventFilter] // Check
+    var eventTypeFilters: [IMEventFilter] // Check
 
     init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?, address: String?, status: String?, experience: String?, eventUrl: URL?, streamUrl: URL?, ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoUrl: URL?, photoData: Data?, ticketCost: String?, start: Date, end: Date?, allDay: Bool, eventLocation: IMEventLocation? = nil, departmentFilters: [IMEventFilter], targetAudienceFilters: [IMEventFilter], eventTypeFilters: [IMEventFilter]) {
         self.id = id
