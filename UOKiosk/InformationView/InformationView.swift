@@ -25,14 +25,14 @@ struct InformationView: View {
                     }
                     NavigationLink("Non-Emergency Click Here") {
                         List {
-                            Section(header: Text("On Campus"), footer: Text("On campus non-emergency assistance and information")) {
+                            Section(header: Text("On Campus"), footer: Text("On campus non-emergency assistance and information.")) {
                                 Link("Call UOPD", destination: URL(string: "tel:5413462919")!)
                             }
                             Section(header: Text("Off Campus"), footer: Text("Off campus, for non-emergencies or to report past crimes.")) {
                                 Link("Call Eugene PD", destination: URL(string: "tel:5416825111")!)
                                 Link("Call Springfield PD", destination: URL(string: "tel:5417263714")!)
                             }
-                            Section(header: Text("After-Hours Support & Crisis Line"), footer: Text("Call any time to speak with a therapist who can provide support and connect you with resources")) {
+                            Section(header: Text("After-Hours Support & Crisis Line"), footer: Text("Call any time to speak with a therapist who can provide support and connect you with resources.")) {
                                 Link("Call Counseling Center", destination: URL(string: "tel:5413463227")!)
                             }
                         }
@@ -60,6 +60,7 @@ struct InformationView: View {
                 }
                 Text("Made with 💚 by JD Paul. Sco Ducks!")
             }
+            .navigationTitle("UO Kiosk")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
