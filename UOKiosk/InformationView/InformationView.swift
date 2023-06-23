@@ -38,7 +38,7 @@ struct InformationView: View {
                         }
                     }
                 }
-                Section("Useful stuff") {
+                Section(header: Text("Useful stuff"), footer: MadeWithLoveView()) {
                     NavigationLink {
                         QuickLinksView()
                             .navigationTitle("Quick Links")
@@ -58,7 +58,6 @@ struct InformationView: View {
 //                        getImageAndText(systemName: "calendar", text: "Academic Calendar", color: .cyan)
 //                    }
                 }
-                Text("Made with 💚 by JD Paul. Sco Ducks!")
             }
             .navigationTitle("UO Kiosk")
         }
@@ -74,6 +73,19 @@ struct InformationView: View {
                 .cornerRadius(4)
             Text(text)
         }
+    }
+}
+
+struct MadeWithLoveView: View {
+    let markdownText = try! AttributedString(markdown: "Made with 💚 by [JD Paul](https://jonathandpaul.com). Sco Ducks!")
+
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(markdownText)
+            Spacer()
+        }
+        .padding()
     }
 }
 
