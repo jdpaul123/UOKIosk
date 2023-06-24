@@ -18,8 +18,8 @@ extension Event {
 
     // MARK: Instance properties
     @NSManaged public var id: Int64
-    @NSManaged public var title: String?
-    @NSManaged public var eventDescription: String?
+    @NSManaged public var title: String
+    @NSManaged public var eventDescription: String
     @NSManaged public var locationName: String?
     @NSManaged public var roomNumber: String?
     @NSManaged public var address: String?
@@ -32,7 +32,7 @@ extension Event {
     @NSManaged public var calendarUrl: URL?
     @NSManaged public var photoData: Data?
     @NSManaged public var ticketCost: String?
-    @NSManaged public var start: Date?
+    @NSManaged public var start: Date
     @NSManaged public var end: Date?
     @NSManaged public var allDay: Bool
     @NSManaged public var eventLocation: EventLocation?

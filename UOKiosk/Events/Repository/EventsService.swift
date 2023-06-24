@@ -144,6 +144,10 @@ class EventsService: EventsRepository {
 
             events.append(event)
         }
+
+        // TODO: The saveEvents method call below is for testing
+        await saveEvents(imEvents: events)
+
         return events
     }
 
@@ -182,14 +186,8 @@ class EventsService: EventsRepository {
 
         // Delete any events that are before the current date
         for event in fetchedObjects {
-            // Delete object if it has no start date
-            guard let start = event.start else {
-                try? deleteEvent(event)
-                continue
-            }
-
             // Delete any events from before today
-            if start.compare(today) == .orderedAscending {
+            if event.start.compare(today) == .orderedAscending {
                 try? deleteEvent(event)
             }
             // Delete any events that start before the instantiation of this view
