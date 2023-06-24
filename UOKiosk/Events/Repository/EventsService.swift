@@ -21,9 +21,11 @@ import CoreData
  */
 
 class EventsService: EventsRepository {
+    // MARK: Properties
     let urlString: String
     var persistentContainer: NSPersistentContainer
 
+    // MARK: Init
     init(urlString: String) {
         self.urlString = urlString
 
@@ -41,6 +43,7 @@ class EventsService: EventsRepository {
         }
     }
 
+    // MARK: Get Data functions
     func getFreshEvents() async throws -> [IMEvent] {
         var dto: EventsDto? = nil
         do {
@@ -134,6 +137,7 @@ class EventsService: EventsRepository {
             events.append(event)
         }
 
+        await saveEvents(imEvents: events)
         return events // TODO: Above this return, once Core Data is implimented add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
 
@@ -164,26 +168,108 @@ class EventsService: EventsRepository {
         return (allDay, start, end)
     }
 
+    // MARK: - Turn In-Memory (IM) objects into Core Data entities
+    @MainActor
+    func saveEvents(imEvents: [IMEvent]) {
+        for imEvent in imEvents {
+            let event = try? addEvent(imEvent: imEvent)
+            if let eventLocation = imEvent.eventLocation, let event = event {
+                let _ = try? addLocation(location: eventLocation, event: event)
+                addEventFilters(imEvent: imEvent, event: event)
+            }
+        }
+    }
+
     // MARK: - Core Data Functions
-    func addEvent(eventDto: EventDto) {
+    @MainActor
+    func addEventFilters(imEvent: IMEvent, event: Event) {
+        for imFilter in imEvent.eventTypeFilters {
+            let filter = try? addFilter(imFilter: imFilter)
+            if let filter = filter {
+                event.addToEventTypeFilters(filter)
+            }
+        }
+        for imFilter in imEvent.departmentFilters {
+            let filter = try? addFilter(imFilter: imFilter)
+            if let filter = filter {
+                event.addToDepartmentFilters(filter)
+            }
+        }
+        for imFilter in imEvent.targetAudienceFilters {
+            let filter = try? addFilter(imFilter: imFilter)
+            if let filter = filter {
+                event.addToTargetAudienceFilters(filter)
+            }
+        }
+    }
+
+    @MainActor
+    func addFilter(imFilter: IMEventFilter) throws -> EventFilter {
+        let filter = EventFilter(id: imFilter.id, name: imFilter.name, context: persistentContainer.viewContext)
+
+        do {
+            try saveViewContext()
+            return filter
+        } catch {
+            throw error
+        }
+    }
+
+    @MainActor
+    func addLocation(location: IMEventLocation, event: Event) throws {
+        let location = EventLocation(location: location, context: persistentContainer.viewContext)
+        event.eventLocation = location
+
+        do {
+            try saveViewContext()
+        } catch {
+            throw error
+        }
+    }
+
+    @MainActor
+    func addEvent(eventDto: EventDto) throws {
         let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
 
-        saveViewContext()
+        do {
+            try saveViewContext()
+        } catch {
+            throw error
+        }
     }
 
-    func deleteEvent(_ event: Event) {
+    @MainActor
+    func addEvent(imEvent: IMEvent) throws -> Event {
+        let event = Event(eventData: imEvent, context: persistentContainer.viewContext)
+
+        do {
+            try saveViewContext()
+            return event
+        } catch {
+            throw error
+        }
+    }
+
+    @MainActor
+    func deleteEvent(_ event: Event) throws {
         persistentContainer.viewContext.delete(event)
 
-        saveViewContext()
+        do {
+            try saveViewContext()
+        } catch {
+            throw error
+        }
     }
 
-    private func saveViewContext() {
+    @MainActor
+    private func saveViewContext() throws {
         do {
             try persistentContainer.viewContext.save()
         } catch {
             let nserror = error as NSError
             print("!!! Unresolved error \(nserror), \(nserror.userInfo). Failed to save viewContext, rolling back.")
             persistentContainer.viewContext.rollback()
+            throw nserror
         }
     }
 
