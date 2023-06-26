@@ -14,7 +14,7 @@ class EventDetailViewModel: ObservableObject {
     @Published var imageData: Data
     var cancellables = Set<AnyCancellable>()
 
-    let event: IMEvent
+    let event: Event
     let title: String
     let location: String
     let hasLocation: Bool
@@ -28,7 +28,7 @@ class EventDetailViewModel: ObservableObject {
         ReminderService.shared.isAvailable
     }
 
-    init(event: IMEvent) {
+    init(event: Event) {
         self.event = event
         self.title = event.title
         let noImageData = UIImage.init(named: "NoImage")!.pngData()!
@@ -72,28 +72,29 @@ class EventDetailViewModel: ObservableObject {
         self.eventDescription = event.eventDescription
         self.website = event.eventUrl
 
-        subscribeImageDataToEvent(event: event)
+        // TODO: Add imageData subscription to the Core Data stack for Events
+//        subscribeImageDataToEvent(event: event)
     }
 
-    func subscribeImageDataToEvent(event: IMEvent) {
-        event.$photoData
-            .receive(on: RunLoop.main)
-            .sink { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
-                }
-                self.cancellables.removeAll()
-            } receiveValue: { [weak self] data in
-                guard let self = self else { return }
-                if let imageData = data {
-                    self.imageData = imageData
-                }
-            }
-            .store(in: &cancellables)
-    }
+//    func subscribeImageDataToEvent(event: Event) {
+//        event.$photoData
+//            .receive(on: RunLoop.main)
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    break
+//                case .failure(let error):
+//                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
+//                }
+//                self.cancellables.removeAll()
+//            } receiveValue: { [weak self] data in
+//                guard let self = self else { return }
+//                if let imageData = data {
+//                    self.imageData = imageData
+//                }
+//            }
+//            .store(in: &cancellables)
+//    }
 
     // MARK: - Reminders
     func tryAddReminder() -> Bool {

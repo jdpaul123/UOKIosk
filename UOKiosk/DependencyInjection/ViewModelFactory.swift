@@ -28,11 +28,11 @@ final class ViewModelFactory: ObservableObject {
         EventsListSectionViewModel(parentViewModel: parentViewModel, dateToDisplay: dateToDisplay)
     }
 
-    func makeEventsListCellViewModel(event: IMEvent) -> EventsListCellViewModel {
+    func makeEventsListCellViewModel(event: Event) -> EventsListCellViewModel {
         EventsListCellViewModel(event: event)
     }
 
-    func makeEventDetailViewModel(eventModel: IMEvent) -> EventDetailViewModel {
+    func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }
 

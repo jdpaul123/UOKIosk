@@ -18,8 +18,7 @@ class EventsListViewModel: NSObject, ObservableObject, NSFetchedResultsControlle
 //    var events: [Event] {
 //        resultsController?.fetchedObjects ?? []
 //    }
-    @Published var eventsDictionary = OrderedDictionary<Date, [IMEvent]>()
-    var events: [IMEvent] = []
+    @Published var eventsDictionary = OrderedDictionary<Date, [Event]>()
 
     // View State Properties
     @Published var showingInformationSheet = false
@@ -48,14 +47,16 @@ class EventsListViewModel: NSObject, ObservableObject, NSFetchedResultsControlle
         isLoading = true
         defer { isLoading = false }
         do {
-//            let _ = try await eventsRepository.fetchEvents(with: self)
-            events = try await eventsRepository.getFreshEvents()
+            resultsController = try await eventsRepository.fetchEvents(with: self)
+//            events = try await eventsRepository.getFreshEvents()
         } catch {
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription
             showBanner = true
             return
         }
+
+        let events: [Event] = resultsController?.fetchedObjects ?? []
 
         let cal = Calendar(identifier: .gregorian)
         for event in events {

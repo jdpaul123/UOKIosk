@@ -14,7 +14,7 @@ class EventsListSectionViewModel: ObservableObject, Identifiable {
     var cancellables = Set<AnyCancellable>()
     let date: Date
     let displayDateString: String
-    @Published var events: [IMEvent]
+    @Published var events: [Event]
 
     init(parentViewModel: EventsListViewModel, dateToDisplay: Date) {
         self.date = dateToDisplay
