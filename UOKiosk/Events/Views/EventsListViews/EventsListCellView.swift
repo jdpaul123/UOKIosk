@@ -9,17 +9,15 @@ import SwiftUI
 
 struct EventsListCellView: View {
     @StateObject var vm: EventsListCellViewModel
-     var photoData: Data
 
     // MARK: INITIALIZER
     init(vm: EventsListCellViewModel) {
         _vm = StateObject(wrappedValue: vm)
-        photoData = vm.event.photoData ?? UIImage(named: "NoImage")!.pngData()!
     }
 
     var body: some View {
         HStack {
-            Image.init(uiImage: UIImage(data: vm.photoData)!)
+            Image.init(uiImage: UIImage(data: vm.imageData)!)
                 .resizable()
                 .scaledToFit()
                 .frame(width: 100)

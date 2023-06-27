@@ -54,6 +54,7 @@ class EventsService: EventsRepository {
         }
     }
 
+    // TODO: Make it so getImage(event:) is only called when fetchFreshEvents() is too so that the method is not called every time the app is run
     @MainActor
     func getImage(event: Event) {
         guard let photoUrl = event.photoUrl else {
@@ -64,13 +65,13 @@ class EventsService: EventsRepository {
                 // TODO: Add error handling
                 switch completion {
                 case .finished:
-                    print("!!! Finished getIMage(event:)")
                     break
                 case .failure(let error):
                     print("!!! Failed to get photo for event, \(event.title), with error: \(error.localizedDescription)")
                 }
             } receiveValue: { [weak self] (data, respose) in
                 event.photoData = data
+                event.imPhotoData = data
                 try? self?.saveViewContext()
             }
             .store(in: &cancellables)

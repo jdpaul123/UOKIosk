@@ -11,6 +11,13 @@ import CoreData
 import Combine
 
 public class Event: NSManagedObject {
+    // MARK: Transient Properties / In-Memory Properties
+    @Published public var imPhotoData: Data? { // @Published is optional
+        willSet {
+            objectWillChange.send()
+        }
+    }
+
     // MARK: Initialization
     convenience init(eventData: IMEvent, context: NSManagedObjectContext) {
         self.init(context: context)

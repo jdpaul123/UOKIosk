@@ -11,42 +11,32 @@ import SwiftUI
 
 class EventsListCellViewModel: ObservableObject {
     @Published var event: Event
-    @Published var photoData: Data
-    var photoSubscription: AnyCancellable? = nil
+    @Published var imageData: Data
+    var imageSubscription: AnyCancellable? = nil
     let title: String
 
     init(event: Event) {
         self.event = event
         self.title = event.title
         let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
-        photoData = event.photoData ?? noImageData
-        setUpPhotoSubscription(event: event)
+        imageData = event.photoData ?? noImageData
+        subscribeImageDataToEvent(event: event)
     }
 
-    func setUpPhotoSubscription(event: Event) {
-        self.photoSubscription = Timer
-            .publish(every: 2, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                if let updatedPhotoData = event.photoData, updatedPhotoData != UIImage(named: "NoImage")!.pngData()! {
-                    self?.photoData = updatedPhotoData
-                    self?.photoSubscription?.cancel()
+    func subscribeImageDataToEvent(event: Event) {
+        imageSubscription = event.$imPhotoData
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("!!! Finished subscribeImageDataToEvent(event:)")
+                    break
+                case .failure(let error):
+                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
                 }
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                self.imageData = data ?? self.imageData
             }
-//        self.photoSubscriber = $event
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    print("!!! Finished EventsListCellViewModel init sink for \(event.title)")
-//                    break
-//                case .failure(let error):
-//                    print("!!! Failed to get photo for event detail view, \(event.title), with error: \(error.localizedDescription)")
-//                }
-//            } receiveValue: { [weak self] data in
-//                if let photoData = data.photoData {
-//                    print("!!! Setting photo to nil photo: \(photoData != UIImage(named: "NoImage")!.pngData()!)")
-//                    self?.photoData = photoData
-//                }
-//            }
     }
 }

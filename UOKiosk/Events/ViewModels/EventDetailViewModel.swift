@@ -37,10 +37,9 @@ class EventDetailViewModel: ObservableObject {
         self.event = event
         self.title = event.title
         let noImageData = UIImage.init(named: "NoImage")!.pngData()!
+        self.imageData = noImageData
         if let photoData = event.photoData {
             self.imageData = photoData
-        } else {
-            self.imageData = noImageData
         }
 
         self.location = event.locationName ?? ""
@@ -80,29 +79,20 @@ class EventDetailViewModel: ObservableObject {
     }
 
     func subscribeImageDataToEvent(event: Event) {
-        self.imageSubscription = Timer
-            .publish(every: 2, on: .main, in: .common)
-            .autoconnect()
-            .sink { [weak self] _ in
-                if let updatedPhotoData = event.photoData, updatedPhotoData != UIImage(named: "NoImage")!.pngData()! {
-                    self?.imageData = updatedPhotoData
-                    self?.imageSubscription?.cancel()
+        imageSubscription = event.$imPhotoData
+            .receive(on: RunLoop.main)
+            .sink { completion in
+                switch completion {
+                case .finished:
+                    print("!!! Finished subscribeImageDataToEvent(event:)")
+                    break
+                case .failure(let error):
+                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
                 }
+            } receiveValue: { [weak self] data in
+                guard let self = self else { return }
+                self.imageData = data ?? self.imageData
             }
-//        imageSubscription = event.photoData
-//            .receive(on: RunLoop.main)
-//            .sink { completion in
-//                switch completion {
-//                case .finished:
-//                    print("!!! Finished subscribeImageDataToEvent(event:)")
-//                    break
-//                case .failure(let error):
-//                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
-//                }
-//            } receiveValue: { [weak self] data in
-//                guard let self = self else { return }
-//                self.imageData = imageData
-//            }
     }
 
     // MARK: - Reminders
