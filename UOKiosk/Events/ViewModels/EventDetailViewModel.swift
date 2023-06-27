@@ -7,14 +7,19 @@
 
 import Foundation
 import UIKit
-import Combine
 import EventKit
+import Combine
 
 class EventDetailViewModel: ObservableObject {
-    @Published var imageData: Data
-    var cancellables = Set<AnyCancellable>()
+//    var imageData: Data {
+//        let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
+//        return event.photoData ?? noImageData
+//    }
 
-    let event: IMEvent
+    @Published var imageData: Data
+    var imageSubscription: AnyCancellable?
+
+    @Published var event: Event
     let title: String
     let location: String
     let hasLocation: Bool
@@ -28,14 +33,13 @@ class EventDetailViewModel: ObservableObject {
         ReminderService.shared.isAvailable
     }
 
-    init(event: IMEvent) {
+    init(event: Event) {
         self.event = event
         self.title = event.title
         let noImageData = UIImage.init(named: "NoImage")!.pngData()!
+        self.imageData = noImageData
         if let photoData = event.photoData {
             self.imageData = photoData
-        } else {
-            self.imageData = noImageData
         }
 
         self.location = event.locationName ?? ""
@@ -71,28 +75,24 @@ class EventDetailViewModel: ObservableObject {
         
         self.eventDescription = event.eventDescription
         self.website = event.eventUrl
-
         subscribeImageDataToEvent(event: event)
     }
 
-    func subscribeImageDataToEvent(event: IMEvent) {
-        event.$photoData
+    func subscribeImageDataToEvent(event: Event) {
+        imageSubscription = event.$imPhotoData
             .receive(on: RunLoop.main)
             .sink { completion in
                 switch completion {
                 case .finished:
+                    print("!!! Finished subscribeImageDataToEvent(event:)")
                     break
                 case .failure(let error):
                     print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
                 }
-                self.cancellables.removeAll()
             } receiveValue: { [weak self] data in
                 guard let self = self else { return }
-                if let imageData = data {
-                    self.imageData = imageData
-                }
+                self.imageData = data ?? self.imageData
             }
-            .store(in: &cancellables)
     }
 
     // MARK: - Reminders

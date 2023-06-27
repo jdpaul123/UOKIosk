@@ -10,10 +10,27 @@ import CoreData
 
 
 final class MockEventsService: EventsRepository {
-    func getFreshEvents() async throws -> [IMEvent] {
-        return []
+    func getImage(event: Event) {
+        return
     }
 
+//    func fetchEvents(with delegate: NSFetchedResultsControllerDelegate) async throws -> NSFetchedResultsController<Event>? {
+//        return nil
+//    }
+    func fetchEvents() async throws -> NSFetchedResultsController<Event>? {
+        return nil
+    }
+
+    func fetchFreshEvents() async throws {
+        return
+    }
+
+//    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+//        return nil
+//    }
+    func fetchSavedEvents() -> NSFetchedResultsController<Event>? {
+        return nil
+    }
 //    var persistentContainer: NSPersistentContainer = NSPersistentContainer(name: "Mock")
 //
 //

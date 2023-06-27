@@ -14,9 +14,9 @@ class IMEventLocation {
     let city: String?
     let country: String?
     let zip: Int64
-    let event: Event?
+    weak var event: IMEvent?
 
-    init(latitude: Double, longitude: Double, street: String?, city: String?, country: String?, zip: Int64, event: Event?) {
+    init(latitude: Double, longitude: Double, street: String?, city: String?, country: String?, zip: Int64, event: IMEvent) {
         self.latitude = latitude
         self.longitude = longitude
         self.street = street

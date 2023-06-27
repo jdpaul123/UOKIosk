@@ -11,6 +11,13 @@ import CoreData
 
 
 public class EventFilter: NSManagedObject {
+    convenience init(filter: IMEventFilter, context: NSManagedObjectContext) {
+        self.init(context: context)
+
+        self.id = Int64(filter.id)
+        self.name = filter.name
+    }
+
     convenience init(id: Int, name: String, context: NSManagedObjectContext) {
         self.init(context: context)
         self.id = Int64(id)

@@ -6,7 +6,11 @@
 //
 
 import Foundation
+import CoreData
 
 protocol EventsRepository {
-    func getFreshEvents() async throws -> [IMEvent]
+    func getImage(event: Event)
+    func fetchEvents() async throws -> NSFetchedResultsController<Event>?
+    func fetchFreshEvents() async throws /*-> [IMEvent]*/
+    func fetchSavedEvents() -> NSFetchedResultsController<Event>?
 }

@@ -24,6 +24,7 @@ class MockEventsModelData {
                       venueUrl: URL(string: "https://calendar.uoregon.edu/LawrenceHall")!,
                       calendarUrl: URL(string: "https://calendar.uoregon.edu/event/avoidance.ics"),
                       photoData: nil,
+                      photoUrl: URL(string: "https://www.youtube.com"),
                       ticketCost: "$25.00",
                       start: Date(timeIntervalSinceNow: TimeInterval(60*25)), end: Date(timeIntervalSinceNow: TimeInterval(60*220)),
                       allDay: false,
