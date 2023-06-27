@@ -28,7 +28,6 @@ class IMEvent: Identifiable {
     let venueUrl: URL? // Check
     let calendarUrl: URL? // Check
     let photoUrl: URL?
-    @Published var photoData: Data? // Check
     let ticketCost: String? // Check
     let start: Date // Check
     let end: Date? // Check
@@ -38,7 +37,7 @@ class IMEvent: Identifiable {
     var targetAudienceFilters: [IMEventFilter] // Check
     var eventTypeFilters: [IMEventFilter] // Check
 
-    init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?, address: String?, status: String?, experience: String?, eventUrl: URL?, streamUrl: URL?, ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoUrl: URL?, photoData: Data?, ticketCost: String?, start: Date, end: Date?, allDay: Bool, eventLocation: IMEventLocation? = nil, departmentFilters: [IMEventFilter], targetAudienceFilters: [IMEventFilter], eventTypeFilters: [IMEventFilter]) {
+    init(id: Int, title: String, eventDescription: String, locationName: String?, roomNumber: String?, address: String?, status: String?, experience: String?, eventUrl: URL?, streamUrl: URL?, ticketUrl: URL?, venueUrl: URL?, calendarUrl: URL?, photoUrl: URL?, ticketCost: String?, start: Date, end: Date?, allDay: Bool, eventLocation: IMEventLocation? = nil, departmentFilters: [IMEventFilter], targetAudienceFilters: [IMEventFilter], eventTypeFilters: [IMEventFilter]) {
         self.id = id
         self.title = title
         self.eventDescription = eventDescription
@@ -53,7 +52,6 @@ class IMEvent: Identifiable {
         self.venueUrl = venueUrl
         self.calendarUrl = calendarUrl
         self.photoUrl = photoUrl
-        self.photoData = photoData
         self.ticketCost = ticketCost
         self.start = start
         self.end = end
@@ -62,26 +60,5 @@ class IMEvent: Identifiable {
         self.departmentFilters = departmentFilters
         self.targetAudienceFilters = targetAudienceFilters
         self.eventTypeFilters = eventTypeFilters
-        getImage()
-    }
-
-    func getImage() {
-        guard let photoUrl = photoUrl else {
-            return
-        }
-        URLSession.shared.dataTaskPublisher(for: photoUrl)
-            .sink { completion in
-                // TODO: Add error handling
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print("!!! Failed to get photo for event, \(self.title), with error: \(error.localizedDescription)")
-                }
-                self.cancellables.removeAll()
-            } receiveValue: { [weak self] (data, respose) in
-                self?.photoData = data
-            }
-            .store(in: &cancellables)
     }
 }

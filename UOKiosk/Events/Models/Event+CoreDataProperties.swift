@@ -31,6 +31,7 @@ extension Event {
     @NSManaged public var venueUrl: URL?
     @NSManaged public var calendarUrl: URL?
     @NSManaged public var photoData: Data?
+    @NSManaged public var photoUrl: URL?
     @NSManaged public var ticketCost: String?
     @NSManaged public var start: Date
     @NSManaged public var end: Date?

@@ -7,37 +7,46 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class EventsListCellViewModel: ObservableObject {
-    @Published var imageData: Data?
-    @Published var title: String
-
-    var cancellables = Set<AnyCancellable>()
+    @Published var event: Event
+    @Published var photoData: Data
+    var photoSubscription: AnyCancellable? = nil
+    let title: String
 
     init(event: Event) {
-        self.imageData = event.photoData
+        self.event = event
         self.title = event.title
-//        subscribeImageDataToEvent(event: event)
+        let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
+        photoData = event.photoData ?? noImageData
+        setUpPhotoSubscription(event: event)
     }
 
-    // TODO: Add imageData subscription to the Core Data stack for Events
-//    func subscribeImageDataToEvent(event: IMEvent) {
-//        event.$photoData
-//            .receive(on: RunLoop.main)
+    func setUpPhotoSubscription(event: Event) {
+        self.photoSubscription = Timer
+            .publish(every: 2, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                if let updatedPhotoData = event.photoData, updatedPhotoData != UIImage(named: "NoImage")!.pngData()! {
+                    self?.photoData = updatedPhotoData
+                    self?.photoSubscription?.cancel()
+                }
+            }
+//        self.photoSubscriber = $event
 //            .sink { completion in
 //                switch completion {
 //                case .finished:
+//                    print("!!! Finished EventsListCellViewModel init sink for \(event.title)")
 //                    break
 //                case .failure(let error):
-//                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
+//                    print("!!! Failed to get photo for event detail view, \(event.title), with error: \(error.localizedDescription)")
 //                }
-//                self.cancellables.removeAll()
 //            } receiveValue: { [weak self] data in
-//                guard let self = self else { return }
-//                if let imageData = data {
-//                    self.imageData = imageData
+//                if let photoData = data.photoData {
+//                    print("!!! Setting photo to nil photo: \(photoData != UIImage(named: "NoImage")!.pngData()!)")
+//                    self?.photoData = photoData
 //                }
 //            }
-//            .store(in: &cancellables)
-//    }
+    }
 }

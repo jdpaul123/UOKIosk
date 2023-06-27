@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import Combine
 
 /*
  TODO: Call service to get events.
@@ -31,6 +32,8 @@ class EventsService: EventsRepository {
         }
     }
     private var isLastUpdatedToday: Bool
+    private var cancellables = Set<AnyCancellable>()
+    @Published var events: [Event] = [Event]()
 
     // MARK: Init
     init(urlString: String) {
@@ -51,109 +54,31 @@ class EventsService: EventsRepository {
         }
     }
 
-    // MARK: OLD GET EVENTS FROM API FUNCTION
-    func getFreshEvents() async throws -> [IMEvent] {
-        var dto: EventsDto? = nil
-        do {
-            dto = try await ApiService.shared.getJSON(urlString: urlString)
-        } catch {
-            throw error
+    @MainActor
+    func getImage(event: Event) {
+        guard let photoUrl = event.photoUrl else {
+            return
         }
-
-        guard let dto = dto else {
-            throw EventsServiceError.dataTransferObjectIsNil
-        }
-
-        var eventDtos = [EventDto]()
-        // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
-        for middleLayer in dto.eventMiddleLayerDto {
-            let eventDto = middleLayer.eventDto
-            // Make sure there is date info for the event and that the object has a start date
-            guard let eventInstanceWrapper = eventDto.eventInstances?[0], eventInstanceWrapper.eventInstance.start != "" else {
-                continue
-            }
-
-            let dateValues = getEventInstanceDateData(dateData: eventInstanceWrapper.eventInstance)
-            let allDay = dateValues.0
-            let _ = dateValues.1
-            let end = dateValues.2
-            if allDay == true {
-                // If the event is all day then we should save it
-                eventDtos.append(eventDto)
-            }
-            guard let end = end else {
-                // If the event is not all day, but we do not know when it ends, then we should save it
-                eventDtos.append(eventDto)
-                continue
-            }
-            if end < Date() {
-                // If the event is already over then we should not save it
-                continue
-            }
-            // If the event is not all day, but the end of the event is in the future then save it
-            eventDtos.append(eventDto)
-        }
-
-        var events = [IMEvent]()
-        for eventDto in eventDtos {
-            guard let eventInstances = eventDto.eventInstances else {
-                fatalError("There are no event instances to access")
-            }
-            let dateData = eventInstances[0].eventInstance
-            let dateValues = getEventInstanceDateData(dateData: dateData)
-
-            var eventTypeFilters = [IMEventFilter]()
-            var departmentFilters = [IMEventFilter]()
-            var targetAudienceFilters = [IMEventFilter]()
-
-            let event = IMEvent(id: eventDto.id, title: eventDto.title, eventDescription: eventDto.descriptionText, locationName: eventDto.locationName,
-                                roomNumber: eventDto.roomNumber, address: eventDto.address, status: eventDto.status, experience: eventDto.experience,
-                                eventUrl: URL(string: eventDto.localistUrl ?? ""),
-                                streamUrl: URL(string: eventDto.streamUrl ?? ""),
-                                ticketUrl: URL(string: eventDto.ticketUrl ?? ""),
-                                venueUrl: URL(string: eventDto.venueUrl ?? ""),
-                                calendarUrl: URL(string: eventDto.icsUrl ?? ""),
-                                photoUrl: URL(string: eventDto.photoUrl ?? ""),
-                                photoData: nil, // photo data is loaded asyncronously after instantiation
-                                ticketCost: eventDto.ticketCost,
-                                start: dateValues.1, end: dateValues.2, allDay: dateValues.0,
-                                departmentFilters: departmentFilters, targetAudienceFilters: targetAudienceFilters, eventTypeFilters: eventTypeFilters)
-
-            // Create the relationships
-            if let dtoEventFilters = eventDto.filters.eventTypes {
-                for eventFilter in dtoEventFilters {
-                    eventTypeFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+        URLSession.shared.dataTaskPublisher(for: photoUrl)
+            .sink { completion in
+                // TODO: Add error handling
+                switch completion {
+                case .finished:
+                    print("!!! Finished getIMage(event:)")
+                    break
+                case .failure(let error):
+                    print("!!! Failed to get photo for event, \(event.title), with error: \(error.localizedDescription)")
                 }
+            } receiveValue: { [weak self] (data, respose) in
+                event.photoData = data
+                try? self?.saveViewContext()
             }
-            if let dtoDepartmentFilters = eventDto.filters.departments {
-                for eventFilter in dtoDepartmentFilters {
-                    departmentFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
-                }
-            }
-            if let dtoTargetAudienceFilters = eventDto.filters.eventTargetAudience {
-                for eventFilter in dtoTargetAudienceFilters {
-                    targetAudienceFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
-                }
-            }
-            event.eventTypeFilters = eventTypeFilters
-            event.departmentFilters = departmentFilters
-            event.targetAudienceFilters = targetAudienceFilters
-
-            let eventLocation = IMEventLocation(latitude: Double(eventDto.geo?.latitude ?? "0.0") ?? 0.0, longitude: Double(eventDto.geo?.longitude ?? "0.0") ?? 0.0, street: eventDto.geo?.street, city: eventDto.geo?.city, country: eventDto.geo?.country, zip: Int64(Int(eventDto.geo?.zip ?? "0") ?? 0), event: event)
-            event.eventLocation = eventLocation
-
-            events.append(event)
-        }
-
-        // TODO: The saveEvents method call below is for testing
-        await saveEvents(imEvents: events)
-
-        return events
+            .store(in: &cancellables)
     }
 
     // MARK: Get events (determine if getting saved events or fetching events from REST API then getting saved events)
     @MainActor
-    func fetchEvents(with delegate: NSFetchedResultsControllerDelegate) async throws -> NSFetchedResultsController<Event>? {
+    func fetchEvents() async throws -> NSFetchedResultsController<Event>? {
         if !isLastUpdatedToday {
             lastDataUpdateDate = .now
             // call api for fresh data
@@ -164,13 +89,13 @@ class EventsService: EventsRepository {
             }
         }
         // return saved data
-        return fetchSavedEvents(with: delegate)
+        return fetchSavedEvents()
     }
 
     // MARK: Get Saved Events
     @MainActor
-    func fetchSavedEvents(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
-        let fetchedResultsController = eventResultsController(with: delegate)
+    func fetchSavedEvents() -> NSFetchedResultsController<Event>? {
+        let fetchedResultsController = eventResultsController()
         guard let fetchedResultsController = fetchedResultsController, let fetchedObjects = fetchedResultsController.fetchedObjects else {
             return nil
         }
@@ -190,10 +115,6 @@ class EventsService: EventsRepository {
             if event.start.compare(today) == .orderedAscending {
                 try? deleteEvent(event)
             }
-            // Delete any events that start before the instantiation of this view
-//            if start.compare(Date()) == .orderedAscending {
-//                try? deleteEvent(event)
-//            }
         }
         return fetchedResultsController
     }
@@ -261,7 +182,6 @@ class EventsService: EventsRepository {
                                 venueUrl: URL(string: eventDto.venueUrl ?? ""),
                                 calendarUrl: URL(string: eventDto.icsUrl ?? ""),
                                 photoUrl: URL(string: eventDto.photoUrl ?? ""),
-                                photoData: nil, // photo data is loaded asyncronously after instantiation
                                 ticketCost: eventDto.ticketCost,
                                 start: dateValues.1, end: dateValues.2, allDay: dateValues.0,
                                 departmentFilters: departmentFilters, targetAudienceFilters: targetAudienceFilters, eventTypeFilters: eventTypeFilters)
@@ -328,9 +248,12 @@ class EventsService: EventsRepository {
     func saveEvents(imEvents: [IMEvent]) {
         for imEvent in imEvents {
             let event = try? addEvent(imEvent: imEvent)
-            if let eventLocation = imEvent.eventLocation, let event = event {
-                let _ = try? addLocation(location: eventLocation, event: event)
+            if let event = event {
                 addEventFilters(imEvent: imEvent, event: event)
+                // TODO: addLocation is causing crashes. Fix it.
+//                if let eventLocation = imEvent.eventLocation {
+//                    let _ = try? addLocation(location: eventLocation, event: event)
+//                }
             }
         }
     }
@@ -383,17 +306,6 @@ class EventsService: EventsRepository {
     }
 
     @MainActor
-    func addEvent(eventDto: EventDto) throws {
-        let _ = Event(eventData: eventDto, context: persistentContainer.viewContext)
-
-        do {
-            try saveViewContext()
-        } catch {
-            throw error
-        }
-    }
-
-    @MainActor
     func addEvent(imEvent: IMEvent) throws -> Event {
         let event = Event(eventData: imEvent, context: persistentContainer.viewContext)
 
@@ -428,19 +340,32 @@ class EventsService: EventsRepository {
         }
     }
 
-    func eventResultsController(with delegate: NSFetchedResultsControllerDelegate) -> NSFetchedResultsController<Event>? {
+    func eventResultsController() -> NSFetchedResultsController<Event>? {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
 
-        return createResultsController(for: delegate, fetchRequest: fetchRequest)
+        return createResultsController(fetchRequest: fetchRequest)
     }
 
-    private func createResultsController<T>(for delegate: NSFetchedResultsControllerDelegate, fetchRequest: NSFetchRequest<T>) -> NSFetchedResultsController<T>? where T: NSFetchRequestResult {
+    func eventResultsController(for date: Date) -> NSFetchedResultsController<Event>? {
+        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
+
+        // Only get the events that start during the day specified in the date argument
+        let calendar = Calendar(identifier: .gregorian)
+        let startOfDay = calendar.startOfDay(for: date)
+        let components = DateComponents(day: 1)
+        let endOfDay = Calendar.current.date(byAdding: components, to: startOfDay)!
+        fetchRequest.predicate = NSPredicate(format: "start >= %@ && start < endOfDay", startOfDay as NSDate, endOfDay as NSDate)
+
+        return createResultsController(fetchRequest: fetchRequest)
+    }
+
+    private func createResultsController<T>(fetchRequest: NSFetchRequest<T>) -> NSFetchedResultsController<T>? where T: NSFetchRequestResult {
         /*
          Generic function for creating results controller for any delegate and fetch request
          */
         let resultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        resultsController.delegate = delegate
 
         guard let _ = try? resultsController.performFetch() else {
             return nil

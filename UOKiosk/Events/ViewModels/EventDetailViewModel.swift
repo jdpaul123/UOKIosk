@@ -7,14 +7,19 @@
 
 import Foundation
 import UIKit
-import Combine
 import EventKit
+import Combine
 
 class EventDetailViewModel: ObservableObject {
-    @Published var imageData: Data
-    var cancellables = Set<AnyCancellable>()
+//    var imageData: Data {
+//        let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
+//        return event.photoData ?? noImageData
+//    }
 
-    let event: Event
+    @Published var imageData: Data
+    var imageSubscription: AnyCancellable?
+
+    @Published var event: Event
     let title: String
     let location: String
     let hasLocation: Bool
@@ -71,30 +76,34 @@ class EventDetailViewModel: ObservableObject {
         
         self.eventDescription = event.eventDescription
         self.website = event.eventUrl
-
-        // TODO: Add imageData subscription to the Core Data stack for Events
-//        subscribeImageDataToEvent(event: event)
+        subscribeImageDataToEvent(event: event)
     }
 
-//    func subscribeImageDataToEvent(event: Event) {
-//        event.$photoData
+    func subscribeImageDataToEvent(event: Event) {
+        self.imageSubscription = Timer
+            .publish(every: 2, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                if let updatedPhotoData = event.photoData, updatedPhotoData != UIImage(named: "NoImage")!.pngData()! {
+                    self?.imageData = updatedPhotoData
+                    self?.imageSubscription?.cancel()
+                }
+            }
+//        imageSubscription = event.photoData
 //            .receive(on: RunLoop.main)
 //            .sink { completion in
 //                switch completion {
 //                case .finished:
+//                    print("!!! Finished subscribeImageDataToEvent(event:)")
 //                    break
 //                case .failure(let error):
 //                    print("!!! Failed to get image data for Event Cell for event, \(event.title), with Error: \(error.localizedDescription)")
 //                }
-//                self.cancellables.removeAll()
 //            } receiveValue: { [weak self] data in
 //                guard let self = self else { return }
-//                if let imageData = data {
-//                    self.imageData = imageData
-//                }
+//                self.imageData = imageData
 //            }
-//            .store(in: &cancellables)
-//    }
+    }
 
     // MARK: - Reminders
     func tryAddReminder() -> Bool {
