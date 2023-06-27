@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InformationView: View {
+    @Environment(\.dismiss) private var dismiss
+
     var body: some View {
         NavigationView {
             List {
@@ -36,6 +38,7 @@ struct InformationView: View {
                                 Link("Call Counseling Center", destination: URL(string: "tel:5413463227")!)
                             }
                         }
+                        .navigationTitle("Non-Emergency")
                     }
                 }
                 Section(header: Text("Useful stuff"), footer: MadeWithLoveView()) {
@@ -60,6 +63,11 @@ struct InformationView: View {
                 }
             }
             .navigationTitle("UO Kiosk")
+            .toolbar {
+                Button("Done") {
+                    dismiss()
+                }
+            }
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
