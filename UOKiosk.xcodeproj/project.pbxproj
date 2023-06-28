@@ -69,6 +69,9 @@
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
 		52A2384E2A4B7D3B004799E8 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */; };
+		52A238502A4B7E44004799E8 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384F2A4B7E44004799E8 /* RSSParser.swift */; };
+		52A238532A4B86A7004799E8 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52A238522A4B86A7004799E8 /* FeedKit */; };
+		52A238552A4B8766004799E8 /* RSSFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238542A4B8766004799E8 /* RSSFeedService.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -158,6 +161,8 @@
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
 		52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
+		52A2384F2A4B7E44004799E8 /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
+		52A238542A4B8766004799E8 /* RSSFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedService.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -177,6 +182,7 @@
 				52463EDF2A3AC76B007BF9B1 /* Collections in Frameworks */,
 				52463EE12A3AC76B007BF9B1 /* DequeModule in Frameworks */,
 				52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */,
+				52A238532A4B86A7004799E8 /* FeedKit in Frameworks */,
 				52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */,
 				52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
@@ -533,6 +539,8 @@
 			isa = PBXGroup;
 			children = (
 				52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */,
+				52A2384F2A4B7E44004799E8 /* RSSParser.swift */,
+				52A238542A4B8766004799E8 /* RSSFeedService.swift */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -568,6 +576,7 @@
 				52463EE22A3AC76B007BF9B1 /* OrderedCollections */,
 				52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */,
 				52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */,
+				52A238522A4B86A7004799E8 /* FeedKit */,
 			);
 			productName = UOKiosk;
 			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
@@ -644,6 +653,7 @@
 			packageReferences = (
 				52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
@@ -732,10 +742,12 @@
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
+				52A238552A4B8766004799E8 /* RSSFeedService.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
+				52A238502A4B7E44004799E8 /* RSSParser.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52A2384E2A4B7D3B004799E8 /* NewsFeed.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
@@ -1100,6 +1112,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1127,6 +1147,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		52A238522A4B86A7004799E8 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

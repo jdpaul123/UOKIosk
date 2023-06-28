@@ -33,5 +33,22 @@ final class Injector: ObservableObject {
         self.eventsRepository = eventsRepository
         self.whatIsOpenRepository = whatIsOpenRepository
         viewModelFactory = ViewModelFactory(eventsRepository: eventsRepository, whatIsOpenRepository: whatIsOpenRepository)
+
+        // TODO: Delete this - it is for testing the RSSFeedService fetch request
+//        let rssFeedService = RSSFeedService()
+//        rssFeedService.fetch(feed: RSSFeedService.feedUrl) { result in
+//            switch result {
+//            case .success(let articles):
+//                for article in articles {
+//                    print(article.title ?? "NO TITLE")
+//                    print(article.description ?? "NO DESCRIPTION")
+//                    print(article.link ?? "NO LINK")
+//                    print()
+//                }
+//            case .failure(let error):
+//                print("!!! FAILED TO FETCH RSS FEED DATA")
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 }
