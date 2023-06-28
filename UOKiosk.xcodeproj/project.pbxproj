@@ -71,10 +71,14 @@
 		52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */; };
 		52A238502A4B7E44004799E8 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384F2A4B7E44004799E8 /* RSSParser.swift */; };
 		52A238532A4B86A7004799E8 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52A238522A4B86A7004799E8 /* FeedKit */; };
-		52A238552A4B8766004799E8 /* RSSFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238542A4B8766004799E8 /* RSSFeedService.swift */; };
+		52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238542A4B8766004799E8 /* NewsFeedService.swift */; };
 		52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */; };
 		52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238582A4BF866004799E8 /* NewsFeedCellView.swift */; };
 		52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */; };
+		52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */; };
+		52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
+		52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */; };
+		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -165,10 +169,14 @@
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
 		52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
 		52A2384F2A4B7E44004799E8 /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
-		52A238542A4B8766004799E8 /* RSSFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedService.swift; sourceTree = "<group>"; };
+		52A238542A4B8766004799E8 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
 		52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewModel.swift; sourceTree = "<group>"; };
 		52A238582A4BF866004799E8 /* NewsFeedCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellView.swift; sourceTree = "<group>"; };
 		52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellViewModel.swift; sourceTree = "<group>"; };
+		52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
+		52A238602A4C1262004799E8 /* MockNewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsFeedService.swift; sourceTree = "<group>"; };
+		52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleView.swift; sourceTree = "<group>"; };
+		52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleViewRepresentable.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -257,6 +265,7 @@
 			children = (
 				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
 				52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */,
+				52A238602A4C1262004799E8 /* MockNewsFeedService.swift */,
 			);
 			path = MockRepository;
 			sourceTree = "<group>";
@@ -547,7 +556,8 @@
 				52A2385B2A4BF87C004799E8 /* View */,
 				52A2385A2A4BF873004799E8 /* ViewModel */,
 				52A2384F2A4B7E44004799E8 /* RSSParser.swift */,
-				52A238542A4B8766004799E8 /* RSSFeedService.swift */,
+				52A238542A4B8766004799E8 /* NewsFeedService.swift */,
+				52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -565,7 +575,9 @@
 			isa = PBXGroup;
 			children = (
 				52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */,
+				52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */,
 				52A238582A4BF866004799E8 /* NewsFeedCellView.swift */,
+				52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -735,6 +747,7 @@
 				52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
+				52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */,
 				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
 				52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
@@ -756,11 +769,13 @@
 				526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
 				52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */,
+				52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
+				52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
@@ -768,7 +783,7 @@
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
-				52A238552A4B8766004799E8 /* RSSFeedService.swift in Sources */,
+				52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
@@ -782,6 +797,7 @@
 				52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
+				52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);

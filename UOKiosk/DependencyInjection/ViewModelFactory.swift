@@ -12,11 +12,14 @@ final class ViewModelFactory: ObservableObject {
     // MARK: Properties
     private let eventsRepository: EventsRepository
     private let whatIsOpenRepository: WhatIsOpenRepository
+    private let newsFeedRepository: NewsFeedRepository
 
     // MARK: Initialization
-    init(eventsRepository: EventsRepository, whatIsOpenRepository: WhatIsOpenRepository) {
+    init(eventsRepository: EventsRepository, whatIsOpenRepository: WhatIsOpenRepository,
+         newsFeedRepository: NewsFeedRepository) {
         self.eventsRepository = eventsRepository
         self.whatIsOpenRepository = whatIsOpenRepository
+        self.newsFeedRepository = newsFeedRepository
     }
 
     // MARK: Make View Model Functions
@@ -50,12 +53,11 @@ final class ViewModelFactory: ObservableObject {
                                  isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, until: place.until, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
 
-    func makeNewsFeedViewModel(articles: [RssArticle]) -> NewsFeedViewModel {
-        NewsFeedViewModel(articles: articles)
+    func makeNewsFeedViewModel() -> NewsFeedViewModel {
+        NewsFeedViewModel(newsFeedRepository: newsFeedRepository)
     }
 
-    func makeNewsFeedCellViewModel(title: String, articleDescription: String, thumbnailUrl: URL, articleUrl: URL, publishedDate: Date) -> NewsFeedCellViewModel {
-        NewsFeedCellViewModel(title: title, articleDescription: articleDescription, thumbnailUrl: thumbnailUrl,
-                              articleUrl: articleUrl, publishedDate: publishedDate)
+    func makeNewsFeedCellViewModel(article: RssArticle) -> NewsFeedCellViewModel {
+        NewsFeedCellViewModel(article: article)
     }
 }

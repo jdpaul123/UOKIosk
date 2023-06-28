@@ -71,7 +71,7 @@ struct TabMenuView: View {
             }
 
             NavigationView {
-                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel(articles: []))
+                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
                     .navigationTitle(Tabs.news.rawValue)
             }
             .navigationViewStyle(StackNavigationViewStyle())

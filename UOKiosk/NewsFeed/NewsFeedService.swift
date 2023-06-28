@@ -1,5 +1,5 @@
 //
-//  RSSFeedService.swift
+//  NewsFeedService.swift
 //  UOKiosk
 //
 //  Created by Jonathan Paul on 6/27/23.
@@ -9,12 +9,21 @@
 import Foundation
 import FeedKit
 
-class RssArticle  {
-    var title: String?
+class RssArticle: Identifiable {
+    let id = UUID()
+    var title: String
     var description: String?
-    var link: URL?
+    var link: URL
     var imageLink: URL?
-    var publishDate: Date?
+    var publishDate: Date
+
+    init(title: String, description: String? = nil, link: URL, imageLink: URL?, publishDate: Date) {
+        self.title = title
+        self.description = description
+        self.link = link
+        self.imageLink = imageLink
+        self.publishDate = publishDate
+    }
 }
 
 enum RssArticleLoadingError : Error {
@@ -24,11 +33,18 @@ enum RssArticleLoadingError : Error {
     case notFound
     case feedParsingError(Error)
     case missingAttribute(String)
-    case recievedJsonError(String)
+    case recievedJsonError
+    case recievedAtomError
     case shouldNeverOccurError
 }
 
-class RSSFeedService {
+class NewsFeedService: NewsFeedRepository {
+    let fetchUrl: URL
+
+    init(fetchUrl: URL) {
+        self.fetchUrl = fetchUrl
+    }
+
     func fetch(feed: URL, completion: @escaping (Swift.Result<[RssArticle], RssArticleLoadingError>) -> Void) {
 
         let req = URLRequest(url: feed, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
@@ -74,12 +90,13 @@ class RSSFeedService {
                 switch parseResult {
                 case .success(let success):
                     switch success {
-                    case .atom(let atom):
-                        result = try .success(self.convert(atom: atom))
+                    case .atom(_):
+                        result = .failure(.recievedAtomError)
+//                        result = try .success(self.convert(atom: atom))
                     case .rss(let rss):
                         result = try .success(self.convert(rss: rss))
                     case .json(_):
-                        result = .failure(.recievedJsonError("Should not have got json back"))
+                        result = .failure(.recievedJsonError)
                     }
                 case .failure(let error):
                     result = .failure(.feedParsingError(error))
@@ -95,42 +112,18 @@ class RSSFeedService {
         }
     }
 
-    // This method is not used for The Emerald News feed because it is an RSS feed
-    private func convert(atom: AtomFeed) throws -> [RssArticle] {
-        guard let entries = atom.entries else { throw RssArticleLoadingError.missingAttribute("atom entries") }
-        var articles = [RssArticle]()
-        for entry in entries {
-            guard let title = entry.title else { throw RssArticleLoadingError.missingAttribute("title")  }
-            let description = entry.summary?.value
-            guard let links = entry.links, links.count > 0 else { throw RssArticleLoadingError.missingAttribute("links") }
-            guard let link: URL = URL(string: links[0].attributes?.href ?? "") else { throw RssArticleLoadingError.missingAttribute("link") }
-
-            let article = RssArticle()
-            article.title = title
-            article.description = description
-            article.link = link
-            articles.append(article)
-        }
-
-        return articles
-    }
-
     private func convert(rss: RSSFeed) throws -> [RssArticle] {
         guard let items = rss.items else { throw RssArticleLoadingError.missingAttribute("rss items") }
         var articles = [RssArticle]()
         for item in items {
             guard let title = item.title else { throw RssArticleLoadingError.missingAttribute("title")  }
-            let description = item.description
             guard let linkString = item.link, let link = URL(string: linkString) else { throw RssArticleLoadingError.missingAttribute("link") }
             guard let publishDate = item.pubDate else { throw RssArticleLoadingError.missingAttribute("pubDate") }
+            let description = item.description
             let imageLink = URL(string: item.enclosure?.attributes?.url ?? "")
 
-            let article = RssArticle()
-            article.title = title
-            article.description = description
-            article.link = link
-            article.imageLink = imageLink
-            article.publishDate = publishDate
+            let article = RssArticle(title: title, description: description, link: link,
+                                     imageLink: imageLink, publishDate: publishDate)
             articles.append(article)
         }
 

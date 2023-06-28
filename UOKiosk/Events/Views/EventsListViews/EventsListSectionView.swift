@@ -34,7 +34,7 @@ struct EventsListSectionView: View {
 
 struct EventsListSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        let injector = Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService())
+        let injector = Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService(), newsFeedRepository: MockNewsFeedService())
         let cal = Calendar(identifier: .gregorian)
         let day = cal.component(.day, from: Date())
         let month = cal.component(.month, from: Date())

@@ -8,9 +8,21 @@
 import Foundation
 
 class NewsFeedViewModel: ObservableObject {
-    @Published var articles: [RssArticle]
+    let newsFeedRepository: NewsFeedRepository
+    @Published var articles: [RssArticle] = []
 
-    init(articles: [RssArticle]) {
-        self.articles = articles
+    init(newsFeedRepository: NewsFeedRepository) {
+        self.newsFeedRepository = newsFeedRepository
+    }
+
+    func fetchArticles() {
+        newsFeedRepository.fetch(feed: newsFeedRepository.fetchUrl) { [weak self] result in
+            switch result {
+            case .success(let articles):
+                self?.articles = articles
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
