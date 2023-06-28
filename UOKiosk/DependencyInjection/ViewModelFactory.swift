@@ -49,4 +49,13 @@ final class ViewModelFactory: ObservableObject {
         WhatIsOpenPlaceViewModel(emojiCode: place.emoji, name: place.name, building: place.building, mapLink: place.mapLink, websiteLink: place.websiteLink,
                                  isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, until: place.until, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
+
+    func makeNewsFeedViewModel(articles: [RssArticle]) -> NewsFeedViewModel {
+        NewsFeedViewModel(articles: articles)
+    }
+
+    func makeNewsFeedCellViewModel(title: String, articleDescription: String, thumbnailUrl: URL, articleUrl: URL, publishedDate: Date) -> NewsFeedCellViewModel {
+        NewsFeedCellViewModel(title: title, articleDescription: articleDescription, thumbnailUrl: thumbnailUrl,
+                              articleUrl: articleUrl, publishedDate: publishedDate)
+    }
 }

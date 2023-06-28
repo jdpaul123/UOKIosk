@@ -68,10 +68,13 @@
 		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
-		52A2384E2A4B7D3B004799E8 /* NewsFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */; };
+		52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */; };
 		52A238502A4B7E44004799E8 /* RSSParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384F2A4B7E44004799E8 /* RSSParser.swift */; };
 		52A238532A4B86A7004799E8 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52A238522A4B86A7004799E8 /* FeedKit */; };
 		52A238552A4B8766004799E8 /* RSSFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238542A4B8766004799E8 /* RSSFeedService.swift */; };
+		52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */; };
+		52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238582A4BF866004799E8 /* NewsFeedCellView.swift */; };
+		52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -160,9 +163,12 @@
 		529861E92845587C009C1E3B /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
-		52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeed.swift; sourceTree = "<group>"; };
+		52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
 		52A2384F2A4B7E44004799E8 /* RSSParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSParser.swift; sourceTree = "<group>"; };
 		52A238542A4B8766004799E8 /* RSSFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSFeedService.swift; sourceTree = "<group>"; };
+		52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewModel.swift; sourceTree = "<group>"; };
+		52A238582A4BF866004799E8 /* NewsFeedCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellView.swift; sourceTree = "<group>"; };
+		52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellViewModel.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -538,11 +544,30 @@
 		52A2384C2A4B7D2B004799E8 /* NewsFeed */ = {
 			isa = PBXGroup;
 			children = (
-				52A2384D2A4B7D3B004799E8 /* NewsFeed.swift */,
+				52A2385B2A4BF87C004799E8 /* View */,
+				52A2385A2A4BF873004799E8 /* ViewModel */,
 				52A2384F2A4B7E44004799E8 /* RSSParser.swift */,
 				52A238542A4B8766004799E8 /* RSSFeedService.swift */,
 			);
 			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		52A2385A2A4BF873004799E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */,
+				52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52A2385B2A4BF87C004799E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */,
+				52A238582A4BF866004799E8 /* NewsFeedCellView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {
@@ -730,6 +755,7 @@
 				526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */,
 				526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
+				52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
@@ -746,12 +772,14 @@
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
+				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
 				52A238502A4B7E44004799E8 /* RSSParser.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
-				52A2384E2A4B7D3B004799E8 /* NewsFeed.swift in Sources */,
+				52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
+				52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,

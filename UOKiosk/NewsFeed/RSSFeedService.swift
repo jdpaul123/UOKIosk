@@ -13,6 +13,8 @@ class RssArticle  {
     var title: String?
     var description: String?
     var link: URL?
+    var imageLink: URL?
+    var publishDate: Date?
 }
 
 enum RssArticleLoadingError : Error {
@@ -27,8 +29,6 @@ enum RssArticleLoadingError : Error {
 }
 
 class RSSFeedService {
-    static let feedUrl = URL(string: "https://www.dailyemerald.com/search/?f=rss&t=article&c=news&l=50&s=start_time&sd=desc")!
-
     func fetch(feed: URL, completion: @escaping (Swift.Result<[RssArticle], RssArticleLoadingError>) -> Void) {
 
         let req = URLRequest(url: feed, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
@@ -95,6 +95,7 @@ class RSSFeedService {
         }
     }
 
+    // This method is not used for The Emerald News feed because it is an RSS feed
     private func convert(atom: AtomFeed) throws -> [RssArticle] {
         guard let entries = atom.entries else { throw RssArticleLoadingError.missingAttribute("atom entries") }
         var articles = [RssArticle]()
@@ -121,10 +122,15 @@ class RSSFeedService {
             guard let title = item.title else { throw RssArticleLoadingError.missingAttribute("title")  }
             let description = item.description
             guard let linkString = item.link, let link = URL(string: linkString) else { throw RssArticleLoadingError.missingAttribute("link") }
+            guard let publishDate = item.pubDate else { throw RssArticleLoadingError.missingAttribute("pubDate") }
+            let imageLink = URL(string: item.enclosure?.attributes?.url ?? "")
+
             let article = RssArticle()
             article.title = title
             article.description = description
             article.link = link
+            article.imageLink = imageLink
+            article.publishDate = publishDate
             articles.append(article)
         }
 
