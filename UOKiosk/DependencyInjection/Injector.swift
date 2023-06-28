@@ -50,22 +50,22 @@ final class Injector: ObservableObject {
                                             newsFeedRepository: self.newsFeedRepository)
 
         // TODO: Delete this - it is for testing the RSSFeedService fetch request
-        let rssFeedService = NewsFeedService(fetchUrl: newsFeedUrl)
-        rssFeedService.fetch(feed: newsFeedUrl) { result in
-            switch result {
-            case .success(let articles):
-                for article in articles {
-                    print(article.title)
-                    print(article.description ?? "NO DESCRIPTION")
-                    print(article.link)
-                    print(article.imageLink ?? "NO IMAGE LINK")
-                    print(article.publishDate)
-                    print()
-                }
-            case .failure(let error):
-                print("!!! FAILED TO FETCH RSS FEED DATA")
-                print(error.localizedDescription)
-            }
-        }
+//        let rssFeedService = NewsFeedService(fetchUrl: newsFeedUrl)
+//        rssFeedService.fetch(feed: newsFeedUrl) { result in
+//            switch result {
+//            case .success(let articles):
+//                for article in articles {
+//                    print(article.title)
+//                    print(article.description ?? "NO DESCRIPTION")
+//                    print(article.link)
+//                    print(article.imageLink ?? "NO IMAGE LINK")
+//                    print(article.publishDate)
+//                    print()
+//                }
+//            case .failure(let error):
+//                print("!!! FAILED TO FETCH RSS FEED DATA")
+//                print(error.localizedDescription)
+//            }
+//        }
     }
 }

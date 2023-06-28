@@ -89,8 +89,19 @@ class EventsService: EventsRepository {
                 throw error
             }
         }
-        // return saved data
-        return fetchSavedEvents()
+
+        let resultsController = fetchSavedEvents()
+        guard let resultsController = resultsController, let fetchedObjects = resultsController.fetchedObjects,
+              !fetchedObjects.isEmpty else {
+            // call api for fresh data
+            do {
+                try await fetchFreshEvents()
+            } catch {
+                throw error
+            }
+            return fetchSavedEvents()
+        }
+        return resultsController
     }
 
     // MARK: Get Saved Events
