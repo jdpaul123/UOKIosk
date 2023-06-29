@@ -22,6 +22,8 @@ enum Tabs: String {
             return "hourglass"
         case .campusMap:
             return "map"
+        case .news:
+            return "newspaper"
         default:
             return "dot.square"
         }
@@ -66,6 +68,17 @@ struct TabMenuView: View {
             .tabItem {
                 Image(systemName: Tabs.campusMap.sfSymbol)
                 Text(Tabs.campusMap.rawValue)
+            }
+
+            NavigationView {
+                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
+                    .navigationTitle(Tabs.news.rawValue)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tag(Tabs.news)
+            .tabItem {
+                Image(systemName: Tabs.news.sfSymbol)
+                Text(Tabs.news.rawValue)
             }
         }
     }

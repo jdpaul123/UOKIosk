@@ -68,6 +68,16 @@
 		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
 		529861EC284558CD009C1E3B /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861EB284558CD009C1E3B /* ApiService.swift */; };
 		529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861ED28455A9C009C1E3B /* EventsDto.swift */; };
+		52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */; };
+		52A238532A4B86A7004799E8 /* FeedKit in Frameworks */ = {isa = PBXBuildFile; productRef = 52A238522A4B86A7004799E8 /* FeedKit */; };
+		52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238542A4B8766004799E8 /* NewsFeedService.swift */; };
+		52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */; };
+		52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238582A4BF866004799E8 /* NewsFeedCellView.swift */; };
+		52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */; };
+		52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */; };
+		52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
+		52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */; };
+		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -156,6 +166,15 @@
 		529861E92845587C009C1E3B /* TabMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMenuView.swift; sourceTree = "<group>"; };
 		529861EB284558CD009C1E3B /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		529861ED28455A9C009C1E3B /* EventsDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsDto.swift; sourceTree = "<group>"; };
+		52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedView.swift; sourceTree = "<group>"; };
+		52A238542A4B8766004799E8 /* NewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedService.swift; sourceTree = "<group>"; };
+		52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedViewModel.swift; sourceTree = "<group>"; };
+		52A238582A4BF866004799E8 /* NewsFeedCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellView.swift; sourceTree = "<group>"; };
+		52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedCellViewModel.swift; sourceTree = "<group>"; };
+		52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedRepository.swift; sourceTree = "<group>"; };
+		52A238602A4C1262004799E8 /* MockNewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsFeedService.swift; sourceTree = "<group>"; };
+		52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleView.swift; sourceTree = "<group>"; };
+		52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleViewRepresentable.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -175,6 +194,7 @@
 				52463EDF2A3AC76B007BF9B1 /* Collections in Frameworks */,
 				52463EE12A3AC76B007BF9B1 /* DequeModule in Frameworks */,
 				52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */,
+				52A238532A4B86A7004799E8 /* FeedKit in Frameworks */,
 				52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */,
 				52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
@@ -243,6 +263,7 @@
 			children = (
 				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
 				52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */,
+				52A238602A4C1262004799E8 /* MockNewsFeedService.swift */,
 			);
 			path = MockRepository;
 			sourceTree = "<group>";
@@ -429,6 +450,7 @@
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				526221042A4261DB0029FDAD /* CampusMap */,
+				52A2384C2A4B7D2B004799E8 /* NewsFeed */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				52131E6B28B97B42006C3094 /* Resources */,
@@ -526,6 +548,37 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		52A2384C2A4B7D2B004799E8 /* NewsFeed */ = {
+			isa = PBXGroup;
+			children = (
+				52A2385B2A4BF87C004799E8 /* View */,
+				52A2385A2A4BF873004799E8 /* ViewModel */,
+				52A238542A4B8766004799E8 /* NewsFeedService.swift */,
+				52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */,
+			);
+			path = NewsFeed;
+			sourceTree = "<group>";
+		};
+		52A2385A2A4BF873004799E8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				52A238562A4BF764004799E8 /* NewsFeedViewModel.swift */,
+				52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		52A2385B2A4BF87C004799E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */,
+				52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */,
+				52A238582A4BF866004799E8 /* NewsFeedCellView.swift */,
+				52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -557,6 +610,7 @@
 				52463EE22A3AC76B007BF9B1 /* OrderedCollections */,
 				52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */,
 				52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */,
+				52A238522A4B86A7004799E8 /* FeedKit */,
 			);
 			productName = UOKiosk;
 			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
@@ -633,6 +687,7 @@
 			packageReferences = (
 				52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */,
 			);
 			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
@@ -689,6 +744,7 @@
 				52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
 				529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */,
+				52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */,
 				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
 				52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
@@ -709,11 +765,14 @@
 				526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */,
 				526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
+				52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */,
+				52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
+				52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
@@ -721,15 +780,20 @@
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
+				52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
+				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
+				52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
+				52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
+				52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */,
 				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);
@@ -1088,6 +1152,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nmdias/FeedKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1115,6 +1187,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalyticsSwift;
+		};
+		52A238522A4B86A7004799E8 /* FeedKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */;
+			productName = FeedKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 
