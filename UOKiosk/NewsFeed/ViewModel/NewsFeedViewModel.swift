@@ -10,6 +10,7 @@ import Foundation
 class NewsFeedViewModel: ObservableObject {
     let newsFeedRepository: NewsFeedRepository
     @Published var articles: [RssArticle] = []
+    @Published var showingInformationSheet: Bool = false
 
     init(newsFeedRepository: NewsFeedRepository) {
         self.newsFeedRepository = newsFeedRepository

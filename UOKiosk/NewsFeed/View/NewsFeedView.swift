@@ -33,6 +33,18 @@ struct NewsFeedView: View {
         .onAppear {
             vm.fetchArticles()
         }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    vm.showingInformationSheet.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $vm.showingInformationSheet) {
+            InformationView()
+        }
     }
 }
 //struct NewsFeed_Previews: PreviewProvider {
