@@ -80,6 +80,7 @@
 		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
 		52A238692A4E1910004799E8 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238682A4E1910004799E8 /* RadioView.swift */; };
 		52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */; };
+		52A2386E2A4E1A74004799E8 /* AudioStreaming in Frameworks */ = {isa = PBXBuildFile; productRef = 52A2386D2A4E1A74004799E8 /* AudioStreaming */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -199,6 +200,7 @@
 				52463EE12A3AC76B007BF9B1 /* DequeModule in Frameworks */,
 				52463EE62A3AC7C6007BF9B1 /* FirebaseAnalytics in Frameworks */,
 				52A238532A4B86A7004799E8 /* FeedKit in Frameworks */,
+				52A2386E2A4E1A74004799E8 /* AudioStreaming in Frameworks */,
 				52463EE32A3AC76B007BF9B1 /* OrderedCollections in Frameworks */,
 				52463EE82A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
@@ -625,6 +627,7 @@
 				52463EE52A3AC7C6007BF9B1 /* FirebaseAnalytics */,
 				52463EE72A3AC7C6007BF9B1 /* FirebaseAnalyticsSwift */,
 				52A238522A4B86A7004799E8 /* FeedKit */,
+				52A2386D2A4E1A74004799E8 /* AudioStreaming */,
 			);
 			productName = UOKiosk;
 			productReference = 529861B6284553BA009C1E3B /* UOKiosk.app */;
@@ -702,6 +705,7 @@
 				52463EDD2A3AC76B007BF9B1 /* XCRemoteSwiftPackageReference "swift-collections" */,
 				52463EE42A3AC7C6007BF9B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */,
+				52A2386C2A4E1A73004799E8 /* XCRemoteSwiftPackageReference "AudioStreaming" */,
 			);
 			productRefGroup = 529861B7284553BA009C1E3B /* Products */;
 			projectDirPath = "";
@@ -1176,6 +1180,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		52A2386C2A4E1A73004799E8 /* XCRemoteSwiftPackageReference "AudioStreaming" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dimitris-c/AudioStreaming.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1208,6 +1220,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 52A238512A4B86A7004799E8 /* XCRemoteSwiftPackageReference "FeedKit" */;
 			productName = FeedKit;
+		};
+		52A2386D2A4E1A74004799E8 /* AudioStreaming */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 52A2386C2A4E1A73004799E8 /* XCRemoteSwiftPackageReference "AudioStreaming" */;
+			productName = AudioStreaming;
 		};
 /* End XCSwiftPackageProductDependency section */
 
