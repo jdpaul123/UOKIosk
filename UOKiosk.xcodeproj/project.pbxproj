@@ -78,6 +78,8 @@
 		52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
 		52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */; };
 		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
+		52A238692A4E1910004799E8 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238682A4E1910004799E8 /* RadioView.swift */; };
+		52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -175,6 +177,8 @@
 		52A238602A4C1262004799E8 /* MockNewsFeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNewsFeedService.swift; sourceTree = "<group>"; };
 		52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleView.swift; sourceTree = "<group>"; };
 		52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleViewRepresentable.swift; sourceTree = "<group>"; };
+		52A238682A4E1910004799E8 /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
+		52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewViewModel.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -451,6 +455,7 @@
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
 				526221042A4261DB0029FDAD /* CampusMap */,
 				52A2384C2A4B7D2B004799E8 /* NewsFeed */,
+				52A238672A4E1901004799E8 /* Radio */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
 				52131E6B28B97B42006C3094 /* Resources */,
@@ -577,6 +582,15 @@
 				52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		52A238672A4E1901004799E8 /* Radio */ = {
+			isa = PBXGroup;
+			children = (
+				52A238682A4E1910004799E8 /* RadioView.swift */,
+				52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */,
+			);
+			path = Radio;
 			sourceTree = "<group>";
 		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {
@@ -752,6 +766,7 @@
 				52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */,
 				52463ED72A380F20007BF9B1 /* WhatIsOpenSubViews.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
+				52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */,
 				529861EE28455A9C009C1E3B /* EventsDto.swift in Sources */,
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
@@ -785,6 +800,7 @@
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
 				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
+				52A238692A4E1910004799E8 /* RadioView.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */,
