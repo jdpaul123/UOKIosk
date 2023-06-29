@@ -125,6 +125,11 @@ struct EventDetailView: View {
         .navigationTitle("Event Details")
         .navigationBarTitleDisplayMode(.inline)
         .background(Color.UOKioskBackgroundColor)
+        .toolbar {
+            if #available(iOS 16.0, *), let website = vm.website {
+                ShareLink(item: website, message: Text("Share the link to this article!"))
+            }
+        }
     }
 }
 
