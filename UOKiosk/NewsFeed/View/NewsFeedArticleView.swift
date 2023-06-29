@@ -13,6 +13,11 @@ struct NewsFeedArticleView: View {
     var body: some View {
         NewsFeedArticleWebViewRepresentable(url: articleUrl)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                if #available(iOS 16.0, *) {
+                    ShareLink(item: articleUrl, message: Text("Share the link to this article!"))
+                }
+            }
     }
 }
 
