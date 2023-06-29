@@ -48,6 +48,7 @@ struct WhatIsOpenPlaceView: View {
                         .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
                         .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                         .cornerRadius(4)
+                        .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
                 }
             }
             ForEach(0..<vm.hours.count, id: \.self) { index in
