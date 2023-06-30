@@ -9,24 +9,37 @@ import SwiftUI
 
 struct RadioView: View {
     @StateObject var vm: RadioViewModel
-    @State var hasAppeared = false
 
     init(vm: RadioViewModel) {
         _vm = StateObject(wrappedValue: vm)
     }
 
     var body: some View {
-        VStack {
-            Text("KWVA will stream from here")
-            Button(vm.playPauseString) {
-                vm.playPause()
+        List {
+            VStack {
+                Image("KWVA")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .cornerRadius(7)
+                    .overlay(
+                                RoundedRectangle(cornerRadius: 7)
+                                    .stroke(Color.white, lineWidth: 5)
+                            )
+                    .padding()
+                Button {
+                    vm.playPause()
+                } label: {
+                    vm.playPauseImage
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 50)
+                        .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                }
             }
+
         }
         .onAppear {
-            if !hasAppeared {
-                vm.onViewAppearFirstTime()
-                hasAppeared = true
-            }
+            vm.swiftUIViewDidLoad()
         }
     }
 }

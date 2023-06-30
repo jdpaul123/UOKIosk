@@ -7,21 +7,33 @@
 
 import Foundation
 import AVFoundation
+import MediaPlayer
+import SwiftUI
+// Spintron.com/kwva
 
 class RadioViewModel: NSObject, ObservableObject {
     let kwvaUrl: URL = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
     let playerItem: AVPlayerItem
     let player: AVPlayer?
-    @Published var playPauseString: String = "play".uppercased()
+//    let player: AVAudioPlayer?
+    @Published var playPauseImage: Image = Image(systemName: "play.fill")
+    @Published var viewDidLoad = false
+    var isPlaying: Bool {
+        player?.timeControlStatus == .playing ? true : false
+    }
 
     override init() {
-        self.playerItem = AVPlayerItem(url: kwvaUrl)
-        self.player = AVPlayer(playerItem: playerItem)
+        playerItem = AVPlayerItem(url: kwvaUrl)
+        player = AVPlayer(playerItem: playerItem)
+//        player = try? AVAudioPlayer(contentsOf: kwvaUrl)
         super.init()
 
         playerItem.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: nil)
+
+//        configureRemoteCommandCenter()
     }
 
+    // MARK: - Observe Status of Playing Radio Audio
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "status", let playerItem = object as? AVPlayerItem {
             if playerItem.status == .readyToPlay {
@@ -32,42 +44,113 @@ class RadioViewModel: NSObject, ObservableObject {
         }
     }
 
+    // MARK: - ViewDidLoad
+    func swiftUIViewDidLoad() {
+        if viewDidLoad { return }
+        defer { viewDidLoad = true }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAudioInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil)
+        setupRemoteTransportControls()
+        setupNowPlaying()
+    }
+
+    // MARK: - AVPlayer Controls
     @MainActor
     func playPause() {
-        if player?.timeControlStatus == .playing {
+        guard let _ = player else {
+            playPauseImage = Image(systemName: "square.split.diagonal.2x2.fill")
+            return
+        }
+        if isPlaying {
             pause()
-            playPauseString = "play".uppercased()
-        } else if player?.timeControlStatus == .paused {
+            playPauseImage = Image(systemName: "play.fill")
+        } else if !isPlaying {
             play()
-            playPauseString = "pause".uppercased()
-        } else {
-            playPauseString = "error".uppercased()
+            playPauseImage = Image(systemName: "pause.fill")
         }
     }
 
     @MainActor
     private func play() {
-        player?.play()
+        guard let player = player else { return }
+        player.play()
+        updateNowPlaying(isPause: false)
     }
 
     @MainActor
     private func pause() {
-        player?.pause()
+        guard let player = player else { return }
+        player.pause()
+        updateNowPlaying(isPause: true)
     }
 
     @MainActor
     func stop() {
-        player?.replaceCurrentItem(with: nil)
+        guard let player = player else { return }
+//        player.stop()
+        player.replaceCurrentItem(with: nil)
     }
 
-    deinit {
-        player?.currentItem?.removeObserver(self, forKeyPath: "status")
+    func updateNowPlaying(isPause: Bool) {
+        guard let player = player else { return }
+        // Define Now Playing Info
+        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo!
+
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPause ? 0 : 1
+
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
     }
 
-    func onViewAppearFirstTime() {
-        NotificationCenter.default.addObserver(self, selector: #selector(handleAudioInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil)
+    // MARK: - Controlling Background Audio
+    // Mark: instructions source https://medium.com/@quangtqag/background-audio-player-sync-control-center-516243c2cdd1
+    func setupRemoteTransportControls() {
+        // Get the shared MPRemoteCommandCenter
+        let commandCenter = MPRemoteCommandCenter.shared()
+
+        // Add handler for Play Command
+        commandCenter.playCommand.addTarget { [unowned self] event in
+            guard let _ = self.player else { return .commandFailed }
+            print("Play command - is playing: \(isPlaying)")
+            if !isPlaying {
+                DispatchQueue.main.async { self.play() }
+                return .success
+            }
+            return .commandFailed
+        }
+
+        // Add handler for Pause Command
+        commandCenter.pauseCommand.addTarget { [unowned self] event in
+            guard let _ = self.player else { return .commandFailed }
+            print("Pause command - is playing: \(isPlaying)")
+            if isPlaying {
+                DispatchQueue.main.async { self.pause() }
+                return .success
+            }
+            return .commandFailed
+        }
     }
 
+    func setupNowPlaying() {
+        // Define Now Playing Info
+        var nowPlayingInfo = [String : Any]()
+        nowPlayingInfo[MPMediaItemPropertyTitle] = "KWVA"
+
+        if let image = UIImage(named: "KWVA") {
+            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+                return image
+            }
+        }
+        guard let player = self.player else { return }
+        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
+//        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
+        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
+
+        // Set the metadata
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
+    }
+
+    // MARK: - Playing radio when app goes into the background
     @objc func handleAudioInterruption(notification: Notification) {
         guard let userInfo = notification.userInfo,
               let interruptionTypeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
@@ -92,4 +175,37 @@ class RadioViewModel: NSObject, ObservableObject {
             return
         }
     }
+
+    // MARK: - Deinit
+    deinit {
+        player?.currentItem?.removeObserver(self, forKeyPath: "status")
+    }
+
+//    func configureRemoteCommandCenter() {
+//        let commandCenter = MPRemoteCommandCenter.shared()
+//
+////        // Play command
+////        commandCenter.playCommand.addTarget { [weak self] _ in
+////            DispatchQueue.main.async {
+////                self?.play()
+////            }
+////            return .success
+////        }
+//
+//        // Stop command
+//        commandCenter.stopCommand.addTarget { [weak self] _ in
+//            DispatchQueue.main.async {
+//                self?.stop()
+//            }
+//            return .success
+//        }
+//
+//        // Update the now playing info
+//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
+//        nowPlayingInfoCenter.nowPlayingInfo = [
+//            // Update with appropriate metadata for the current track
+//            MPMediaItemPropertyTitle: "Radio Station Name",
+//            // Add more metadata as needed
+//        ]
+//    }
 }
