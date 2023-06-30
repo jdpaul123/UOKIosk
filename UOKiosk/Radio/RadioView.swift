@@ -17,23 +17,30 @@ struct RadioView: View {
     var body: some View {
         List {
             VStack {
-                Image("KWVA")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .cornerRadius(7)
-                    .overlay(
-                                RoundedRectangle(cornerRadius: 7)
-                                    .stroke(Color.white, lineWidth: 5)
-                            )
-                    .padding()
+                HStack {
+                    Spacer()
+                    Image("KWVA")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .cornerRadius(7)
+                        .overlay(
+                                    RoundedRectangle(cornerRadius: 7)
+                                        .stroke(Color.white, lineWidth: 5)
+                                )
+                        .padding()
+                        .frame(maxWidth: 400)
+                    Spacer()
+                }
                 Button {
                     vm.playPause()
                 } label: {
+                    Spacer()
                     vm.playPauseImage
                         .resizable()
                         .scaledToFit()
                         .frame(height: 50)
                         .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
+                    Spacer()
                 }
             }
 
