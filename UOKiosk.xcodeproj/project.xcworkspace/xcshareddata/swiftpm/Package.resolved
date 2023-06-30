@@ -10,15 +10,6 @@
       }
     },
     {
-      "identity" : "audiostreaming",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dimitris-c/AudioStreaming.git",
-      "state" : {
-        "revision" : "0f2a1f7b8ad6c5e205b2f0a81cc8a58c3faac965",
-        "version" : "1.0.0"
-      }
-    },
-    {
       "identity" : "feedkit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/nmdias/FeedKit",

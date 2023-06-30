@@ -15,7 +15,13 @@ struct RadioView: View {
     }
 
     var body: some View {
-        Text("KWVA will stream from here")
+        VStack {
+            Text("KWVA will stream from here")
+            Button(vm.playPauseString) {
+                vm.playPause()
+            }
+        }
+
     }
 }
 
