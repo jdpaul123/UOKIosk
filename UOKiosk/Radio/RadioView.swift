@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RadioView: View {
     @StateObject var vm: RadioViewModel
+    @State var hasAppeared = false
 
     init(vm: RadioViewModel) {
         _vm = StateObject(wrappedValue: vm)
@@ -21,7 +22,12 @@ struct RadioView: View {
                 vm.playPause()
             }
         }
-
+        .onAppear {
+            if !hasAppeared {
+                vm.onViewAppearFirstTime()
+                hasAppeared = true
+            }
+        }
     }
 }
 

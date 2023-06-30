@@ -63,4 +63,33 @@ class RadioViewModel: NSObject, ObservableObject {
     deinit {
         player?.currentItem?.removeObserver(self, forKeyPath: "status")
     }
+
+    func onViewAppearFirstTime() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAudioInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil)
+    }
+
+    @objc func handleAudioInterruption(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let interruptionTypeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? UInt,
+              let interruptionType = AVAudioSession.InterruptionType(rawValue: interruptionTypeValue) else {
+            return
+        }
+
+        switch interruptionType {
+        case .began:
+            // Audio interrupted, pause playback or perform any necessary actions
+            player?.pause()
+        case .ended:
+            guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else {
+                return
+            }
+            let interruptionOptions = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
+            if interruptionOptions.contains(.shouldResume) {
+                // Audio interruption ended, resume playback if desired
+                player?.play()
+            }
+        @unknown default:
+            return
+        }
+    }
 }
