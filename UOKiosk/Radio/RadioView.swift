@@ -32,16 +32,17 @@ struct RadioView: View {
                     Spacer()
                 }
                 Button {
-                    vm.playPause()
+                    vm.playOrStop()
                 } label: {
                     Spacer()
-                    vm.playPauseImage
+                    vm.playOrStopImage
                         .resizable()
                         .scaledToFit()
                         .frame(height: 50)
                         .padding(EdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10))
                     Spacer()
                 }
+                .buttonStyle(BorderlessButtonStyle())
             }
 
         }

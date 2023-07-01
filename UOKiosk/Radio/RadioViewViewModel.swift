@@ -11,22 +11,17 @@ import MediaPlayer
 import SwiftUI
 
 class RadioViewModel: NSObject, ObservableObject {
+    // MARK: Properties
     let kwvaUrl: URL = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
-    let playerItem: AVPlayerItem
-    let player: AVPlayer?
-    @Published var playPauseImage: Image = Image(systemName: "play.fill")
+    var playerItem: AVPlayerItem? = nil
+    var player: AVPlayer? = nil
+    @Published var playOrStopImage: Image = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
-    var isPlaying: Bool {
-        player?.timeControlStatus == .playing ? true : false
-    }
+    @Published var isPlaying: Bool = false
 
+    // MARK: Intializer
     override init() {
-        playerItem = AVPlayerItem(url: kwvaUrl)
-        player = AVPlayer(playerItem: playerItem)
         super.init()
-
-        playerItem.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: nil)
-
     }
 
     // MARK: - Observe Status of Playing Radio Audio
@@ -46,42 +41,36 @@ class RadioViewModel: NSObject, ObservableObject {
         defer { viewDidLoad = true }
         NotificationCenter.default.addObserver(self, selector: #selector(handleAudioInterruption(notification:)), name: AVAudioSession.interruptionNotification, object: nil)
         setupRemoteTransportControls()
-        setupNowPlaying()
     }
 
     // MARK: - AVPlayer Controls
     @MainActor
-    func playPause() {
-        guard let _ = player else {
-            playPauseImage = Image(systemName: "square.split.diagonal.2x2.fill")
-            return
-        }
+    func playOrStop() {
         if isPlaying {
-            pause()
-            playPauseImage = Image(systemName: "play.fill")
+            stop()
         } else if !isPlaying {
             play()
-            playPauseImage = Image(systemName: "pause.fill")
         }
     }
 
     @MainActor
     private func play() {
+        playerItem = AVPlayerItem(url: kwvaUrl)
+        player = AVPlayer(playerItem: playerItem)
+        playerItem?.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: nil)
+        setupNowPlaying()
         guard let player = player else { return }
         player.play()
+        playOrStopImage = Image(systemName: "stop.fill")
+        isPlaying = true
         updateNowPlaying(isPause: false)
-    }
-
-    @MainActor
-    private func pause() {
-        guard let player = player else { return }
-        player.pause()
-        updateNowPlaying(isPause: true)
     }
 
     @MainActor
     func stop() {
         guard let player = player else { return }
+        playOrStopImage = Image(systemName: "play.fill")
+        isPlaying = false
         player.replaceCurrentItem(with: nil)
     }
 
@@ -90,6 +79,7 @@ class RadioViewModel: NSObject, ObservableObject {
         // Define Now Playing Info
         var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo!
 
+        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPause ? 0 : 1
 
@@ -114,12 +104,12 @@ class RadioViewModel: NSObject, ObservableObject {
             return .commandFailed
         }
 
-        // Add handler for Pause Command
-        commandCenter.pauseCommand.addTarget { [unowned self] event in
+        // Add handler for Stop Command
+        commandCenter.stopCommand.addTarget { [unowned self] event in
             guard let _ = self.player else { return .commandFailed }
-            print("Pause command - is playing: \(isPlaying)")
+            print("Stop command - is playing: \(isPlaying)")
             if isPlaying {
-                DispatchQueue.main.async { self.pause() }
+                DispatchQueue.main.async { self.stop() }
                 return .success
             }
             return .commandFailed
@@ -155,7 +145,9 @@ class RadioViewModel: NSObject, ObservableObject {
         switch interruptionType {
         case .began:
             // Audio interrupted, pause playback or perform any necessary actions
-            player?.pause()
+            DispatchQueue.main.async {
+                self.stop()
+            }
         case .ended:
             guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else {
                 return
@@ -163,7 +155,9 @@ class RadioViewModel: NSObject, ObservableObject {
             let interruptionOptions = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
             if interruptionOptions.contains(.shouldResume) {
                 // Audio interruption ended, resume playback if desired
-                player?.play()
+                DispatchQueue.main.async {
+                    self.play()
+                }
             }
         @unknown default:
             return
