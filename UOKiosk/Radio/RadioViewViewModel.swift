@@ -9,13 +9,11 @@ import Foundation
 import AVFoundation
 import MediaPlayer
 import SwiftUI
-// Spintron.com/kwva
 
 class RadioViewModel: NSObject, ObservableObject {
     let kwvaUrl: URL = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
     let playerItem: AVPlayerItem
     let player: AVPlayer?
-//    let player: AVAudioPlayer?
     @Published var playPauseImage: Image = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
     var isPlaying: Bool {
@@ -25,12 +23,10 @@ class RadioViewModel: NSObject, ObservableObject {
     override init() {
         playerItem = AVPlayerItem(url: kwvaUrl)
         player = AVPlayer(playerItem: playerItem)
-//        player = try? AVAudioPlayer(contentsOf: kwvaUrl)
         super.init()
 
         playerItem.addObserver(self, forKeyPath: "status", options: [.new, .initial], context: nil)
 
-//        configureRemoteCommandCenter()
     }
 
     // MARK: - Observe Status of Playing Radio Audio
@@ -86,7 +82,6 @@ class RadioViewModel: NSObject, ObservableObject {
     @MainActor
     func stop() {
         guard let player = player else { return }
-//        player.stop()
         player.replaceCurrentItem(with: nil)
     }
 
@@ -143,7 +138,6 @@ class RadioViewModel: NSObject, ObservableObject {
         }
         guard let player = self.player else { return }
         nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-//        nowPlayingInfo[MPMediaItemPropertyPlaybackDuration] = player.duration
         nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
 
         // Set the metadata
@@ -180,32 +174,4 @@ class RadioViewModel: NSObject, ObservableObject {
     deinit {
         player?.currentItem?.removeObserver(self, forKeyPath: "status")
     }
-
-//    func configureRemoteCommandCenter() {
-//        let commandCenter = MPRemoteCommandCenter.shared()
-//
-////        // Play command
-////        commandCenter.playCommand.addTarget { [weak self] _ in
-////            DispatchQueue.main.async {
-////                self?.play()
-////            }
-////            return .success
-////        }
-//
-//        // Stop command
-//        commandCenter.stopCommand.addTarget { [weak self] _ in
-//            DispatchQueue.main.async {
-//                self?.stop()
-//            }
-//            return .success
-//        }
-//
-//        // Update the now playing info
-//        let nowPlayingInfoCenter = MPNowPlayingInfoCenter.default()
-//        nowPlayingInfoCenter.nowPlayingInfo = [
-//            // Update with appropriate metadata for the current track
-//            MPMediaItemPropertyTitle: "Radio Station Name",
-//            // Add more metadata as needed
-//        ]
-//    }
 }
