@@ -32,6 +32,8 @@ class WhatIsOpenService: WhatIsOpenRepository {
         return fillViewModelData(dto: whatIsOpenDto)
     }
 
+    var previousHours: String? = nil
+
     func fillViewModelData(dto: WhatIsOpenDto) -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
         var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace]())
 
@@ -146,31 +148,58 @@ class WhatIsOpenService: WhatIsOpenRepository {
             let saturdayIntervalString = intervalString(hours: saturdayHours)
             let sundayIntervalString = intervalString(hours: sundayHours)
 
-            let hours: OrderedDictionary<String, String> = [
+            var hours: OrderedDictionary<String, String> = [
                 "Monday": mondayIntervalString,
                 "Tuesday": tuesdayIntervalString,
-                "Wednsday": wednsdayIntervalString,
+                "Wednesday": wednsdayIntervalString,
                 "Thursday": thursdayIntervalString,
                 "Friday": fridayIntervalString,
                 "Saturday": saturdayIntervalString,
                 "Sunday": sundayIntervalString
             ]
-            /*
-             TODO: This is a dynamic programming problem. The results could be in a 2D graph where the x-axis is days Monday through Friday and the y-axis is the same
-             Once you got the range from Monday to whenever the time interval for open-hours changes you would start on the next day.
-             For example, if the range went from Monday through Friday then the next dynamic programming calculation would start at Saturday.
-             Monday
-             Monday - Tuesday
-             Monday - Wednsday
-             Monday - Thursday
-             Monday - Friday
-             Monday - Saturday
-             Monday - Sunday
-             if mondayIntervalString == tuesdayIntervalString {
-                Monday-Tuesday: mondayIntervalString
-                if
-             }
-             */
+
+            func groupConsecutiveDays(storeHours: OrderedDictionary<String, String>) -> OrderedDictionary<String, String> {
+                var groupedHours: OrderedDictionary<String, String> = OrderedDictionary()
+
+                var currentGroupStart: String? = nil
+
+                for (index, (weekday, hours)) in storeHours.enumerated() {
+                    if let previousHours = previousHours {
+                        if hours == previousHours {
+                            if currentGroupStart == nil {
+                                currentGroupStart = weekday
+                            }
+                        } else {
+                            if let groupStart = currentGroupStart {
+                                let groupEnd = storeHours.keys[index - 1]
+                                var groupKey = "\(groupStart)-\(groupEnd)"
+                                if groupStart == groupEnd {
+                                    groupKey = "\(groupStart)"
+                                }
+                                groupedHours[groupKey] = previousHours
+                            }
+
+                            currentGroupStart = weekday
+                            self.previousHours = hours
+                        }
+                    } else {
+                        previousHours = hours
+                        currentGroupStart = weekday
+                    }
+                }
+
+                if let groupStart = currentGroupStart, let lastWeekday = storeHours.keys.last, let hours = previousHours {
+                    var groupKey = "\(groupStart)-\(lastWeekday)"
+                    if groupStart == lastWeekday {
+                        groupKey = "\(groupStart)"
+                    }
+                    groupedHours[groupKey] = hours
+                }
+
+                return groupedHours
+            }
+
+            hours = groupConsecutiveDays(storeHours: hours)
 
             // FIXME: BELOW CODE IS FOR TESTING
             /*
