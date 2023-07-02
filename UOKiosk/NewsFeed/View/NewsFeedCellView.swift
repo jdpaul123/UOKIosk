@@ -28,7 +28,6 @@ struct NewsFeedCellView: View {
                     .font(.subheadline)
             }
         }
-        .frame(height: 110)
     }
 }
 
