@@ -18,8 +18,8 @@ struct NewsFeedCellView: View {
         HStack {
             Image(uiImage: UIImage(data: vm.thumbnailData)!)
                 .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 120, height: 120)
+                .aspectRatio(UIImage(data: vm.thumbnailData)!.size, contentMode: .fill)
+                .frame(width: 132, height: 132)
                 .clipped()
             VStack(alignment: .leading) {
                 Text(vm.title)
@@ -28,7 +28,7 @@ struct NewsFeedCellView: View {
                     .font(.subheadline)
             }
         }
-        .frame(height: 90)
+        .frame(height: 110)
     }
 }
 

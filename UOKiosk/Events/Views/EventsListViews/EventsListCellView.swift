@@ -26,7 +26,6 @@ struct EventsListCellView: View {
                 Text(vm.title)
             }
         }
-        .frame(height: 80)
     }
 }
 
