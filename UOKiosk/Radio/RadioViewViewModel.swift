@@ -4,8 +4,8 @@
 //
 //  Created by Jonathan Paul on 6/29/23.
 //
+// Some learning for the AVPlayer: https://medium.com/@quangtqag/background-audio-player-sync-control-center-516243c2cdd1
 
-import Foundation
 import AVFoundation
 import MediaPlayer
 import SwiftUI
@@ -18,11 +18,6 @@ class RadioViewModel: NSObject, ObservableObject {
     @Published var playOrStopImage: Image = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
     @Published var isPlaying: Bool = false
-
-    // MARK: Intializer
-    override init() {
-        super.init()
-    }
 
     // MARK: - Observe Status of Playing Radio Audio
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -63,7 +58,6 @@ class RadioViewModel: NSObject, ObservableObject {
         player.play()
         playOrStopImage = Image(systemName: "stop.fill")
         isPlaying = true
-        updateNowPlaying(isPause: false)
     }
 
     @MainActor
@@ -74,21 +68,7 @@ class RadioViewModel: NSObject, ObservableObject {
         player.replaceCurrentItem(with: nil)
     }
 
-    func updateNowPlaying(isPause: Bool) {
-        guard let player = player else { return }
-        // Define Now Playing Info
-        var nowPlayingInfo = MPNowPlayingInfoCenter.default().nowPlayingInfo!
-
-        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = isPause ? 0 : 1
-
-        // Set the metadata
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
-    }
-
     // MARK: - Controlling Background Audio
-    // Mark: instructions source https://medium.com/@quangtqag/background-audio-player-sync-control-center-516243c2cdd1
     func setupRemoteTransportControls() {
         // Get the shared MPRemoteCommandCenter
         let commandCenter = MPRemoteCommandCenter.shared()
@@ -120,15 +100,12 @@ class RadioViewModel: NSObject, ObservableObject {
         // Define Now Playing Info
         var nowPlayingInfo = [String : Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = "KWVA"
-
+        nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
         if let image = UIImage(named: "KWVA") {
             nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
                 return image
             }
         }
-        guard let player = self.player else { return }
-        nowPlayingInfo[MPNowPlayingInfoPropertyElapsedPlaybackTime] = player.currentTime
-        nowPlayingInfo[MPNowPlayingInfoPropertyPlaybackRate] = player.rate
 
         // Set the metadata
         MPNowPlayingInfoCenter.default().nowPlayingInfo = nowPlayingInfo
