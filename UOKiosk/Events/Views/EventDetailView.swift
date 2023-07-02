@@ -34,6 +34,7 @@ struct EventDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .padding()
+                        .frame(maxHeight: 400)
                     if vm.hasLocation {
                         HStack {
                             Text("Location")
