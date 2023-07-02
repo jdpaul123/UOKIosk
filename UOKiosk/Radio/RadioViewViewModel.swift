@@ -18,6 +18,7 @@ class RadioViewModel: NSObject, ObservableObject {
     @Published var playOrStopImage: Image = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
     @Published var isPlaying: Bool = false
+    @Published var showingInformationSheet: Bool = false
 
     // MARK: - Observe Status of Playing Radio Audio
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
