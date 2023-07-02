@@ -30,6 +30,7 @@ struct NewsFeedView: View {
                 }
             }
         }
+        .listStyle(.plain)
         .onAppear {
             vm.fetchArticles()
         }

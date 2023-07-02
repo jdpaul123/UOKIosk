@@ -19,13 +19,12 @@ struct EventsListCellView: View {
         HStack {
             Image.init(uiImage: UIImage(data: vm.imageData)!)
                 .resizable()
-                .scaledToFit()
-                .frame(width: 100)
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 120, height: 120)
+                .clipped()
             VStack(alignment: .leading) {
                 Text(vm.title)
             }
-            Spacer()
         }
         .frame(height: 80)
     }
