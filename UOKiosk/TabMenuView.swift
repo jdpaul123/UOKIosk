@@ -26,8 +26,6 @@ enum Tabs: String {
             return "newspaper"
         case .radio:
             return "radio"
-        default:
-            return "dot.square"
         }
     }
 }

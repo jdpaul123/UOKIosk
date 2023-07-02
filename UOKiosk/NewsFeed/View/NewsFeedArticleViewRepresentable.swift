@@ -48,6 +48,10 @@ struct NewsFeedArticleWebViewRepresentable: UIViewRepresentable {
                         element.parentNode.removeChild(element);
                         element = document.getElementById("site-copyright-container");
                         element.parentNode.removeChild(element);
+
+                        // Comment button
+                        elements = document.getElementsByClassName("hidden-print");
+                        elements[9].parentNode.removeChild(elements[9]);
                         """
         var turnOffZoomScript: String {
             "var meta = document.createElement('meta');" +
