@@ -15,7 +15,7 @@ struct NewsFeedArticleView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 if #available(iOS 16.0, *) {
-                    ShareLink(item: articleUrl, message: Text("Share the link to this article!"))
+                    ShareLink(item: articleUrl, message: Text(""))
                 }
             }
     }
