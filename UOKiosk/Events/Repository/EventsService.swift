@@ -10,17 +10,16 @@ import CoreData
 import Combine
 
 /*
- TODO: Call service to get events.
  The service will decide if it just gets data from the Core Data Persistent Store
  or if it calls the api for fresh data, waits for it, and returns data from the Persistent Store.
 
- Once that works, impliment pull-to-refrehs which will perform the fetchEvents that is described above but it will call
+ Pull-to-refrehs performs the fetchEvents that is described above but it will call
  the api every time.
 
- Note: Get the events from API and turn into IMEvent (Event should have all of the same properties as IMEvent) then save the
- IMEvents to Core Data Event entities. Then the view can display the fetched results.
- */
-/*
+ When event data arrives from the API the Data Tranfer Objects for events are instantiated into IMEvents
+ then saved from the IMEvents to Core Data Event entities. Then the view display the fetched results
+ from the Core Data Persistent Store.
+
  Data Permission:
  https://calendar.uoregon.edu states, "Embed events anywhere on the web with our Widget builder."
  The text that says "Widget builder" is a hyperlink to https://calendar.uoregon.edu/help/widget
