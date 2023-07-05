@@ -48,6 +48,12 @@ struct NewsFeedArticleWebViewRepresentable: UIViewRepresentable {
                         element.parentNode.removeChild(element);
                         element = document.getElementById("site-copyright-container");
                         element.parentNode.removeChild(element);
+
+                        // Comment button
+                        var svgElements = document.querySelectorAll('.tnt-comments');
+                        for (var i = svgElements.length - 1; i >= 0; i--) {
+                            svgElements[i].remove();
+                        }
                         """
         var turnOffZoomScript: String {
             "var meta = document.createElement('meta');" +

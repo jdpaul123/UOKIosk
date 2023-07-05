@@ -34,6 +34,7 @@ struct EventDetailView: View {
                         .resizable()
                         .scaledToFit()
                         .padding()
+                        .frame(maxHeight: 400)
                     if vm.hasLocation {
                         HStack {
                             Text("Location")
@@ -127,7 +128,7 @@ struct EventDetailView: View {
         .background(Color.UOKioskBackgroundColor)
         .toolbar {
             if #available(iOS 16.0, *), let website = vm.website {
-                ShareLink(item: website, message: Text("Share the link to this article!"))
+                ShareLink(item: website, message: Text(""))
             }
         }
     }

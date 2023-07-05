@@ -56,7 +56,6 @@ struct WhatIsOpenPlaceView: View {
                     HStack {
                         VStack {
                             Text(vm.hours.elements[index].key)
-                            Spacer()
                         }
                         Spacer()
                         Text(vm.hours.elements[index].value)

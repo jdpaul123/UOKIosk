@@ -24,8 +24,8 @@ enum Tabs: String {
             return "map"
         case .news:
             return "newspaper"
-        default:
-            return "dot.square"
+        case .radio:
+            return "radio"
         }
     }
 }
@@ -79,6 +79,17 @@ struct TabMenuView: View {
             .tabItem {
                 Image(systemName: Tabs.news.sfSymbol)
                 Text(Tabs.news.rawValue)
+            }
+
+            NavigationView {
+                RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
+                    .navigationTitle(Tabs.radio.rawValue)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tag(Tabs.radio)
+            .tabItem {
+                Image(systemName: Tabs.radio.sfSymbol)
+                Text(Tabs.radio.rawValue)
             }
         }
     }

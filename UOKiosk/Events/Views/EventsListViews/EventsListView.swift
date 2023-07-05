@@ -4,6 +4,7 @@
 //
 //  Created by Jonathan Paul on 6/15/23.
 //
+// Helpful link for figuring out how to get images to ignore padding: https://stackoverflow.com/questions/56614080/how-to-remove-the-left-and-right-padding-of-a-list-in-swiftui/58210994#58210994
 
 import SwiftUI
 
@@ -20,6 +21,7 @@ struct EventsListView: View {
         List {
             ForEach(vm.eventsDictionary.keys, id: \.description) { dateToDisplay in
                 EventsListSectionView(vm: injector.viewModelFactory.makeEventsListSectionViewModel(parentViewModel: self.vm, dateToDisplay: dateToDisplay))
+                    .listRowInsets(EdgeInsets())
             }
         }
         .overlay {

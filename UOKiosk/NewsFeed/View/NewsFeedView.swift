@@ -28,8 +28,10 @@ struct NewsFeedView: View {
                 } label: {
                     NewsFeedCellView(vm: injector.viewModelFactory.makeNewsFeedCellViewModel(article: article))
                 }
+                .listRowInsets(EdgeInsets())
             }
         }
+        .listStyle(.plain)
         .onAppear {
             vm.fetchArticles()
         }
