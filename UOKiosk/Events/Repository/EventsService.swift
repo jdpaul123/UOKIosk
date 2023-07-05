@@ -20,6 +20,13 @@ import Combine
  Note: Get the events from API and turn into IMEvent (Event should have all of the same properties as IMEvent) then save the
  IMEvents to Core Data Event entities. Then the view can display the fetched results.
  */
+/*
+ Data Permission:
+ https://calendar.uoregon.edu states, "Embed events anywhere on the web with our Widget builder."
+ The text that says "Widget builder" is a hyperlink to https://calendar.uoregon.edu/help/widget
+ where they state, "Want to put events you find on your own site? Use the widget builder to generate
+ a little box you can put wherever you please!". Therefore, anyone has permission to use the data.
+ */
 
 class EventsService: EventsRepository {
     // MARK: Properties
