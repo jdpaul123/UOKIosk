@@ -28,7 +28,7 @@ struct NewsFeedView: View {
                 } label: {
                     NewsFeedCellView(vm: injector.viewModelFactory.makeNewsFeedCellViewModel(article: article))
                 }
-                .listRowInsets(EdgeInsets())
+                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }
         }
         .listStyle(.plain)

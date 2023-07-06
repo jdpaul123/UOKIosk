@@ -21,7 +21,7 @@ struct EventsListView: View {
         List {
             ForEach(vm.eventsDictionary.keys, id: \.description) { dateToDisplay in
                 EventsListSectionView(vm: injector.viewModelFactory.makeEventsListSectionViewModel(parentViewModel: self.vm, dateToDisplay: dateToDisplay))
-                    .listRowInsets(EdgeInsets())
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }
         }
         .overlay {
