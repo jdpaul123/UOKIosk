@@ -27,6 +27,7 @@ class RssArticle: Identifiable {
 }
 
 enum RssArticleLoadingError : Error {
+    case dataTaskFailed(Error)
     case networkingError(Error)
     case requestFailed(Int)
     case serverError(Int)
@@ -47,12 +48,15 @@ class NewsFeedService: NewsFeedRepository {
 
     func fetch(feed: URL, completion: @escaping (Swift.Result<[RssArticle], RssArticleLoadingError>) -> Void) {
 
-        let req = URLRequest(url: feed, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+        // TODO: Look into a cache policy that tries to check HEAD. If request for HEAD does not work issue an error that there is a connection problem
+        // and then load the cached data. Oherwise then request for the data if, according to the HEAD response, it changed from the cached data already loaded.
+        // If the HEAD response says the cached data is the same as on the server than just load the cached data.
+        let req = URLRequest(url: feed, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 60)
 
         URLSession.shared.dataTask(with: req) { data, response, error in
-            if let _ = error {
+            if let error = error {
                 DispatchQueue.main.async {
-                    // TODO: Show Error on UI in banner
+                    completion(.failure(.dataTaskFailed(error)))
                 }
                 return
             }
