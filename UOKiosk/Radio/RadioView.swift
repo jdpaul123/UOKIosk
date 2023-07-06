@@ -59,6 +59,7 @@ struct RadioView: View {
             }
         }
         .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
+        .banner(data: $vm.bannerData, show: $vm.showBanner)
     }
 }
 

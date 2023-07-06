@@ -19,6 +19,8 @@ class RadioViewModel: NSObject, ObservableObject {
     @Published var viewDidLoad = false
     @Published var isPlaying: Bool = false
     @Published var showingInformationSheet: Bool = false
+    @Published var showBanner: Bool = false
+    @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
 
     // MARK: - Observe Status of Playing Radio Audio
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -27,6 +29,11 @@ class RadioViewModel: NSObject, ObservableObject {
                 // The player is ready to play
             } else if playerItem.status == .failed {
                 // Handle error
+                showBanner = true
+                bannerData = BannerModifier.BannerData(title: "Error", detail: "Failed to connect to radio stream. Check internet connection.", type: .Error)
+                DispatchQueue.main.async {
+                    self.stop()
+                }
             }
         }
     }
