@@ -9,45 +9,50 @@ import SwiftUI
 
 // TODO: Ask for location permissions at the instantiation of the view
 struct CampusMapView: View {
-    @State private var showingInformationSheet = false
-    var viewRepresentable = CampusMapWebViewRepresentable(url: URL(string: "https://map.uoregon.edu")!)
+    @StateObject var vm: CampusMapViewModel
+
+    // MARK: INITIALIZER
+    init(vm: CampusMapViewModel) {
+        _vm = StateObject(wrappedValue: vm)
+    }
 
     var body: some View {
-        viewRepresentable
+        vm.campusMapWebViewRepresentable
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        showingInformationSheet.toggle()
+                        vm.showingInformationSheet.toggle()
                     } label: {
                         Image(systemName: "info.circle")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewRepresentable.view.load(URLRequest(url: URL(string: "https://map.uoregon.edu")!))
+                        vm.campusMapWebViewRepresentable.view.load(URLRequest(url: URL(string: "https://map.uoregon.edu")!))
                     } label: {
                         Image(systemName: "house")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        viewRepresentable.view.reload()
+                        vm.campusMapWebViewRepresentable.view.reload()
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }
                 }
             }
-            .sheet(isPresented: $showingInformationSheet) {
+            .sheet(isPresented: $vm.showingInformationSheet) {
                 InformationView()
             }
+            .banner(data: $vm.bannerData, show: $vm.showBanner)
     }
 }
 
 struct CampusMapView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CampusMapView()
+            CampusMapView(vm: CampusMapViewModel(url: URL(string: "https://map.uoregon.edu")!))
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

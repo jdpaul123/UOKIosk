@@ -60,7 +60,7 @@ struct TabMenuView: View {
             }
 
             NavigationView {
-                CampusMapView()
+                CampusMapView(vm: injector.viewModelFactory.makeCampusMapViewModel())
                     .navigationTitle(Tabs.campusMap.rawValue)
             }
             .navigationViewStyle(StackNavigationViewStyle())

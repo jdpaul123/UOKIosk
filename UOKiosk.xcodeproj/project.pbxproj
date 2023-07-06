@@ -80,6 +80,7 @@
 		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
 		52A238692A4E1910004799E8 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238682A4E1910004799E8 /* RadioView.swift */; };
 		52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */; };
+		52A238792A575D0C004799E8 /* CampusMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238782A575D0C004799E8 /* CampusMapViewModel.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -179,6 +180,7 @@
 		52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsFeedArticleViewRepresentable.swift; sourceTree = "<group>"; };
 		52A238682A4E1910004799E8 /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
 		52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewViewModel.swift; sourceTree = "<group>"; };
+		52A238782A575D0C004799E8 /* CampusMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewModel.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -371,6 +373,7 @@
 			children = (
 				526221072A4263BD0029FDAD /* CampusMapView.swift */,
 				526221052A4261F90029FDAD /* CampusMapWebViewRepresentable.swift */,
+				52A238782A575D0C004799E8 /* CampusMapViewModel.swift */,
 			);
 			path = CampusMap;
 			sourceTree = "<group>";
@@ -763,6 +766,7 @@
 				52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
+				52A238792A575D0C004799E8 /* CampusMapViewModel.swift in Sources */,
 				52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */,
 				52463ED72A380F20007BF9B1 /* WhatIsOpenSubViews.swift in Sources */,
 				52131E5A28B34AC0006C3094 /* EventLocation+CoreDataProperties.swift in Sources */,
