@@ -13,14 +13,17 @@ class NewsFeedViewModel: ObservableObject {
     @Published var showingInformationSheet: Bool = false
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
+    @Published var showLoading: Bool = false
 
     init(newsFeedRepository: NewsFeedRepository) {
         self.newsFeedRepository = newsFeedRepository
     }
 
     func fetchArticles() {
+        showLoading = true
         newsFeedRepository.fetch(feed: newsFeedRepository.fetchUrl) { [weak self] result in
             guard let self = self else { return }
+            defer { self.showLoading = false }
             switch result {
             case .success(let articles):
                 self.articles = articles

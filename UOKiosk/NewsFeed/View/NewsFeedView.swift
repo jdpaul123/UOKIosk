@@ -31,6 +31,12 @@ struct NewsFeedView: View {
                 .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }
         }
+        .overlay {
+            if vm.showLoading {
+                ProgressView()
+                    .scaleEffect(2)
+            }
+        }
         .banner(data: $vm.bannerData, show: $vm.showBanner)
         .listStyle(.plain)
         .onAppear {
