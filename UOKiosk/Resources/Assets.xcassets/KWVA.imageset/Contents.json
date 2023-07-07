@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "avatars-000129557062-6npbxf-t500x500.jpg",
+      "filename" : "KWVA.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "KWVA@2x.jpg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "KWVA@3x.jpg",
       "idiom" : "universal",
       "scale" : "3x"
     }
