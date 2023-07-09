@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InformationView: View {
     @Environment(\.dismiss) private var dismiss
+    @State var showJDAndDuck: Bool = false
 
     var body: some View {
         NavigationView {
@@ -41,7 +42,7 @@ struct InformationView: View {
                         .navigationTitle("Non-Emergency")
                     }
                 }
-                Section(header: Text("Useful stuff"), footer: MadeWithLoveView()) {
+                Section(content: {
                     NavigationLink {
                         QuickLinksView()
                             .navigationTitle("Quick Links")
@@ -60,6 +61,27 @@ struct InformationView: View {
 //                    } label: {
 //                        getImageAndText(systemName: "calendar", text: "Academic Calendar", color: .cyan)
 //                    }
+                }, header: {
+                    Text("Useful stuff")
+                }, footer: {
+                    HStack {
+                        Spacer()
+                        Text("Made with 💚 by")
+                        Text("JD Paul")
+                            .foregroundColor(.blue)
+                            .onTapGesture {
+                                showJDAndDuck.toggle()
+                            }
+                        Text("- Sco Ducks!")
+                        Spacer()
+                    }
+                    .padding()
+                })
+                if showJDAndDuck {
+                    Image("JDAndDuck")
+                        .resizable()
+                        .scaledToFit()
+                        .cornerRadius(10)
                 }
             }
             .navigationTitle("UO Kiosk")
@@ -81,19 +103,6 @@ struct InformationView: View {
                 .cornerRadius(4)
             Text(text)
         }
-    }
-}
-
-struct MadeWithLoveView: View {
-    let markdownText = try! AttributedString(markdown: "Made with 💚 by [JD Paul](https://jonathandpaul.com). Sco Ducks!")
-
-    var body: some View {
-        HStack {
-            Spacer()
-            Text(markdownText)
-            Spacer()
-        }
-        .padding()
     }
 }
 
