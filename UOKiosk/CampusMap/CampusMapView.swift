@@ -29,14 +29,14 @@ struct CampusMapView: View {
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        vm.campusMapWebViewRepresentable.view.load(URLRequest(url: URL(string: "https://map.uoregon.edu")!))
+                        vm.campusMapWebViewRepresentable.reloadHome()
                     } label: {
                         Image(systemName: "house")
                     }
                 }
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        vm.campusMapWebViewRepresentable.view.reload()
+                        vm.campusMapWebViewRepresentable.reload()
                     } label: {
                         Image(systemName: "arrow.clockwise")
                     }

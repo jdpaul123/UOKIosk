@@ -81,6 +81,7 @@
 		52A238692A4E1910004799E8 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238682A4E1910004799E8 /* RadioView.swift */; };
 		52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */; };
 		52A238792A575D0C004799E8 /* CampusMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238782A575D0C004799E8 /* CampusMapViewModel.swift */; };
+		52A2387B2A5E086F004799E8 /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
@@ -181,6 +182,7 @@
 		52A238682A4E1910004799E8 /* RadioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioView.swift; sourceTree = "<group>"; };
 		52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewViewModel.swift; sourceTree = "<group>"; };
 		52A238782A575D0C004799E8 /* CampusMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewModel.swift; sourceTree = "<group>"; };
+		52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewDelegate.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -453,6 +455,7 @@
 				52153BB528AF5EE7007F4812 /* Documentation.docc */,
 				529861B9284553BA009C1E3B /* UOKioskApp.swift */,
 				529861E92845587C009C1E3B /* TabMenuView.swift */,
+				52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */,
 				5262210B2A4503EC0029FDAD /* InformationView */,
 				5289CEAC2A16D04300E51257 /* Events */,
 				5289CEAF2A16D54B00E51257 /* WhatIsOpen */,
@@ -788,6 +791,7 @@
 				52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */,
 				52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */,
 				52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */,
+				52A2387B2A5E086F004799E8 /* WebViewDelegate.swift in Sources */,
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
