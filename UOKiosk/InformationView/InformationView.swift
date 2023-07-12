@@ -92,6 +92,7 @@ struct InformationView: View {
                                     .frame(height: height)
                             }
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
                         Link(destination: URL(string: "https://www.instagram.com/jd_paul7/")!) {
                             HStack {
                                 Text("JD's Instagram ")
@@ -103,6 +104,8 @@ struct InformationView: View {
                                     .cornerRadius(11)
                             }
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
+
                         Link(destination: URL(string: "https://www.linkedin.com/in/jdpaul123/")!) {
                             HStack {
                                 Text("JD's LinkedIn ")
@@ -115,6 +118,7 @@ struct InformationView: View {
                                     .cornerRadius(10)
                             }
                         }
+                        .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
                         Image("JDAndDuck")
                             .resizable()
                             .scaledToFit()
