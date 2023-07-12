@@ -69,19 +69,57 @@ struct InformationView: View {
                         Text("Made with 💚 by")
                         Text("JD Paul")
                             .foregroundColor(.blue)
-                            .onTapGesture {
-                                showJDAndDuck.toggle()
-                            }
+                            .gesture(TapGesture(count: 1).onEnded {
+                                withAnimation(.easeInOut(duration: 0.5)) {
+                                    showJDAndDuck.toggle()
+                                }
+                            })
                         Text("- Sco Ducks!")
                         Spacer()
                     }
                     .padding()
                 })
                 if showJDAndDuck {
-                    Image("JDAndDuck")
-                        .resizable()
-                        .scaledToFit()
-                        .cornerRadius(10)
+                    VStack(alignment: .leading) {
+                        let height: CGFloat = 40
+                        Link(destination: URL(string: "https://jonathandpaul.com")!) {
+                            HStack {
+                                Text("jonathandpaul.com ")
+                                Spacer()
+                                Image(systemName: "globe")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: height)
+                            }
+                        }
+                        Link(destination: URL(string: "https://www.instagram.com/jd_paul7/")!) {
+                            HStack {
+                                Text("JD's Instagram ")
+                                Spacer()
+                                Image("instagramIcon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: height)
+                                    .cornerRadius(11)
+                            }
+                        }
+                        Link(destination: URL(string: "https://www.linkedin.com/in/jdpaul123/")!) {
+                            HStack {
+                                Text("JD's LinkedIn ")
+                                Spacer()
+                                Image("linkedInIcon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height: height)
+                                    .foregroundColor(.black)
+                                    .cornerRadius(10)
+                            }
+                        }
+                        Image("JDAndDuck")
+                            .resizable()
+                            .scaledToFit()
+                            .cornerRadius(10)
+                    }
                 }
             }
             .navigationTitle("UO Kiosk")
