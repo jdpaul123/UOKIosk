@@ -21,6 +21,7 @@
 		52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB528AF5EE7007F4812 /* Documentation.docc */; };
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
+		52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */; };
 		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
 		52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */; };
@@ -125,6 +126,7 @@
 		52153BB528AF5EE7007F4812 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
+		52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenIssueReportingView.swift; sourceTree = "<group>"; };
 		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
 		52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DayOfWeek.swift"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			isa = PBXGroup;
 			children = (
 				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
+				52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */,
 				52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */,
 			);
 			path = Views;
@@ -778,6 +781,7 @@
 				52131E4C28B31E85006C3094 /* Event.swift in Sources */,
 				528A2A1D2849C9A30035F416 /* Injector.swift in Sources */,
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
+				52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */,
 				526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */,
 				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,

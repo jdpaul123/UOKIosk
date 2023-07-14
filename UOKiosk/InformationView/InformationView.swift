@@ -74,7 +74,7 @@ struct InformationView: View {
                                     showJDAndDuck.toggle()
                                 }
                             })
-                        Text("- Sco Ducks!")
+                        Text("-  Sco Ducks!")
                         Spacer()
                     }
                     .padding()

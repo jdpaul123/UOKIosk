@@ -59,8 +59,16 @@ struct DiningHoursView: WhatIsOpenView {
                     Image(systemName: "info.circle")
                 }
             }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    vm.showingIssueReportingSheet.toggle()
+                } label: {
+                    Image(systemName: "exclamationmark.bubble")
+                }
+            }
         }
         .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
+        .sheet(isPresented: $vm.showingIssueReportingSheet) { WhatIsOpenIssueReportingView() }
     }
 }
 
