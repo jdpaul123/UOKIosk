@@ -47,7 +47,7 @@ struct WhatIsOpenIssueReportingView: View {
                         .multilineTextAlignment(.center)
                 }
                 Spacer()
-                Link(destination: URL(string: "https://youtube.com")!) {
+                Link(destination: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSe14al43HKbvc1226qG6E5-1Cf-7hpobVhUFP19ZJtPvKINyA/viewform?usp=sf_link")!) {
                     HStack {
                         Image(systemName: "exclamationmark.bubble.fill")
                             .resizable()

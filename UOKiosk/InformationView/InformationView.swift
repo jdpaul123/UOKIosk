@@ -15,11 +15,10 @@ struct InformationView: View {
         NavigationView {
             List {
                 // TODO: Fill in the Rate UO Kiosk Link
-                Link(destination: URL(string: "https://www.youtube.com")!) {
-                    getImageAndText(systemName: "star.fill", text: "Rate UO Kiosk", color: .yellow)
-                }
-                // TODO: Fill in the Give Feedback Link
-                Link(destination: URL(string: "https://www.youtube.com")!) {
+//                Link(destination: URL(string: "https://www.youtube.com")!) {
+//                    getImageAndText(systemName: "star.fill", text: "Rate UO Kiosk", color: .yellow)
+//                }
+                Link(destination: URL(string: "https://docs.google.com/forms/d/e/1FAIpQLSe14al43HKbvc1226qG6E5-1Cf-7hpobVhUFP19ZJtPvKINyA/viewform?usp=sf_link")!) {
                     getImageAndText(systemName: "exclamationmark.bubble.fill", text: "Give Feedback", color: .purple)
                 }
                 Section("Emergency") {
