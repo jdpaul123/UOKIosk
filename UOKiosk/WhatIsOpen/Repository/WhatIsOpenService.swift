@@ -211,7 +211,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
             let vm = WhatIsOpenPlace(name: asset.properties.name,
                                      emojiCode: asset.properties.userProperties.emoji ?? "💚",
                                      building: asset.properties.userProperties.building,
-                                     mapLink: URL(string: "www.youtube.com"), // TODO: Youtube is a placeholder
+                                     mapLink: URL(string: asset.properties.userProperties.mapLink ?? ""),
                                      websiteLink: URL(string: asset.properties.contact?.website ?? ""),
                                      until: until,
                                      isOpen: asset.properties.open.isOpen,
