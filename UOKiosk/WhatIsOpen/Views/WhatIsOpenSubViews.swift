@@ -30,6 +30,7 @@ struct WhatIsOpenListView: View {
 }
 
 struct WhatIsOpenPlaceView: View {
+    @EnvironmentObject var injector: Injector
     @StateObject var vm: WhatIsOpenPlaceViewModel
 
     init(whatIsOpenPlace: WhatIsOpenPlace, injector: Injector) {
@@ -42,16 +43,6 @@ struct WhatIsOpenPlaceView: View {
                 Text(vm.building ?? "")
                     .font(.system(.footnote).weight(.bold))
                 Spacer()
-                if let mapLink = vm.mapLink {
-                    Link(destination: mapLink) {
-                        Image(systemName: "map.fill")
-                    }
-                    .font(.system(.footnote).weight(.bold ))
-                    .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
-                    .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
-                    .cornerRadius(4)
-                    .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
-                }
                 if let websiteLink = vm.websiteLink {
                     Link("More Info", destination: websiteLink)
                         .font(.system(.footnote).weight(.bold ))
@@ -59,6 +50,20 @@ struct WhatIsOpenPlaceView: View {
                         .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
                         .cornerRadius(4)
                         .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
+                }
+            }
+            if let mapLink = vm.mapLink {
+                NavigationLink {
+                    WhatIsOpenMapView(vm: injector.viewModelFactory.makeWhatIsOpenMapViewModel(mapLink: mapLink))
+                } label: {
+                    HStack {
+                        Image(systemName: "map.fill")
+                        Text("View on campus map")
+                    }
+                    .foregroundColor(.blue)
+                    .padding(EdgeInsets(top: 2, leading: 5, bottom: 2, trailing: 5))
+                    .background(Color(#colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)))
+                    .cornerRadius(4)
                 }
             }
             ForEach(0..<vm.hours.count, id: \.self) { index in

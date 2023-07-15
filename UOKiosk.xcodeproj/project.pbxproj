@@ -22,6 +22,9 @@
 		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */; };
+		52460AE72A62718B008714EF /* WhatIsOpenMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */; };
+		52460AE92A6271CA008714EF /* WhatIsOpenMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */; };
+		52460AEC2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */; };
 		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
 		52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */; };
@@ -127,6 +130,9 @@
 		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenIssueReportingView.swift; sourceTree = "<group>"; };
+		52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapView.swift; sourceTree = "<group>"; };
+		52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapViewModel.swift; sourceTree = "<group>"; };
+		52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapViewRepresentable.swift; sourceTree = "<group>"; };
 		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
 		52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DayOfWeek.swift"; sourceTree = "<group>"; };
@@ -287,6 +293,14 @@
 			path = MockModelData;
 			sourceTree = "<group>";
 		};
+		52460AEA2A62724F008714EF /* ViewRepresentable */ = {
+			isa = PBXGroup;
+			children = (
+				52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */,
+			);
+			path = ViewRepresentable;
+			sourceTree = "<group>";
+		};
 		52463ECF2A35560E007BF9B1 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +317,7 @@
 				5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */,
 				52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */,
 				52463ED62A380F20007BF9B1 /* WhatIsOpenSubViews.swift */,
+				52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -312,6 +327,7 @@
 			children = (
 				5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */,
 				52463EDB2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift */,
+				52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -424,6 +440,7 @@
 			children = (
 				52463ECF2A35560E007BF9B1 /* Enums */,
 				52463EEB2A3AEA2A007BF9B1 /* Models */,
+				52460AEA2A62724F008714EF /* ViewRepresentable */,
 				52463EE92A3AEA0C007BF9B1 /* Views */,
 				52463EEA2A3AEA16007BF9B1 /* ViewModels */,
 				52F1F65A2A304CE800F9CF3B /* Repository */,
@@ -771,6 +788,7 @@
 				52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */,
 				52463F012A3BC603007BF9B1 /* EventsListViewModel.swift in Sources */,
 				52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */,
+				52460AE92A6271CA008714EF /* WhatIsOpenMapViewModel.swift in Sources */,
 				5201D68A2A30051100B1F939 /* WhatIsOpenDto.swift in Sources */,
 				52A238792A575D0C004799E8 /* CampusMapViewModel.swift in Sources */,
 				52463ED92A381C5E007BF9B1 /* WhatIsOpenViewType.swift in Sources */,
@@ -788,6 +806,7 @@
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
 				52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */,
+				52460AE72A62718B008714EF /* WhatIsOpenMapView.swift in Sources */,
 				526221032A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift in Sources */,
 				526221082A4263BD0029FDAD /* CampusMapView.swift in Sources */,
 				52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */,
@@ -811,6 +830,7 @@
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
+				52460AEC2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift in Sources */,
 				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
 				52A238692A4E1910004799E8 /* RadioView.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,

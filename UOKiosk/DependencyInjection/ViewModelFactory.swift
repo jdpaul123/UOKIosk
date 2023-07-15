@@ -53,6 +53,10 @@ final class ViewModelFactory: ObservableObject {
                                  isOpenString: place.isOpenString, isOpenColor: place.isOpenColor, until: place.until, hours: place.hours, hoursIntervals: place.hoursIntervals)
     }
 
+    func makeWhatIsOpenMapViewModel(mapLink: URL) -> WhatIsOpenMapViewModel {
+        WhatIsOpenMapViewModel(url: mapLink)
+    }
+
     func makeCampusMapViewModel() -> CampusMapViewModel {
         CampusMapViewModel(url: URL(string: "https://map.uoregon.edu")!)
     }
