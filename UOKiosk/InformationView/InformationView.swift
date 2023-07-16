@@ -9,6 +9,7 @@ import SwiftUI
 
 struct InformationView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.colorScheme) var colorScheme
     @State var showJDAndDuck: Bool = false
 
     var body: some View {
@@ -65,15 +66,16 @@ struct InformationView: View {
                 }, footer: {
                     HStack {
                         Spacer()
-                        Text("Made with 💚 by")
-                        Text("JD Paul")
-                            .foregroundColor(.blue)
+                        (Text("Made with 💚 by ") +
+                        Text("JD Paul ")
+                            .foregroundColor(.blue) +
+
+                        Text("- Sco Ducks!"))
                             .gesture(TapGesture(count: 1).onEnded {
                                 withAnimation(.easeInOut(duration: 0.5)) {
                                     showJDAndDuck.toggle()
                                 }
                             })
-                        Text("-  Sco Ducks!")
                         Spacer()
                     }
                     .padding()
@@ -89,6 +91,7 @@ struct InformationView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(height: height)
+                                    .foregroundColor(colorScheme == .light ? .black : .white)
                             }
                         }
                         .buttonStyle(BorderlessButtonStyle()) // Makes just the button clickable rather than the entire row
