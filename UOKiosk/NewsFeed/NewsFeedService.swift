@@ -95,7 +95,6 @@ class NewsFeedService: NewsFeedRepository {
                     switch success {
                     case .atom(_):
                         result = .failure(.recievedAtomError)
-//                        result = try .success(self.convert(atom: atom))
                     case .rss(let rss):
                         result = try .success(self.convert(rss: rss))
                     case .json(_):

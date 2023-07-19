@@ -603,8 +603,8 @@
 			isa = PBXGroup;
 			children = (
 				52A2384D2A4B7D3B004799E8 /* NewsFeedView.swift */,
-				52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */,
 				52A238582A4BF866004799E8 /* NewsFeedCellView.swift */,
+				52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */,
 				52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */,
 			);
 			path = View;
