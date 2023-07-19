@@ -14,7 +14,7 @@ import EventKitUI
  https://www.youtube.com/watch?v=ycn-K9kRu9M -> Events & Calendars in Swift 5 (EventKit, iOS, Swift 5, Xcode 12) - 2022 iOS Development by iOS Academy
  */
 struct EventKitView: UIViewControllerRepresentable {
-//    typealias UIViewControllerType = EKEventEditViewController
+    // typealias UIViewControllerType = EKEventEditViewController
     // All UIViewControllers ultamately come from NSObject. NSObject allwos objective-c code to interface with Swift.
     class Coordinator: NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
         var parent: EventKitView

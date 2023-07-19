@@ -12,7 +12,7 @@ import Combine
 
 public class Event: NSManagedObject {
     // MARK: Transient Properties / In-Memory Properties
-    @Published public var imPhotoData: Data? { // @Published is optional
+    @Published public var imPhotoData: Data? {
         willSet {
             objectWillChange.send()
         }

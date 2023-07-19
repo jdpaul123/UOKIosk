@@ -15,7 +15,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
       do {
           try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [/*.mixWithOthers, .allowAirPlay*/])
-//          try AVAudioSession.sharedInstance().setActive(true)
       } catch {
           print("Failed to set audio session category.")
       }

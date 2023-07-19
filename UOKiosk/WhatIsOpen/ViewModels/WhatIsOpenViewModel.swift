@@ -109,33 +109,3 @@ class WhatIsOpenViewModel: WhatIsOpenViewModelType {
         return false
     }
 }
-
-//class FacilityHoursViewModel: WhatIsOpenViewModelType {
-//    let whatIsOpenViewModel: WhatIsOpenViewModel
-//
-//    init(whatIsOpenViewModel: WhatIsOpenViewModel) {
-//        self.whatIsOpenViewModel = whatIsOpenViewModel
-//    }
-//
-//    func isCategoryShown(category: WhatIsOpenCategories) -> Bool {
-//        if category == .building || category == .recreation || category == .library {
-//            return true
-//        }
-//        return false
-//    }
-//}
-//
-//class StoreHoursViewModel: WhatIsOpenViewModelType {
-//    let whatIsOpenViewModel: WhatIsOpenViewModel
-//
-//    init(whatIsOpenViewModel: WhatIsOpenViewModel) {
-//        self.whatIsOpenViewModel = whatIsOpenViewModel
-//    }
-//
-//    func isCategoryShown(category: WhatIsOpenCategories) -> Bool {
-//        if category == .grocery || category == .duckStore || category == .bank {
-//            return true
-//        }
-//        return false
-//    }
-//}

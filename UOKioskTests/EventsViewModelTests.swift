@@ -8,7 +8,6 @@
 import XCTest
 @testable import UOKiosk
 
-
 // MARK: Naming Structure: test_UnitOfWork_StateUnderTest_ExpectedBehavior
 // MARK: Naming Structure: test_[Struct, Class, or Enum]_[variable or function]_[expected result]
 // MARK: Testing Structure: Given, When, Then

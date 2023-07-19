@@ -11,11 +11,6 @@ import EventKit
 import Combine
 
 class EventDetailViewModel: ObservableObject {
-//    var imageData: Data {
-//        let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
-//        return event.photoData ?? noImageData
-//    }
-
     @Published var imageData: Data
     var imageSubscription: AnyCancellable?
 

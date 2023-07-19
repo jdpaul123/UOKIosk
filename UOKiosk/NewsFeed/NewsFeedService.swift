@@ -47,7 +47,6 @@ class NewsFeedService: NewsFeedRepository {
     }
 
     func fetch(feed: URL, completion: @escaping (Swift.Result<[RssArticle], RssArticleLoadingError>) -> Void) {
-
         // TODO: Look into a cache policy that tries to check HEAD. If request for HEAD does not work issue an error that there is a connection problem
         // and then load the cached data. Oherwise then request for the data if, according to the HEAD response, it changed from the cached data already loaded.
         // If the HEAD response says the cached data is the same as on the server than just load the cached data.

@@ -44,7 +44,6 @@ class EventsListViewModel: NSObject, ObservableObject {
         defer { isLoading = false }
         do {
             resultsController = try await eventsRepository.fetchEvents()
-//            events = try await eventsRepository.getFreshEvents()
         } catch {
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription
