@@ -23,12 +23,14 @@ struct NewsFeedView: View {
     var body: some View {
         List {
             ForEach(vm.articles.sorted(by: { $0.publishDate > $1.publishDate }), id: \.id) { article in
-                NavigationLink {
-                    NewsFeedArticleView(articleUrl: article.link)
-                } label: {
-                    NewsFeedCellView(vm: injector.viewModelFactory.makeNewsFeedCellViewModel(article: article))
+                Section {
+                    NavigationLink {
+                        NewsFeedArticleView(articleUrl: article.link)
+                    } label: {
+                        NewsFeedCellView(vm: injector.viewModelFactory.makeNewsFeedCellViewModel(article: article))
+                    }
+                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
                 }
-                .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 20))
             }
         }
         .overlay {
@@ -38,7 +40,7 @@ struct NewsFeedView: View {
             }
         }
         .banner(data: $vm.bannerData, show: $vm.showBanner)
-        .listStyle(.plain)
+        .listStyle(.insetGrouped)
         .onAppear {
             vm.fetchArticles()
         }
