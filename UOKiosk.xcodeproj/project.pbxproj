@@ -25,6 +25,8 @@
 		52460AE72A62718B008714EF /* WhatIsOpenMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */; };
 		52460AE92A6271CA008714EF /* WhatIsOpenMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */; };
 		52460AEC2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */; };
+		52460AF02A69E6EF008714EF /* RssArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AEF2A69E6EF008714EF /* RssArticleModel.swift */; };
+		52460AF22A69E711008714EF /* RssLoadingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AF12A69E711008714EF /* RssLoadingError.swift */; };
 		52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED02A35563C007BF9B1 /* WoosmapDays.swift */; };
 		52463ED32A36F11D007BF9B1 /* WhatIsOpenPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */; };
 		52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */; };
@@ -133,6 +135,8 @@
 		52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapView.swift; sourceTree = "<group>"; };
 		52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapViewModel.swift; sourceTree = "<group>"; };
 		52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapViewRepresentable.swift; sourceTree = "<group>"; };
+		52460AEF2A69E6EF008714EF /* RssArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssArticleModel.swift; sourceTree = "<group>"; };
+		52460AF12A69E711008714EF /* RssLoadingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssLoadingError.swift; sourceTree = "<group>"; };
 		52463ED02A35563C007BF9B1 /* WoosmapDays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WoosmapDays.swift; sourceTree = "<group>"; };
 		52463ED22A36F11D007BF9B1 /* WhatIsOpenPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenPlace.swift; sourceTree = "<group>"; };
 		52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+DayOfWeek.swift"; sourceTree = "<group>"; };
@@ -299,6 +303,24 @@
 				52460AEB2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift */,
 			);
 			path = ViewRepresentable;
+			sourceTree = "<group>";
+		};
+		52460AED2A69E6CD008714EF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				52460AEF2A69E6EF008714EF /* RssArticleModel.swift */,
+				52460AF12A69E711008714EF /* RssLoadingError.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		52460AEE2A69E6D4008714EF /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */,
+				52A238542A4B8766004799E8 /* NewsFeedService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		52463ECF2A35560E007BF9B1 /* Enums */ = {
@@ -584,8 +606,8 @@
 			children = (
 				52A2385B2A4BF87C004799E8 /* View */,
 				52A2385A2A4BF873004799E8 /* ViewModel */,
-				52A238542A4B8766004799E8 /* NewsFeedService.swift */,
-				52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */,
+				52460AED2A69E6CD008714EF /* Model */,
+				52460AEE2A69E6D4008714EF /* Service */,
 			);
 			path = NewsFeed;
 			sourceTree = "<group>";
@@ -825,6 +847,7 @@
 				52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */,
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
+				52460AF22A69E711008714EF /* RssLoadingError.swift in Sources */,
 				52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */,
 				52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
@@ -832,6 +855,7 @@
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
 				52460AEC2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift in Sources */,
 				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
+				52460AF02A69E6EF008714EF /* RssArticleModel.swift in Sources */,
 				52A238692A4E1910004799E8 /* RadioView.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
 				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,

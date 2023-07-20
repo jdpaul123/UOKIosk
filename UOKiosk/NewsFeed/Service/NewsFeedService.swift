@@ -9,36 +9,6 @@
 import Foundation
 import FeedKit
 
-class RssArticle: Identifiable {
-    let id = UUID()
-    var title: String
-    var description: String?
-    var link: URL
-    var imageLink: URL?
-    var publishDate: Date
-
-    init(title: String, description: String? = nil, link: URL, imageLink: URL?, publishDate: Date) {
-        self.title = title
-        self.description = description
-        self.link = link
-        self.imageLink = imageLink
-        self.publishDate = publishDate
-    }
-}
-
-enum RssArticleLoadingError : Error {
-    case dataTaskFailed(Error)
-    case networkingError(Error)
-    case requestFailed(Int)
-    case serverError(Int)
-    case notFound
-    case feedParsingError(Error)
-    case missingAttribute(String)
-    case recievedJsonError
-    case recievedAtomError
-    case shouldNeverOccurError
-}
-
 class NewsFeedService: NewsFeedRepository {
     let fetchUrl: URL
 
