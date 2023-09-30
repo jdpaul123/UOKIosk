@@ -11,7 +11,7 @@ enum Tabs: String {
     case events = "Events"
     case whatIsOpen = "What's Open"
     case campusMap = "Campus Map"
-    case radio = "KWVA Radio"
+    case radio = "School Radio"
     case news = "The Daily Emerald"
 
     var sfSymbol: String {
@@ -70,16 +70,16 @@ struct TabMenuView: View {
                 Text(Tabs.campusMap.rawValue)
             }
 
-            NavigationView {
-                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
-                    .navigationTitle(Tabs.news.rawValue)
-            }
-            .navigationViewStyle(StackNavigationViewStyle())
-            .tag(Tabs.news)
-            .tabItem {
-                Image(systemName: Tabs.news.sfSymbol)
-                Text(Tabs.news.rawValue)
-            }
+//            NavigationView {
+//                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
+//                    .navigationTitle(Tabs.news.rawValue)
+//            }
+//            .navigationViewStyle(StackNavigationViewStyle())
+//            .tag(Tabs.news)
+//            .tabItem {
+//                Image(systemName: Tabs.news.sfSymbol)
+//                Text(Tabs.news.rawValue)
+//            }
 
             NavigationView {
                 RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
