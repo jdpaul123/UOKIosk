@@ -12,7 +12,7 @@ enum Tabs: String {
     case whatIsOpen = "What's Open"
     case campusMap = "Campus Map"
     case radio = "School Radio"
-    case news = "The Daily Emerald"
+    case news = "School News"
 
     var sfSymbol: String {
         switch self {
@@ -70,27 +70,27 @@ struct TabMenuView: View {
                 Text(Tabs.campusMap.rawValue)
             }
 
-//            NavigationView {
-//                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
-//                    .navigationTitle(Tabs.news.rawValue)
-//            }
-//            .navigationViewStyle(StackNavigationViewStyle())
-//            .tag(Tabs.news)
-//            .tabItem {
-//                Image(systemName: Tabs.news.sfSymbol)
-//                Text(Tabs.news.rawValue)
-//            }
-
             NavigationView {
-                RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
-                    .navigationTitle(Tabs.radio.rawValue)
+                NewsFeedView(vm: injector.viewModelFactory.makeNewsFeedViewModel())
+                    .navigationTitle(Tabs.news.rawValue)
             }
             .navigationViewStyle(StackNavigationViewStyle())
-            .tag(Tabs.radio)
+            .tag(Tabs.news)
             .tabItem {
-                Image(systemName: Tabs.radio.sfSymbol)
-                Text(Tabs.radio.rawValue)
+                Image(systemName: Tabs.news.sfSymbol)
+                Text(Tabs.news.rawValue)
             }
+
+//            NavigationView {
+//                RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
+//                    .navigationTitle(Tabs.radio.rawValue)
+//            }
+//            .navigationViewStyle(StackNavigationViewStyle())
+//            .tag(Tabs.radio)
+//            .tabItem {
+//                Image(systemName: Tabs.radio.sfSymbol)
+//                Text(Tabs.radio.rawValue)
+//            }
         }
     }
 }
