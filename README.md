@@ -7,7 +7,6 @@
 4. [Dependencies](#dependencies)
 5. [Feedback](#Feedback)
 6. [Design](#design)
-7. [API](#api)
 
 # UO Kiosk
 An app for University of Oregon students to stay informed and engaged!
@@ -51,12 +50,3 @@ please contact the maintainer through the feedback button in the app or by sendi
 * Design is based on Charles Robinson's app for [Seattle University](https://apps.apple.com/ng/app/su-campus/id1600356652)
 * Charles Robinson knows of the development of UO Kiosk and has given permission to his UI/UX design
 * Implimentation is not at all based on Charles Robinson's code. The developer of UO Kisok have not viewed any of Charles Robinson's code to program UO Kiosk
-
-# API
-* The app uses a couple REST APIs and an RSS feed
-* For the on-campus event feed we are using [Localist](https://www.localist.com)
-* For the What's Open tab the app uses an API through [Woosmap](https://www.woosmap.com/en)
-* The [UO Map](https://map.uoregon.edu) is at the attatched link
-* For the news feed we are using an rss feed from [The Daily Emerald](https://www.dailyemerald.com)
-* For the radio we are using a link to stream using AVFoundation from [KWVA](https://kwva.uoregon.edu)
-
