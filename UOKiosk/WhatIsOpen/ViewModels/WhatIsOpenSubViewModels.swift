@@ -12,11 +12,26 @@ import Collections
 class WhatIsOpenListViewModel: ObservableObject {
     let listType: WhatIsOpenCategories
     @Published var places: [WhatIsOpenPlace]
+    @Published var placesResults: [WhatIsOpenPlace]
     var cancellables = Set<AnyCancellable>()
 
     init(places: [WhatIsOpenPlace], listType: WhatIsOpenCategories, parentViewModel: WhatIsOpenViewModel) {
         self.listType = listType
-        self.places =  places
+        self.places = places
+        self.placesResults = places
+
+        parentViewModel.$searchText
+            .map { searchText in
+                self.places
+                    .sorted(by: { $0.building ?? "" < $1.building ?? "" })
+                    .filter({ whatIsOpenPlace in
+                        if searchText == "" { return true }
+                        return whatIsOpenPlace.name.lowercased().contains((searchText.lowercased()))
+                        || whatIsOpenPlace.name.lowercased().contains(searchText.lowercased())
+                    })
+            }
+            .assign(to: &self.$placesResults)
+
         listType.getWhatIsOpenViewModelData(vm: parentViewModel)
             .receive(on: RunLoop.main)
             .sink { completion in
@@ -28,7 +43,9 @@ class WhatIsOpenListViewModel: ObservableObject {
                 }
                 self.cancellables.removeAll()
             } receiveValue: { [weak self] places in
-                self?.places = places.sorted(by: { $0.building ?? "" < $1.building ?? "" })
+                guard let self = self else { return }
+                self.places = places.sorted(by: { $0.building ?? "" < $1.building ?? "" })
+                self.placesResults = self.places.sorted(by: { $0.building ?? "" < $1.building ?? "" })
             }
             .store(in: &cancellables)
     }

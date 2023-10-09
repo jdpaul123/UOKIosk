@@ -16,6 +16,8 @@ protocol WhatIsOpenViewModelType: ObservableObject {
 class WhatIsOpenViewModel: WhatIsOpenViewModelType {
     private let whatIsOpenRepository: WhatIsOpenRepository
 
+    @Published var searchText: String = ""
+
     @Published var showingInformationSheet: Bool = false
     @Published var showingIssueReportingSheet: Bool = false
 

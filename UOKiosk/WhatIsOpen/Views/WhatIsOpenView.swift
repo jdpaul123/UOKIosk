@@ -69,6 +69,7 @@ struct DiningHoursView: WhatIsOpenView {
         }
         .sheet(isPresented: $vm.showingInformationSheet) { InformationView() }
         .sheet(isPresented: $vm.showingIssueReportingSheet) { WhatIsOpenIssueReportingView() }
+        .searchable(text: $vm.searchText)
     }
 }
 

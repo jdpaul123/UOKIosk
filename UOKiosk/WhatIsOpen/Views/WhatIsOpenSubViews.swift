@@ -20,7 +20,7 @@ struct WhatIsOpenListView: View {
             EmptyView()
         } else {
             Section(header: Text(vm.listType.rawValue)) {
-                ForEach(vm.places) { place in
+                ForEach(vm.placesResults) { place in
                     // TODO: Disclosure group allows you to open more than one disclosure at once. The desired behavior is that only up to one disclosure is open at any time
                     WhatIsOpenPlaceView(whatIsOpenPlace: place, injector: injector)
                 }
