@@ -1,4 +1,5 @@
 #  UOKiosk Documentation
+#  Download UOKiosk on the App Store: https://apps.apple.com/us/app/uo-kiosk/id6451055818
 
 # Table of Contents
 1. [Description](#description)
