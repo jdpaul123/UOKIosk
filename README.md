@@ -18,8 +18,7 @@ UO Kiosk is here to keep you informed on up-to-date events going on on campus, i
 Find what stores are open and links to useful websites like Canvas and the Student Housing Portal.</p>
 
 # Usage
-Download the beta on [Test Flight](https://testflight.apple.com/join/fjzSKNgi)
-Will be on the app store soon!
+Download the on the [App Store](https://apps.apple.com/us/app/uo-kiosk/id6451055818)
 
 # Architecture
 * UO Kiosk project is implemented using the <strong>Model-View-ViewModel (MVVP)</strong> architecture pattern.
