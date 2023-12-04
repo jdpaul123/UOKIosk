@@ -254,7 +254,7 @@
 				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
 				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
 				52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */,
-				526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */,
+				52CDFFBF2B1E4C740071F5CF /* Unused */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -639,6 +639,14 @@
 				52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */,
 			);
 			path = Radio;
+			sourceTree = "<group>";
+		};
+		52CDFFBF2B1E4C740071F5CF /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */,
+			);
+			path = Unused;
 			sourceTree = "<group>";
 		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {
