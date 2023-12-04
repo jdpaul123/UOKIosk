@@ -89,6 +89,8 @@ struct EventDetailView: View {
                             } else {
                                 reminderFailed = true
                             }
+                        } else {
+                            reminderFailed = true
                         }
                     } label: {
                         VStack {

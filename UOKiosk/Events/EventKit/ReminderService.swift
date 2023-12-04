@@ -37,7 +37,12 @@ final class ReminderService {
         case .restricted:
             throw PermissionError.accessRestricted
         case .notDetermined:
-            let accessGranted = try await ekStore.requestAccess(to: .reminder)
+            let accessGranted: Bool
+            if #available(iOS 17.0, *) {
+                accessGranted = try await ekStore.requestFullAccessToReminders()
+            } else {
+                accessGranted = try await ekStore.requestAccess(to: .reminder)
+            }
             guard accessGranted else {
                 throw PermissionError.accessDenied
             }
@@ -82,7 +87,6 @@ final class ReminderService {
             throw CreateReminderError.noDefaultCalendarForNewReminders
         }
         reminder.calendar = calendar
-        reminder.priority = Int(EKReminderPriority.high.rawValue)
         reminder.isCompleted = false
         reminder.addAlarm(EKAlarm(absoluteDate: eventStart))
 

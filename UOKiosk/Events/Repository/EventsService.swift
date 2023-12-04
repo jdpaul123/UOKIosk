@@ -269,9 +269,13 @@ class EventsService: EventsRepository {
             if let event = event {
                 addEventFilters(imEvent: imEvent, event: event)
                 // TODO: addLocation is causing crashes. Fix it.
-//                if let eventLocation = imEvent.eventLocation {
-//                    let _ = try? addLocation(location: eventLocation, event: event)
-//                }
+                if let eventLocation = imEvent.eventLocation {
+                    do {
+                        let _ = try addLocation(location: eventLocation, event: event)
+                    } catch {
+                        // TODO: Add analytics to check if location did not store
+                    }
+                }
             }
         }
     }

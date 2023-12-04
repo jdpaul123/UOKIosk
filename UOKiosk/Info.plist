@@ -7,6 +7,10 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>The app would like to be able to allow you to add University of Oregon events to your calendar</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>The app would like to be able to allow you to add University of Oregon events to your Reminders</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
