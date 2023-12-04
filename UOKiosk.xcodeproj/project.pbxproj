@@ -19,8 +19,6 @@
 		52153BB028AE08EF007F4812 /* EventDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BAF28AE08EE007F4812 /* EventDetailView.swift */; };
 		52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */; };
 		52153BB628AF5EE8007F4812 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB528AF5EE7007F4812 /* Documentation.docc */; };
-		52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
-		52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */; };
 		52460AE72A62718B008714EF /* WhatIsOpenMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */; };
 		52460AE92A6271CA008714EF /* WhatIsOpenMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52460AE82A6271CA008714EF /* WhatIsOpenMapViewModel.swift */; };
@@ -81,7 +79,6 @@
 		52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238582A4BF866004799E8 /* NewsFeedCellView.swift */; };
 		52A2385D2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385C2A4BF8A6004799E8 /* NewsFeedCellViewModel.swift */; };
 		52A2385F2A4C1203004799E8 /* NewsFeedRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2385E2A4C1203004799E8 /* NewsFeedRepository.swift */; };
-		52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
 		52A238642A4C1FE7004799E8 /* NewsFeedArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238632A4C1FE7004799E8 /* NewsFeedArticleView.swift */; };
 		52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238652A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift */; };
 		52A238692A4E1910004799E8 /* RadioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238682A4E1910004799E8 /* RadioView.swift */; };
@@ -90,13 +87,16 @@
 		52A2387B2A5E086F004799E8 /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
+		52CDFFC12B1E56220071F5CF /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
+		52CDFFC22B1E56270071F5CF /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
+		52CDFFC32B1E562B0071F5CF /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
+		52CDFFC42B1E56300071F5CF /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
 		52F1F65C2A304CFB00F9CF3B /* WhatIsOpenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */; };
 		52F1F65E2A304D0300F9CF3B /* WhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1F65D2A304D0300F9CF3B /* WhatIsOpenService.swift */; };
 		52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE72A3295C60046A999 /* MockWhatsOpenData.swift */; };
 		52F56AEA2A32970B0046A999 /* WhatIsOpenCategories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AE92A32970B0046A999 /* WhatIsOpenCategories.swift */; };
 		52F56AEC2A32981F0046A999 /* StringProtocol+Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */; };
 		52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */; };
-		52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -526,10 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				529861CA284553BC009C1E3B /* UOKioskTests.swift */,
-				525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */,
-				525538EE2A0DA606004BD415 /* Mocks */,
-				525538E92A0C4CE3004BD415 /* MockApiService.swift */,
-				52131E6C28B97D5C006C3094 /* Helper */,
+				52CDFFC02B1E54EF0071F5CF /* OldTestFiles */,
 			);
 			path = UOKioskTests;
 			sourceTree = "<group>";
@@ -647,6 +644,17 @@
 				526221022A4228E10029FDAD /* URLSession+genericDataTaskPublisher.swift */,
 			);
 			path = Unused;
+			sourceTree = "<group>";
+		};
+		52CDFFC02B1E54EF0071F5CF /* OldTestFiles */ = {
+			isa = PBXGroup;
+			children = (
+				525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */,
+				525538EE2A0DA606004BD415 /* Mocks */,
+				525538E92A0C4CE3004BD415 /* MockApiService.swift */,
+				52131E6C28B97D5C006C3094 /* Helper */,
+			);
+			path = OldTestFiles;
 			sourceTree = "<group>";
 		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {
@@ -831,7 +839,6 @@
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */,
 				526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */,
-				52153BBE28AF6584007F4812 /* MockEventsModelData.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
@@ -848,7 +855,6 @@
 				5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */,
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
-				52A238622A4C1274004799E8 /* MockNewsFeedService.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
@@ -866,7 +872,6 @@
 				52460AF02A69E6EF008714EF /* RssArticleModel.swift in Sources */,
 				52A238692A4E1910004799E8 /* RadioView.swift in Sources */,
 				52463F062A3BCA11007BF9B1 /* EventsListSectionView.swift in Sources */,
-				52F56AF12A329D800046A999 /* MockWhatIsOpenService.swift in Sources */,
 				52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
@@ -874,7 +879,6 @@
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
 				52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */,
-				52153BB928AF63B2007F4812 /* MockEventsService.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -883,6 +887,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52CDFFC32B1E562B0071F5CF /* MockNewsFeedService.swift in Sources */,
+				52CDFFC42B1E56300071F5CF /* MockEventsModelData.swift in Sources */,
+				52CDFFC12B1E56220071F5CF /* MockEventsService.swift in Sources */,
+				52CDFFC22B1E56270071F5CF /* MockWhatIsOpenService.swift in Sources */,
 				52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */,
 				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,

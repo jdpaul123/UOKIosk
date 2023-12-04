@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+@testable import UOKiosk
 
 #if DEBUG
 class MockEventsModelData {

@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+@testable import UOKiosk
 
 
 final class MockEventsService: EventsRepository {

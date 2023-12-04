@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import UOKiosk
 
 class MockNewsFeedService: NewsFeedRepository {
     var fetchUrl: URL = URL(string: "https://www.youtube.com")!
