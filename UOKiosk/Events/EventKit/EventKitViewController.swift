@@ -63,18 +63,49 @@ struct EventKitView: UIViewControllerRepresentable {
         self.eventStart = eventStart
         self.eventEnd = eventEnd
 
-        eventStore.requestAccess(to: .event) { success, error in
-            guard error == nil else {
-                print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: error?.localizedDescription))")
-                return
-            }
-            guard success == true else {
-                print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
-                return
-            }
-            print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
-        }
         event = EKEvent(eventStore: eventStore)
+
+        try? requestAccess()
+    }
+
+    func requestAccess() throws {
+        let status = EKEventStore.authorizationStatus(for: .event)
+        switch status {
+        case .notDetermined, .denied:
+            if #available(iOS 17.0, *) {
+                // TODO: Is there a bug in .requestWriteOnlyAccessToEvents? When I use it and deny access in iOS 17, I am still able to add events to the calendar
+                eventStore.requestWriteOnlyAccessToEvents { success, error in
+                    guard error == nil else {
+                        print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                    guard success == true else {
+                        print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
+                        return
+                    }
+                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
+                }
+            } else {
+                eventStore.requestAccess(to: .event) { success, error in
+                    guard error == nil else {
+                        print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: error?.localizedDescription))")
+                        return
+                    }
+                    guard success == true else {
+                        print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
+                        return
+                    }
+                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
+                }
+            }
+        case .fullAccess, .authorized, .writeOnly:
+            return
+        case .restricted:
+            print("PRINTING Access Restricted")
+            throw PermissionError.accessRestricted
+        @unknown default:
+            throw PermissionError.unknown
+        }
     }
 
     func makeUIViewController(context: Context) -> EKEventEditViewController {

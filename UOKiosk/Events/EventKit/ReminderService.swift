@@ -46,13 +46,8 @@ final class ReminderService {
             guard accessGranted else {
                 throw PermissionError.accessDenied
             }
-        case .fullAccess:
+        case .fullAccess, .writeOnly:
             return
-        case .writeOnly:
-            let accessGranted = try await ekStore.requestAccess(to: .reminder)
-            guard accessGranted else {
-                throw PermissionError.accessDenied
-            }
         case .denied:
             throw PermissionError.accessDenied
         @unknown default:

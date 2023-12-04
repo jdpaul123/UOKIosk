@@ -230,7 +230,7 @@ class EventsService: EventsRepository {
             events.append(event)
         }
 
-        await saveEvents(imEvents: events)
+        try await saveEvents(imEvents: events)
         //return events // TODO: Above this return, once Core Data is implimented add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
 
@@ -263,19 +263,21 @@ class EventsService: EventsRepository {
 
     // MARK: - Turn In-Memory (IM) objects into Core Data entities
     @MainActor
-    func saveEvents(imEvents: [IMEvent]) {
+    func saveEvents(imEvents: [IMEvent]) throws {
         for imEvent in imEvents {
-            let event = try? addEvent(imEvent: imEvent)
-            if let event = event {
+            do {
+                let event = try addEvent(imEvent: imEvent)
                 addEventFilters(imEvent: imEvent, event: event)
                 // TODO: addLocation is causing crashes. Fix it.
                 if let eventLocation = imEvent.eventLocation {
                     do {
                         let _ = try addLocation(location: eventLocation, event: event)
                     } catch {
-                        // TODO: Add analytics to check if location did not store
+                        // TODO: Add error reporting if adding location to the event fails
                     }
                 }
+            } catch {
+                // TODO: Add error reporting if saving an event fails
             }
         }
     }
