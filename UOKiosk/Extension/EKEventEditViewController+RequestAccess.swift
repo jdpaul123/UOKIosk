@@ -8,6 +8,7 @@
 import Foundation
 import EventKitUI
 
+// This entension makes it so that EKEventEditViewController requests permission to write events to Calendar
 extension EKEventEditViewController {
     open override func viewDidAppear(_ animated: Bool) {
         Task {
@@ -26,8 +27,8 @@ extension EKEventEditViewController {
     }
 
     @discardableResult
-    func requestAccess() async throws -> Bool {
-        let status = EKEventStore.authorizationStatus(for: .event)
+    func requestAccess(eventStoreClass: EKEventStore.Type = EKEventStore.self) async throws -> Bool {
+        let status = eventStoreClass.authorizationStatus(for: .event)
         switch status {
         case .notDetermined, .denied:
             if #available(iOS 17.0, *) {

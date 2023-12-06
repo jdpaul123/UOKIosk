@@ -61,6 +61,7 @@
 		5286E92A2B203D8300A724A4 /* EventKitViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E9292B203D8300A724A4 /* EventKitViewControllerTests.swift */; };
 		5286E92C2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E92B2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift */; };
 		5286E92E2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E92D2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift */; };
+		5286E9312B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E9302B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -171,6 +172,7 @@
 		5286E9292B203D8300A724A4 /* EventKitViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewControllerTests.swift; sourceTree = "<group>"; };
 		5286E92B2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewCoordinatorTests.swift; sourceTree = "<group>"; };
 		5286E92D2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventEditViewController+RequestAccess.swift"; sourceTree = "<group>"; };
+		5286E9302B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventEditViewController+RequestAccessTests.swift"; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -469,6 +471,14 @@
 			path = EventKit;
 			sourceTree = "<group>";
 		};
+		5286E92F2B2114D900A724A4 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5286E9302B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		5289CEAC2A16D04300E51257 /* Events */ = {
 			isa = PBXGroup;
 			children = (
@@ -551,6 +561,7 @@
 			children = (
 				529861CA284553BC009C1E3B /* UOKioskTests.swift */,
 				5286E9262B203D4D00A724A4 /* Events */,
+				5286E92F2B2114D900A724A4 /* Extensions */,
 				52CDFFC02B1E54EF0071F5CF /* OldTestFiles */,
 			);
 			path = UOKioskTests;
@@ -922,6 +933,7 @@
 				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,
 				5286E92C2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift in Sources */,
+				5286E9312B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift in Sources */,
 				525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */,
 				529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */,
 			);
