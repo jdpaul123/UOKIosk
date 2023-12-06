@@ -6,20 +6,25 @@
 //
 import SwiftUI
 import EventKitUI
-
 /*
  Helpful Videos:
  https://www.youtube.com/watch?v=qKAlsts4qFA -> Wrapping a UIViewController in a SwiftUI view by Paul Hudson
  https://www.youtube.com/watch?v=-a7q-q7zKCg -> Using coordinators to manage SwifttUI view controllers by Paul Hudson
  https://www.youtube.com/watch?v=ycn-K9kRu9M -> Events & Calendars in Swift 5 (EventKit, iOS, Swift 5, Xcode 12) - 2022 iOS Development by iOS Academy
  */
-struct EventKitView: UIViewControllerRepresentable {
+protocol EventKitViewProtocol {
+    var eventCreated: Bool { get set }
+    var eventStore: EKEventStore { get }
+    var event: EKEvent { get }
+}
+
+struct EventKitView: EventKitViewProtocol, UIViewControllerRepresentable {
     // typealias UIViewControllerType = EKEventEditViewController
     // All UIViewControllers ultamately come from NSObject. NSObject allwos objective-c code to interface with Swift.
     class Coordinator: NSObject, UINavigationControllerDelegate, EKEventEditViewDelegate {
-        var parent: EventKitView
+        var parent: EventKitViewProtocol
 
-        init(_ parent: EventKitView) {
+        init(_ parent: EventKitViewProtocol) {
             self.parent = parent
         }
 
