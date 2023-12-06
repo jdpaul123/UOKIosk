@@ -18,6 +18,100 @@ protocol EventKitViewProtocol {
     var event: EKEvent { get }
 }
 
+extension EKEventEditViewController {
+    open override func viewDidAppear(_ animated: Bool) {
+//        requestAccess(completion: { result in
+//            switch result {
+//            case .success(let success):
+//                if success {
+//                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
+//                } else {
+//                    print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
+//                }
+//            case .failure(let failure):
+//                print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: failure.localizedDescription))")
+//            }
+//        })
+        Task {
+            do {
+                let success = try await requestAccess()
+                if success {
+                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
+                } else {
+                    print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
+                }
+            } catch {
+                // TODO: Log the error
+            }
+        }
+        super.viewDidAppear(animated)
+    }
+
+    @discardableResult
+    func requestAccess() async throws -> Bool {
+        let status = EKEventStore.authorizationStatus(for: .event)
+        switch status {
+        case .notDetermined, .denied:
+            if #available(iOS 17.0, *) {
+                // TODO: Is there a bug in .requestWriteOnlyAccessToEvents? When I use it and deny access in iOS 17, I am still able to add events to the calendar
+                do {
+                    let result = try await eventStore.requestWriteOnlyAccessToEvents()
+                    return result
+                } catch {
+                    throw error
+                }
+            } else {
+                do {
+                    let result = try await eventStore.requestAccess(to: .event)
+                    return result
+                } catch {
+                    throw error
+                }
+            }
+        case .fullAccess, .authorized, .writeOnly:
+            return true
+        case .restricted:
+            throw PermissionError.accessRestricted
+        @unknown default:
+            throw PermissionError.unknown
+        }
+    }
+
+    func requestAccess(completion: @escaping (Result<Bool, Error>) -> Void) {
+        let status = EKEventStore.authorizationStatus(for: .event)
+        switch status {
+        case .notDetermined, .denied:
+            if #available(iOS 17.0, *) {
+                // TODO: Is there a bug in .requestWriteOnlyAccessToEvents? When I use it and deny access in iOS 17, I am still able to add events to the calendar
+                eventStore.requestWriteOnlyAccessToEvents { success, error in
+                    guard error == nil else {
+                        completion(.failure(error!))
+                        return
+                    }
+                    completion(.success(success))
+                }
+            } else {
+                eventStore.requestAccess(to: .event) { success, error in
+                    guard error == nil else {
+                        completion(.failure(error!))
+                        return
+                    }
+                    completion(.success(success))
+                }
+            }
+        case .fullAccess, .authorized, .writeOnly:
+            completion(.success(true))
+            return
+        case .restricted:
+            completion(.failure(PermissionError.accessRestricted))
+            return
+        @unknown default:
+            completion(.failure(PermissionError.unknown))
+            return
+        }
+    }
+}
+
 struct EventKitView: EventKitViewProtocol, UIViewControllerRepresentable {
     // typealias UIViewControllerType = EKEventEditViewController
     // All UIViewControllers ultamately come from NSObject. NSObject allwos objective-c code to interface with Swift.
@@ -51,7 +145,7 @@ struct EventKitView: EventKitViewProtocol, UIViewControllerRepresentable {
     }
 
     @State var eventCreated: Bool = false
-    var eventStore = EKEventStore()
+    var eventStore: EKEventStore
 
     // Event attributes
     let eventTitle: String
@@ -61,64 +155,68 @@ struct EventKitView: EventKitViewProtocol, UIViewControllerRepresentable {
     let eventEnd: Date?
     var event: EKEvent
 
-    init(eventTitle: String, eventDescription: String, eventAllDay: Bool, eventStart: Date, eventEnd: Date?) {
+    init(eventTitle: String, eventDescription: String, eventAllDay: Bool, eventStart: Date, eventEnd: Date?, eventStore: EKEventStore = EKEventStore()) {
         self.eventTitle = eventTitle
         self.eventDescription = eventDescription
         self.eventAllDay = eventAllDay
         self.eventStart = eventStart
         self.eventEnd = eventEnd
+        self.eventStore = eventStore
 
-        event = EKEvent(eventStore: eventStore)
+        event = EKEvent(eventStore: self.eventStore)
 
-        try? requestAccess()
+//        requestAccess(completion: { result in
+//            switch result {
+//            case .success(let success):
+//                if success {
+//                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
+//                } else {
+//                    print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
+//                }
+//            case .failure(let failure):
+//                print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: failure.localizedDescription))")
+//            }
+//        })
     }
 
-    func requestAccess() throws {
-        let status = EKEventStore.authorizationStatus(for: .event)
-        switch status {
-        case .notDetermined, .denied:
-            if #available(iOS 17.0, *) {
-                // TODO: Is there a bug in .requestWriteOnlyAccessToEvents? When I use it and deny access in iOS 17, I am still able to add events to the calendar
-                eventStore.requestWriteOnlyAccessToEvents { success, error in
-                    guard error == nil else {
-                        print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: error?.localizedDescription))")
-                        return
-                    }
-                    guard success == true else {
-                        print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
-                        return
-                    }
-                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
-                }
-            } else {
-                eventStore.requestAccess(to: .event) { success, error in
-                    guard error == nil else {
-                        print("ERROR REQUESTING ACCESS TO ADD AN EVENT with error: \(String(describing: error?.localizedDescription))")
-                        return
-                    }
-                    guard success == true else {
-                        print("FAILED TO GET ACCESS TO ADD AN EVENT WITH NO ERROR")
-                        return
-                    }
-                    print("SUCCESS REQUESTING ACCESS TO ADD AN EVENT")
-                }
-            }
-        case .fullAccess, .authorized, .writeOnly:
-            return
-        case .restricted:
-            print("PRINTING Access Restricted")
-            throw PermissionError.accessRestricted
-        @unknown default:
-            throw PermissionError.unknown
-        }
-    }
+//    func requestAccess(completion: @escaping (Result<Bool, Error>) -> Void) {
+//        let status = EKEventStore.authorizationStatus(for: .event)
+//        switch status {
+//        case .notDetermined, .denied:
+//            if #available(iOS 17.0, *) {
+//                // TODO: Is there a bug in .requestWriteOnlyAccessToEvents? When I use it and deny access in iOS 17, I am still able to add events to the calendar
+//                eventStore.requestWriteOnlyAccessToEvents { success, error in
+//                    guard error == nil else {
+//                        completion(.failure(error!))
+//                        return
+//                    }
+//                    completion(.success(success))
+//                }
+//            } else {
+//                eventStore.requestAccess(to: .event) { success, error in
+//                    guard error == nil else {
+//                        completion(.failure(error!))
+//                        return
+//                    }
+//                    completion(.success(success))
+//                }
+//            }
+//        case .fullAccess, .authorized, .writeOnly:
+//            completion(.success(true))
+//            return
+//        case .restricted:
+//            completion(.failure(PermissionError.accessRestricted))
+//            return
+//        @unknown default:
+//            completion(.failure(PermissionError.unknown))
+//            return
+//        }
+//    }
 
     func makeUIViewController(context: Context) -> EKEventEditViewController {
         event.title = eventTitle
         event.notes = eventDescription
-        if eventAllDay {
-            event.isAllDay = eventAllDay
-        }
+        event.isAllDay = eventAllDay
         event.startDate = eventStart
         if let end = eventEnd {
             event.endDate = end
