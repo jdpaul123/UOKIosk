@@ -10,12 +10,14 @@ import XCTest
 import EventKitUI
 
 final class EventKitViewCoordinatorTests: XCTestCase {
-    final class EventKitViewControllerMock: EventKitViewProtocol {
+    // Make this NSObject to make it equateable: This should compair the memory locaitons (aka. pointer equality) of the two objects
+    // Discusion: https://thenewt.medium.com/equatable-pitfalls-in-ios-d250534bd7cc#:~:text=First%20of%20all%2C%20NSObject%20already,objects%20using%20the%20%3D%3D%20operator.&text=isEqual%20checks%20for%20pointer%20equality,NSObject%27s%20default%20implementation%20for%20%3D%3D%3D%20.
+    final class EventKitViewControllerMock: NSObject, EventKitViewProtocol {
         var eventCreated: Bool
         var eventStore: EKEventStore
         var event: EKEvent
 
-        init() {
+        override init() {
             eventCreated = false
             eventStore = EventStoreMock()
             event = EKEvent(eventStore: eventStore)
@@ -34,6 +36,17 @@ final class EventKitViewCoordinatorTests: XCTestCase {
 
     override func tearDownWithError() throws {
         sut = nil
+    }
+
+    func test_Coordinator_Init_SavedProperties() {
+        // given
+        let parent = EventKitViewControllerMock()
+
+        // when
+        sut = EventKitView.Coordinator(parent)
+
+        // then
+        XCTAssertEqual(parent, sut?.parent as? EventKitViewControllerMock)
     }
 
     func test_Coordinator_EventEditViewController_Saved() {
