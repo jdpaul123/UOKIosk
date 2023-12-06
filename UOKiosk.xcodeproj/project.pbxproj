@@ -60,6 +60,7 @@
 		5262210D2A45040B0029FDAD /* InformationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5262210C2A45040B0029FDAD /* InformationView.swift */; };
 		5286E92A2B203D8300A724A4 /* EventKitViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E9292B203D8300A724A4 /* EventKitViewControllerTests.swift */; };
 		5286E92C2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E92B2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift */; };
+		5286E92E2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5286E92D2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift */; };
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
@@ -169,6 +170,7 @@
 		5262210C2A45040B0029FDAD /* InformationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationView.swift; sourceTree = "<group>"; };
 		5286E9292B203D8300A724A4 /* EventKitViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewControllerTests.swift; sourceTree = "<group>"; };
 		5286E92B2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewCoordinatorTests.swift; sourceTree = "<group>"; };
+		5286E92D2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventEditViewController+RequestAccess.swift"; sourceTree = "<group>"; };
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				52F56AEB2A32981F0046A999 /* StringProtocol+Subscript.swift */,
 				52F56AED2A3298670046A999 /* Array+SafeSubscript.swift */,
 				52463ED42A37B5AE007BF9B1 /* Date+DayOfWeek.swift */,
+				5286E92D2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift */,
 				52CDFFBF2B1E4C740071F5CF /* Unused */,
 			);
 			path = Extension;
@@ -880,6 +883,7 @@
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
 				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
+				5286E92E2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift in Sources */,
 				52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */,
 				52463EFF2A3BC59A007BF9B1 /* EventsListCellView.swift in Sources */,
 				52463F112A3C26F9007BF9B1 /* IMEventLocation.swift in Sources */,
