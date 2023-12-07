@@ -23,10 +23,12 @@ final class EKEventEditViewController_RequestAccessTests: XCTestCase {
     class MockEventStore: EKEventStore {
         static var authStatus: EKAuthorizationStatus = .denied
         var isAccessAllowed: Bool // false if user denied. true if user accepted access
+        var errorToThrow: EKError?
 
-        init(authStatus: EKAuthorizationStatus, isAccessAllowed: Bool) {
+        init(authStatus: EKAuthorizationStatus, isAccessAllowed: Bool, errorToThrow: EKError? = nil) {
             Self.authStatus = authStatus
             self.isAccessAllowed = isAccessAllowed
+            self.errorToThrow = errorToThrow
             super.init()
         }
 
@@ -38,11 +40,17 @@ final class EKEventEditViewController_RequestAccessTests: XCTestCase {
 
         // Set to false if user denied
         override func requestWriteOnlyAccessToEvents() async throws -> Bool {
+            if let errorToThrow = errorToThrow {
+                throw errorToThrow
+            }
             return isAccessAllowed
         }
 
         // Set to false if user denied
         override func requestAccess(to entityType: EKEntityType) async throws -> Bool {
+            if let errorToThrow = errorToThrow {
+                throw errorToThrow
+            }
             return isAccessAllowed
         }
     }
@@ -217,6 +225,26 @@ final class EKEventEditViewController_RequestAccessTests: XCTestCase {
         } catch {
             // Then
             XCTAssertEqual(error as? PermissionError, PermissionError.accessRestricted)
+            expectation.fulfill()
+        }
+
+        // Then
+        await fulfillment(of: [expectation], timeout: 1)
+    }
+
+    func test_EKEventEditViewController_RequestAccessWhenNotDeterminedError_ThrowsError() async {
+        // given
+        let testError = EKError(.internalFailure)
+        let eventStore = MockEventStore(authStatus: .notDetermined, isAccessAllowed: true, errorToThrow: testError)//EKError(_nsError: NSError()))
+        let sut = await EKEventEditViewController(eventStore: eventStore)
+        let expectation = XCTestExpectation(description: "Make sure we are thrown an error")
+
+        // when
+        do {
+            _ = try await sut.requestAccess(eventStoreClass: MockEventStore.self)
+        } catch {
+            // Then
+            XCTAssertEqual(error as? EKError, testError)
             expectation.fulfill()
         }
 
