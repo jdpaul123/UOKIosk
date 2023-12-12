@@ -29,7 +29,7 @@ import Combine
 
 class EventsService: EventsRepository {
     // MARK: Properties
-    let urlString: String
+    private let urlString: String
     var persistentContainer: NSPersistentContainer
     private var lastDataUpdateDate: Date {
         didSet {
@@ -53,7 +53,10 @@ class EventsService: EventsRepository {
                 print("!!! Failed to load persistent stores for the Events Model with error: \(error?.localizedDescription ?? "Error does not exist")")
                 return
             }
-            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
+            // TODO: What is NSPersistentHistoryTrackingKey for? Am I actually using it
+//            storeDescription.setOption(true as NSNumber, forKey: NSPersistentHistoryTrackingKey)
+
             // NSMergeByPropertyObjectTrumpMergePolicy means that any object that is trying to add an Event Object with the same id as one already saved then it only updates the data rather than saving a second copy
             self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
             self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
@@ -138,7 +141,7 @@ class EventsService: EventsRepository {
     }
 
     // MARK: Get Fresh Events
-    func fetchFreshEvents() async throws /*-> [IMEvent]*/ {
+    private func fetchFreshEvents() async throws /*-> [IMEvent]*/ {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)
@@ -263,7 +266,7 @@ class EventsService: EventsRepository {
 
     // MARK: - Turn In-Memory (IM) objects into Core Data entities
     @MainActor
-    func saveEvents(imEvents: [IMEvent]) throws {
+    private func saveEvents(imEvents: [IMEvent]) throws {
         for imEvent in imEvents {
             do {
                 let event = try addEvent(imEvent: imEvent)
@@ -284,7 +287,7 @@ class EventsService: EventsRepository {
 
     // MARK: - Core Data Functions
     @MainActor
-    func addEventFilters(imEvent: IMEvent, event: Event) {
+    private func addEventFilters(imEvent: IMEvent, event: Event) {
         for imFilter in imEvent.eventTypeFilters {
             let filter = try? addFilter(imFilter: imFilter)
             if let filter = filter {
@@ -306,7 +309,7 @@ class EventsService: EventsRepository {
     }
 
     @MainActor
-    func addFilter(imFilter: IMEventFilter) throws -> EventFilter {
+    private func addFilter(imFilter: IMEventFilter) throws -> EventFilter {
         let filter = EventFilter(id: imFilter.id, name: imFilter.name, context: persistentContainer.viewContext)
 
         do {
@@ -318,7 +321,7 @@ class EventsService: EventsRepository {
     }
 
     @MainActor
-    func addLocation(location: IMEventLocation, event: Event) throws {
+    private func addLocation(location: IMEventLocation, event: Event) throws {
         let location = EventLocation(location: location, context: persistentContainer.viewContext)
         event.eventLocation = location
 
@@ -330,7 +333,7 @@ class EventsService: EventsRepository {
     }
 
     @MainActor
-    func addEvent(imEvent: IMEvent) throws -> Event {
+    private func addEvent(imEvent: IMEvent) throws -> Event {
         let event = Event(eventData: imEvent, context: persistentContainer.viewContext)
 
         do {
@@ -342,7 +345,7 @@ class EventsService: EventsRepository {
     }
 
     @MainActor
-    func deleteEvent(_ event: Event) throws {
+    private func deleteEvent(_ event: Event) throws {
         persistentContainer.viewContext.delete(event)
 
         do {
@@ -364,23 +367,9 @@ class EventsService: EventsRepository {
         }
     }
 
-    func eventResultsController() -> NSFetchedResultsController<Event>? {
+    private func eventResultsController() -> NSFetchedResultsController<Event>? {
         let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
         fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
-
-        return createResultsController(fetchRequest: fetchRequest)
-    }
-
-    func eventResultsController(for date: Date) -> NSFetchedResultsController<Event>? {
-        let fetchRequest: NSFetchRequest<Event> = Event.fetchRequest()
-        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \Event.start, ascending: true)]
-
-        // Only get the events that start during the day specified in the date argument
-        let calendar = Calendar(identifier: .gregorian)
-        let startOfDay = calendar.startOfDay(for: date)
-        let components = DateComponents(day: 1)
-        let endOfDay = Calendar.current.date(byAdding: components, to: startOfDay)!
-        fetchRequest.predicate = NSPredicate(format: "start >= %@ && start < endOfDay", startOfDay as NSDate, endOfDay as NSDate)
 
         return createResultsController(fetchRequest: fetchRequest)
     }

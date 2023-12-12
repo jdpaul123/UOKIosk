@@ -24,11 +24,15 @@ class EventDetailViewModel: ObservableObject {
     let eventDescription: String
     let website: URL?
 
+    let reminderService: ReminderServiceProtocol
+
     var hasAbilityToAddReminder: Bool {
-        ReminderService.shared.isAvailable
+        reminderService.isAvailable
     }
 
-    init(event: Event) {
+    init(event: Event, reminderService: ReminderServiceProtocol = ReminderService.shared) {
+        self.reminderService = reminderService
+
         self.event = event
         self.title = event.title
         let noImageData = UIImage.init(named: "NoImage")!.pngData()!
@@ -92,9 +96,9 @@ class EventDetailViewModel: ObservableObject {
 
     // MARK: - Reminders
     func tryAddReminder() -> Bool {
-        if ReminderService.shared.isAvailable {
+        if reminderService.isAvailable {
             do {
-                try ReminderService.shared.addReminder(title: title, eventDescription: eventDescription, eventStart: event.start)
+                try reminderService.addReminder(title: title, eventDescription: eventDescription, eventStart: event.start)
             } catch {
                 print("Adding reminder failed with error: \(error.localizedDescription)")
                 return false
@@ -108,7 +112,7 @@ class EventDetailViewModel: ObservableObject {
     func prepareReminderStore() {
         Task {
             do {
-                try await ReminderService.shared.requestAccess()
+                try await reminderService.requestAccess()
             } catch PermissionError.accessDenied, PermissionError.accessRestricted {
                 print("prepareReminderStore access denied and access restricted")
             } catch {
@@ -116,7 +120,7 @@ class EventDetailViewModel: ObservableObject {
             }
 
             do {
-                try await ReminderService.shared.requestContactAccess()
+                try await reminderService.requestContactAccess()
             } catch PermissionError.accessDenied, PermissionError.accessRestricted {
                 print("prepareReminderStore access denied and access restricted")
             } catch {

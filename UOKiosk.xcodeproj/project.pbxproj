@@ -70,7 +70,6 @@
 		529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861B9284553BA009C1E3B /* UOKioskApp.swift */; };
 		529861BE284553BC009C1E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529861BD284553BC009C1E3B /* Assets.xcassets */; };
 		529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 529861C0284553BC009C1E3B /* Preview Assets.xcassets */; };
-		529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861CA284553BC009C1E3B /* UOKioskTests.swift */; };
 		529861D5284553BC009C1E3B /* UOKioskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861D4284553BC009C1E3B /* UOKioskUITests.swift */; };
 		529861D7284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861D6284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift */; };
 		529861EA2845587C009C1E3B /* TabMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861E92845587C009C1E3B /* TabMenuView.swift */; };
@@ -89,9 +88,11 @@
 		52A2386B2A4E1923004799E8 /* RadioViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */; };
 		52A238792A575D0C004799E8 /* CampusMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238782A575D0C004799E8 /* CampusMapViewModel.swift */; };
 		52A2387B2A5E086F004799E8 /* WebViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */; };
+		52AC2E8D2B2287ED00E269B4 /* EventsListViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC2E8C2B2287ED00E269B4 /* EventsListViewModelTests.swift */; };
+		52AC2E8F2B23D58800E269B4 /* PermissionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC2E8E2B23D58800E269B4 /* PermissionError.swift */; };
+		52AC2E912B23D5A600E269B4 /* CreateReminderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52AC2E902B23D5A600E269B4 /* CreateReminderError.swift */; };
 		52BC04062A09A267005F93BF /* MockEventsData.json in Resources */ = {isa = PBXBuildFile; fileRef = 52BC04052A09A267005F93BF /* MockEventsData.json */; };
 		52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */; };
-		52CDFFC12B1E56220071F5CF /* MockEventsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BB828AF63B2007F4812 /* MockEventsService.swift */; };
 		52CDFFC22B1E56270071F5CF /* MockWhatIsOpenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */; };
 		52CDFFC32B1E562B0071F5CF /* MockNewsFeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A238602A4C1262004799E8 /* MockNewsFeedService.swift */; };
 		52CDFFC42B1E56300071F5CF /* MockEventsModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52153BBD28AF6584007F4812 /* MockEventsModelData.swift */; };
@@ -133,7 +134,6 @@
 		52153BAF28AE08EE007F4812 /* EventDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailView.swift; sourceTree = "<group>"; };
 		52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewModel.swift; sourceTree = "<group>"; };
 		52153BB528AF5EE7007F4812 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
-		52153BB828AF63B2007F4812 /* MockEventsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsService.swift; sourceTree = "<group>"; };
 		52153BBD28AF6584007F4812 /* MockEventsModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockEventsModelData.swift; sourceTree = "<group>"; };
 		52460AE42A611079008714EF /* WhatIsOpenIssueReportingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenIssueReportingView.swift; sourceTree = "<group>"; };
 		52460AE62A62718B008714EF /* WhatIsOpenMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenMapView.swift; sourceTree = "<group>"; };
@@ -183,7 +183,6 @@
 		529861BD284553BC009C1E3B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		529861C0284553BC009C1E3B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		529861C6284553BC009C1E3B /* UOKioskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UOKioskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		529861CA284553BC009C1E3B /* UOKioskTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskTests.swift; sourceTree = "<group>"; };
 		529861D0284553BC009C1E3B /* UOKioskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UOKioskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		529861D4284553BC009C1E3B /* UOKioskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskUITests.swift; sourceTree = "<group>"; };
 		529861D6284553BC009C1E3B /* UOKioskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UOKioskUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -203,6 +202,9 @@
 		52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioViewViewModel.swift; sourceTree = "<group>"; };
 		52A238782A575D0C004799E8 /* CampusMapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewModel.swift; sourceTree = "<group>"; };
 		52A2387A2A5E086F004799E8 /* WebViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewDelegate.swift; sourceTree = "<group>"; };
+		52AC2E8C2B2287ED00E269B4 /* EventsListViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsListViewModelTests.swift; sourceTree = "<group>"; };
+		52AC2E8E2B23D58800E269B4 /* PermissionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionError.swift; sourceTree = "<group>"; };
+		52AC2E902B23D5A600E269B4 /* CreateReminderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateReminderError.swift; sourceTree = "<group>"; };
 		52BC04052A09A267005F93BF /* MockEventsData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockEventsData.json; sourceTree = "<group>"; };
 		52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		52F1F65B2A304CFB00F9CF3B /* WhatIsOpenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenRepository.swift; sourceTree = "<group>"; };
@@ -290,7 +292,6 @@
 		52153BB728AF639F007F4812 /* MockRepository */ = {
 			isa = PBXGroup;
 			children = (
-				52153BB828AF63B2007F4812 /* MockEventsService.swift */,
 				52F56AEF2A329D5F0046A999 /* MockWhatIsOpenService.swift */,
 				52A238602A4C1262004799E8 /* MockNewsFeedService.swift */,
 			);
@@ -416,6 +417,8 @@
 			children = (
 				526220F62A3FF2910029FDAD /* EventKitViewController.swift */,
 				526220FF2A4173540029FDAD /* ReminderService.swift */,
+				52AC2E902B23D5A600E269B4 /* CreateReminderError.swift */,
+				52AC2E8E2B23D58800E269B4 /* PermissionError.swift */,
 			);
 			path = EventKit;
 			sourceTree = "<group>";
@@ -457,6 +460,7 @@
 		5286E9262B203D4D00A724A4 /* Events */ = {
 			isa = PBXGroup;
 			children = (
+				52AC2E8A2B2287BD00E269B4 /* ViewModels */,
 				5286E9272B203D5500A724A4 /* EventKit */,
 			);
 			path = Events;
@@ -559,7 +563,6 @@
 		529861C9284553BC009C1E3B /* UOKioskTests */ = {
 			isa = PBXGroup;
 			children = (
-				529861CA284553BC009C1E3B /* UOKioskTests.swift */,
 				5286E9262B203D4D00A724A4 /* Events */,
 				5286E92F2B2114D900A724A4 /* Extensions */,
 				52CDFFC02B1E54EF0071F5CF /* OldTestFiles */,
@@ -672,6 +675,22 @@
 				52A2386A2A4E1923004799E8 /* RadioViewViewModel.swift */,
 			);
 			path = Radio;
+			sourceTree = "<group>";
+		};
+		52AC2E8A2B2287BD00E269B4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				52AC2E8B2B2287C800E269B4 /* EventsListViewModels */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		52AC2E8B2B2287C800E269B4 /* EventsListViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				52AC2E8C2B2287ED00E269B4 /* EventsListViewModelTests.swift */,
+			);
+			path = EventsListViewModels;
 			sourceTree = "<group>";
 		};
 		52CDFFBF2B1E4C740071F5CF /* Unused */ = {
@@ -903,6 +922,7 @@
 				52A238552A4B8766004799E8 /* NewsFeedService.swift in Sources */,
 				529861EC284558CD009C1E3B /* ApiService.swift in Sources */,
 				52463EFD2A3BC55E007BF9B1 /* EventsListView.swift in Sources */,
+				52AC2E912B23D5A600E269B4 /* CreateReminderError.swift in Sources */,
 				52463F0B2A3C26C8007BF9B1 /* IMEvent.swift in Sources */,
 				52460AEC2A62726D008714EF /* WhatIsOpenMapViewRepresentable.swift in Sources */,
 				52A238572A4BF764004799E8 /* NewsFeedViewModel.swift in Sources */,
@@ -915,6 +935,7 @@
 				52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,
+				52AC2E8F2B23D58800E269B4 /* PermissionError.swift in Sources */,
 				52A238662A4C2019004799E8 /* NewsFeedArticleViewRepresentable.swift in Sources */,
 				526221002A4173540029FDAD /* ReminderService.swift in Sources */,
 			);
@@ -926,16 +947,15 @@
 			files = (
 				52CDFFC32B1E562B0071F5CF /* MockNewsFeedService.swift in Sources */,
 				52CDFFC42B1E56300071F5CF /* MockEventsModelData.swift in Sources */,
-				52CDFFC12B1E56220071F5CF /* MockEventsService.swift in Sources */,
 				52CDFFC22B1E56270071F5CF /* MockWhatIsOpenService.swift in Sources */,
 				5286E92A2B203D8300A724A4 /* EventKitViewControllerTests.swift in Sources */,
+				52AC2E8D2B2287ED00E269B4 /* EventsListViewModelTests.swift in Sources */,
 				52F56AE82A3295C60046A999 /* MockWhatsOpenData.swift in Sources */,
 				525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */,
 				52131E6E28B97D6E006C3094 /* PersistentContainerHelper.swift in Sources */,
 				5286E92C2B2043BF00A724A4 /* EventKitViewCoordinatorTests.swift in Sources */,
 				5286E9312B21150400A724A4 /* EKEventEditViewController+RequestAccessTests.swift in Sources */,
 				525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */,
-				529861CB284553BC009C1E3B /* UOKioskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

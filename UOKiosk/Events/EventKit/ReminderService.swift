@@ -19,7 +19,14 @@ import EventKit
 import Contacts
 import Foundation
 
-final class ReminderService {
+protocol ReminderServiceProtocol {
+    var isAvailable: Bool { get }
+    func requestAccess() async throws
+    func requestContactAccess() async throws
+    func addReminder(title: String, eventDescription: String, eventStart: Date) throws
+}
+
+final class ReminderService: ReminderServiceProtocol {
     static let shared = ReminderService()
 
     private let ekStore = EKEventStore()
@@ -91,37 +98,5 @@ final class ReminderService {
             throw error
         }
         print("SUCCESS ADDING EVENT TO REMINDERS")
-    }
-}
-
-enum CreateReminderError: Error, LocalizedError {
-    case noDefaultCalendarForNewReminders
-
-    var errorDescription: String? {
-        switch self {
-        case .noDefaultCalendarForNewReminders:
-            return NSLocalizedString("There is no default calendar for new reminders", comment: "")
-        }
-    }
-}
-
-enum PermissionError: LocalizedError {
-    case accessDenied
-    case accessRestricted
-    case unknown
-
-    var errorDescription: String? {
-        switch self {
-        case .accessDenied:
-            return NSLocalizedString(
-                "The app doesn't have permission to read reminders.",
-                comment: "access denied error description")
-        case .accessRestricted:
-            return NSLocalizedString(
-                "This device doesn't allow access to reminders.",
-                comment: "access restricted error description")
-        case .unknown:
-            return NSLocalizedString("An unknown error occurred.", comment: "unknown error description")
-        }
     }
 }

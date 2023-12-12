@@ -21,7 +21,7 @@ class EventsListViewModel: NSObject, ObservableObject {
     @Published var showingInformationSheet = false
     @Published var viewModelHasLoaded = false
     @Published var showBanner: Bool = false
-    @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
+    @Published var bannerData: BannerModifier.BannerData
     @Published var isLoading: Bool = false
     var showLoading: Bool {
         if isLoading, eventsDictionary.isEmpty {
@@ -31,10 +31,11 @@ class EventsListViewModel: NSObject, ObservableObject {
     }
 
     // MARK: Initializer
-    init(eventsRepository: EventsRepository) {
+    init(eventsRepository: EventsRepository, bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)) {
         self.eventsRepository = eventsRepository
-        super.init()
+        self.bannerData = bannerData
         self.resultsController = eventsRepository.fetchSavedEvents()
+        super.init()
     }
 
     // MARK: Fetch Events

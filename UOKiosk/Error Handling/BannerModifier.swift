@@ -37,7 +37,7 @@ enum BannerType {
 }
 
 struct BannerModifier: ViewModifier {
-    struct BannerData {
+    struct BannerData: Equatable {
         var title: String
         var detail: String
         var type: BannerType

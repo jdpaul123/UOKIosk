@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreData
-import Combine
 
 public class Event: NSManagedObject {
     // MARK: Transient Properties / In-Memory Properties
