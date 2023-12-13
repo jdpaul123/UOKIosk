@@ -19,13 +19,13 @@ fileprivate class MockEventsRepository: NSObject, EventsRepository {
     init(urlString: String) {
         // Make sure the data is not persisted
         let persistentStoreDescription = NSPersistentStoreDescription()
-        persistentStoreDescription.type = NSInMemoryStoreType
+        persistentStoreDescription.url = URL(fileURLWithPath: "/dev/null")
 
         persistentContainer = NSPersistentContainer(name: "EventsModel")
         persistentContainer.persistentStoreDescriptions = [persistentStoreDescription]
 
         // NSMergeByPropertyObjectTrumpMergePolicy means that any object that is trying to add an Event Object with the same id as one already saved then it only updates the data rather than saving a second copy
-        self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        self.persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy // TODO: Commenting out this line makes try! persistentContainer.viewContext.save() throw an error
         self.persistentContainer.viewContext.automaticallyMergesChangesFromParent = true
 
         persistentContainer.loadPersistentStores { storeDescription, error in
@@ -95,10 +95,11 @@ final class EventsListViewModelTests: XCTestCase {
         XCTAssertTrue(sut.viewModelHasLoaded)
     }
 
+    // TODO: This is failing
 //    func test_EventsListViewModel_FetchEvents_ReturnsFiveEvents() async {
 //        // given
 //        let mockEventsRepository = MockEventsRepositoryWithData(urlString: UUID().uuidString)
-//        let sut = EventsListViewModel(eventsRepository: MockEventsRepository(urlString: UUID().uuidString))
+//        let sut = EventsListViewModel(eventsRepository: mockEventsRepository)
 //        let eventsCount = sut.events.count
 //
 //        // when

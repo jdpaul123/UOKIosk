@@ -28,6 +28,12 @@ import Combine
  */
 
 class EventsService: EventsRepository {
+    enum FilterType {
+        case department
+        case targetAudience
+        case eventType
+    }
+
     // MARK: Properties
     private let urlString: String
     var persistentContainer: NSPersistentContainer
@@ -141,6 +147,7 @@ class EventsService: EventsRepository {
     }
 
     // MARK: Get Fresh Events
+    @MainActor
     private func fetchFreshEvents() async throws /*-> [IMEvent]*/ {
         var dto: EventsDto? = nil
         do {
@@ -163,9 +170,9 @@ class EventsService: EventsRepository {
             }
 
             let dateValues = getEventInstanceDateData(dateData: eventInstanceWrapper.eventInstance)
-            let allDay = dateValues.0
-            let _ = dateValues.1
-            let end = dateValues.2
+            let allDay = dateValues.allDay
+            let _ = dateValues.start
+            let end = dateValues.end
             if allDay == true {
                 // If the event is all day then we should save it
                 eventDtos.append(eventDto)
@@ -183,7 +190,6 @@ class EventsService: EventsRepository {
             eventDtos.append(eventDto)
         }
 
-        var events = [IMEvent]()
         for eventDto in eventDtos {
             guard let eventInstances = eventDto.eventInstances else {
                 fatalError("There are no event instances to access")
@@ -191,53 +197,54 @@ class EventsService: EventsRepository {
             let dateData = eventInstances[0].eventInstance
             let dateValues = getEventInstanceDateData(dateData: dateData)
 
-            var eventTypeFilters = [IMEventFilter]()
-            var departmentFilters = [IMEventFilter]()
-            var targetAudienceFilters = [IMEventFilter]()
+            // Add the event
+            let event: Event
+            do {
+                event = try addEvent(eventDto, start: dateValues.start, end: dateValues.end, allDay: dateValues.allDay)
+            } catch {
+                throw error
+            }
 
-            let event = IMEvent(id: eventDto.id, title: eventDto.title, eventDescription: eventDto.descriptionText, locationName: eventDto.locationName,
-                                roomNumber: eventDto.roomNumber, address: eventDto.address, status: eventDto.status, experience: eventDto.experience,
-                                eventUrl: URL(string: eventDto.localistUrl ?? ""),
-                                streamUrl: URL(string: eventDto.streamUrl ?? ""),
-                                ticketUrl: URL(string: eventDto.ticketUrl ?? ""),
-                                venueUrl: URL(string: eventDto.venueUrl ?? ""),
-                                calendarUrl: URL(string: eventDto.icsUrl ?? ""),
-                                photoUrl: URL(string: eventDto.photoUrl ?? ""),
-                                ticketCost: eventDto.ticketCost,
-                                start: dateValues.1, end: dateValues.2, allDay: dateValues.0,
-                                departmentFilters: departmentFilters, targetAudienceFilters: targetAudienceFilters, eventTypeFilters: eventTypeFilters)
-
-            // Create the relationships
-            if let dtoEventFilters = eventDto.filters.eventTypes {
-                for eventFilter in dtoEventFilters {
-                    eventTypeFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+            // Add the relationships to the event
+            if let eventTypeFilters = eventDto.filters.eventTypes {
+                for eventTypeFilter in eventTypeFilters {
+                    do {
+                        try addFilter(to: event, filter: eventTypeFilter, filterType: .eventType)
+                    } catch {
+                        throw error
+                    }
                 }
             }
-            if let dtoDepartmentFilters = eventDto.filters.departments {
-                for eventFilter in dtoDepartmentFilters {
-                    departmentFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+            if let departmentFilters = eventDto.filters.departments {
+                for departmentFilter in departmentFilters {
+                    do {
+                        try addFilter(to: event, filter: departmentFilter, filterType: .department)
+                    } catch {
+                        throw error
+                    }
                 }
             }
-            if let dtoTargetAudienceFilters = eventDto.filters.eventTargetAudience {
-                for eventFilter in dtoTargetAudienceFilters {
-                    targetAudienceFilters.append(IMEventFilter(id: eventFilter.id, name: eventFilter.name, event: event))
+            if let targetAudienceFilters = eventDto.filters.eventTargetAudience {
+                for targetAudienceFilter in targetAudienceFilters {
+                    do {
+                        try addFilter(to: event, filter: targetAudienceFilter, filterType: .targetAudience)
+                    } catch {
+                        throw error
+                    }
                 }
             }
-            event.eventTypeFilters = eventTypeFilters
-            event.departmentFilters = departmentFilters
-            event.targetAudienceFilters = targetAudienceFilters
 
-            let eventLocation = IMEventLocation(latitude: Double(eventDto.geo?.latitude ?? "0.0") ?? 0.0, longitude: Double(eventDto.geo?.longitude ?? "0.0") ?? 0.0, street: eventDto.geo?.street, city: eventDto.geo?.city, country: eventDto.geo?.country, zip: Int64(Int(eventDto.geo?.zip ?? "0") ?? 0), event: event)
-            event.eventLocation = eventLocation
-
-            events.append(event)
+            if let geoDto = eventDto.geo {
+                do {
+                    try addLocation(to: event, geoDto: geoDto)
+                } catch {
+                    throw error
+                }
+            }
         }
-
-        try await saveEvents(imEvents: events)
-        //return events // TODO: Above this return, once Core Data is implimented add in a check that fetchedObjects exists and has Events, otherwise Throw an error
     }
 
-    private func getEventInstanceDateData(dateData: EventInstanceDto) -> (Bool, Date, Date?) {
+    private func getEventInstanceDateData(dateData: EventInstanceDto) -> (allDay: Bool, start: Date, end: Date?) {
         let startStr: String = dateData.start
         let endStr: String? = dateData.end
 
@@ -264,81 +271,57 @@ class EventsService: EventsRepository {
         return (allDay, start, end)
     }
 
-    // MARK: - Turn In-Memory (IM) objects into Core Data entities
     @MainActor
-    private func saveEvents(imEvents: [IMEvent]) throws {
-        for imEvent in imEvents {
-            do {
-                let event = try addEvent(imEvent: imEvent)
-                addEventFilters(imEvent: imEvent, event: event)
-                // TODO: addLocation is causing crashes. Fix it.
-                if let eventLocation = imEvent.eventLocation {
-                    do {
-                        let _ = try addLocation(location: eventLocation, event: event)
-                    } catch {
-                        // TODO: Add error reporting if adding location to the event fails
-                    }
-                }
-            } catch {
-                // TODO: Add error reporting if saving an event fails
-            }
-        }
-    }
-
-    // MARK: - Core Data Functions
-    @MainActor
-    private func addEventFilters(imEvent: IMEvent, event: Event) {
-        for imFilter in imEvent.eventTypeFilters {
-            let filter = try? addFilter(imFilter: imFilter)
-            if let filter = filter {
-                event.addToEventTypeFilters(filter)
-            }
-        }
-        for imFilter in imEvent.departmentFilters {
-            let filter = try? addFilter(imFilter: imFilter)
-            if let filter = filter {
-                event.addToDepartmentFilters(filter)
-            }
-        }
-        for imFilter in imEvent.targetAudienceFilters {
-            let filter = try? addFilter(imFilter: imFilter)
-            if let filter = filter {
-                event.addToTargetAudienceFilters(filter)
-            }
-        }
-    }
-
-    @MainActor
-    private func addFilter(imFilter: IMEventFilter) throws -> EventFilter {
-        let filter = EventFilter(id: imFilter.id, name: imFilter.name, context: persistentContainer.viewContext)
-
-        do {
-            try saveViewContext()
-            return filter
-        } catch {
-            throw error
-        }
-    }
-
-    @MainActor
-    private func addLocation(location: IMEventLocation, event: Event) throws {
-        let location = EventLocation(location: location, context: persistentContainer.viewContext)
-        event.eventLocation = location
-
-        do {
-            try saveViewContext()
-        } catch {
-            throw error
-        }
-    }
-
-    @MainActor
-    private func addEvent(imEvent: IMEvent) throws -> Event {
-        let event = Event(eventData: imEvent, context: persistentContainer.viewContext)
+    private func addEvent(_ eventDto: EventDto, start: Date, end: Date?, allDay: Bool) throws -> Event {
+        let event = Event(id: eventDto.id, title: eventDto.title, eventDescription: eventDto.descriptionText, locationName: eventDto.locationName,
+                          roomNumber: eventDto.roomNumber, address: eventDto.address, status: eventDto.status ?? "No status", experience: eventDto.experience ?? "No experience value",
+                          eventUrl: URL(string: eventDto.localistUrl ?? ""),
+                          streamUrl: URL(string: eventDto.streamUrl ?? ""),
+                          ticketUrl: URL(string: eventDto.ticketUrl ?? ""),
+                          venueUrl: URL(string: eventDto.venueUrl ?? ""),
+                          calendarUrl: URL(string: eventDto.icsUrl ?? ""),
+                          photoData: nil,
+                          photoUrl: URL(string: eventDto.photoUrl ?? ""),
+                          ticketCost: eventDto.ticketCost,
+                          start: start, end: end, allDay: allDay,
+                          eventLocation: nil,
+                          departmentFilters: [], targetAudienceFilters: [], eventTypeFilters: [],
+                          context: persistentContainer.viewContext)
 
         do {
             try saveViewContext()
             return event
+        } catch {
+            throw error
+        }
+    }
+
+    @MainActor
+    private func addFilter(to event: Event, filter: EventFilterDto, filterType: FilterType) throws {
+        let filter = EventFilter(filter: filter, context: persistentContainer.viewContext)
+        switch filterType {
+        case .department:
+            event.addToDepartmentFilters(filter)
+        case .eventType:
+            event.addToEventTypeFilters(filter)
+        case .targetAudience:
+            event.addToTargetAudienceFilters(filter)
+        }
+
+        do {
+            try saveViewContext()
+        } catch {
+            throw error
+        }
+    }
+
+    @MainActor
+    private func addLocation(to event: Event, geoDto: GeoDto) throws {
+        let location = EventLocation(geoData: geoDto, context: persistentContainer.viewContext)
+        event.eventLocation = location
+
+        do {
+            try saveViewContext()
         } catch {
             throw error
         }

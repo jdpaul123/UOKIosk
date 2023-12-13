@@ -9,11 +9,9 @@
 import Foundation
 import CoreData
 
-
 public class EventFilter: NSManagedObject {
-    convenience init(filter: IMEventFilter, context: NSManagedObjectContext) {
+    convenience init(filter: EventFilterDto, context: NSManagedObjectContext) {
         self.init(context: context)
-
         self.id = Int64(filter.id)
         self.name = filter.name
     }
