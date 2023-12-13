@@ -61,7 +61,6 @@ class EventsListViewModel: NSObject, ObservableObject {
         let cal = Calendar(identifier: .gregorian)
         for event in events {
             // Get date at midnight
-//            guard let start = event.start else { continue }
             let day = cal.component(.day, from: event.start)
             let month = cal.component(.month, from: event.start)
             let year = cal.component(.year, from: event.start)
