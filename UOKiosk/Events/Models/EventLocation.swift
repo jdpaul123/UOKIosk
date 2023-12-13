@@ -10,27 +10,21 @@ import Foundation
 import CoreData
 
 public class EventLocation: NSManagedObject {
-    convenience init(geoData: GeoDto, context: NSManagedObjectContext) {
+    convenience init(geoDto: GeoDto, context: NSManagedObjectContext) {
         self.init(context: context)
         
-        if let latString = geoData.latitude, let latitude = Double(latString) {
+        if let latString = geoDto.latitude, let latitude = Double(latString) {
             self.latitude = latitude
-        } else {
-            self.latitude = 0
         }
-        if let longString = geoData.longitude, let longitude = Double(longString) {
+        if let longString = geoDto.longitude, let longitude = Double(longString) {
             self.longitude = longitude
-        } else {
-            self.longitude = 0
         }
-        if let zipString = geoData.zip, let zip = Int64(zipString) {
+        if let zipString = geoDto.zip, let zip = Int64(zipString) {
             self.zip = zip
-        } else {
-            self.zip = 0
         }
-        self.street = geoData.street
-        self.city = geoData.city
-        self.country = geoData.country
+        self.street = geoDto.street
+        self.city = geoDto.city
+        self.country = geoDto.country
     }
 }
 

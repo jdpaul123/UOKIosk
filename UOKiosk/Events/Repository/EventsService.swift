@@ -33,6 +33,17 @@ class EventsService: EventsRepository {
         case eventType
     }
 
+    enum EventServiceError: Error {
+        case locationsEventDoesNotExist
+
+        var errorDescription: String? {
+            switch self {
+            case .locationsEventDoesNotExist:
+                return NSLocalizedString("While adding a Location object to the Core Data store there was no Event found to create a relation to from the Location", comment: "")
+            }
+        }
+    }
+
     // MARK: Properties
     private let urlString: String
     var persistentContainer: NSPersistentContainer
@@ -316,8 +327,15 @@ class EventsService: EventsRepository {
 
     @MainActor
     private func addLocation(to event: Event, geoDto: GeoDto) throws {
-        let location = EventLocation(geoData: geoDto, context: persistentContainer.viewContext)
-        event.eventLocation = location
+        // "location.event = event" causes error: Thread 1: "Illegal attempt to establish a relationship 'event' between objects in different contexts (source = <UOKiosk.EventLocation: 0x60000217b6b0> (entity: EventLocation; id: 0x6000002d1160
+        // Something about working with the objectID is thread safe rather than working with the instance directly. So, I think that has to do with why this works
+        let copyEvent = persistentContainer.viewContext.object(with: event.objectID) as? Event
+        guard let copyEvent = copyEvent else {
+            throw EventServiceError.locationsEventDoesNotExist
+        }
+
+        let location = EventLocation(geoDto: geoDto, context: persistentContainer.viewContext)
+        location.event = copyEvent
 
         do {
             try saveViewContext()
