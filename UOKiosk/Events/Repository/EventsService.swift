@@ -16,8 +16,7 @@ import Combine
  Pull-to-refrehs performs the fetchEvents that is described above but it will call
  the api every time.
 
- When event data arrives from the API the Data Tranfer Objects for events are instantiated into IMEvents
- then saved from the IMEvents to Core Data Event entities. Then the view display the fetched results
+ When event data arrives from the API the Data Tranfer Objects for events and the data is transfered to Core Data Event entities. Then the view display the fetched results
  from the Core Data Persistent Store.
 
  Data Permission:
@@ -148,7 +147,7 @@ class EventsService: EventsRepository {
 
     // MARK: Get Fresh Events
     @MainActor
-    private func fetchFreshEvents() async throws /*-> [IMEvent]*/ {
+    private func fetchFreshEvents() async throws {
         var dto: EventsDto? = nil
         do {
             dto = try await ApiService.shared.getJSON(urlString: urlString)

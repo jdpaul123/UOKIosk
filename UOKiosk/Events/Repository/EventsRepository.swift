@@ -13,6 +13,5 @@ protocol EventsRepository {
 
     func getImage(event: Event)
     func fetchEvents() async throws -> NSFetchedResultsController<Event>?
-//    func fetchFreshEvents() async throws /*-> [IMEvent]*/
     func fetchSavedEvents() -> NSFetchedResultsController<Event>?
 }

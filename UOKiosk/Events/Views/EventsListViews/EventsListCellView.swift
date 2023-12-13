@@ -32,6 +32,6 @@ struct EventsListCellView: View {
 
 //struct EventsListCellView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        EventsListCellView(injector: Injector(eventsRepository: MockEventsService(), whatIsOpenRepository: MockWhatIsOpenService()), event: <#IMEvent#>)
+//        EventsListCellView(vm: ____)
 //    }
 //}

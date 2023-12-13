@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 
 // MARK: - API Service Protocol
 protocol ApiServiceProtocol {
@@ -23,7 +22,7 @@ class ApiService: ApiServiceProtocol {
      */
 
     // Code source: https://www.youtube.com/watch?v=5oBiSNnSvdQ&list=RDCMUC2D6eRvCeMtcF5OGHf1-trw&index=4 Swift Concurrency Lesson 4 - Async and Await by CodeWithChris Ft. Stewart Lynch
-    // TODO: Impliment getJSON with Combine: https://www.youtube.com/watch?v=fdxFp5vU6MQ&t=9s
+    // Combine version of getJSON: https://www.youtube.com/watch?v=fdxFp5vU6MQ&t=9s
     func getJSON<T: Decodable>(urlString: String,
                                dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .deferredToDate,
                                keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys) async throws -> T {
