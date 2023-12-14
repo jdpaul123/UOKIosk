@@ -13,8 +13,8 @@ import SwiftUI
 class RadioViewModel: NSObject, ObservableObject {
     // MARK: Properties
     let kwvaUrl: URL = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
-    var playerItem: AVPlayerItem? = nil
-    var player: AVPlayer? = nil
+    var playerItem: AVPlayerItem?
+    var player: AVPlayer?
     @Published var playOrStopImage: Image = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
     @Published var isPlaying: Bool = false
