@@ -10,6 +10,7 @@ import Collections
 
 class WhatIsOpenService: WhatIsOpenRepository {
     private let urlString: String
+    var previousHours: String?
 
     init(urlString: String) {
         self.urlString = urlString
@@ -17,22 +18,15 @@ class WhatIsOpenService: WhatIsOpenRepository {
 
     func getAssetData() async throws -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
         // get the data from the ApiService. Turn the returned Dto object into a view model so that the data can be displayed
-        var whatIsOpenDto: WhatIsOpenDto? = nil
+        let whatIsOpenDto: WhatIsOpenDto
         do {
             whatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
         } catch {
             throw error
         }
 
-        // Go through each new "Asset". Create the current asset's PlaceViewModel with all of the correct data
-        guard let whatIsOpenDto = whatIsOpenDto else {
-            return [:]
-        }
-
         return fillViewModelData(dto: whatIsOpenDto)
     }
-
-    var previousHours: String? = nil
 
     func fillViewModelData(dto: WhatIsOpenDto) -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
         var (dining, coffee, duckStore, recreation, library, grocery, building, bank, other, closed) = ([WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace](), [WhatIsOpenPlace]())
@@ -53,48 +47,13 @@ class WhatIsOpenService: WhatIsOpenRepository {
             print()
             */
 
-            var mondayHours = [DateInterval]()
-            var tuesdayHours = [DateInterval]()
-            var wednsdayHours = [DateInterval]()
-            var thursdayHours = [DateInterval]()
-            var fridayHours = [DateInterval]()
-            var saturdayHours = [DateInterval]()
-            var sundayHours = [DateInterval]()
-
-            fillHours(hoursDto: asset.properties.hours.monday.hours, hours: &mondayHours, dayAtMidnight: today.mondayDate)
-            fillHours(hoursDto: asset.properties.hours.tuesday.hours, hours: &tuesdayHours, dayAtMidnight: today.tuesdayDate)
-            fillHours(hoursDto: asset.properties.hours.wednsday.hours, hours: &wednsdayHours, dayAtMidnight: today.wednsdayDate)
-            fillHours(hoursDto: asset.properties.hours.thursday.hours, hours: &thursdayHours, dayAtMidnight: today.thursdayDate)
-            fillHours(hoursDto: asset.properties.hours.friday.hours, hours: &fridayHours, dayAtMidnight: today.fridayDate)
-            fillHours(hoursDto: asset.properties.hours.saturday.hours, hours: &saturdayHours, dayAtMidnight: today.saturdayDate)
-            fillHours(hoursDto: asset.properties.hours.sunday.hours, hours: &sundayHours, dayAtMidnight: today.sundayDate)
-
-            func fillHours(hoursDto: [OpenHoursIntervalDto], hours: inout [DateInterval], dayAtMidnight: Date) {
-                for setOfHours in hoursDto {
-                    let startDate = getDateStartingFromTime(timeString: setOfHours.start, since: dayAtMidnight)
-                    let endDate = getDateStartingFromTime(timeString: setOfHours.end, since: dayAtMidnight)
-                    hours.append(DateInterval(start: startDate, end: endDate))
-                }
-            }
-
-            // timeString example: 07:20 so we want the first two characters for the hour and last two characters for the minute
-            func getDateStartingFromTime(timeString: String, since: Date) -> Date {
-                let firstHourDigit: String = String(timeString[0])
-                let secondHourDigit: String = String(timeString[1])
-                let firstMinuteDigit: String = String(timeString[3])
-                let secondMinuteDigit: String = String(timeString[4])
-
-                // TODO: Create an error if the code does not get an integer value from the next two operations because it always should
-                let timeHours: Int = Int(String(firstHourDigit+secondHourDigit)) ?? 0
-                let timeMinutes: Int = Int(String(firstMinuteDigit+secondMinuteDigit)) ?? 0
-                let timeHoursInSeconds: Int = 60*60*timeHours //Seconds*Minutes*Hours
-                let timeMinutesInSeconds: Int = 60*timeMinutes // Seconds*Minutes
-                var timeSeconds: Int { timeMinutes == 59 ? 59 : 0 }
-
-                let timeInterval = TimeInterval(timeHoursInSeconds+timeMinutesInSeconds+timeSeconds)
-
-                return Date(timeInterval: timeInterval, since: since)
-            }
+            let mondayHours = fillHours(hoursDto: asset.properties.hours.monday.hours, dayAtMidnight: today.mondayDate)
+            let tuesdayHours = fillHours(hoursDto: asset.properties.hours.tuesday.hours, dayAtMidnight: today.tuesdayDate)
+            let wednsdayHours = fillHours(hoursDto: asset.properties.hours.wednsday.hours, dayAtMidnight: today.wednsdayDate)
+            let thursdayHours = fillHours(hoursDto: asset.properties.hours.thursday.hours, dayAtMidnight: today.thursdayDate)
+            let fridayHours = fillHours(hoursDto: asset.properties.hours.friday.hours, dayAtMidnight: today.fridayDate)
+            let saturdayHours = fillHours(hoursDto: asset.properties.hours.saturday.hours, dayAtMidnight: today.saturdayDate)
+            let sundayHours = fillHours(hoursDto: asset.properties.hours.sunday.hours, dayAtMidnight: today.sundayDate)
 
             // FIXME: BELOW CODE IS FOR TESTING
             /*
@@ -120,26 +79,6 @@ class WhatIsOpenService: WhatIsOpenRepository {
                 until = getDateStartingFromTime(timeString: nextOpening.start, since: since)
             }
 
-            let dateIntervalFormatter = DateIntervalFormatter()
-            dateIntervalFormatter.calendar = .init(identifier: .gregorian)
-            dateIntervalFormatter.timeZone = .init(identifier: "America/Los_Angeles")!
-            dateIntervalFormatter.dateStyle = .none
-            dateIntervalFormatter.timeStyle = .short
-
-            func intervalString(hours: [DateInterval]) -> String {
-                var intervalString = ""
-                for interval in hours {
-                    if intervalString != "" {
-                        intervalString += "\n"
-                    }
-                    intervalString += dateIntervalFormatter.string(from: interval) ?? ""
-                }
-                if intervalString.isEmpty {
-                    intervalString = "Closed"
-                }
-                return intervalString
-            }
-
             let mondayIntervalString = intervalString(hours: mondayHours)
             let tuesdayIntervalString = intervalString(hours: tuesdayHours)
             let wednsdayIntervalString = intervalString(hours: wednsdayHours)
@@ -157,47 +96,6 @@ class WhatIsOpenService: WhatIsOpenRepository {
                 "Saturday": saturdayIntervalString,
                 "Sunday": sundayIntervalString
             ]
-
-            func groupConsecutiveDays(storeHours: OrderedDictionary<String, String>) -> OrderedDictionary<String, String> {
-                var groupedHours: OrderedDictionary<String, String> = OrderedDictionary()
-
-                var currentGroupStart: String? = nil
-
-                for (index, (weekday, hours)) in storeHours.enumerated() {
-                    if let previousHours = previousHours {
-                        if hours == previousHours {
-                            if currentGroupStart == nil {
-                                currentGroupStart = weekday
-                            }
-                        } else {
-                            if let groupStart = currentGroupStart {
-                                let groupEnd = storeHours.keys[index - 1]
-                                var groupKey = "\(groupStart)-\(groupEnd)"
-                                if groupStart == groupEnd {
-                                    groupKey = "\(groupStart)"
-                                }
-                                groupedHours[groupKey] = previousHours
-                            }
-
-                            currentGroupStart = weekday
-                            self.previousHours = hours
-                        }
-                    } else {
-                        previousHours = hours
-                        currentGroupStart = weekday
-                    }
-                }
-
-                if let groupStart = currentGroupStart, let lastWeekday = storeHours.keys.last, let hours = previousHours {
-                    var groupKey = "\(groupStart)-\(lastWeekday)"
-                    if groupStart == lastWeekday {
-                        groupKey = "\(groupStart)"
-                    }
-                    groupedHours[groupKey] = hours
-                }
-
-                return groupedHours
-            }
 
             hours = groupConsecutiveDays(storeHours: hours)
 
@@ -243,5 +141,101 @@ class WhatIsOpenService: WhatIsOpenRepository {
         let returnDictionary: [WhatIsOpenCategories: [WhatIsOpenPlace]] = [.dining: dining, .coffee: coffee, .duckStore: duckStore, .recreation: recreation, .library: library,
                                                                           .closed: closed, .grocery: grocery, .building: building, .bank: bank, .other: other]
         return returnDictionary
+    }
+
+    func fillHours(hoursDto: [OpenHoursIntervalDto], dayAtMidnight: Date) -> [DateInterval] {
+        var hours = [DateInterval]()
+
+        for setOfHours in hoursDto {
+            let startDate = getDateStartingFromTime(timeString: setOfHours.start, since: dayAtMidnight)
+            let endDate = getDateStartingFromTime(timeString: setOfHours.end, since: dayAtMidnight)
+            hours.append(DateInterval(start: startDate, end: endDate))
+        }
+
+        return hours
+    }
+
+    // timeString example: 07:20 so we want the first two characters for the hour and last two characters for the minute
+    func getDateStartingFromTime(timeString: String, since: Date) -> Date {
+        let firstHourDigit: String = String(timeString[0])
+        let secondHourDigit: String = String(timeString[1])
+        let firstMinuteDigit: String = String(timeString[3])
+        let secondMinuteDigit: String = String(timeString[4])
+
+        // TODO: Create an error if the code does not get an integer value from the next two operations because it always should
+        let timeHours: Int = Int(String(firstHourDigit+secondHourDigit)) ?? 0
+        let timeMinutes: Int = Int(String(firstMinuteDigit+secondMinuteDigit)) ?? 0
+        let timeHoursInSeconds: Int = 60*60*timeHours // Seconds*Minutes*Hours
+        let timeMinutesInSeconds: Int = 60*timeMinutes // Seconds*Minutes
+        var timeSeconds: Int { timeMinutes == 59 ? 59 : 0 }
+
+        let timeInterval = TimeInterval(timeHoursInSeconds+timeMinutesInSeconds+timeSeconds)
+
+        return Date(timeInterval: timeInterval, since: since)
+    }
+
+    // The hours that a store is opened on some day as it will be read by the user
+    // If there is a couple times the place is oopen in one day it would say something like "8:00 - 5:00\n6:00-10:00"
+    // If there is just one time the place is open it would say "8:00 - 10:00"
+    // If it's closed on the given day then it will say "Closed"
+    func intervalString(hours: [DateInterval]) -> String {
+        let dateIntervalFormatter = DateIntervalFormatter()
+        dateIntervalFormatter.calendar = .init(identifier: .gregorian)
+        dateIntervalFormatter.timeZone = .init(identifier: "America/Los_Angeles")!
+        dateIntervalFormatter.dateStyle = .none
+        dateIntervalFormatter.timeStyle = .short
+
+        var intervalString = ""
+        for interval in hours {
+            if intervalString != "" {
+                intervalString += "\n"
+            }
+            intervalString += dateIntervalFormatter.string(from: interval) ?? ""
+        }
+        if intervalString.isEmpty {
+            intervalString = "Closed"
+        }
+        return intervalString
+    }
+
+    func groupConsecutiveDays(storeHours: OrderedDictionary<String, String>) -> OrderedDictionary<String, String> {
+        var groupedHours: OrderedDictionary<String, String> = OrderedDictionary()
+
+        var currentGroupStart: String? = nil
+
+        for (index, (weekday, hours)) in storeHours.enumerated() {
+            if let previousHours = previousHours {
+                if hours == previousHours {
+                    if currentGroupStart == nil {
+                        currentGroupStart = weekday
+                    }
+                } else {
+                    if let groupStart = currentGroupStart {
+                        let groupEnd = storeHours.keys[index - 1]
+                        var groupKey = "\(groupStart)-\(groupEnd)"
+                        if groupStart == groupEnd {
+                            groupKey = "\(groupStart)"
+                        }
+                        groupedHours[groupKey] = previousHours
+                    }
+
+                    currentGroupStart = weekday
+                    self.previousHours = hours
+                }
+            } else {
+                previousHours = hours
+                currentGroupStart = weekday
+            }
+        }
+
+        if let groupStart = currentGroupStart, let lastWeekday = storeHours.keys.last, let hours = previousHours {
+            var groupKey = "\(groupStart)-\(lastWeekday)"
+            if groupStart == lastWeekday {
+                groupKey = "\(groupStart)"
+            }
+            groupedHours[groupKey] = hours
+        }
+
+        return groupedHours
     }
 }
