@@ -29,7 +29,7 @@ class MockEventsModelData {
                       ticketCost: "$25.00",
                       start: Date(timeIntervalSinceNow: TimeInterval(60*25)), end: Date(timeIntervalSinceNow: TimeInterval(60*220)),
                       allDay: false,
-                      eventLocation: EventLocation(geoData: GeoDto(latitude: "44.047367", longitude: "-123.07431", street: "1190 Franklin Blvd", city: "Eugene", state: "OR", country: "US", zip: "97401"),
+                      eventLocation: EventLocation(geoDto: GeoDto(latitude: "44.047367", longitude: "-123.07431", street: "1190 Franklin Blvd", city: "Eugene", state: "OR", country: "US", zip: "97401"),
                                                    context: context),
                       departmentFilters: [EventFilter(id: 16403, name: "Museum of Natural and Cultural History", context: context),
                                           EventFilter(id: 22996, name: "General Public", context: context)],
