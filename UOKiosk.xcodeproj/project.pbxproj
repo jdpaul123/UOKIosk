@@ -62,6 +62,7 @@
 		5289CEAE2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */; };
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
+		5289D2782B55F30A00E8C3DB /* ThemeColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
 		529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861B9284553BA009C1E3B /* UOKioskApp.swift */; };
@@ -170,6 +171,7 @@
 		5289CEAD2A16D43F00E51257 /* EventFilter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EventFilter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
+		5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ThemeColors.xcassets; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		529861B6284553BA009C1E3B /* UOKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -269,6 +271,7 @@
 			children = (
 				529861BF284553BC009C1E3B /* Preview Content */,
 				529861BD284553BC009C1E3B /* Assets.xcassets */,
+				5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */,
 				52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */,
 				52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */,
 			);
@@ -823,6 +826,7 @@
 			files = (
 				52BC04062A09A267005F93BF /* MockEventsData.json in Resources */,
 				52C3CFE12A294819001DF1D1 /* GoogleService-Info.plist in Resources */,
+				5289D2782B55F30A00E8C3DB /* ThemeColors.xcassets in Resources */,
 				529861C1284553BC009C1E3B /* Preview Assets.xcassets in Resources */,
 				529861BE284553BC009C1E3B /* Assets.xcassets in Resources */,
 			);
