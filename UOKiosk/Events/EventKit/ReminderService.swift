@@ -35,7 +35,7 @@ final class ReminderService: ReminderServiceProtocol {
         if #available(iOS 17.0, *) {
             return authStatus == .writeOnly || authStatus == .fullAccess
         } else {
-            return EKEventStore.authorizationStatus(for: .reminder) == .authorized
+            return authStatus == .authorized
         }
     }
 
