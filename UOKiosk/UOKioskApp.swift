@@ -27,12 +27,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct UOKioskApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
-    @StateObject var injector: Injector = Injector()
+    @StateObject var injector = Injector()
+    @StateObject var themeService = ThemeService()
 
     var body: some Scene {
         WindowGroup {
             TabMenuView()
                 .environmentObject(injector)
+                .environmentObject(themeService)
         }
     }
 }

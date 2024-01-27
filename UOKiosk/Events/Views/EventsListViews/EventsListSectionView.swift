@@ -17,19 +17,29 @@ struct EventsListSectionView: View {
     }
 
     var body: some View {
-        Section {
-            ForEach(vm.events) { event in
-                NavigationLink {
-                    EventDetailView(vm: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
-                } label: {
-                    EventsListCellView(vm: injector.viewModelFactory.makeEventsListCellViewModel(event: event))
-                }
+        Section(content: {
+            content
+        }, header: {
+            header
+        })
+    }
+
+    var content: some View {
+        ForEach(vm.events) { event in
+            NavigationLink {
+                EventDetailView(vm: injector.viewModelFactory.makeEventDetailViewModel(eventModel: event))
+            } label: {
+                EventsListCellView(vm: injector.viewModelFactory.makeEventsListCellViewModel(event: event))
             }
-        } header: {
-            Text("\(vm.displayDateString)")
-                .font(.title)
         }
     }
+
+    var header: some View {
+        Text("\(vm.displayDateString)")
+            .font(.title)
+    }
+
+
 }
 
 //struct EventsListSectionView_Previews: PreviewProvider {

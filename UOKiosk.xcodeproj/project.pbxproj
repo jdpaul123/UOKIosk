@@ -63,6 +63,10 @@
 		5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */; };
 		5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */; };
 		5289D2782B55F30A00E8C3DB /* ThemeColors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */; };
+		5289D27A2B55FE5C00E8C3DB /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289D2792B55FE5C00E8C3DB /* Theme.swift */; };
+		5289D27C2B55FE8700E8C3DB /* ThemeDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289D27B2B55FE8700E8C3DB /* ThemeDefinitions.swift */; };
+		5289D27E2B5600A100E8C3DB /* ThemeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289D27D2B5600A100E8C3DB /* ThemeService.swift */; };
+		5289D2802B5604FE00E8C3DB /* ThemeVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5289D27F2B5604FE00E8C3DB /* ThemeVersion.swift */; };
 		528A2A1D2849C9A30035F416 /* Injector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1C2849C9A30035F416 /* Injector.swift */; };
 		528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */; };
 		529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529861B9284553BA009C1E3B /* UOKioskApp.swift */; };
@@ -172,6 +176,10 @@
 		5289CEB02A16D57100E51257 /* WhatIsOpenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenView.swift; sourceTree = "<group>"; };
 		5289CEB22A16D57C00E51257 /* WhatIsOpenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatIsOpenViewModel.swift; sourceTree = "<group>"; };
 		5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = ThemeColors.xcassets; sourceTree = "<group>"; };
+		5289D2792B55FE5C00E8C3DB /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		5289D27B2B55FE8700E8C3DB /* ThemeDefinitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeDefinitions.swift; sourceTree = "<group>"; };
+		5289D27D2B5600A100E8C3DB /* ThemeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeService.swift; sourceTree = "<group>"; };
+		5289D27F2B5604FE00E8C3DB /* ThemeVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeVersion.swift; sourceTree = "<group>"; };
 		528A2A1C2849C9A30035F416 /* Injector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injector.swift; sourceTree = "<group>"; };
 		528A2A1E2849CA6E0035F416 /* ViewModelFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelFactory.swift; sourceTree = "<group>"; };
 		529861B6284553BA009C1E3B /* UOKiosk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UOKiosk.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -271,7 +279,6 @@
 			children = (
 				529861BF284553BC009C1E3B /* Preview Content */,
 				529861BD284553BC009C1E3B /* Assets.xcassets */,
-				5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */,
 				52C3CFE02A294818001DF1D1 /* GoogleService-Info.plist */,
 				52131E3B28B30762006C3094 /* EventsModel.xcdatamodeld */,
 			);
@@ -495,6 +502,18 @@
 			path = WhatIsOpen;
 			sourceTree = "<group>";
 		};
+		5289D2812B56051D00E8C3DB /* AppTheme */ = {
+			isa = PBXGroup;
+			children = (
+				5289D2772B55F30A00E8C3DB /* ThemeColors.xcassets */,
+				5289D2792B55FE5C00E8C3DB /* Theme.swift */,
+				5289D27B2B55FE8700E8C3DB /* ThemeDefinitions.swift */,
+				5289D27F2B5604FE00E8C3DB /* ThemeVersion.swift */,
+				5289D27D2B5600A100E8C3DB /* ThemeService.swift */,
+			);
+			path = AppTheme;
+			sourceTree = "<group>";
+		};
 		529861AD284553BA009C1E3B = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +550,7 @@
 				52A238672A4E1901004799E8 /* Radio */,
 				5274DC98289DFE560069D5A5 /* DependencyInjection */,
 				529861E4284553E3009C1E3B /* Services */,
+				5289D2812B56051D00E8C3DB /* AppTheme */,
 				52131E6B28B97B42006C3094 /* Resources */,
 				52463F122A3E7B39007BF9B1 /* Error Handling */,
 				52131E6828B96C91006C3094 /* Extension */,
@@ -779,7 +799,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1330;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1520;
 				TargetAttributes = {
 					529861B5284553BA009C1E3B = {
 						CreatedOnToolsVersion = 13.3.1;
@@ -855,10 +875,12 @@
 			files = (
 				52F56AEE2A3298670046A999 /* Array+SafeSubscript.swift in Sources */,
 				52131E6A28B96CC5006C3094 /* Color+ApplicationDefaults.swift in Sources */,
+				5289D2802B5604FE00E8C3DB /* ThemeVersion.swift in Sources */,
 				529861BA284553BA009C1E3B /* UOKioskApp.swift in Sources */,
 				52153BB228AE09EE007F4812 /* EventDetailViewModel.swift in Sources */,
 				52463EFB2A3BC452007BF9B1 /* EventsService.swift in Sources */,
 				526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */,
+				5289D27C2B55FE8700E8C3DB /* ThemeDefinitions.swift in Sources */,
 				52463EDC2A38DBDC007BF9B1 /* WhatIsOpenSubViewModels.swift in Sources */,
 				52463F082A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift in Sources */,
 				5289CEB12A16D57100E51257 /* WhatIsOpenView.swift in Sources */,
@@ -880,6 +902,7 @@
 				52131E4828B31E85006C3094 /* EventLocation.swift in Sources */,
 				52460AE52A611079008714EF /* WhatIsOpenIssueReportingView.swift in Sources */,
 				526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */,
+				5289D27A2B55FE5C00E8C3DB /* Theme.swift in Sources */,
 				528A2A1F2849CA6E0035F416 /* ViewModelFactory.swift in Sources */,
 				52131E5C28B34AC0006C3094 /* Event+CoreDataProperties.swift in Sources */,
 				52463EF92A3BC443007BF9B1 /* EventsRepository.swift in Sources */,
@@ -916,6 +939,7 @@
 				52A2384E2A4B7D3B004799E8 /* NewsFeedView.swift in Sources */,
 				52463F042A3BC71C007BF9B1 /* EventsListCellViewModel.swift in Sources */,
 				52131E3D28B30762006C3094 /* EventsModel.xcdatamodeld in Sources */,
+				5289D27E2B5600A100E8C3DB /* ThemeService.swift in Sources */,
 				52A238592A4BF866004799E8 /* NewsFeedCellView.swift in Sources */,
 				526221062A4261F90029FDAD /* CampusMapWebViewRepresentable.swift in Sources */,
 				5262210D2A45040B0029FDAD /* InformationView.swift in Sources */,

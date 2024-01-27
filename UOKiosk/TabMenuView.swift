@@ -33,6 +33,7 @@ enum Tabs: String {
 struct TabMenuView: View {
     @State var selectedTab: Tabs = .events
     @EnvironmentObject var injector: Injector
+    @EnvironmentObject var themeService: ThemeService
 
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -92,6 +93,7 @@ struct TabMenuView: View {
 //                Text(Tabs.radio.rawValue)
 //            }
         }
+        .tint(themeService.selectedTheme.secondaryColor)
     }
 }
 
