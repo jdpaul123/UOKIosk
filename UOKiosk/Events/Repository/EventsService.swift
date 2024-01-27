@@ -151,7 +151,7 @@ class EventsService: EventsRepository {
     // MARK: Get Fresh Events
     @MainActor
     private func fetchFreshEvents() async throws {
-        var dto: EventsDto = try await ApiService.shared.getJSON(urlString: urlString)
+        let dto: EventsDto = try await ApiService.shared.getJSON(urlString: urlString)
 
         var eventDtos = [EventDto]()
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
