@@ -18,7 +18,7 @@ class EventsListCellViewModel: ObservableObject {
     init(event: Event) {
         self.event = event
         self.title = event.title
-        let noImageData: Data = UIImage(named: "NoImage")!.pngData()!
+        let noImageData: Data = UIImage(resource: .no).pngData()!
         imageData = event.photoData ?? noImageData
         subscribeImageDataToEvent(event: event)
     }

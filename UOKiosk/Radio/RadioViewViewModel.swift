@@ -109,10 +109,9 @@ class RadioViewModel: NSObject, ObservableObject {
         var nowPlayingInfo = [String : Any]()
         nowPlayingInfo[MPMediaItemPropertyTitle] = "KWVA"
         nowPlayingInfo[MPNowPlayingInfoPropertyIsLiveStream] = true
-        if let image = UIImage(named: "KWVA") {
-            nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
-                return image
-            }
+        let image = UIImage(resource: .KWVA)
+        nowPlayingInfo[MPMediaItemPropertyArtwork] = MPMediaItemArtwork(boundsSize: image.size) { size in
+            return image
         }
 
         // Set the metadata

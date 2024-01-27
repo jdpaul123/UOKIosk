@@ -30,7 +30,7 @@ struct EventDetailView: View {
                 Text("\(vm.title)")
                     .font(.title)
                 VStack {
-                    Image(uiImage: .init(data: vm.imageData) ?? UIImage(named: "NoImage")!)
+                    Image(uiImage: .init(data: vm.imageData) ?? UIImage(resource: .no))
                         .resizable()
                         .scaledToFit()
                         .padding()

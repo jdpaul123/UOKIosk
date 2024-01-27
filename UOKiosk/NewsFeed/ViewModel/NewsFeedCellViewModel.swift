@@ -20,7 +20,7 @@ class NewsFeedCellViewModel: ObservableObject {
     init(article: RssArticle) {
         self.title = article.title
         self.thumbnailUrl = article.imageLink
-        self.thumbnailData = UIImage(named: "NoImage")!.pngData()!
+        self.thumbnailData = UIImage(resource: .no).pngData()!
         self.articleUrl = article.link
 
         let dateFormatter = DateFormatter()
@@ -30,7 +30,7 @@ class NewsFeedCellViewModel: ObservableObject {
     }
 
     init(title: String, articleDescription: String,
-         thumbnailUrl: URL, thumbnailData: Data = UIImage(named: "NoImage")!.pngData()!,
+         thumbnailUrl: URL, thumbnailData: Data = UIImage(resource: .no).pngData()!,
          articleUrl: URL, publishedDate: Date) {
         self.title = title
         self.thumbnailUrl = thumbnailUrl
