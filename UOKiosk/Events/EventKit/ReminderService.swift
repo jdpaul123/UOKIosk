@@ -4,15 +4,13 @@
 //
 //  Created by Jonathan Paul on 6/19/23.
 //
-// Help from: https://developer.apple.com/tutorials/app-dev-training/loading-reminders
-
-// FIXME: For iOS 17 more permissions will have to be added to info.plist. Refer to this link: https://developer.apple.com/documentation/eventkit/accessing_the_event_store
 /*
+ https://developer.apple.com/tutorials/app-dev-training/loading-reminders
  Protect user privacy with information property list keys
- An iOS app must include in its Info.plist file the usage description keys for the types of data it needs to access. On iOS 17 and later, to access a person’s calendar events or reminders, you need to include descriptions for:
-
- NSCalendarsWriteOnlyAccessUsageDescription or NSCalendarsFullAccessUsageDescription, depending on the level of access to events your app needs. Don’t request full access if your app’s features only need write-only access.
- NSRemindersFullAccessUsageDescription, if your app needs access to reminders.
+ An iOS app must include in its Info.plist file the usage description keys for the types of data it needs to access.
+ On iOS 17 and later, to access a person’s calendar events or reminders, you need to include descriptions for:
+ - NSCalendarsWriteOnlyAccessUsageDescription
+ - NSRemindersFullAccessUsageDescription
  */
 
 import EventKit
@@ -33,7 +31,12 @@ final class ReminderService: ReminderServiceProtocol {
     private let cnStore = CNContactStore()
 
     var isAvailable: Bool {
-        EKEventStore.authorizationStatus(for: .reminder) == .authorized
+        let authStatus = EKEventStore.authorizationStatus(for: .reminder)
+        if #available(iOS 17.0, *) {
+            return authStatus == .writeOnly || authStatus == .fullAccess
+        } else {
+            return EKEventStore.authorizationStatus(for: .reminder) == .authorized
+        }
     }
 
     func requestAccess() async throws {
