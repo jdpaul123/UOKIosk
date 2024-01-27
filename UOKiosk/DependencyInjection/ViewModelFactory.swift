@@ -23,18 +23,22 @@ final class ViewModelFactory: ObservableObject {
     }
 
     // MARK: Make View Model Functions
+    @MainActor
     func makeEventsListViewModel() -> EventsListViewModel {
         EventsListViewModel(eventsRepository: eventsRepository)
     }
 
+    @MainActor
     func makeEventsListSectionViewModel(parentViewModel: EventsListViewModel, dateToDisplay: Date) -> EventsListSectionViewModel {
         EventsListSectionViewModel(parentViewModel: parentViewModel, dateToDisplay: dateToDisplay)
     }
 
+    @MainActor
     func makeEventsListCellViewModel(event: Event) -> EventsListCellViewModel {
         EventsListCellViewModel(event: event)
     }
 
+    @MainActor
     func makeEventDetailViewModel(eventModel: Event) -> EventDetailViewModel {
         EventDetailViewModel(event: eventModel)
     }

@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+@MainActor
 class EventsListSectionViewModel: ObservableObject, Identifiable {
     let id = UUID()
 

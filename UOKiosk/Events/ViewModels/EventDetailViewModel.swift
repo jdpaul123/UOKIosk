@@ -10,6 +10,7 @@ import UIKit
 import EventKit
 import Combine
 
+@MainActor
 class EventDetailViewModel: ObservableObject {
     @Published var imageData: Data
     var imageSubscription: AnyCancellable?

@@ -9,6 +9,7 @@ import Foundation
 import Collections
 import CoreData
 
+@MainActor
 class EventsListViewModel: NSObject, ObservableObject {
     // MARK: Properties
     // Data Properties
@@ -39,7 +40,6 @@ class EventsListViewModel: NSObject, ObservableObject {
     }
 
     // MARK: Fetch Events
-    @MainActor
     func fetchEvents() async {
         isLoading = true
         defer { isLoading = false }

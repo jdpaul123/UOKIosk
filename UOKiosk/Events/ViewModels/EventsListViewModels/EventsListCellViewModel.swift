@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import SwiftUI
 
+@MainActor
 class EventsListCellViewModel: ObservableObject {
     @Published var event: Event
     @Published var imageData: Data
