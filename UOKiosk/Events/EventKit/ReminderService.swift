@@ -95,11 +95,7 @@ final class ReminderService: ReminderServiceProtocol {
         reminder.isCompleted = false
         reminder.addAlarm(EKAlarm(absoluteDate: eventStart))
 
-        do {
-            try ekStore.save(reminder, commit: true)
-        } catch {
-            throw error
-        }
+        try ekStore.save(reminder, commit: true)
         print("SUCCESS ADDING EVENT TO REMINDERS")
     }
 }

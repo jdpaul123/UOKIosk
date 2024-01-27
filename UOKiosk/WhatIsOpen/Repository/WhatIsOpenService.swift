@@ -18,13 +18,7 @@ class WhatIsOpenService: WhatIsOpenRepository {
 
     func getAssetData() async throws -> [WhatIsOpenCategories: [WhatIsOpenPlace]] {
         // get the data from the ApiService. Turn the returned Dto object into a view model so that the data can be displayed
-        let whatIsOpenDto: WhatIsOpenDto
-        do {
-            whatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
-        } catch {
-            throw error
-        }
-
+        let whatIsOpenDto: WhatIsOpenDto = try await ApiService.shared.getJSON(urlString: urlString)
         return fillViewModelData(dto: whatIsOpenDto)
     }
 

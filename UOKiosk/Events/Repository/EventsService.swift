@@ -108,22 +108,14 @@ class EventsService: EventsRepository {
         if !isLastUpdatedToday {
             lastDataUpdateDate = .now
             // call api for fresh data
-            do {
-                try await fetchFreshEvents()
-            } catch {
-                throw error
-            }
+            try await fetchFreshEvents()
         }
 
         let resultsController = fetchSavedEvents()
         guard let resultsController = resultsController, let fetchedObjects = resultsController.fetchedObjects,
               !fetchedObjects.isEmpty else {
             // call api for fresh data
-            do {
-                try await fetchFreshEvents()
-            } catch {
-                throw error
-            }
+            try await fetchFreshEvents()
             return fetchSavedEvents()
         }
         return resultsController
@@ -159,16 +151,7 @@ class EventsService: EventsRepository {
     // MARK: Get Fresh Events
     @MainActor
     private func fetchFreshEvents() async throws {
-        var dto: EventsDto? = nil
-        do {
-            dto = try await ApiService.shared.getJSON(urlString: urlString)
-        } catch {
-            throw error
-        }
-
-        guard let dto = dto else {
-            throw EventsServiceError.dataTransferObjectIsNil
-        }
+        var dto: EventsDto = try await ApiService.shared.getJSON(urlString: urlString)
 
         var eventDtos = [EventDto]()
         // If an event loaded in has an id that does not equate to any of the id's on the events already saved, then add the event to the persistent store
@@ -208,48 +191,27 @@ class EventsService: EventsRepository {
             let dateValues = getEventInstanceDateData(dateData: dateData)
 
             // Add the event
-            let event: Event
-            do {
-                event = try addEvent(eventDto, start: dateValues.start, end: dateValues.end, allDay: dateValues.allDay)
-            } catch {
-                throw error
-            }
+            let event = try addEvent(eventDto, start: dateValues.start, end: dateValues.end, allDay: dateValues.allDay)
 
             // Add the relationships to the event
             if let eventTypeFilters = eventDto.filters.eventTypes {
                 for eventTypeFilter in eventTypeFilters {
-                    do {
-                        try addFilter(to: event, filter: eventTypeFilter, filterType: .eventType)
-                    } catch {
-                        throw error
-                    }
+                    try addFilter(to: event, filter: eventTypeFilter, filterType: .eventType)
                 }
             }
             if let departmentFilters = eventDto.filters.departments {
                 for departmentFilter in departmentFilters {
-                    do {
-                        try addFilter(to: event, filter: departmentFilter, filterType: .department)
-                    } catch {
-                        throw error
-                    }
+                    try addFilter(to: event, filter: departmentFilter, filterType: .department)
                 }
             }
             if let targetAudienceFilters = eventDto.filters.eventTargetAudience {
                 for targetAudienceFilter in targetAudienceFilters {
-                    do {
-                        try addFilter(to: event, filter: targetAudienceFilter, filterType: .targetAudience)
-                    } catch {
-                        throw error
-                    }
+                    try addFilter(to: event, filter: targetAudienceFilter, filterType: .targetAudience)
                 }
             }
 
             if let geoDto = eventDto.geo {
-                do {
-                    try addLocation(to: event, geoDto: geoDto)
-                } catch {
-                    throw error
-                }
+                try addLocation(to: event, geoDto: geoDto)
             }
         }
     }
@@ -298,12 +260,9 @@ class EventsService: EventsRepository {
                           departmentFilters: [], targetAudienceFilters: [], eventTypeFilters: [],
                           context: persistentContainer.viewContext)
 
-        do {
-            try saveViewContext()
-            return event
-        } catch {
-            throw error
-        }
+
+        try saveViewContext()
+        return event
     }
 
     @MainActor
@@ -318,11 +277,7 @@ class EventsService: EventsRepository {
             event.addToTargetAudienceFilters(filter)
         }
 
-        do {
-            try saveViewContext()
-        } catch {
-            throw error
-        }
+        try saveViewContext()
     }
 
     @MainActor
@@ -337,22 +292,14 @@ class EventsService: EventsRepository {
         let location = EventLocation(geoDto: geoDto, context: persistentContainer.viewContext)
         location.event = copyEvent
 
-        do {
-            try saveViewContext()
-        } catch {
-            throw error
-        }
+        try saveViewContext()
     }
 
     @MainActor
     private func deleteEvent(_ event: Event) throws {
         persistentContainer.viewContext.delete(event)
 
-        do {
-            try saveViewContext()
-        } catch {
-            throw error
-        }
+        try saveViewContext()
     }
 
     @MainActor

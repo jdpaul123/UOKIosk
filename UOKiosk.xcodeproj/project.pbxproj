@@ -47,7 +47,6 @@
 		52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */; };
 		525538EC2A0D9979004BD415 /* EventsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */; };
 		525538ED2A0DA5D1004BD415 /* MockApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525538E92A0C4CE3004BD415 /* MockApiService.swift */; };
-		526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */; };
 		526220F42A3F8AA40029FDAD /* APIErrorEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */; };
 		526220F72A3FF2910029FDAD /* EventKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220F62A3FF2910029FDAD /* EventKitViewController.swift */; };
 		526221002A4173540029FDAD /* ReminderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526220FF2A4173540029FDAD /* ReminderService.swift */; };
@@ -160,7 +159,6 @@
 		52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModifier.swift; sourceTree = "<group>"; };
 		525538E92A0C4CE3004BD415 /* MockApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockApiService.swift; sourceTree = "<group>"; };
 		525538EB2A0D9979004BD415 /* EventsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewModelTests.swift; sourceTree = "<group>"; };
-		526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsServiceErrorEnum.swift; sourceTree = "<group>"; };
 		526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIErrorEnum.swift; sourceTree = "<group>"; };
 		526220F62A3FF2910029FDAD /* EventKitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventKitViewController.swift; sourceTree = "<group>"; };
 		526220FF2A4173540029FDAD /* ReminderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderService.swift; sourceTree = "<group>"; };
@@ -391,7 +389,6 @@
 			isa = PBXGroup;
 			children = (
 				52463F132A3E7B4E007BF9B1 /* BannerModifier.swift */,
-				526220F12A3F8A880029FDAD /* EventsServiceErrorEnum.swift */,
 				526220F32A3F8AA40029FDAD /* APIErrorEnum.swift */,
 			);
 			path = "Error Handling";
@@ -920,7 +917,6 @@
 				52463ED12A35563C007BF9B1 /* WoosmapDays.swift in Sources */,
 				52463ED52A37B5AE007BF9B1 /* Date+DayOfWeek.swift in Sources */,
 				52131E4A28B31E85006C3094 /* EventFilter.swift in Sources */,
-				526220F22A3F8A880029FDAD /* EventsServiceErrorEnum.swift in Sources */,
 				5289CEB32A16D57C00E51257 /* WhatIsOpenViewModel.swift in Sources */,
 				5286E92E2B210E9D00A724A4 /* EKEventEditViewController+RequestAccess.swift in Sources */,
 				52463F142A3E7B4E007BF9B1 /* BannerModifier.swift in Sources */,
