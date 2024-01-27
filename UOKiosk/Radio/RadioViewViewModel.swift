@@ -10,17 +10,18 @@ import AVFoundation
 import MediaPlayer
 import SwiftUI
 
+@MainActor
 class RadioViewModel: NSObject, ObservableObject {
     // MARK: Properties
-    let kwvaUrl: URL = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
+    let kwvaUrl = URL(string: "http://kwvaradio.uoregon.edu:8000/stream/1/kwva-high.mp3")!
     var playerItem: AVPlayerItem?
     var player: AVPlayer?
-    @Published var playOrStopImage: Image = Image(systemName: "play.fill")
+    @Published var playOrStopImage = Image(systemName: "play.fill")
     @Published var viewDidLoad = false
-    @Published var isPlaying: Bool = false
-    @Published var showingInformationSheet: Bool = false
-    @Published var showBanner: Bool = false
-    @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
+    @Published var isPlaying = false
+    @Published var showingInformationSheet = false
+    @Published var showBanner  = false
+    @Published var bannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
 
     override init() {
         super.init()
@@ -58,7 +59,6 @@ class RadioViewModel: NSObject, ObservableObject {
     }
 
     // MARK: - AVPlayer Controls
-    @MainActor
     func playOrStop() {
         if isPlaying {
             stop()
@@ -67,7 +67,6 @@ class RadioViewModel: NSObject, ObservableObject {
         }
     }
 
-    @MainActor
     private func play() {
         playerItem = AVPlayerItem(url: kwvaUrl)
         player = AVPlayer(playerItem: playerItem)
@@ -79,7 +78,6 @@ class RadioViewModel: NSObject, ObservableObject {
         isPlaying = true
     }
 
-    @MainActor
     func stop() {
         guard let player = player else { return }
         playOrStopImage = Image(systemName: "play.fill")

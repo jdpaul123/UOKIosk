@@ -69,6 +69,7 @@ final class ViewModelFactory: ObservableObject {
         NewsFeedCellViewModel(article: article)
     }
 
+    @MainActor
     func makeRadioViewModel() -> RadioViewModel {
         RadioViewModel()
     }
