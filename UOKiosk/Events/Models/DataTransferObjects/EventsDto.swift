@@ -38,9 +38,6 @@ struct EventDto: Decodable, Identifiable {
      - custom fields because they seem to be unused
      - city_id, neighborhood_id, and campud_id because it seems they are always null values
      
-     I also have a list of attributes that I call no-use attributes because I am not using them.
-     They are below a comment marking them in coding keys and the list of attributes.
-     
      Other Notes:
      - Featured value seemed to always be false
      */
@@ -65,33 +62,6 @@ struct EventDto: Decodable, Identifiable {
         case experience = "experience"
         case ticketUrl = "ticket_url"
         case ticketCost = "ticket_cost"
-        
-        // No-use attributes
-        case createdAt = "created_at"
-        case facebookId = "facebook_id"
-        case firstDate = "first_date"
-        case lastDate = "last_date"
-        case hashtag = "hashtag"
-        case urlName = "url_name"
-        case userId = "user_id"
-        case directions = "directions"
-        case allowsReviews = "allows_reviews"
-        case allowsAttendance = "allows_attendance"
-        case streamInfo = "stream_info"
-        case streamEmbedCode = "stream_embed_code"
-        case createdBy = "created_by"
-        case updatedBy = "updated_by"
-        case kind = "kind"
-        case schoolId = "school_id"
-        case recurring = "recurring"
-        case privateEvent = "private_event"
-        case verified = "verified"
-        case rejected = "rejected"
-        case sponsored = "sponsored"
-        case venueId = "venue_id"
-        case photoId = "photo_id"
-        case detailViews = "detail_views"
-        case featured = "featured"
     }
     let id: Int
     let title: String
@@ -122,33 +92,6 @@ struct EventDto: Decodable, Identifiable {
     // About event
     let status: String? // Possible values: "live" or "canceled"
     let experience: String? // Possible values: "inperson" or "hybrid" or "virtual"
-
-    // No-use attributes
-    let createdAt: String?
-    let facebookId: String?
-    let firstDate: String?
-    let lastDate: String?
-    let hashtag: String?
-    let urlName: String?
-    let userId: Int?
-    let directions: String?
-    let allowsReviews: Bool?
-    let allowsAttendance: Bool?
-    let streamInfo: String?
-    let streamEmbedCode: String?
-    let createdBy: Int?
-    let updatedBy: Int?
-    let kind: String?
-    let schoolId: Int?
-    let recurring: Bool?
-    let privateEvent: Bool?
-    let verified: Bool?
-    let rejected: Bool?
-    let sponsored: Bool?
-    let venueId: Int?
-    let photoId: Int?
-    let detailViews: Int?
-    let featured: Bool?
 }
 
 // MARK: Event Filters DTO
