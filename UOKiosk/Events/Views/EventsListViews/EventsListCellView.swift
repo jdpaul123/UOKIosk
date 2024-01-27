@@ -17,7 +17,7 @@ struct EventsListCellView: View {
 
     var body: some View {
         HStack {
-            Image.init(uiImage: UIImage(data: vm.imageData) ?? UIImage(resource: .no))
+            vm.image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 120, height: 120)

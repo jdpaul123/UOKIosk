@@ -69,6 +69,7 @@ final class ViewModelFactory: ObservableObject {
         NewsFeedViewModel(newsFeedRepository: newsFeedRepository)
     }
 
+    @MainActor
     func makeNewsFeedCellViewModel(article: RssArticle) -> NewsFeedCellViewModel {
         NewsFeedCellViewModel(article: article)
     }

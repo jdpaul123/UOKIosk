@@ -9,10 +9,11 @@ import Foundation
 import SwiftUI
 import Combine
 
+@MainActor
 class NewsFeedCellViewModel: ObservableObject {
     @Published var title: String
     @Published var thumbnailUrl: URL?
-    @Published var thumbnailData: Data
+    @Published var thumbnail: Image
     @Published var articleUrl: URL
     @Published var publishedDateString: String
     var cancellables = Set<AnyCancellable>()
@@ -20,7 +21,7 @@ class NewsFeedCellViewModel: ObservableObject {
     init(article: RssArticle) {
         self.title = article.title
         self.thumbnailUrl = article.imageLink
-        self.thumbnailData = UIImage(resource: .no).pngData()!
+        self.thumbnail = Image(.no)
         self.articleUrl = article.link
 
         let dateFormatter = DateFormatter()
@@ -30,11 +31,11 @@ class NewsFeedCellViewModel: ObservableObject {
     }
 
     init(title: String, articleDescription: String,
-         thumbnailUrl: URL, thumbnailData: Data = UIImage(resource: .no).pngData()!,
+         thumbnailUrl: URL, thumbnail: Image = Image(.no),
          articleUrl: URL, publishedDate: Date) {
         self.title = title
         self.thumbnailUrl = thumbnailUrl
-        self.thumbnailData = thumbnailData
+        self.thumbnail = thumbnail
         self.articleUrl = articleUrl
 
         let dateFormatter = DateFormatter()
@@ -47,6 +48,7 @@ class NewsFeedCellViewModel: ObservableObject {
             return
         }
         URLSession.shared.dataTaskPublisher(for: thumbnailUrl)
+            .receive(on: RunLoop.main)
             .sink { completion in
                 // TODO: Add error handling
                 switch completion {
@@ -56,8 +58,9 @@ class NewsFeedCellViewModel: ObservableObject {
                     print("!!! Failed to get photo for news article, \(self.title), with error: \(error.localizedDescription)")
                 }
             } receiveValue: { [weak self] (data, respose) in
-                DispatchQueue.main.async {
-                    self?.thumbnailData = data
+                guard let self else { return }
+                if let uiImage = UIImage(data: data) {
+                    self.thumbnail = Image(uiImage: uiImage)
                 }
             }
             .store(in: &cancellables)

@@ -34,8 +34,8 @@ class EventsListViewModel: NSObject, ObservableObject {
     // MARK: Initializer
     init(eventsRepository: EventsRepository, bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)) {
         self.eventsRepository = eventsRepository
-        self.bannerData = bannerData
         self.resultsController = eventsRepository.fetchSavedEvents()
+        self.bannerData = bannerData
         super.init()
     }
 

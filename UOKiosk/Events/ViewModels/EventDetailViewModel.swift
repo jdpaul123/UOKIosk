@@ -6,13 +6,13 @@
 //
 
 import Foundation
-import UIKit
+import SwiftUI
 import EventKit
 import Combine
 
 @MainActor
 class EventDetailViewModel: ObservableObject {
-    @Published var imageData: Data
+    @Published var image: Image
     var imageSubscription: AnyCancellable?
 
     @Published var event: Event
@@ -36,10 +36,10 @@ class EventDetailViewModel: ObservableObject {
 
         self.event = event
         self.title = event.title
-        let noImageData = UIImage.init(named: "NoImage")!.pngData()!
-        self.imageData = noImageData
-        if let photoData = event.photoData {
-            self.imageData = photoData
+        if let photoData = event.photoData, let uiImage = UIImage(data: photoData) {
+            self.image = Image(uiImage: uiImage)
+        } else {
+            self.image = Image(.no)
         }
 
         self.location = event.locationName ?? ""
@@ -91,7 +91,9 @@ class EventDetailViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] data in
                 guard let self = self else { return }
-                self.imageData = data ?? self.imageData
+                if let data, let uiImage = UIImage(data: data) {
+                    self.image = Image(uiImage: uiImage)
+                }
             }
     }
 

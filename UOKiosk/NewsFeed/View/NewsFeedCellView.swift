@@ -16,7 +16,7 @@ struct NewsFeedCellView: View {
 
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: vm.thumbnailData)!)
+            vm.thumbnail
                 .resizable()
                 .scaledToFill()
                 .frame(width: 132)

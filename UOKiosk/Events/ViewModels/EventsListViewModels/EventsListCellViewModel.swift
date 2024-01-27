@@ -12,15 +12,16 @@ import SwiftUI
 @MainActor
 class EventsListCellViewModel: ObservableObject {
     @Published var event: Event
-    @Published var imageData: Data
+    @Published var image: Image = Image(.no)
     var imageSubscription: AnyCancellable? = nil
     let title: String
 
     init(event: Event) {
         self.event = event
         self.title = event.title
-        let noImageData: Data = UIImage(resource: .no).pngData()!
-        imageData = event.photoData ?? noImageData
+        if let data = event.photoData, let uiImage = UIImage(data: data) {
+            self.image = Image(uiImage: uiImage)
+        }
         subscribeImageDataToEvent(event: event)
     }
 
@@ -37,7 +38,9 @@ class EventsListCellViewModel: ObservableObject {
                 }
             } receiveValue: { [weak self] data in
                 guard let self = self else { return }
-                self.imageData = data ?? self.imageData
+                if let data, let uiImage = UIImage(data: data) {
+                    self.image = Image(uiImage: uiImage)
+                }
             }
     }
 }
