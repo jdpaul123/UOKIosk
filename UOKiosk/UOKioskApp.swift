@@ -12,14 +12,6 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
       FirebaseApp.configure()
-
-      // FIXME: AVFoundation causing error logging: AddInstanceForFactory: No factory registered for id <CFUUID 0x600000238d40> F8BB1C28-BAE8-11D6-9C31-00039315CD46
-      // https://stackoverflow.com/questions/58360765/swift-5-1-error-plugin-addinstanceforfactory-no-factory-registered-for-id-c
-//      do {
-//          try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
-//      } catch {
-//          print("Failed to set audio session category. With error: \(error.localizedDescription)")
-//      }
       return true
   }
 }

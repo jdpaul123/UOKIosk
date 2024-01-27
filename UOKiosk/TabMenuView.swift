@@ -82,16 +82,16 @@ struct TabMenuView: View {
                 Text(Tabs.news.rawValue)
             }
 
-//            NavigationView {
-//                RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
-//                    .navigationTitle(Tabs.radio.rawValue)
-//            }
-//            .navigationViewStyle(StackNavigationViewStyle())
-//            .tag(Tabs.radio)
-//            .tabItem {
-//                Image(systemName: Tabs.radio.sfSymbol)
-//                Text(Tabs.radio.rawValue)
-//            }
+            NavigationView {
+                RadioView(vm: injector.viewModelFactory.makeRadioViewModel())
+                    .navigationTitle(Tabs.radio.rawValue)
+            }
+            .navigationViewStyle(StackNavigationViewStyle())
+            .tag(Tabs.radio)
+            .tabItem {
+                Image(systemName: Tabs.radio.sfSymbol)
+                Text(Tabs.radio.rawValue)
+            }
         }
         .tint(themeService.selectedTheme.secondaryColor)
     }

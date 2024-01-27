@@ -22,6 +22,17 @@ class RadioViewModel: NSObject, ObservableObject {
     @Published var showBanner: Bool = false
     @Published var bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)
 
+    override init() {
+        super.init()
+        // FIXME: AVFoundation causing error logging: AddInstanceForFactory: No factory registered for id <CFUUID 0x600000238d40> F8BB1C28-BAE8-11D6-9C31-00039315CD46
+        // https://stackoverflow.com/questions/58360765/swift-5-1-error-plugin-addinstanceforfactory-no-factory-registered-for-id-c
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+        } catch {
+            print("Failed to set audio session category. With error: \(error.localizedDescription)")
+        }
+    }
+
     // MARK: - Observe Status of Playing Radio Audio
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "status", let playerItem = object as? AVPlayerItem {
