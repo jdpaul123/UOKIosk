@@ -249,16 +249,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		52131E5F28B54E33006C3094 /* EventsListViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				52463F002A3BC603007BF9B1 /* EventsListViewModel.swift */,
-				52463F072A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift */,
-				52463F032A3BC71C007BF9B1 /* EventsListCellViewModel.swift */,
-			);
-			path = EventsListViewModels;
-			sourceTree = "<group>";
-		};
 		52131E6828B96C91006C3094 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,14 +365,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		52463F022A3BC624007BF9B1 /* EventsListViews */ = {
+		52463F022A3BC624007BF9B1 /* EventsList */ = {
 			isa = PBXGroup;
 			children = (
-				52463EFC2A3BC55E007BF9B1 /* EventsListView.swift */,
-				52463F052A3BCA11007BF9B1 /* EventsListSectionView.swift */,
-				52463EFE2A3BC59A007BF9B1 /* EventsListCellView.swift */,
+				52D1F4522B670C9F00D83B06 /* EventsList */,
+				52D1F4532B67236F00D83B06 /* EventsListSection */,
+				52D1F4542B67237E00D83B06 /* EventsListCell */,
 			);
-			path = EventsListViews;
+			path = EventsList;
 			sourceTree = "<group>";
 		};
 		52463F122A3E7B39007BF9B1 /* Error Handling */ = {
@@ -478,8 +468,7 @@
 			isa = PBXGroup;
 			children = (
 				529861E7284554C7009C1E3B /* Models */,
-				529861E8284554CB009C1E3B /* ViewModels */,
-				529861E6284554C1009C1E3B /* Views */,
+				529861E6284554C1009C1E3B /* ViewsAndViewModels */,
 				526220F52A3FF2440029FDAD /* EventKit */,
 				529861E3284553DB009C1E3B /* Repository */,
 			);
@@ -608,13 +597,13 @@
 			path = DataTransferObjects;
 			sourceTree = "<group>";
 		};
-		529861E6284554C1009C1E3B /* Views */ = {
+		529861E6284554C1009C1E3B /* ViewsAndViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				52463F022A3BC624007BF9B1 /* EventsListViews */,
-				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
+				52463F022A3BC624007BF9B1 /* EventsList */,
+				52D1F4552B67238C00D83B06 /* EventDetail */,
 			);
-			path = Views;
+			path = ViewsAndViewModels;
 			sourceTree = "<group>";
 		};
 		529861E7284554C7009C1E3B /* Models */ = {
@@ -629,15 +618,6 @@
 				52131E5228B34AC0006C3094 /* EventLocation+CoreDataProperties.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		529861E8284554CB009C1E3B /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				52131E5F28B54E33006C3094 /* EventsListViewModels */,
-				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
-			);
-			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		52A2384C2A4B7D2B004799E8 /* NewsFeed */ = {
@@ -713,6 +693,42 @@
 				52131E6C28B97D5C006C3094 /* Helper */,
 			);
 			path = OldTestFiles;
+			sourceTree = "<group>";
+		};
+		52D1F4522B670C9F00D83B06 /* EventsList */ = {
+			isa = PBXGroup;
+			children = (
+				52463EFC2A3BC55E007BF9B1 /* EventsListView.swift */,
+				52463F002A3BC603007BF9B1 /* EventsListViewModel.swift */,
+			);
+			path = EventsList;
+			sourceTree = "<group>";
+		};
+		52D1F4532B67236F00D83B06 /* EventsListSection */ = {
+			isa = PBXGroup;
+			children = (
+				52463F052A3BCA11007BF9B1 /* EventsListSectionView.swift */,
+				52463F072A3BCA1E007BF9B1 /* EventsListSectionViewModel.swift */,
+			);
+			path = EventsListSection;
+			sourceTree = "<group>";
+		};
+		52D1F4542B67237E00D83B06 /* EventsListCell */ = {
+			isa = PBXGroup;
+			children = (
+				52463EFE2A3BC59A007BF9B1 /* EventsListCellView.swift */,
+				52463F032A3BC71C007BF9B1 /* EventsListCellViewModel.swift */,
+			);
+			path = EventsListCell;
+			sourceTree = "<group>";
+		};
+		52D1F4552B67238C00D83B06 /* EventDetail */ = {
+			isa = PBXGroup;
+			children = (
+				52153BAF28AE08EE007F4812 /* EventDetailView.swift */,
+				52153BB128AE09ED007F4812 /* EventDetailViewModel.swift */,
+			);
+			path = EventDetail;
 			sourceTree = "<group>";
 		};
 		52F1F65A2A304CE800F9CF3B /* Repository */ = {

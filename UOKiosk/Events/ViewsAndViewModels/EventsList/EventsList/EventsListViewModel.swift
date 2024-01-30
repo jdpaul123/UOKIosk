@@ -7,16 +7,14 @@
 
 import Foundation
 import Collections
-import CoreData
 
 @MainActor
 class EventsListViewModel: NSObject, ObservableObject {
     // MARK: Properties
     // Data Properties
     let eventsRepository: EventsRepository
-    private var resultsController: NSFetchedResultsController<Event>?
     @Published var eventsDictionary = OrderedDictionary<Date, [Event]>()
-    @Published var events: [Event] = []
+    @Published var events = [Event]()
 
     // View State Properties
     @Published var showingInformationSheet = false
@@ -34,7 +32,6 @@ class EventsListViewModel: NSObject, ObservableObject {
     // MARK: Initializer
     init(eventsRepository: EventsRepository, bannerData: BannerModifier.BannerData = BannerModifier.BannerData(title: "", detail: "", type: .Error)) {
         self.eventsRepository = eventsRepository
-        self.resultsController = eventsRepository.fetchSavedEvents()
         self.bannerData = bannerData
         super.init()
     }
@@ -42,9 +39,12 @@ class EventsListViewModel: NSObject, ObservableObject {
     // MARK: Fetch Events
     func fetchEvents() async {
         isLoading = true
-        defer { isLoading = false }
+        defer {
+            isLoading = false
+            viewModelHasLoaded = true
+        }
         do {
-            resultsController = try await eventsRepository.fetchEvents()
+            events = try await eventsRepository.fetchSavedEvents()
         } catch {
             bannerData.title = "Error"
             bannerData.detail = error.localizedDescription
@@ -52,11 +52,30 @@ class EventsListViewModel: NSObject, ObservableObject {
             return
         }
 
-        events = resultsController?.fetchedObjects ?? []
-
-        for event in events {
-            eventsRepository.getImage(event: event)
+        Task {
+            await fetchFreshEvents()
+            await fetchImages()
         }
+
+        fillEventsDictionary()
+    }
+
+    private func fetchFreshEvents() async {
+        if let events = try? await eventsRepository.fetchFreshEvents() {
+            self.events = events
+        }
+        fillEventsDictionary()
+    }
+
+    private func fetchImages() async {
+        for event in events {
+            await eventsRepository.getImage(for: event)
+        }
+        fillEventsDictionary()
+    }
+
+    private func fillEventsDictionary() {
+        var eventsDictionary = OrderedDictionary<Date, [Event]>()
 
         let cal = Calendar(identifier: .gregorian)
         for event in events {
@@ -71,6 +90,7 @@ class EventsListViewModel: NSObject, ObservableObject {
                 eventsDictionary[startOfEventAtMidnight] = [event]
             }
         }
-        viewModelHasLoaded = true
+
+        self.eventsDictionary = eventsDictionary
     }
 }

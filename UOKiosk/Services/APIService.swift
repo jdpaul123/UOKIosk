@@ -52,6 +52,19 @@ class ApiService: ApiServiceProtocol {
         }
     }
 
+    /// Get image data from a URL
+    func getImageData(from url: URL) async throws -> Data {
+        let imageData: Data
+        let response: URLResponse
+        (imageData, response) = try await URLSession.shared.data(from: url)
+
+        guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
+            throw APIError.invalidResponseStatus
+        }
+
+        return imageData
+    }
+
     // MARK: Singleton
     static let shared = ApiService()
 }
